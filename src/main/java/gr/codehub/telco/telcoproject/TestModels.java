@@ -7,10 +7,11 @@ public class TestModels {
 
     public static void main(String[] args) {
 
-        Customer customer = Customer.builder().ssn(654654).build();
+        Customer customer = Customer.builder().userId(1).build();
+        System.out.println(customer.getUserId());
 
 
-        System.out.println(customer.getSsn());
+
 
     }
 }

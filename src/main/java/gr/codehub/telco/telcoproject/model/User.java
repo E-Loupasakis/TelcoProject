@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public abstract class User {
 
-    private int Id;
+    private int userId;
     private String firstName;
     private String lastName;
     private String email;

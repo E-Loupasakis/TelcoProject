@@ -8,7 +8,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class Customer extends User{
 
-    private int ssn;//right now the toString method produces only the ssn
+    private int vatNumber;//right now the toString method produces only the ssn
 
     //this can be changed
 
