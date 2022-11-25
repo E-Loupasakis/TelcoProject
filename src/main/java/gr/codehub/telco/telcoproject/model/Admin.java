@@ -5,6 +5,7 @@ import lombok.experimental.SuperBuilder;
 
 
 @Data
+@EqualsAndHashCode (callSuper = true)
 @SuperBuilder
 @ToString(callSuper = true)
 public class Admin extends User{
