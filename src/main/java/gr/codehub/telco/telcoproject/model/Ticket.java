@@ -1,5 +1,7 @@
 package gr.codehub.telco.telcoproject.model;
 
+import gr.codehub.telco.telcoproject.enums.TicketStatus;
+import gr.codehub.telco.telcoproject.enums.TicketType;
 import lombok.Builder;
 import lombok.Data;
 
