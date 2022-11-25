@@ -1,13 +1,12 @@
 package gr.codehub.telco.telcoproject;
 
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 
-@Path("/hello-world")
+@Path("/create")
 public class HelloResource {
-    @GET
-    @Produces("text/plain")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     public String hello() {
         return "Hello, World!";
     }
