@@ -11,7 +11,8 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 public class Ticket {
-    private Long id;
+
+    private Long ticketId;
     private LocalDate dateTimeOfCreation;
     private Long customerId;
     private TicketStatus ticketStatus;
