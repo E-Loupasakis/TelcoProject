@@ -5,11 +5,11 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 @Data
+@EqualsAndHashCode (callSuper = true)
 @SuperBuilder
+@ToString(callSuper = true)
 public class Customer extends User{
 
-    private int ssn;//right now the toString method produces only the ssn
-
-    //this can be changed
+    private int vatNumber;
 
 }
