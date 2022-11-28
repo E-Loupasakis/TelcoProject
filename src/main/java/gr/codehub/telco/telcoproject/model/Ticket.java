@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class Ticket {
 
     private Long ticketId;
-    private LocalDate dateTimeOfCreation;
+    private LocalDateTime dateTimeOfCreation;
     private Long customerId;
     private TicketStatus ticketStatus;
     private LocalDateTime dateTimeOfAction;
