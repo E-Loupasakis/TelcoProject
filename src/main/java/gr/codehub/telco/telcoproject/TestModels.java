@@ -9,6 +9,7 @@ public class TestModels {
 
         Customer customer = Customer.builder().userId(1).build();
         System.out.println(customer);
+        System.out.println(customer);
 
 
 
