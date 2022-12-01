@@ -8,9 +8,9 @@ import gr.codehub.telco.telcoproject.repository.implementations.CustomerReposito
 public class TestModels {
 
     public static void main(String[] args) {
-//        User user = User.builder().userCategory(UserCategory.ADMIN).build();
-//        CustomerRepositoryImpl customerimpl = new CustomerRepositoryImpl();
-//        customerimpl.create(user);
+        User user = User.builder().userName("takis").build();
+        CustomerRepositoryImpl customerimpl = new CustomerRepositoryImpl();
+        customerimpl.create(user);
 
     }
 }
