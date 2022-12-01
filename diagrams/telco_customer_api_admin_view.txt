@@ -1,0 +1,26 @@
+#Customer creation
+
+POST /customers/create 
+request{"vatNumber":..., firstName:.., lastName:..., addressField:...,
+		phoneNumbers:[], emailAddress:[], userName:.., password:...}		
+response{customerId: ,customerToken:...,serverStatus:200}
+
+#Customer edit
+
+PUT 	/customers{customerId} 
+request{"vatNumber":..., firstName:.., lastName:..., addressField:...,
+		phoneNumbers:[], emailAddress:[], userName:.., password:...}		
+response{serverStatus:200}
+		
+		
+#Customer search
+
+GET /customers/searchByVat/{vatNumber}
+response{serverStatus:200}
+
+GET /customers/searchByEmail/{emailAddress}
+response{serverStatus:200}
+
+#Customer delete
+DELETE 	/customers{customerId} 
+response{serverStatus:400}

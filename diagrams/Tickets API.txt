@@ -1,0 +1,53 @@
+A. Admin View
+
+POST /admin/tickets
+
+RequestBody: {"dateOfCreation":"string",
+		   "customerId":"int",
+		   "ticketStatus":"string",
+		   "dateTimeOfAction":"string",
+		   "estimatedCost":"double", 
+		   "addressOfIssue":"string",
+		   "description":"string"}
+
+ResponseBody: "0" if unsuccessful, "1" if successful
+
+
+
+GET admin/tickets
+
+GET admin/tickets/{id} (edit)
+
+PUT admin/tickets/{id}
+
+RequestBody: {"dateOfCreation":"string",
+		   "customerId":"int",
+		   "ticketStatus":"string",
+		   "dateTimeOfAction":"string",
+		   "estimatedCost":"double", 
+		   "addressOfIssue":"string",
+		   "description":"string"}
+
+ResponseBody: "0" if unsuccessful, "1" if successful
+
+DELETE admin/tickets/{id}
+
+ResponseBody: "0" if unsuccessful, "1" if successful
+
+
+POST /tickets/searchByDates
+
+RequestBody: {"dateFrom":"string","dateTo":"string"}
+
+ResponseBody: "0" if unsuccessful, "1" if successful
+
+POST /tickets/searchByCustomerId
+
+RequestBody: {"customerId":"int"}
+
+ResponseBody: "0" if unsuccessful, "1" if successful
+
+B. Customer View
+
+GET tickets?customerId=id
+
