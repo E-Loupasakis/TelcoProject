@@ -2,24 +2,30 @@ package gr.codehub.telco.telcoproject.model;
 
 
 
+import gr.codehub.telco.telcoproject.enums.UserCategory;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+
 @Data
-@SuperBuilder
-@NoArgsConstructor
+@Builder
+@AllArgsConstructor
 @Entity
 @Table(name="user")
-public abstract class User {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userId;
+    private long userId;
+
+    @Column(name="user_category")
+    private UserCategory userCategory;
+
+    @Column(name="vat_number")
+    private long vatNumber;
 
     @Column(name="first_name")
     private String firstName;
@@ -42,6 +48,8 @@ public abstract class User {
     @Column(name="password")
     private String password;
 
+    @OneToMany
+    private List<Ticket> tickets;
 
-
+    public User(){}
 }
