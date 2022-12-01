@@ -6,11 +6,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import gr.codehub.telco.telcoproject.model.Customer;
 import lombok.NoArgsConstructor;
-import org.graalvm.compiler.lir.LIRInstruction;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -28,10 +25,10 @@ public class Ticket {
     @Column(name="date_time_of_creation")
     private LocalDateTime dateTimeOfCreation;
 
-    @Column(name="user_id")
+
     @ManyToOne
     @JoinColumn(name="user_id")
-    private Customer customer;
+    private User customer;
 
     @Column(name="ticket_status")
     private TicketStatus ticketStatus;

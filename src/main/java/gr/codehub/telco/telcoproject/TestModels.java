@@ -1,17 +1,15 @@
 package gr.codehub.telco.telcoproject;
 
 
-import gr.codehub.telco.telcoproject.model.Customer;
+import gr.codehub.telco.telcoproject.enums.UserCategory;
+import gr.codehub.telco.telcoproject.model.User;
 
 public class TestModels {
 
     public static void main(String[] args) {
 
-        Customer customer = Customer.builder().userId(1).build();
+        User customer = User.builder().userCategory(UserCategory.CUSTOMER).build();
         System.out.println(customer);
-        System.out.println(customer);
-
-
 
 
     }
