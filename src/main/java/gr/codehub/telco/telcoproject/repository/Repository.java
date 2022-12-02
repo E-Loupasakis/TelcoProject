@@ -8,5 +8,5 @@ public interface Repository<T, K> {
     T read(K id);
     List<T> read();
     boolean delete(K id);
-    T update(T t);
+    //T update(T t);
 }
