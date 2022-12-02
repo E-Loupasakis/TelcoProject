@@ -1,11 +1,11 @@
 package gr.codehub.telco.telcoproject.bootstrap;
 
+
 import gr.codehub.telco.telcoproject.enums.TicketStatus;
 import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
-import gr.codehub.telco.telcoproject.repository.TicketRepository;
-import gr.codehub.telco.telcoproject.repository.impl.TicketRepositoryImpl;
 import gr.codehub.telco.telcoproject.repository.impl.CustomerRepositoryImpl;
+import gr.codehub.telco.telcoproject.repository.impl.TicketRepositoryImpl;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
@@ -29,10 +29,15 @@ public class DummyInitialization {
         cstimpl.create(us1);
         Ticket ticket= Ticket.builder().ticketStatus(TicketStatus.IN_PROGRESS).addressOfIssue("Zallogou 9").dateTimeOfAction(LocalDateTime.now().plusMonths(1))
                 .description("Digital").estimatedCost(34.2).dateTimeOfCreation(LocalDateTime.now()).customer(us1).build();
+
+
         System.out.println(ticket);
-        ticketRepositoryImpl.create(ticket);
+       ticketRepositoryImpl.create(ticket);
+        ticket.setAddressOfIssue("Zallogou 8");
+        ticketRepositoryImpl.update(ticket);
     }
 
 }
+
 
 

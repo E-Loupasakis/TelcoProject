@@ -39,10 +39,10 @@ public abstract class RepositoryImpl<T, K> implements Repository<T,K> {
         return true;
     }
 
-//    @Override
-//    @Transactional
-//    public T update(T t) {
-//      em.merge(t);
-//      return t;
-//    }
+    @Override
+    @Transactional
+    public T update(T t) {
+      em.merge(t);
+      return t;
+   }
 }
