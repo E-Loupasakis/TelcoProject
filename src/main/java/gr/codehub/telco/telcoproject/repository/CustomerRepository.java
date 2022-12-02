@@ -6,5 +6,7 @@ public interface CustomerRepository extends Repository<User, Long>{
 
     User getCustomerByVat(int vat);
 
+    User getCustomerByEmail(String emailAddress);
+
 
 }

@@ -19,7 +19,6 @@ import java.time.LocalDateTime;
 public class Ticket {
 
     @Id
-    @Column(name="ticket_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ticketId;
 

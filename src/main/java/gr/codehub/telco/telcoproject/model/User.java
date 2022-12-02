@@ -25,7 +25,7 @@ public class User {
     @Column(name="user_category")
     private UserCategory userCategory;
 
-    @Column(name="vat_number")
+    @Column(name="vat_number") //unique=True
     private long vatNumber;
 
     @Column(name="first_name")
@@ -49,7 +49,7 @@ public class User {
     @Column(name="password")
     private String password;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer" )
     private List<Ticket> tickets;
 
     public User(){}
