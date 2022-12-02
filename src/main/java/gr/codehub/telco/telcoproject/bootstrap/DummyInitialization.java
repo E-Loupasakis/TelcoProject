@@ -5,7 +5,7 @@ import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.TicketRepository;
 import gr.codehub.telco.telcoproject.repository.impl.TicketRepositoryImpl;
-import gr.codehub.telco.telcoproject.repository.implementations.CustomerRepositoryImpl;
+import gr.codehub.telco.telcoproject.repository.impl.CustomerRepositoryImpl;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
