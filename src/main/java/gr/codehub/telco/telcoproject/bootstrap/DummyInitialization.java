@@ -43,11 +43,22 @@ public class DummyInitialization {
         Ticket ticket10 = Ticket.builder().ticketStatus(TicketStatus.COMPLETE).addressOfIssue("Ioannoy 9").dateTimeOfAction(LocalDateTime.now().plusMonths(5))
                 .description("Ethernet").estimatedCost(1_000_000).dateTimeOfCreation(LocalDateTime.now()).customer(us2).build();
 
+        Ticket ticket25 = Ticket.builder().ticketStatus(TicketStatus.IN_PROGRESS).addressOfIssue("Zallogou 9").dateTimeOfAction(LocalDateTime.now().plusMonths(1))
+                .description("Digital").estimatedCost(34.2).dateTimeOfCreation(LocalDateTime.now().plusMonths(4)).customer(us1).build();
+
+        Ticket ticket26 = Ticket.builder().ticketStatus(TicketStatus.IN_PROGRESS).addressOfIssue("Zallogou 9").dateTimeOfAction(LocalDateTime.now().plusMonths(1))
+                .description("Digital").estimatedCost(34.2).dateTimeOfCreation(LocalDateTime.now().plusMonths(2)).customer(us1).build();
+
+
+
 
 
         ticketRepositoryImpl.create(ticket1);
         ticketRepositoryImpl.create(ticket2);
         ticketRepositoryImpl.create(ticket3);
+        ticketRepositoryImpl.create(ticket25);
+        ticketRepositoryImpl.create(ticket26);
+
 
 
         List<Ticket> tickets = ticketRepositoryImpl.read();
@@ -68,11 +79,12 @@ public class DummyInitialization {
 
         ticketRepositoryImpl.update(ticketRead);
 
-        List<Ticket> ticketsByCustomerId = ticketRepositoryImpl.getTicketsByCustomerId(us1.getUserId());
+        //List<Ticket> ticketsByCustomerId = ticketRepositoryImpl.getTicketsByCustomerId(us1.getUserId());
+        List<Ticket> ticketsByDate = ticketRepositoryImpl.getTicketsByDate(ticket2.getDateTimeOfCreation(), ticket26.getDateTimeOfCreation());
 
         System.out.println("====================TICKETS BY CUSTOMER ID=================================");
 
-        for (Ticket ticket : ticketsByCustomerId
+        for (Ticket ticket : ticketsByDate
         ) {
             System.out.println(ticket);
         }
