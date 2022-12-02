@@ -21,7 +21,7 @@ public class TicketRepositoryImpl extends RepositoryImpl<Ticket, Long> implement
     }
 
     public List<Ticket> getTicketsByCustomerId(Long customerId) {
-        Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.customer IN (SELECT DISTINCT u.userId FROM User u WHERE u.userId IN (?1)) " );
+        Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.customer IN (SELECT DISTINCT u.userId FROM User u WHERE u.userId IN (?1)) ORDER BY t.dateTimeOfCreation DESC " );
 
         query.setParameter(1, customerId);
 
@@ -38,7 +38,7 @@ public class TicketRepositoryImpl extends RepositoryImpl<Ticket, Long> implement
        LocalDateTime rangeTo = dateTimeTo;
        dateTimeTo.withHour(23).withMinute(59).withSecond(59);
 
-        Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.dateTimeOfCreation BETWEEN (?1) AND (?2)" );
+        Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.dateTimeOfCreation BETWEEN (?1) AND (?2) ORDER BY t.dateTimeOfCreation DESC" );
 
         query.setParameter(1, rangeFrom);
         query.setParameter(2, rangeTo);
@@ -56,7 +56,7 @@ public class TicketRepositoryImpl extends RepositoryImpl<Ticket, Long> implement
         LocalDateTime dateTimeTo = dateTime;
         dateTimeTo.withHour(23).withMinute(59).withSecond(59);
 
-        Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.dateTimeOfCreation BETWEEN (?1) AND (?2)" );
+        Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.dateTimeOfCreation BETWEEN (?1) AND (?2) ORDER BY t.dateTimeOfCreation DESC" );
 
         query.setParameter(1, dateTimeFrom);
         query.setParameter(2, dateTimeTo);
