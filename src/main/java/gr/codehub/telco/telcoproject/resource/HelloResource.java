@@ -1,4 +1,4 @@
-package gr.codehub.telco.telcoproject;
+package gr.codehub.telco.telcoproject.resource;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;

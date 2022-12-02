@@ -1,4 +1,4 @@
-package gr.codehub.telco.telcoproject.repository.implementations;
+package gr.codehub.telco.telcoproject.repository.impl;
 
 import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.CustomerRepository;
