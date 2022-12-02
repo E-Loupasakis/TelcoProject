@@ -45,4 +45,8 @@ public abstract class RepositoryImpl<T, K> implements Repository<T,K> {
       em.merge(t);
       return t;
    }
+
+    public EntityManager getEm() {
+        return em;
+    }
 }

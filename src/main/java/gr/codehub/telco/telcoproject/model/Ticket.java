@@ -26,7 +26,6 @@ public class Ticket {
     @Column(name="date_time_of_creation")
     private LocalDateTime dateTimeOfCreation;
 
-
     @ManyToOne
     @JoinColumn(name="user_id")
     private User customer;
