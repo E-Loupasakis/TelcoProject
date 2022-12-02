@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 public class Ticket {
 
     @Id
+    @Column(name="ticket_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ticketId;
 
@@ -27,7 +28,7 @@ public class Ticket {
 
 
     @ManyToOne
-    @JoinColumn(name="userId")
+    @JoinColumn(name="user_id")
     private User customer;
 
     @Column(name="ticket_status")
