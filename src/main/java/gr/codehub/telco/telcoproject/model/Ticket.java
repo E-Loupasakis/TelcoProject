@@ -27,7 +27,7 @@ public class Ticket {
 
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="userId")
     private User customer;
 
     @Column(name="ticket_status")

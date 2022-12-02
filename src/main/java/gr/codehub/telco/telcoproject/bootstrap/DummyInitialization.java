@@ -29,8 +29,12 @@ public class DummyInitialization {
         cstimpl.create(us1);
         Ticket ticket= Ticket.builder().ticketStatus(TicketStatus.IN_PROGRESS).addressOfIssue("Zallogou 9").dateTimeOfAction(LocalDateTime.now().plusMonths(1))
                 .description("Digital").estimatedCost(34.2).dateTimeOfCreation(LocalDateTime.now()).customer(us1).build();
+
+
         System.out.println(ticket);
-        ticketRepositoryImpl.create(ticket);
+       ticketRepositoryImpl.create(ticket);
+        ticket.setAddressOfIssue("Zallogou 8");
+        ticketRepositoryImpl.update(ticket);
     }
 
 }
