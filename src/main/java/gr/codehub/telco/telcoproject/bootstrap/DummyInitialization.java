@@ -10,9 +10,11 @@ import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 import jakarta.inject.Inject;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
-
+@Log4j2
 @Singleton
 @Startup
 public class DummyInitialization {
@@ -27,14 +29,23 @@ public class DummyInitialization {
         User us1 = User.builder().lastName("nn").lastName("Kef").emailAddress("nn@gmail.com").build();
         System.out.println(us1);
         cstimpl.create(us1);
-        Ticket ticket= Ticket.builder().ticketStatus(TicketStatus.IN_PROGRESS).addressOfIssue("Zallogou 9").dateTimeOfAction(LocalDateTime.now().plusMonths(1))
-                .description("Digital").estimatedCost(34.2).dateTimeOfCreation(LocalDateTime.now()).customer(us1).build();
+        Ticket ticket= Ticket
+                .builder()
+                .ticketStatus(TicketStatus.IN_PROGRESS)
+                .addressOfIssue("Zallogou 9")
+                .dateTimeOfAction(LocalDateTime.now().plusMonths(1))
+                .description("Digital")
+                .estimatedCost(34.2)
+                .dateTimeOfCreation(LocalDateTime.now())
+                .customer(us1)
+                .build();
 
 
         System.out.println(ticket);
-       ticketRepositoryImpl.create(ticket);
+        ticketRepositoryImpl.create(ticket);
         ticket.setAddressOfIssue("Zallogou 8");
         ticketRepositoryImpl.update(ticket);
+        log.info( cstimpl.getCustomerByVat(4).toString());
     }
 
 }
