@@ -18,6 +18,7 @@ import java.util.List;
 public class User {
 
     @Id
+    @Column(name="user_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long userId;
 
@@ -48,7 +49,7 @@ public class User {
     @Column(name="password")
     private String password;
 
-    @OneToMany
+    @OneToMany(mappedBy = "customer")
     private List<Ticket> tickets;
 
     public User(){}

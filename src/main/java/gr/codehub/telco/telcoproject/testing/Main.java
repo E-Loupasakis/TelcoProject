@@ -1,4 +1,4 @@
-package gr.codehub.telco.telcoproject;
+package gr.codehub.telco.telcoproject.testing;
 
 import gr.codehub.telco.telcoproject.enums.TicketStatus;
 import gr.codehub.telco.telcoproject.model.Ticket;
