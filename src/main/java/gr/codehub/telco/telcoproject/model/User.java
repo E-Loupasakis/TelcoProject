@@ -38,14 +38,14 @@ public class User {
     @Column(name="last_name")
     private String lastName;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name="EMAILS",joinColumns = @JoinColumn(name="OWNER_ID"))
     private List<Email> emailList;
 
     @Column(name="address")
     private String address;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name="PHONE",joinColumns = @JoinColumn(name="OWNER_ID"))
     private List<Phone> phones;
 
