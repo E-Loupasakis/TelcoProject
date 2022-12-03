@@ -27,7 +27,6 @@ public class TelcoResource {
 
     @Path("/delete/{customerId}")
     @DELETE
-    @Consumes(MediaType.APPLICATION_JSON)
     public void delete(@PathParam("customerId") long customerId){
         customerService.delete(customerId);
     }
