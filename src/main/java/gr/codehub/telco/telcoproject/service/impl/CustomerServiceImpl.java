@@ -27,8 +27,24 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public CustomerDto readByVat(int vat) {
+        return new CustomerDto(customerRepository.getCustomerByVat(vat));
+    }
+    @Override
+    public List<CustomerDto> read(String email) {
+        return (List<CustomerDto>)(Object)customerRepository.getCustomerByEmail(email);
+    }
+
+    @Override
     public List<CustomerDto> read() {
         return customerRepository.read().stream().map(CustomerDto::new).collect(Collectors.toList());
+    }
+
+    @Override
+    public CustomerDto update(CustomerDto customerDto) {
+        User customer = customerDto.asCustomer();
+        customerRepository.update(customer);
+        return new CustomerDto(customer);
     }
 
     @Override
