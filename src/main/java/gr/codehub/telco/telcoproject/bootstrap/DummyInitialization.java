@@ -2,6 +2,7 @@ package gr.codehub.telco.telcoproject.bootstrap;
 
 
 import gr.codehub.telco.telcoproject.enums.TicketStatus;
+import gr.codehub.telco.telcoproject.model.Email;
 import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.impl.CustomerRepositoryImpl;
@@ -14,6 +15,9 @@ import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 @Log4j2
 @Singleton
 @Startup
@@ -26,9 +30,16 @@ public class DummyInitialization {
 
     @PostConstruct
     public void test() {
-        User us1 = User.builder().lastName("nn").lastName("Kef").emailAddress("nn@gmail.com").build();
-        User us2 = User.builder().lastName("Loupasakis").firstName("Manolis").emailAddress("nn2@gmail.com").build();
 
+
+        Email email1 = new Email("thanasis@bimis.gr");
+        Email email2 = new Email("thanasis2@bimis.gr");
+        List<Email> emailList = new ArrayList<>();
+
+        emailList.add(email1);
+        emailList.add(email2);
+        User us1 = User.builder().lastName("nn").lastName("Kef").vatNumber(1).emailList(emailList).build();
+        User us2 = User.builder().lastName("Loupasakis").firstName("Manolis").vatNumber(2).build();
         System.out.println(us1);
         cstimpl.create(us1);
         cstimpl.create(us2);
@@ -74,7 +85,8 @@ public class DummyInitialization {
         ticketRepositoryImpl.update(ticket);
 //        log.info( cstimpl.getCustomerByVat(0).getTickets());
         String email = "nn@gmail.com";
-        log.info( cstimpl.getCustomerByEmail(email).getTickets());
+        log.info( cstimpl.getCustomerByVat(2));
+        log.info( "this is the user with email: {}",cstimpl.getCustomerByEmail("thanasis@bimis.gr"));
     }
 
 }

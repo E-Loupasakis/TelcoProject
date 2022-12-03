@@ -31,8 +31,8 @@ public class CustomerRepositoryImpl extends RepositoryImpl<User, Long> implement
     }
 
     @Override
-    public User getCustomerByEmail(String emailAddress) {
-        return (User)  em.createQuery("Select u from "+getClassName()+" u join u.emailList p where p.email LIKE "+"\""+emailAddress+"\"").getResultList().get(0);
+    public List<User> getCustomerByEmail(String emailAddress) {
+        return  em.createQuery("Select u from "+getClassName()+" u join u.emailList p where p.email LIKE "+"\""+emailAddress+"\"").getResultList();
     }
 
 }

@@ -16,6 +16,7 @@ import java.util.Set;
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="user")
 public class User {
@@ -28,7 +29,7 @@ public class User {
     @Column(name="user_category")
     private UserCategory userCategory;
 
-    @Column(name="vat_number") //unique=True
+    @Column(name="vat_number", unique = true)
     private long vatNumber;
 
     @Column(name="first_name")
@@ -48,16 +49,14 @@ public class User {
     @CollectionTable(name="PHONE",joinColumns = @JoinColumn(name="OWNER_ID"))
     private List<Phone> phones;
 
-    @Column(name="user_name")
+    @Column(name="user_name", unique = true)
     private String userName;
 
     @Column(name="password")
     private String password;
 
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Ticket> tickets = new ArrayList<>();
+//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+//    private List<Ticket> tickets = new ArrayList<>();
 
-
-    public User(){}
 }
