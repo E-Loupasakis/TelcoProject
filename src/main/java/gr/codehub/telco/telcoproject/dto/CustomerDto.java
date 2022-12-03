@@ -22,8 +22,8 @@ public class CustomerDto {
     private String userName;
     private String password;
     private String address;
-    /*private List<Phone> phoneList;
-    private List<Email> emailList;*/
+    private List<Phone> phoneList;
+    private List<Email> emailList;
 
     public CustomerDto(User customer){
         if(customer!=null){
@@ -35,8 +35,8 @@ public class CustomerDto {
             userName = customer.getUserName();
             password = customer.getPassword();
             address = customer.getAddress();
-//            phoneList = customer.getPhones();
-//            emailList = customer.getEmailList();
+            phoneList = customer.getPhones();
+            emailList = customer.getEmailList();
         }
     }
 
@@ -50,8 +50,8 @@ public class CustomerDto {
         customer.setUserName(userName);
         customer.setPassword(password);
         customer.setAddress(address);
-//        customer.setPhones(phoneList);
-//        customer.setEmailList(emailList);
+        customer.setPhones(phoneList);
+        customer.setEmailList(emailList);
         return customer;
     }
 }
