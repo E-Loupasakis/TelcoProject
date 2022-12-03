@@ -14,6 +14,6 @@ public interface TicketService {
     boolean delete(Long id);
     List<Ticket> findByDate(LocalDate date);
     List<Ticket> findByDateRange(LocalDate dateFrom, LocalDate dateTo);
-    List<Ticket> getTicketsByCustId(Long id);
+    List<Ticket> getTicketsByCustomerId(Long id);
 
 }

@@ -65,7 +65,7 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public List<Ticket> getTicketsByCustId(Long id) {
+    public List<Ticket> getTicketsByCustomerId(Long id) {
         List tickets=ticketRepositoryimpl.getTicketsByCustomerId(id);
         return tickets;
     }
