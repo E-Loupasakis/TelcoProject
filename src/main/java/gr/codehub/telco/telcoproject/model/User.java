@@ -8,7 +8,10 @@ import lombok.*;
 
 import lombok.experimental.SuperBuilder;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -34,14 +37,16 @@ public class User {
     @Column(name="last_name")
     private String lastName;
 
-    @Column(name="email_address")
-    private String emailAddress;
+    @ElementCollection
+    @CollectionTable(name="EMAILS",joinColumns = @JoinColumn(name="OWNER_ID"))
+    private List<Email> emailList;
 
     @Column(name="address")
     private String address;
 
-    @Column(name="phone_number")
-    private String phoneNumber;
+    @ElementCollection
+    @CollectionTable(name="PHONE",joinColumns = @JoinColumn(name="OWNER_ID"))
+    private List<Phone> phones;
 
     @Column(name="user_name")
     private String userName;
@@ -49,8 +54,10 @@ public class User {
     @Column(name="password")
     private String password;
 
-    @OneToMany(mappedBy = "customer" )
-    private List<Ticket> tickets;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Ticket> tickets = new ArrayList<>();
+
 
     public User(){}
 }
