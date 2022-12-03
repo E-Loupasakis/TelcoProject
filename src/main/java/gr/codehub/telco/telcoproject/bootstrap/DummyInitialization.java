@@ -13,6 +13,7 @@ import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 import jakarta.inject.Inject;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -88,11 +89,11 @@ public class DummyInitialization {
 
     // Print All Tickets
 //
-//        List<Ticket> tickets = ticketServiceimpl.findAll();
-//        for (Ticket ticket : tickets)
-//              {
-//                System.out.println(ticket);
-//            }
+        /*List<Ticket> tickets = ticketServiceimpl.findAll();
+        for (Ticket ticket : tickets)
+              {
+               System.out.println(ticket);
+            }*/
 
       //End of Printing list of tickets
 
@@ -141,16 +142,16 @@ public class DummyInitialization {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // List Tickets By 2 Dates
-
-
-      List<Ticket> ticketsByDate = ticketServiceimpl.findByDateRange(ticket25.getDateTimeOfAction(),ticket26.getDateTimeOfCreation());
+      /*List<Ticket> ticketsByDate = ticketServiceimpl.findByDateRange(LocalDateTime.now().minusMonths(1), LocalDateTime.now().plusMonths(1));
         System.out.println("================== Tickets by two dates ========================================");
+
+       // System.out.println(ticketsByDate);
 
 
      for(Ticket ticket: ticketsByDate)
         {
-           System.out.println(ticketsByDate);
-        }
+           System.out.println(ticket + "\n");
+        }*/
 
     // End Of List By 2 dates
 
@@ -160,12 +161,14 @@ public class DummyInitialization {
 
     // List Ticket By one date
 
-//    List<Ticket> ticketsByOneDate= ticketRepositoryImpl.getTicketsByDate(ticket26.getDateTimeOfCreation());
-//
-//    for(Ticket ticket:ticketsByOneDate)
-//        {
-//            System.out.println(ticketsByOneDate);
-//        }
+    List<Ticket> ticketsByOneDate= ticketRepositoryImpl.getTicketsByDate(LocalDate.now());
+
+        System.out.println("TICKETS BY ONE DATE");
+
+    for(Ticket ticket:ticketsByOneDate)
+        {
+            System.out.println(ticket);
+        }
 
 
     //End of Printing List By One Date

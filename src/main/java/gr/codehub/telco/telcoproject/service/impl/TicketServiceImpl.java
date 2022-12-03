@@ -6,6 +6,7 @@ import gr.codehub.telco.telcoproject.repository.impl.TicketRepositoryImpl;
 import gr.codehub.telco.telcoproject.service.TicketService;
 import jakarta.inject.Inject;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -50,16 +51,16 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public List<Ticket> findByDate(LocalDateTime date) {
+    public List<Ticket> findByDate(LocalDate date) {
 
        List tickets = ticketRepositoryimpl.getTicketsByDate(date);
         return tickets;
     }
 
     @Override
-    public List<Ticket> findByDateRange(LocalDateTime dateFrom, LocalDateTime dateTo) {
+    public List<Ticket> findByDateRange(LocalDate dateFrom, LocalDate dateTo) {
 
-        List tickets = ticketRepositoryimpl.getTicketsByDate(dateFrom,dateTo);
+        List tickets = ticketRepositoryimpl.getTicketsByDateRange(dateFrom,dateTo);
         return tickets;
     }
 

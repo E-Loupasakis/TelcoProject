@@ -3,6 +3,7 @@ package gr.codehub.telco.telcoproject.repository.impl;
 import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.repository.TicketRepository;
 import jakarta.persistence.Query;
+import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
 
 
 import java.time.LocalDate;
@@ -30,13 +31,11 @@ public class TicketRepositoryImpl extends RepositoryImpl<Ticket, Long> implement
         return tickets;
     }
 
-   public List<Ticket> getTicketsByDate(LocalDateTime dateTimeFrom, LocalDateTime dateTimeTo) {
+   public List<Ticket> getTicketsByDateRange(LocalDate dateFrom, LocalDate dateTo) {
 
-       LocalDateTime rangeFrom = dateTimeFrom;
-       dateTimeFrom.withHour(0).withMinute(0).withSecond(0);
+       LocalDateTime rangeFrom = dateFrom.atStartOfDay();
 
-       LocalDateTime rangeTo = dateTimeTo;
-       dateTimeTo.withHour(23).withMinute(59).withSecond(59);
+       LocalDateTime rangeTo = dateTo.atTime(23, 59, 59);
 
         Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.dateTimeOfCreation BETWEEN (?1) AND (?2) ORDER BY t.dateTimeOfCreation DESC" );
 
@@ -48,13 +47,11 @@ public class TicketRepositoryImpl extends RepositoryImpl<Ticket, Long> implement
         return tickets;
     }
 
-    public List<Ticket> getTicketsByDate(LocalDateTime dateTime) {
+    public List<Ticket> getTicketsByDate(LocalDate date) {
 
-        LocalDateTime dateTimeFrom = dateTime;
-        dateTimeFrom.withHour(0).withMinute(0).withSecond(0);
+        LocalDateTime dateTimeFrom = date.atStartOfDay();
 
-        LocalDateTime dateTimeTo = dateTime;
-        dateTimeTo.withHour(23).withMinute(59).withSecond(59);
+        LocalDateTime dateTimeTo = date.atTime(23, 59, 59);
 
         Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.dateTimeOfCreation BETWEEN (?1) AND (?2) ORDER BY t.dateTimeOfCreation DESC" );
 
