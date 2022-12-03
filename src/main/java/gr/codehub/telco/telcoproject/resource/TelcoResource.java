@@ -1,0 +1,24 @@
+package gr.codehub.telco.telcoproject.resource;
+
+import gr.codehub.telco.telcoproject.dto.CustomerDto;
+import gr.codehub.telco.telcoproject.service.CustomerService;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
+
+@Path("/customers")
+public class TelcoResource {
+
+    @Inject
+    private CustomerService customerService;
+
+    @Path("/create")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public CustomerDto insert(CustomerDto customer) {
+        return customerService.create(customer);
+    }
+
+
+}

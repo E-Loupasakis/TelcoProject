@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 @Embeddable
 public class Phone {
 
-    private String type;
-    private String areaCode;
+//    private String type;
+//    private String areaCode;
     @Column(name="P_NUMBER")
-    private String number;
+    private int number;
 }

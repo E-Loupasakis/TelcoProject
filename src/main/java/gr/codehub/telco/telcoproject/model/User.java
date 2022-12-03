@@ -30,7 +30,7 @@ public class User {
     private UserCategory userCategory;
 
     @Column(name="vat_number", unique = true)
-    private long vatNumber;
+    private int vatNumber;
 
     @Column(name="first_name")
     private String firstName;
