@@ -32,6 +32,7 @@ public abstract class RepositoryImpl<T, K> implements Repository<T,K> {
     @Transactional
     public boolean delete(K id) {
         T t = read(id);
+        System.out.println("I read the entity");
         if (t == null) return false;
         em.remove(t);
         return true;

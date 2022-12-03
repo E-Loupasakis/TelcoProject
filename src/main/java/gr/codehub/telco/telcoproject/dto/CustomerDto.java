@@ -33,7 +33,7 @@ public class CustomerDto {
             firstName = customer.getFirstName();
             lastName = customer.getLastName();
             userName = customer.getUserName();
-            lastName = customer.getPassword();
+            password = customer.getPassword();
             address = customer.getAddress();
             phoneList = customer.getPhones();
             emailList = customer.getEmailList();

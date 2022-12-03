@@ -17,5 +17,5 @@ public class Phone {
 //    private String type;
 //    private String areaCode;
     @Column(name="P_NUMBER")
-    private int number;
+    private String number;
 }

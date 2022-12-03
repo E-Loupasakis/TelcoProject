@@ -30,4 +30,9 @@ public class CustomerServiceImpl implements CustomerService {
     public List<CustomerDto> read() {
         return customerRepository.read().stream().map(CustomerDto::new).collect(Collectors.toList());
     }
+
+    @Override
+    public void delete(long customerId) {
+        customerRepository.delete(customerId);
+    }
 }
