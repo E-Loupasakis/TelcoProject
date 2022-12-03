@@ -29,6 +29,14 @@ public class TelcoResource {
         customerService.delete(customerId);
     }
 
+    @Path("/update/{customerId}")
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public CustomerDto update(@PathParam("customerId") long customerId,  CustomerDto customer){
+        customer.setId(customerId);
+        return customerService.update(customer);
+    }
 //    @Path("/ticket")
 //    @POST
 //    @Consumes(MediaType.APPLICATION_JSON)

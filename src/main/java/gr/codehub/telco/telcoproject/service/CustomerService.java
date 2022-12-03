@@ -10,5 +10,6 @@ public interface CustomerService {
     CustomerDto read(long id);
     List<CustomerDto> read();
 
+    CustomerDto update( CustomerDto customerDto);
     void delete(long customerId);
 }

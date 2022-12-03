@@ -32,6 +32,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public CustomerDto update(CustomerDto customerDto) {
+        User customer = customerDto.asCustomer();
+        customerRepository.update(customer);
+        return new CustomerDto(customer);
+    }
+
+    @Override
     public void delete(long customerId) {
         customerRepository.delete(customerId);
     }
