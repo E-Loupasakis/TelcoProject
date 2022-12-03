@@ -7,6 +7,7 @@ import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.TicketRepository;
 import gr.codehub.telco.telcoproject.repository.impl.CustomerRepositoryImpl;
 import gr.codehub.telco.telcoproject.repository.impl.TicketRepositoryImpl;
+import gr.codehub.telco.telcoproject.service.impl.TicketServiceImpl;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
@@ -23,6 +24,9 @@ public class DummyInitialization {
     TicketRepositoryImpl ticketRepositoryImpl;
     @Inject
     CustomerRepositoryImpl cstimpl;
+
+    @Inject
+    TicketServiceImpl ticketServiceimpl;
 
     @PostConstruct
     public void test() {
@@ -43,7 +47,7 @@ public class DummyInitialization {
         // Ticket Creation
 
         Ticket ticket1 = Ticket.builder().ticketStatus(TicketStatus.IN_PROGRESS).addressOfIssue("Zallogou 9").dateTimeOfAction(LocalDateTime.now().plusMonths(1))
-                .description("Digital").estimatedCost(34.2).dateTimeOfCreation(LocalDateTime.now()).customer(us1).build();
+                .description("Digital1").estimatedCost(34.2).dateTimeOfCreation(LocalDateTime.now()).customer(us1).build();
 
         Ticket ticket2 = Ticket.builder().ticketStatus(TicketStatus.PENDING).addressOfIssue("Alimoy 9").dateTimeOfAction(LocalDateTime.now().plusMonths(6))
                 .description("Telephone").estimatedCost(24.87).dateTimeOfCreation(LocalDateTime.now()).customer(us1).build();
@@ -56,18 +60,25 @@ public class DummyInitialization {
                 .description("Ethernet").estimatedCost(1_000_000).dateTimeOfCreation(LocalDateTime.now()).customer(us2).build();
 
         Ticket ticket25 = Ticket.builder().ticketStatus(TicketStatus.IN_PROGRESS).addressOfIssue("Zallogou 9").dateTimeOfAction(LocalDateTime.now().plusMonths(1))
-                .description("Digital").estimatedCost(34.2).dateTimeOfCreation(LocalDateTime.now().plusMonths(4)).customer(us1).build();
+                .description("Digital25").estimatedCost(34.2).dateTimeOfCreation(LocalDateTime.now().plusMonths(4)).customer(us1).build();
 
         Ticket ticket26 = Ticket.builder().ticketStatus(TicketStatus.IN_PROGRESS).addressOfIssue("Zallogou 9").dateTimeOfAction(LocalDateTime.now().plusMonths(1))
-                .description("Digital").estimatedCost(34.2).dateTimeOfCreation(LocalDateTime.now().plusMonths(2)).customer(us1).build();
+                .description("Digital26").estimatedCost(34.2).dateTimeOfCreation(LocalDateTime.now().plusMonths(2)).customer(us1).build();
 
 
-        ticketRepositoryImpl.create(ticket1);
-        ticketRepositoryImpl.create(ticket2);
-        ticketRepositoryImpl.create(ticket3);
-        ticketRepositoryImpl.create(ticket25);
-        ticketRepositoryImpl.create(ticket26);
-        ticketRepositoryImpl.create(ticket10);
+//        ticketRepositoryImpl.create(ticket1);
+//        ticketRepositoryImpl.create(ticket2);
+//        ticketRepositoryImpl.create(ticket3);
+//        ticketRepositoryImpl.create(ticket25);
+//        ticketRepositoryImpl.create(ticket26);
+//        ticketRepositoryImpl.create(ticket10);
+
+        ticketServiceimpl.createTicket(ticket1);
+        ticketServiceimpl.createTicket(ticket2);
+        ticketServiceimpl.createTicket(ticket3);
+        ticketServiceimpl.createTicket(ticket25);
+        ticketServiceimpl.createTicket(ticket26);
+        ticketServiceimpl.createTicket(ticket10);
 
     //End Of ticket Creation
 
@@ -76,14 +87,14 @@ public class DummyInitialization {
 
 
     // Print All Tickets
+//
+//        List<Ticket> tickets = ticketServiceimpl.findAll();
+//        for (Ticket ticket : tickets)
+//              {
+//                System.out.println(ticket);
+//            }
 
-       // List<Ticket> tickets = ticketRepositoryImpl.read();
-       // for (Ticket ticket : tickets)
-              //{
-                //System.out.println(ticket);
-            //}
-
-     // End of Printing list of tickets
+      //End of Printing list of tickets
 
 
      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -91,16 +102,16 @@ public class DummyInitialization {
 
     // Delete Ticket By Id
 
-        //ticketRepositoryImpl.delete(ticket1.getTicketId());
+       // ticketRepositoryImpl.delete(ticket3.getTicketId());
 
     // End Of Delete
 
 
     // Print Ticket by id
 
-        //Ticket ticketRead = ticketRepositoryImpl.read(ticket2.getTicketId());
-
-       //System.out.println("ticketRead ========> " + ticketRead);
+//        Ticket ticketRead = ticketServiceimpl.findByTicketId(ticket10.getTicketId());
+//
+//       System.out.println("ticketRead ========> " + ticketRead);
 
     // End of Ticket Read
 
@@ -109,19 +120,19 @@ public class DummyInitialization {
 
     // Ticket Udpdate by ID
 
-        //ticketRead.setDescription("UPDATE");
-        //ticketRepositoryImpl.update(ticketRead);
+//        ticketRead.setDescription("New Updated");
+//        ticketServiceimpl.update(ticketRead);
 
     // End Of Ticket Update
 
 
      // Print List By Customer ID
 
-          //List<Ticket> ticketsByCustomerId = ticketRepositoryImpl.getTicketsByCustomerId(us2.getUserId());
-        //for (Ticket ticket : ticketsByCustomerId)
-             //{
-                    //System.out.println(ticket);
-              //}
+//          List<Ticket> ticketsByCustomerId = ticketServiceimpl.getTicketsByCustId(us1.getUserId());
+//        for (Ticket ticket : ticketsByCustomerId)
+//             {
+//                    System.out.println(ticket);
+//              }
 
 
      // End of Printing
@@ -131,12 +142,15 @@ public class DummyInitialization {
 
     // List Tickets By 2 Dates
 
-    //  List<Ticket> ticketsByDate = ticketRepositoryImpl.getTicketsByDate(ticket2.getDateTimeOfCreation(), ticket26.getDateTimeOfCreation());
 
-    // for(Ticket ticket: ticketsByDate)
-        //{
-           //System.out.println(ticketsByDate);
-        //}
+      List<Ticket> ticketsByDate = ticketServiceimpl.findByDateRange(ticket25.getDateTimeOfAction(),ticket26.getDateTimeOfCreation());
+        System.out.println("================== Tickets by two dates ========================================");
+
+
+     for(Ticket ticket: ticketsByDate)
+        {
+           System.out.println(ticketsByDate);
+        }
 
     // End Of List By 2 dates
 
@@ -146,15 +160,18 @@ public class DummyInitialization {
 
     // List Ticket By one date
 
-    List<Ticket> ticketsByOneDate= ticketRepositoryImpl.getTicketsByDate(ticket26.getDateTimeOfCreation());
-
-    for(Ticket ticket:ticketsByOneDate)
-        {
-            System.out.println(ticketsByOneDate);
-        }
+//    List<Ticket> ticketsByOneDate= ticketRepositoryImpl.getTicketsByDate(ticket26.getDateTimeOfCreation());
+//
+//    for(Ticket ticket:ticketsByOneDate)
+//        {
+//            System.out.println(ticketsByOneDate);
+//        }
 
 
     //End of Printing List By One Date
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         // Null Tickets By CustomerID
              //System.out.println(cstimpl.read(us1.getUserId()).getTickets());
