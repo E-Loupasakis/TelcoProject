@@ -5,6 +5,7 @@ import gr.codehub.telco.telcoproject.repository.TicketRepository;
 import gr.codehub.telco.telcoproject.repository.impl.TicketRepositoryImpl;
 import gr.codehub.telco.telcoproject.service.TicketService;
 import jakarta.inject.Inject;
+import org.hibernate.Hibernate;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -23,6 +24,7 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public List<Ticket> findAll() {
        List tickets=ticketRepositoryimpl.read();
+       Hibernate.initialize(tickets);
        return tickets;
     }
 
