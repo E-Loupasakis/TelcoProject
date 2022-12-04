@@ -64,7 +64,7 @@ public class TelcoResource {
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public List<CustomerDto> getCustomerByEmail(@PathParam("email") long email){
+    public List<CustomerDto> getCustomerByEmail(@PathParam("email") String email){
         return (List<CustomerDto>) customerService.read(email);
     }
 
