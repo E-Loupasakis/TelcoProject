@@ -46,25 +46,25 @@ public class DummyInitialization {
 
 
         // Ticket Creation
-
-        Ticket ticket1 = Ticket.builder().ticketStatus(TicketStatus.IN_PROGRESS).addressOfIssue("Zallogou 9").dateTimeOfAction(LocalDateTime.now().plusMonths(1))
-                .description("Digital1").estimatedCost(34.2).dateTimeOfCreation(LocalDateTime.now()).customer(us1).build();
-
-        Ticket ticket2 = Ticket.builder().ticketStatus(TicketStatus.PENDING).addressOfIssue("Alimoy 9").dateTimeOfAction(LocalDateTime.now().plusMonths(6))
-                .description("Telephone").estimatedCost(24.87).dateTimeOfCreation(LocalDateTime.now()).customer(us1).build();
-
-
-        Ticket ticket3 = Ticket.builder().ticketStatus(TicketStatus.DEFAULT_STANDBY_MODE).addressOfIssue("Zografoy 9").dateTimeOfAction(LocalDateTime.now().plusMonths(3))
-                .description("Internet").estimatedCost(50).dateTimeOfCreation(LocalDateTime.now()).customer(us1).build();
-
-        Ticket ticket10 = Ticket.builder().ticketStatus(TicketStatus.COMPLETE).addressOfIssue("Ioannoy 9").dateTimeOfAction(LocalDateTime.now().plusMonths(5))
-                .description("Ethernet").estimatedCost(1_000_000).dateTimeOfCreation(LocalDateTime.now()).customer(us2).build();
-
-        Ticket ticket25 = Ticket.builder().ticketStatus(TicketStatus.IN_PROGRESS).addressOfIssue("Zallogou 9").dateTimeOfAction(LocalDateTime.now().plusMonths(1))
-                .description("Digital25").estimatedCost(34.2).dateTimeOfCreation(LocalDateTime.now().plusMonths(4)).customer(us1).build();
-
-        Ticket ticket26 = Ticket.builder().ticketStatus(TicketStatus.IN_PROGRESS).addressOfIssue("Zallogou 9").dateTimeOfAction(LocalDateTime.now().plusMonths(1))
-                .description("Digital26").estimatedCost(34.2).dateTimeOfCreation(LocalDateTime.now().plusMonths(2)).customer(us1).build();
+//
+//        Ticket ticket1 = Ticket.builder().ticketStatus(TicketStatus.IN_PROGRESS).addressOfIssue("Zallogou 9").dateTimeOfAction(LocalDateTime.now().plusMonths(1))
+//                .description("Digital1").estimatedCost(34.2).dateTimeOfCreation(LocalDateTime.now()).customer(us1).build();
+//
+//        Ticket ticket2 = Ticket.builder().ticketStatus(TicketStatus.PENDING).addressOfIssue("Alimoy 9").dateTimeOfAction(LocalDateTime.now().plusMonths(6))
+//                .description("Telephone").estimatedCost(24.87).dateTimeOfCreation(LocalDateTime.now()).customer(us1).build();
+//
+//
+//        Ticket ticket3 = Ticket.builder().ticketStatus(TicketStatus.DEFAULT_STANDBY_MODE).addressOfIssue("Zografoy 9").dateTimeOfAction(LocalDateTime.now().plusMonths(3))
+//                .description("Internet").estimatedCost(50).dateTimeOfCreation(LocalDateTime.now()).customer(us1).build();
+//
+//        Ticket ticket10 = Ticket.builder().ticketStatus(TicketStatus.COMPLETE).addressOfIssue("Ioannoy 9").dateTimeOfAction(LocalDateTime.now().plusMonths(5))
+//                .description("Ethernet").estimatedCost(1_000_000).dateTimeOfCreation(LocalDateTime.now()).customer(us2).build();
+//
+//        Ticket ticket25 = Ticket.builder().ticketStatus(TicketStatus.IN_PROGRESS).addressOfIssue("Zallogou 9").dateTimeOfAction(LocalDateTime.now().plusMonths(1))
+//                .description("Digital25").estimatedCost(34.2).dateTimeOfCreation(LocalDateTime.now().plusMonths(4)).customer(us1).build();
+//
+//        Ticket ticket26 = Ticket.builder().ticketStatus(TicketStatus.IN_PROGRESS).addressOfIssue("Zallogou 9").dateTimeOfAction(LocalDateTime.now().plusMonths(1))
+//                .description("Digital26").estimatedCost(34.2).dateTimeOfCreation(LocalDateTime.now().plusMonths(2)).customer(us1).build();
 
 
 //        ticketRepositoryImpl.create(ticket1);
@@ -74,12 +74,12 @@ public class DummyInitialization {
 //        ticketRepositoryImpl.create(ticket26);
 //        ticketRepositoryImpl.create(ticket10);
 
-        ticketServiceimpl.createTicket(ticket1);
-        ticketServiceimpl.createTicket(ticket2);
-        ticketServiceimpl.createTicket(ticket3);
-        ticketServiceimpl.createTicket(ticket25);
-        ticketServiceimpl.createTicket(ticket26);
-        ticketServiceimpl.createTicket(ticket10);
+//        ticketServiceimpl.createTicket(ticket1);
+//        ticketServiceimpl.createTicket(ticket2);
+//        ticketServiceimpl.createTicket(ticket3);
+//        ticketServiceimpl.createTicket(ticket25);
+//        ticketServiceimpl.createTicket(ticket26);
+//        ticketServiceimpl.createTicket(ticket10);
 
     //End Of ticket Creation
 
