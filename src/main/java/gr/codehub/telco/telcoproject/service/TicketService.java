@@ -1,11 +1,13 @@
 package gr.codehub.telco.telcoproject.service;
 
 import gr.codehub.telco.telcoproject.model.Ticket;
+import jakarta.transaction.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Transactional
 public interface TicketService {
     Ticket createTicket(Ticket ticket);
     List<Ticket> findAll();

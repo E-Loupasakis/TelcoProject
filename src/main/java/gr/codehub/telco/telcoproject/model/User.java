@@ -8,15 +8,11 @@ import lombok.*;
 
 import lombok.experimental.SuperBuilder;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name="user")
 public class User {
@@ -29,8 +25,8 @@ public class User {
     @Column(name="user_category")
     private UserCategory userCategory;
 
-    @Column(name="vat_number", unique = true)
-    private int vatNumber;
+    @Column(name="vat_number")
+    private long vatNumber;
 
     @Column(name="first_name")
     private String firstName;
@@ -38,25 +34,20 @@ public class User {
     @Column(name="last_name")
     private String lastName;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name="EMAILS",joinColumns = @JoinColumn(name="OWNER_ID"))
-    private List<Email> emailList;
+    @Column(name="email_address")
+    private String emailAddress;
 
     @Column(name="address")
     private String address;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name="PHONE",joinColumns = @JoinColumn(name="OWNER_ID"))
-    private List<Phone> phones;
+    @Column(name="phone_number")
+    private String phoneNumber;
 
-    @Column(name="user_name", unique = true)
+    @Column(name="user_name")
     private String userName;
 
     @Column(name="password")
     private String password;
 
-
-//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-//    private List<Ticket> tickets = new ArrayList<>();
-
+    public User(){}
 }
