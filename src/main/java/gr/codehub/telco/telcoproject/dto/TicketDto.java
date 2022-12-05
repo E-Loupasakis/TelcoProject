@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class TicketDto {
 
-    private long id;
+    private long ticketId;
     private String addressofIssue;
     private LocalDateTime dateTimeOfAction;
     private LocalDateTime dateTimeOfCreation;
@@ -32,7 +32,7 @@ public class TicketDto {
 
     public TicketDto(Ticket ticket){
         if(ticket!=null){
-            id = ticket.getTicketId();
+            ticketId = ticket.getTicketId();
             addressofIssue = ticket.getAddressOfIssue();
             dateTimeOfAction = ticket.getDateTimeOfAction();
             dateTimeOfCreation = ticket.getDateTimeOfCreation();
@@ -46,7 +46,7 @@ public class TicketDto {
 
     public Ticket asTicket() {
         Ticket ticket = new Ticket();
-        ticket.setTicketId(id);
+        ticket.setTicketId(ticketId);
         ticket.setAddressOfIssue(addressofIssue);
         ticket.setDateTimeOfAction(dateTimeOfAction);
         ticket.setDateTimeOfCreation(dateTimeOfCreation);
