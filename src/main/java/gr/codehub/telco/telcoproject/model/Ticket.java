@@ -13,6 +13,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -36,6 +38,8 @@ public class Ticket{
     private LocalDateTime dateTimeOfCreation;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "customer_id")
     private User customer;
 
     @Column(name="ticket_status")
