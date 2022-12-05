@@ -30,4 +30,11 @@ public class CustomerRepositoryImpl extends RepositoryImpl<User, Long> implement
         return (User)  em.createQuery("Select u from "+getClassName()+" u where u.vatNumber="+vat).getSingleResult();
     }
 
+    @Override
+    public List<User> getCustomerByEmail(String emailAddress) {
+        return  em.createQuery("Select u from "+getClassName()+" u join u.emailList p where p.email LIKE :emailAddress")
+                .setParameter("emailAddress", emailAddress)
+                .getResultList();
+    }
+
 }

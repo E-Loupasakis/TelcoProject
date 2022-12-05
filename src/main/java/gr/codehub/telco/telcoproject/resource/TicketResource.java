@@ -47,10 +47,11 @@ public class TicketResource {
     }
 
     @PUT
-    @Path("/")
+    @Path("/{ticketId}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Ticket update(Ticket ticket) {
+    public Ticket update(@PathParam("ticketId") long ticketId, Ticket ticket) {
+        ticket.setTicketId(ticketId);
         return ticketService.update(ticket);
     }
 
