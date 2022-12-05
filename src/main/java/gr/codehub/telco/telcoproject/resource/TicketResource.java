@@ -63,7 +63,7 @@ public class TicketResource {
         return ticketService.delete(id);
     }
 
-    @POST
+    @GET
     @Path("/search-by-dates/{dateFrom}&{dateTo}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Ticket> findByDateRange(@PathParam("dateFrom") String dateFrom,@PathParam("dateTo")  String  dateTo) {
@@ -73,7 +73,7 @@ public class TicketResource {
         return ticketService.findByDateRange(localDateFrom, localDateTo);
     }
 
-    @POST
+    @GET
     @Path("/search-by-date/{date}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Ticket> findByDate(@PathParam("date") String date) {
