@@ -6,6 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import gr.codehub.telco.telcoproject.dto.TicketDto;
 import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.service.TicketService;
 import gr.codehub.telco.telcoproject.service.impl.TicketServiceImpl;
@@ -14,6 +15,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -27,7 +29,8 @@ public class TicketResource {
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Ticket insert(Ticket ticket) {
+    public TicketDto insert(TicketDto ticket) {
+        ticket.setDateTimeOfCreation(LocalDateTime.now());
         return ticketService.createTicket(ticket);
     }
 

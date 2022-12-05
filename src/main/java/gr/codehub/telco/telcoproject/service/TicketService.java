@@ -1,5 +1,6 @@
 package gr.codehub.telco.telcoproject.service;
 
+import gr.codehub.telco.telcoproject.dto.TicketDto;
 import gr.codehub.telco.telcoproject.model.Ticket;
 import jakarta.transaction.Transactional;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Transactional
 public interface TicketService {
-    Ticket createTicket(Ticket ticket);
+    TicketDto createTicket(TicketDto ticket);
     List<Ticket> findAll();
     Ticket findByTicketId(Long id);
     Ticket update(Ticket ticket);
