@@ -1,6 +1,5 @@
 package gr.codehub.telco.telcoproject.service;
 
-import gr.codehub.telco.telcoproject.dto.CustomerDto;
 import gr.codehub.telco.telcoproject.dto.TicketDto;
 import gr.codehub.telco.telcoproject.model.Ticket;
 import jakarta.transaction.Transactional;
@@ -11,13 +10,13 @@ import java.util.List;
 
 @Transactional
 public interface TicketService {
-    TicketDto create(TicketDto ticketDto);
-    List<TicketDto> findAll();
-    TicketDto findByTicketId(Long id);
-    TicketDto update(TicketDto ticketDto);
+    TicketDto createTicket(TicketDto ticket);
+    List<Ticket> findAll();
+    Ticket findByTicketId(Long id);
+    Ticket update(Ticket ticket);
     boolean delete(Long id);
-    List<TicketDto> findByDate(LocalDate date);
-    List<TicketDto> findByDateRange(LocalDate dateFrom, LocalDate dateTo);
-    List<TicketDto> getTicketsByCustomerId(Long id);
+    List<Ticket> findByDate(LocalDate date);
+    List<Ticket> findByDateRange(LocalDate dateFrom, LocalDate dateTo);
+    List<Ticket> getTicketsByCustomerId(Long id);
 
 }

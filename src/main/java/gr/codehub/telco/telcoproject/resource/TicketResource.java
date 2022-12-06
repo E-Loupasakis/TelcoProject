@@ -29,15 +29,15 @@ public class TicketResource {
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public TicketDto insert(TicketDto ticketDto) {
-        ticketDto.setDateTimeOfCreation(LocalDateTime.now());
-        return ticketService.create(ticketDto);
+    public TicketDto insert(TicketDto ticket) {
+        ticket.setDateTimeOfCreation(LocalDateTime.now());
+        return ticketService.createTicket(ticket);
     }
 
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<TicketDto> findAll () {
+    public List<Ticket> findAll () {
         return ticketService.findAll();
     }
 
@@ -45,7 +45,7 @@ public class TicketResource {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public TicketDto findByTicketId(@PathParam("id") Long id) {
+    public Ticket findByTicketId(@PathParam("id") Long id) {
         return ticketService.findByTicketId(id);
     }
 
@@ -53,9 +53,9 @@ public class TicketResource {
     @Path("/{ticketId}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public TicketDto update(@PathParam("ticketId") long ticketId, TicketDto ticketDto) {
-        ticketDto.setTicketId(ticketId);
-        return ticketService.update(ticketDto);
+    public Ticket update(@PathParam("ticketId") long ticketId, Ticket ticket) {
+        ticket.setTicketId(ticketId);
+        return ticketService.update(ticket);
     }
 
     @DELETE
@@ -69,7 +69,7 @@ public class TicketResource {
     @GET
     @Path("/search-by-dates/{dateFrom}&{dateTo}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<TicketDto> findByDateRange(@PathParam("dateFrom") String dateFrom,@PathParam("dateTo")  String  dateTo) {
+    public List<Ticket> findByDateRange(@PathParam("dateFrom") String dateFrom,@PathParam("dateTo")  String  dateTo) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDateFrom = LocalDate.parse(dateFrom, formatter);
         LocalDate localDateTo = LocalDate.parse(dateTo, formatter);
@@ -79,7 +79,7 @@ public class TicketResource {
     @GET
     @Path("/search-by-date/{date}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<TicketDto> findByDate(@PathParam("date") String date) {
+    public List<Ticket> findByDate(@PathParam("date") String date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.parse(date, formatter);
         return ticketService.findByDate(localDate);
@@ -89,7 +89,7 @@ public class TicketResource {
     @Path("/search-by-customer-id/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public List<TicketDto> findByCustomerId(@PathParam("id") Long id) {
+    public List<Ticket> findByCustomerId(@PathParam("id") Long id) {
         return ticketService.getTicketsByCustomerId(id);
     }
 

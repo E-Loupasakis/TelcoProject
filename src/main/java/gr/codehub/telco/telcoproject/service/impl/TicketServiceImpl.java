@@ -1,8 +1,8 @@
 package gr.codehub.telco.telcoproject.service.impl;
 
-import gr.codehub.telco.telcoproject.dto.CustomerDto;
 import gr.codehub.telco.telcoproject.dto.TicketDto;
 import gr.codehub.telco.telcoproject.model.Ticket;
+import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.TicketRepository;
 import gr.codehub.telco.telcoproject.repository.impl.TicketRepositoryImpl;
 import gr.codehub.telco.telcoproject.service.TicketService;
@@ -12,40 +12,41 @@ import org.hibernate.Hibernate;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class TicketServiceImpl implements TicketService {
 
     @Inject
-    private TicketRepositoryImpl ticketRepositoryImpl;
+    private TicketRepositoryImpl ticketRepositoryimpl;
     @Override
-    public TicketDto create(TicketDto ticketDto) {
-        Ticket ticket = ticketDto.asTicket();
-        ticketRepositoryImpl.create(ticket);
+    public TicketDto createTicket(TicketDto ticketDto) {
+        Ticket ticket= ticketDto.asTicket();
+        ticketRepositoryimpl.create(ticket);
         return new TicketDto(ticket);
     }
 
     @Override
-    public List<TicketDto> findAll() {
-        return ticketRepositoryImpl.read().stream().map(TicketDto::new).collect(Collectors.toList());
-       //Hibernate.initialize(tickets);
+    public List<Ticket> findAll() {
+       List tickets=ticketRepositoryimpl.read();
+       Hibernate.initialize(tickets);
+       return tickets;
     }
 
     @Override
-    public TicketDto findByTicketId(Long id) {
-        return new TicketDto(ticketRepositoryImpl.read(id));
+    public Ticket findByTicketId(Long id) {
+        Ticket ticket= ticketRepositoryimpl.read(id);
+        return ticket;
     }
 
     @Override
-    public TicketDto update(TicketDto ticketDto) {
-        Ticket ticket = ticketDto.asTicket();
-        ticketRepositoryImpl.update(ticket);
-        return new TicketDto(ticket);
+    public Ticket update(Ticket ticket) {
+
+        ticketRepositoryimpl.update(ticket);
+        return ticket;
     }
 
     @Override
     public boolean delete(Long id) {
-        if(ticketRepositoryImpl.delete(id))
+        if(ticketRepositoryimpl.delete(id))
         {
             return true;
         }else{
@@ -55,22 +56,22 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public List<TicketDto> findByDate(LocalDate date) {
+    public List<Ticket> findByDate(LocalDate date) {
 
-       List tickets = ticketRepositoryImpl.getTicketsByDate(date);
+       List tickets = ticketRepositoryimpl.getTicketsByDate(date);
         return tickets;
     }
 
     @Override
-    public List<TicketDto> findByDateRange(LocalDate dateFrom, LocalDate dateTo) {
+    public List<Ticket> findByDateRange(LocalDate dateFrom, LocalDate dateTo) {
 
-        List tickets = ticketRepositoryImpl.getTicketsByDateRange(dateFrom,dateTo);
+        List tickets = ticketRepositoryimpl.getTicketsByDateRange(dateFrom,dateTo);
         return tickets;
     }
 
     @Override
-    public List<TicketDto> getTicketsByCustomerId(Long id) {
-        List tickets=ticketRepositoryImpl.getTicketsByCustomerId(id);
+    public List<Ticket> getTicketsByCustomerId(Long id) {
+        List tickets=ticketRepositoryimpl.getTicketsByCustomerId(id);
         return tickets;
     }
 }
