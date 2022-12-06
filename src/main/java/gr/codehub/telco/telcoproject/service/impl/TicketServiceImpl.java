@@ -51,6 +51,11 @@ public class TicketServiceImpl implements TicketService {
     public TicketDto update(TicketDto ticketDto) {
         Ticket ticket = ticketDto.asTicket();
         ticket.setTicketId(ticketDto.getTicketId());
+
+        long userId = ticketDto.getCustomer().getUserId();
+        User customer = customerRepositoryImpl.read(userId);
+
+        ticket.setCustomer(customer);
         ticketRepositoryImpl.update(ticket);
         return new TicketDto(ticket);
     }
