@@ -1,5 +1,6 @@
 package gr.codehub.telco.telcoproject.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -32,8 +33,7 @@ public class Ticket{
     private Long ticketId;
 
     @Column(name="date_time_of_creation")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateTimeOfCreation;
 
     @ManyToOne()
@@ -43,8 +43,7 @@ public class Ticket{
     private TicketStatus ticketStatus;
 
     @Column(name="date_time_of_action")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateTimeOfAction;
 
     @Column(name="ticket_type")
