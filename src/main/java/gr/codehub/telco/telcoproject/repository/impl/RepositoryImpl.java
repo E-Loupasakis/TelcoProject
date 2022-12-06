@@ -17,7 +17,6 @@ public abstract class RepositoryImpl<T, K> implements Repository<T,K> {
     @Transactional
     public T create(T t) {
         em.persist(t);
-        System.out.println("entity persist");
         return t;
 
     }
