@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Data
 @Builder
@@ -17,5 +19,6 @@ public class Phone {
 //    private String type;
 //    private String areaCode;
     @Column(name="P_NUMBER")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private String number;
 }

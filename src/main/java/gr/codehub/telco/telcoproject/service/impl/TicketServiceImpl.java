@@ -3,7 +3,9 @@ package gr.codehub.telco.telcoproject.service.impl;
 import gr.codehub.telco.telcoproject.dto.CustomerDto;
 import gr.codehub.telco.telcoproject.dto.TicketDto;
 import gr.codehub.telco.telcoproject.model.Ticket;
+import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.TicketRepository;
+import gr.codehub.telco.telcoproject.repository.impl.CustomerRepositoryImpl;
 import gr.codehub.telco.telcoproject.repository.impl.TicketRepositoryImpl;
 import gr.codehub.telco.telcoproject.service.TicketService;
 import jakarta.inject.Inject;
@@ -18,8 +20,17 @@ public class TicketServiceImpl implements TicketService {
 
     @Inject
     private TicketRepositoryImpl ticketRepositoryImpl;
+
+    @Inject
+    private CustomerRepositoryImpl customerRepositoryImpl;
+
+
+
     @Override
     public TicketDto create(TicketDto ticketDto) {
+        long userId = ticketDto.getCustomer().getUserId();
+        User customer = customerRepositoryImpl.read(userId);
+        ticketDto.setCustomer(customer);
         Ticket ticket = ticketDto.asTicket();
         ticketRepositoryImpl.create(ticket);
         return new TicketDto(ticket);
@@ -39,6 +50,12 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public TicketDto update(TicketDto ticketDto) {
         Ticket ticket = ticketDto.asTicket();
+//        ticket.setTicketId(ticketDto.getTicketId());
+
+        long userId = ticketDto.getCustomer().getUserId();
+        User customer = customerRepositoryImpl.read(userId);
+
+        ticket.setCustomer(customer);
         ticketRepositoryImpl.update(ticket);
         return new TicketDto(ticket);
     }

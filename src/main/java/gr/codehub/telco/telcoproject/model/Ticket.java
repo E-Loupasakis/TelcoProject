@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -29,13 +30,13 @@ public class Ticket{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long ticketId;
+    private long ticketId;
 
     @Column(name="date_time_of_creation")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateTimeOfCreation;
 
-    @ManyToOne
+    @ManyToOne()
     private User customer;
 
     @Column(name="ticket_status")
