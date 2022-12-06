@@ -22,7 +22,7 @@ import java.util.List;
 @NoArgsConstructor
 public class TicketDto {
 
-    private Long ticketId;
+    private long ticketId;
     private String addressofIssue;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
