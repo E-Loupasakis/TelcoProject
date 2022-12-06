@@ -1,5 +1,9 @@
 package gr.codehub.telco.telcoproject.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import gr.codehub.telco.telcoproject.enums.TicketStatus;
 import gr.codehub.telco.telcoproject.enums.TicketType;
 import gr.codehub.telco.telcoproject.enums.UserCategory;
@@ -17,9 +21,15 @@ import java.util.List;
 @NoArgsConstructor
 public class TicketDto {
 
-    private long id;
+    private long ticketId;
     private String addressofIssue;
+
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime dateTimeOfAction;
+
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime dateTimeOfCreation;
     private String description;
     private double estimatedCost;
@@ -32,7 +42,7 @@ public class TicketDto {
 
     public TicketDto(Ticket ticket){
         if(ticket!=null){
-            id = ticket.getTicketId();
+            ticketId = ticket.getTicketId();
             addressofIssue = ticket.getAddressOfIssue();
             dateTimeOfAction = ticket.getDateTimeOfAction();
             dateTimeOfCreation = ticket.getDateTimeOfCreation();
@@ -46,7 +56,7 @@ public class TicketDto {
 
     public Ticket asTicket() {
         Ticket ticket = new Ticket();
-        ticket.setTicketId(id);
+//        ticket.setTicketId(ticketId);
         ticket.setAddressOfIssue(addressofIssue);
         ticket.setDateTimeOfAction(dateTimeOfAction);
         ticket.setDateTimeOfCreation(dateTimeOfCreation);

@@ -49,7 +49,7 @@ public class User {
     @CollectionTable(name="PHONE",joinColumns = @JoinColumn(name="OWNER_ID"))
     private List<Phone> phones;
 
-    @Column(name="user_name", unique = true)
+    @Column(name="user_name")
     private String userName;
 
     @Column(name="password")
