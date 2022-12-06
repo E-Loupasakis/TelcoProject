@@ -30,7 +30,7 @@ public class Ticket{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long ticketId;
+    private long ticketId;
 
     @Column(name="date_time_of_creation")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")

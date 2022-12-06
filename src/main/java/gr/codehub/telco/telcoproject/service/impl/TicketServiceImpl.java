@@ -22,7 +22,7 @@ public class TicketServiceImpl implements TicketService {
     private TicketRepositoryImpl ticketRepositoryImpl;
 
     @Inject
-    CustomerRepositoryImpl customerRepositoryImpl;
+    private CustomerRepositoryImpl customerRepositoryImpl;
 
 
 
@@ -50,7 +50,7 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public TicketDto update(TicketDto ticketDto) {
         Ticket ticket = ticketDto.asTicket();
-        ticket.setTicketId(ticketDto.getTicketId());
+//        ticket.setTicketId(ticketDto.getTicketId());
 
         long userId = ticketDto.getCustomer().getUserId();
         User customer = customerRepositoryImpl.read(userId);
