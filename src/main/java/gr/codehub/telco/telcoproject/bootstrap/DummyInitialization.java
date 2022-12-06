@@ -2,6 +2,7 @@ package gr.codehub.telco.telcoproject.bootstrap;
 
 
 import gr.codehub.telco.telcoproject.enums.TicketStatus;
+import gr.codehub.telco.telcoproject.model.Email;
 import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.TicketRepository;
@@ -15,6 +16,7 @@ import jakarta.inject.Inject;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Singleton
@@ -34,13 +36,22 @@ public class DummyInitialization {
 
         // User Creation
 
+        List<Email> emailList = new ArrayList();
+        List<Email> emailList2 = new ArrayList();
 
-        User us1 = User.builder().lastName("nn").lastName("Kef").emailAddress("nn@gmail.com").build();
-        User us2 = User.builder().lastName("Kef").emailAddress("nn@gmail.com").firstName("Kostas").build();
+        Email em1 = new Email("nn@gmail");
+        Email em2 = new Email("kk@gmail");
+
+        emailList.add(em1);
+        emailList2.add(em2);
+
+
+        User us1 = User.builder().lastName("nn").lastName("Kef").vatNumber(1234).emailList(emailList).build();
+        User us2 = User.builder().lastName("Kef").vatNumber(123456).firstName("Kostas").emailList(emailList2).build();
 
         cstimpl.create(us1);
         cstimpl.create(us2);
-        // End of User Creation
+//        // End of User Creation
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
