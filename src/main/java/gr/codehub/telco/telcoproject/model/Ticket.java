@@ -29,7 +29,7 @@ public class Ticket{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long ticketId;
+    private long ticketId;
 
     @Column(name="date_time_of_creation")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
