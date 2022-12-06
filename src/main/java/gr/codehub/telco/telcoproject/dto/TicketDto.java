@@ -1,5 +1,6 @@
 package gr.codehub.telco.telcoproject.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import gr.codehub.telco.telcoproject.enums.TicketStatus;
 import gr.codehub.telco.telcoproject.enums.TicketType;
 import gr.codehub.telco.telcoproject.enums.UserCategory;
@@ -19,7 +20,9 @@ public class TicketDto {
 
     private long ticketId;
     private String addressofIssue;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateTimeOfAction;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateTimeOfCreation;
     private String description;
     private double estimatedCost;

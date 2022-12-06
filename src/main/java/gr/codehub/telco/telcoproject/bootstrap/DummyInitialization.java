@@ -35,11 +35,11 @@ public class DummyInitialization {
         // User Creation
 
 
-        User us1 = User.builder().lastName("nn").lastName("Kef").emailAddress("nn@gmail.com").build();
+        /*User us1 = User.builder().lastName("nn").lastName("Kef").emailAddress("nn@gmail.com").build();
         User us2 = User.builder().lastName("Kef").emailAddress("nn@gmail.com").firstName("Kostas").build();
 
         cstimpl.create(us1);
-        cstimpl.create(us2);
+        cstimpl.create(us2);*/
         // End of User Creation
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
