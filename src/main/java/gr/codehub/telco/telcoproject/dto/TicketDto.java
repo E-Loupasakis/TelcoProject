@@ -22,11 +22,12 @@ import java.util.List;
 public class TicketDto {
 
     private long ticketId;
-    private String addressOfIssue;
+    private String addressofIssue;
 
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime dateTimeOfAction;
+
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime dateTimeOfCreation;
@@ -42,7 +43,7 @@ public class TicketDto {
     public TicketDto(Ticket ticket){
         if(ticket!=null){
             ticketId = ticket.getTicketId();
-            addressOfIssue = ticket.getAddressOfIssue();
+            addressofIssue = ticket.getAddressOfIssue();
             dateTimeOfAction = ticket.getDateTimeOfAction();
             dateTimeOfCreation = ticket.getDateTimeOfCreation();
             description = ticket.getDescription();
@@ -55,7 +56,8 @@ public class TicketDto {
 
     public Ticket asTicket() {
         Ticket ticket = new Ticket();
-        ticket.setAddressOfIssue(addressOfIssue);
+//        ticket.setTicketId(ticketId);
+        ticket.setAddressOfIssue(addressofIssue);
         ticket.setDateTimeOfAction(dateTimeOfAction);
         ticket.setDateTimeOfCreation(dateTimeOfCreation);
         ticket.setDescription(description);

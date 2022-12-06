@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -35,7 +36,7 @@ public class Ticket{
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime dateTimeOfCreation;
 
-    @ManyToOne
+    @ManyToOne()
     private User customer;
 
     @Column(name="ticket_status")
