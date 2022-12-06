@@ -61,12 +61,6 @@ public class TicketResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public TicketDto update(@PathParam("ticketId") long ticketId, TicketDto ticket) {
         ticket.setTicketId(ticketId);
-        logger.info("Printed TicketID");
-        logger.info("Problem with TicketID:{}",ticketId);
-        logger.info("================================================");
-        logger.info("Printed ticket");
-        logger.info("Problem with ticket:{}",ticket);
-
         return ticketService.update(ticket);
     }
 
