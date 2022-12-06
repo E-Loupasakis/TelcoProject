@@ -55,7 +55,5 @@ public class User {
     @Column(name="password")
     private String password;
 
-    @OneToMany(mappedBy = "customer")
-    private List<Ticket> ticketList;
 
 }
