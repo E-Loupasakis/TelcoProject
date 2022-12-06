@@ -56,6 +56,7 @@ public class TicketDto {
 
     public Ticket asTicket() {
         Ticket ticket = new Ticket();
+//        ticket.setTicketId(ticketId);
         ticket.setAddressOfIssue(addressofIssue);
         ticket.setDateTimeOfAction(dateTimeOfAction);
         ticket.setDateTimeOfCreation(dateTimeOfCreation);
