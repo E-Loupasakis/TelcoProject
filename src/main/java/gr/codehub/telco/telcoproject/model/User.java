@@ -19,15 +19,8 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name="user")
-public class User {
+public class User extends AppUser{
 
-    @Id
-    @Column(name="user_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long userId;
-
-    @Column(name="user_category")
-    private UserCategory userCategory;
 
     @Column(name="vat_number", unique = true)
     private int vatNumber;
@@ -48,12 +41,5 @@ public class User {
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name="PHONE",joinColumns = @JoinColumn(name="OWNER_ID"))
     private List<Phone> phones;
-
-    @Column(name="user_name")
-    private String userName;
-
-    @Column(name="password")
-    private String password;
-
 
 }

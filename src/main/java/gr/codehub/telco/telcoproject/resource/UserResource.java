@@ -2,6 +2,8 @@ package gr.codehub.telco.telcoproject.resource;
 
 import gr.codehub.telco.telcoproject.dto.CustomerDto;
 import gr.codehub.telco.telcoproject.service.CustomerService;
+import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -16,6 +18,7 @@ public class UserResource {
 
     @Path("/")
     @POST
+    @PermitAll
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public CustomerDto insert(CustomerDto customer) {
@@ -31,6 +34,7 @@ public class UserResource {
 
     @Path("/{customerId}")
     @PUT
+    @PermitAll
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public CustomerDto update(@PathParam("customerId") long customerId,  CustomerDto customer){
@@ -39,6 +43,7 @@ public class UserResource {
     }
     @Path("/{customerId}")
     @GET
+    @RolesAllowed("ADMIN")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public CustomerDto read(@PathParam("customerId") long customerId){
@@ -53,6 +58,7 @@ public class UserResource {
 
     @Path("/find/vat/{vatNumber}")
     @GET
+    @RolesAllowed("ADMIN")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public CustomerDto readByVat(@PathParam("vatNumber") int vatNumber){

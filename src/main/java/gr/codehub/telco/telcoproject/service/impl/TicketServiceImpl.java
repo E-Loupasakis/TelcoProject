@@ -28,7 +28,7 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public TicketDto create(TicketDto ticketDto) {
-        long userId = ticketDto.getCustomer().getUserId();
+        long userId = ticketDto.getCustomer().getId();
         User customer = customerRepositoryImpl.read(userId);
         ticketDto.setCustomer(customer);
         Ticket ticket = ticketDto.asTicket();
@@ -52,7 +52,7 @@ public class TicketServiceImpl implements TicketService {
         Ticket ticket = ticketDto.asTicket();
 //        ticket.setTicketId(ticketDto.getTicketId());
 
-        long userId = ticketDto.getCustomer().getUserId();
+        long userId = ticketDto.getCustomer().getId();
         User customer = customerRepositoryImpl.read(userId);
 
         ticket.setCustomer(customer);

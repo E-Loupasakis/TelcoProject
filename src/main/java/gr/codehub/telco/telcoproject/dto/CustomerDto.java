@@ -27,12 +27,12 @@ public class CustomerDto {
 
     public CustomerDto(User customer){
         if(customer!=null){
-            id = customer.getUserId();
+            id = customer.getId();
             vatNumber = customer.getVatNumber();
             userCategory = customer.getUserCategory();
             firstName = customer.getFirstName();
             lastName = customer.getLastName();
-            userName = customer.getUserName();
+            userName = customer.getUsername();
             password = customer.getPassword();
             address = customer.getAddress();
             phoneList = customer.getPhones();
@@ -42,12 +42,12 @@ public class CustomerDto {
 
     public User asCustomer() {
         User customer = new User();
-        customer.setUserId(id);
+        customer.setId(id);
         customer.setVatNumber(vatNumber);
         customer.setUserCategory(userCategory);
         customer.setFirstName(firstName);
         customer.setLastName(lastName);
-        customer.setUserName(userName);
+        customer.setUsername(userName);
         customer.setPassword(password);
         customer.setAddress(address);
         customer.setPhones(phoneList);

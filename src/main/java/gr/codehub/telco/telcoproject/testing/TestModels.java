@@ -21,13 +21,13 @@ public class TestModels {
 
 
     public  void main(String[] args) {
-
+/*
         User customer = User.builder().userName("tom").build();
         Ticket ticket= Ticket.builder().ticketStatus(TicketStatus.IN_PROGRESS).addressOfIssue("Zallogou 9").dateTimeOfAction(LocalDateTime.now())
                .description("Digital").estimatedCost(34.2).dateTimeOfCreation(LocalDateTime.now()).build();
 
         customerRepo.create(customer);
-        ticketRepo.create(ticket);
+        ticketRepo.create(ticket);*/
 
 
     }
