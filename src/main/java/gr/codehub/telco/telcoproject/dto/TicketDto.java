@@ -1,39 +1,46 @@
 package gr.codehub.telco.telcoproject.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import gr.codehub.telco.telcoproject.enums.TicketStatus;
 import gr.codehub.telco.telcoproject.enums.TicketType;
-import gr.codehub.telco.telcoproject.enums.UserCategory;
-import gr.codehub.telco.telcoproject.model.Email;
-import gr.codehub.telco.telcoproject.model.Phone;
 import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.time.LocalDateTime;
-import java.util.List;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.FutureOrPresent;
 
 @Data
 @NoArgsConstructor
 public class TicketDto {
 
     private long ticketId;
-    private String addressofIssue;
+    private String addressOfIssue;
+
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateTimeOfAction;
 
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateTimeOfCreation;
+
     private String description;
+
+
     private double estimatedCost;
+
+
     private TicketStatus ticketStatus;
+
+
     private TicketType ticketType;
+
+
     private User customer;
 
 
@@ -42,7 +49,7 @@ public class TicketDto {
     public TicketDto(Ticket ticket){
         if(ticket!=null){
             ticketId = ticket.getTicketId();
-            addressofIssue = ticket.getAddressOfIssue();
+            addressOfIssue = ticket.getAddressOfIssue();
             dateTimeOfAction = ticket.getDateTimeOfAction();
             dateTimeOfCreation = ticket.getDateTimeOfCreation();
             description = ticket.getDescription();
@@ -56,7 +63,7 @@ public class TicketDto {
     public Ticket asTicket() {
         Ticket ticket = new Ticket();
         ticket.setTicketId(ticketId);
-        ticket.setAddressOfIssue(addressofIssue);
+        ticket.setAddressOfIssue(addressOfIssue);
         ticket.setDateTimeOfAction(dateTimeOfAction);
         ticket.setDateTimeOfCreation(dateTimeOfCreation);
         ticket.setDescription(description);

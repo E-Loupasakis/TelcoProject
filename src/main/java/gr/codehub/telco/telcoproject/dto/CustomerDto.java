@@ -4,6 +4,7 @@ package gr.codehub.telco.telcoproject.dto;
 import gr.codehub.telco.telcoproject.enums.UserCategory;
 import gr.codehub.telco.telcoproject.model.Email;
 import gr.codehub.telco.telcoproject.model.Phone;
+import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,8 @@ public class CustomerDto {
     private List<Phone> phoneList;
     private List<Email> emailList;
 
+    private List<Ticket> ticketList;
+
     public CustomerDto(User customer){
         if(customer!=null){
             id = customer.getId();
@@ -37,6 +40,7 @@ public class CustomerDto {
             address = customer.getAddress();
             phoneList = customer.getPhones();
             emailList = customer.getEmailList();
+            ticketList = customer.getTickets();
         }
     }
 
@@ -52,6 +56,7 @@ public class CustomerDto {
         customer.setAddress(address);
         customer.setPhones(phoneList);
         customer.setEmailList(emailList);
+        customer.setTickets(ticketList);
         return customer;
     }
 }

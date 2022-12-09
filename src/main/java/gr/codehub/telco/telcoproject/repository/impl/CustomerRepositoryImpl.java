@@ -1,5 +1,6 @@
 package gr.codehub.telco.telcoproject.repository.impl;
 
+import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.CustomerRepository;
 import jakarta.persistence.EntityManager;
@@ -36,5 +37,11 @@ public class CustomerRepositoryImpl extends RepositoryImpl<User, Long> implement
                 .setParameter("emailAddress", emailAddress)
                 .getResultList();
     }
+
+    @Override
+    public List<Ticket> GetTicketsByCustomerId(long id) {
+       return read(id).getTickets();
+    }
+
 
 }
