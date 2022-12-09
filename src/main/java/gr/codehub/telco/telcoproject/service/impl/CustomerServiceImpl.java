@@ -1,8 +1,7 @@
 package gr.codehub.telco.telcoproject.service.impl;
 
-
+import gr.codehub.telco.telcoproject.dto.CustomerDto;
 import gr.codehub.telco.telcoproject.model.User;
-
 import gr.codehub.telco.telcoproject.repository.CustomerRepository;
 import gr.codehub.telco.telcoproject.service.CustomerService;
 import jakarta.inject.Inject;
@@ -52,5 +51,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void delete(long customerId) {
         customerRepository.delete(customerId);
+    }
+
+    @Override
+    public List<Ticket> findTicketsByCustomerId(long customerId) {
+        return  customerRepository.read(customerId).getTickets();
+
     }
 }

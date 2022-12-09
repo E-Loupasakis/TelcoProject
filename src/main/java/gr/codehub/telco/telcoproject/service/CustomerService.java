@@ -1,7 +1,6 @@
 package gr.codehub.telco.telcoproject.service;
 
 import gr.codehub.telco.telcoproject.dto.CustomerDto;
-import gr.codehub.telco.telcoproject.model.User;
 
 import java.util.List;
 
@@ -16,4 +15,6 @@ public interface CustomerService {
 
     User update(User customer);
     void delete(long customerId);
+
+    List<Ticket> findTicketsByCustomerId(long customerId);
 }

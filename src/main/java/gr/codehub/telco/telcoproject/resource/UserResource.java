@@ -1,5 +1,6 @@
 package gr.codehub.telco.telcoproject.resource;
-import gr.codehub.telco.telcoproject.model.User;
+
+import gr.codehub.telco.telcoproject.dto.CustomerDto;
 import gr.codehub.telco.telcoproject.service.CustomerService;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
@@ -20,7 +21,7 @@ public class UserResource {
     @PermitAll
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public gr.codehub.telco.telcoproject.model.User insert(gr.codehub.telco.telcoproject.model.User customer) {
+    public User insert(gr.codehub.telco.telcoproject.model.User customer) {
         return customerService.create(customer);
     }
 
@@ -72,7 +73,13 @@ public class UserResource {
     }
 
 
-
+    @Path("/find/tickets/{customerId}")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Ticket> getTicketsByCustomerId(@PathParam("customerId") long customerId){
+        return customerService.findTicketsByCustomerId(customerId);
+    }
 
 
 }
