@@ -1,6 +1,7 @@
 package gr.codehub.telco.telcoproject.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import gr.codehub.telco.telcoproject.enums.TicketStatus;
 import gr.codehub.telco.telcoproject.enums.TicketType;
 import jakarta.persistence.*;
@@ -35,6 +36,8 @@ public class Ticket{
 
     @NotNull(message = "Customer cannot be null")
     @ManyToOne()
+    @JoinColumn(name = "customer_id")
+    @JsonIgnore
     private User customer;
 
     @NotNull(message = "Ticket Status cannot be null")

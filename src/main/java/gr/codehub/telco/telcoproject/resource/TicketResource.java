@@ -11,6 +11,7 @@ import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.service.TicketService;
 import gr.codehub.telco.telcoproject.service.impl.TicketServiceImpl;
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import lombok.extern.slf4j.Slf4j;
@@ -35,8 +36,9 @@ public class TicketResource {
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public TicketDto insert(TicketDto ticketDto) {
+    public TicketDto insert(@Valid TicketDto ticketDto) {
         ticketDto.setDateTimeOfCreation(LocalDateTime.now());
+
         return ticketService.create(ticketDto);
     }
 
@@ -59,7 +61,7 @@ public class TicketResource {
     @Path("/{ticketId}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public TicketDto update(@PathParam("ticketId") long ticketId, TicketDto ticket) {
+    public TicketDto update(@PathParam("ticketId") long ticketId, @Valid TicketDto ticket) {
         ticket.setTicketId(ticketId);
         return ticketService.update(ticket);
     }

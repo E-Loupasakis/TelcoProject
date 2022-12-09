@@ -23,7 +23,7 @@ public class TicketRepositoryImpl extends RepositoryImpl<Ticket, Long> implement
     }
 
     public List<Ticket> getTicketsByCustomerId(Long customerId) {
-        Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.customer IN (SELECT DISTINCT u.userId FROM User u WHERE u.userId IN (?1)) ORDER BY t.dateTimeOfCreation DESC " );
+        Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.customer IN (SELECT DISTINCT u.id FROM User u WHERE u.id IN (?1)) ORDER BY t.dateTimeOfCreation DESC " );
 
         query.setParameter(1, customerId);
 
