@@ -44,7 +44,7 @@ public class User extends AppUser{
     @CollectionTable(name="PHONE",joinColumns = @JoinColumn(name="OWNER_ID"))
     private List<Phone> phones;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "customer",cascade = {CascadeType.PERSIST,CascadeType.MERGE},orphanRemoval = true )
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "customer", cascade = {CascadeType.PERSIST,CascadeType.MERGE}, orphanRemoval = true )
     @JsonManagedReference
     private List<Ticket> tickets;
 

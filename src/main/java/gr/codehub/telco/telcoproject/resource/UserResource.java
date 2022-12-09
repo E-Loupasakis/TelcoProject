@@ -1,6 +1,8 @@
 package gr.codehub.telco.telcoproject.resource;
 
 import gr.codehub.telco.telcoproject.dto.CustomerDto;
+import gr.codehub.telco.telcoproject.model.Ticket;
+import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.service.CustomerService;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
@@ -69,7 +71,7 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getCustomerByEmail(@PathParam("email") String email){
-        return (List<User>) customerService.read(email);
+        return customerService.read(email);
     }
 
 

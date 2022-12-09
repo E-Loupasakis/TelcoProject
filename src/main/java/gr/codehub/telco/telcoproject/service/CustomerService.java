@@ -1,12 +1,14 @@
 package gr.codehub.telco.telcoproject.service;
 
 import gr.codehub.telco.telcoproject.dto.CustomerDto;
+import gr.codehub.telco.telcoproject.model.Ticket;
+import gr.codehub.telco.telcoproject.model.User;
 
 import java.util.List;
 
 public interface CustomerService {
 
-   User create(gr.codehub.telco.telcoproject.model.User customer);
+    User create(User customer);
     User read(long id);
     User readByVat(int vat);
 

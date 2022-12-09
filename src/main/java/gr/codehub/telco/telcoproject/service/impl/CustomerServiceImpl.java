@@ -1,6 +1,7 @@
 package gr.codehub.telco.telcoproject.service.impl;
 
 import gr.codehub.telco.telcoproject.dto.CustomerDto;
+import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.CustomerRepository;
 import gr.codehub.telco.telcoproject.service.CustomerService;
@@ -15,7 +16,7 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
 
     @Override
-    public User create(gr.codehub.telco.telcoproject.model.User customer) {
+    public User create(User customer) {
        // User customer = customerDto.asCustomer();
        return customerRepository.create(customer);
         //return new Customer(customer);
@@ -43,9 +44,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public User update(User customer) {
-        //User customer = customerDto.asCustomer();
        return customerRepository.update(customer);
-        //return new Customer(customer);
     }
 
     @Override
