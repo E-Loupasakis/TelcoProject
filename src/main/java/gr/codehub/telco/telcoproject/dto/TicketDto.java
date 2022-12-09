@@ -19,7 +19,7 @@ import javax.validation.constraints.FutureOrPresent;
 public class TicketDto {
 
     private long ticketId;
-    private String addressofIssue;
+    private String addressOfIssue;
 
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
@@ -47,7 +47,7 @@ public class TicketDto {
     public TicketDto(Ticket ticket){
         if(ticket!=null){
             ticketId = ticket.getTicketId();
-            addressofIssue = ticket.getAddressOfIssue();
+            addressOfIssue = ticket.getAddressOfIssue();
             dateTimeOfAction = ticket.getDateTimeOfAction();
             dateTimeOfCreation = ticket.getDateTimeOfCreation();
             description = ticket.getDescription();
@@ -61,7 +61,7 @@ public class TicketDto {
     public Ticket asTicket() {
         Ticket ticket = new Ticket();
         ticket.setTicketId(ticketId);
-        ticket.setAddressOfIssue(addressofIssue);
+        ticket.setAddressOfIssue(addressOfIssue);
         ticket.setDateTimeOfAction(dateTimeOfAction);
         ticket.setDateTimeOfCreation(dateTimeOfCreation);
         ticket.setDescription(description);
