@@ -1,7 +1,9 @@
 package gr.codehub.telco.telcoproject.repository.impl;
 
+import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.CustomerRepository;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.NonUniqueResultException;
@@ -13,6 +15,7 @@ public class CustomerRepositoryImpl extends RepositoryImpl<User, Long> implement
 
     @PersistenceContext(unitName = "Persistence")
     private EntityManager em;
+
 
     @Override
     public Class<User> getClassType() {
@@ -36,5 +39,6 @@ public class CustomerRepositoryImpl extends RepositoryImpl<User, Long> implement
                 .setParameter("emailAddress", emailAddress)
                 .getResultList();
     }
+
 
 }
