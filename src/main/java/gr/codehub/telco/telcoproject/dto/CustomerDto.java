@@ -4,7 +4,6 @@ package gr.codehub.telco.telcoproject.dto;
 import gr.codehub.telco.telcoproject.enums.UserCategory;
 import gr.codehub.telco.telcoproject.model.Email;
 import gr.codehub.telco.telcoproject.model.Phone;
-import gr.codehub.telco.telcoproject.model.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -25,7 +24,7 @@ public class CustomerDto {
     private List<Phone> phoneList;
     private List<Email> emailList;
 
-    public CustomerDto(User customer){
+    public CustomerDto(gr.codehub.telco.telcoproject.model.User customer){
         if(customer!=null){
             id = customer.getId();
             vatNumber = customer.getVatNumber();
@@ -40,8 +39,8 @@ public class CustomerDto {
         }
     }
 
-    public User asCustomer() {
-        User customer = new User();
+    public gr.codehub.telco.telcoproject.model.User asCustomer() {
+        gr.codehub.telco.telcoproject.model.User customer = new gr.codehub.telco.telcoproject.model.User();
         customer.setId(id);
         customer.setVatNumber(vatNumber);
         customer.setUserCategory(userCategory);

@@ -1,7 +1,8 @@
 package gr.codehub.telco.telcoproject.service.impl;
 
-import gr.codehub.telco.telcoproject.dto.CustomerDto;
+
 import gr.codehub.telco.telcoproject.model.User;
+
 import gr.codehub.telco.telcoproject.repository.CustomerRepository;
 import gr.codehub.telco.telcoproject.service.CustomerService;
 import jakarta.inject.Inject;
@@ -15,36 +16,37 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
 
     @Override
-    public CustomerDto create(CustomerDto customerDto) {
-        User customer = customerDto.asCustomer();
-        customerRepository.create(customer);
-        return new CustomerDto(customer);
+    public User create(gr.codehub.telco.telcoproject.model.User customer) {
+       // User customer = customerDto.asCustomer();
+       return customerRepository.create(customer);
+        //return new Customer(customer);
     }
 
     @Override
-    public CustomerDto read(long id) {
-        return new CustomerDto(customerRepository.read(id));
+    public User read(long id) {
+        return customerRepository.read(id);
     }
 
     @Override
-    public CustomerDto readByVat(int vat) {
-        return new CustomerDto(customerRepository.getCustomerByVat(vat));
+    public User readByVat(int vat) {
+
+        return customerRepository.getCustomerByVat(vat);
     }
     @Override
-    public List<CustomerDto> read(String email) {
-        return (List<CustomerDto>)(Object)customerRepository.getCustomerByEmail(email);
+    public List<User> read(String email) {
+        return customerRepository.getCustomerByEmail(email);
     }
 
     @Override
-    public List<CustomerDto> read() {
-        return customerRepository.read().stream().map(CustomerDto::new).collect(Collectors.toList());
+    public List<User> read() {
+        return customerRepository.read();
     }
 
     @Override
-    public CustomerDto update(CustomerDto customerDto) {
-        User customer = customerDto.asCustomer();
-        customerRepository.update(customer);
-        return new CustomerDto(customer);
+    public User update(User customer) {
+        //User customer = customerDto.asCustomer();
+       return customerRepository.update(customer);
+        //return new Customer(customer);
     }
 
     @Override

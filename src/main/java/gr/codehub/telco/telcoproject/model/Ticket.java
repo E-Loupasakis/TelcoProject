@@ -36,7 +36,7 @@ public class Ticket{
 
     @NotNull(message = "Customer cannot be null")
     @ManyToOne()
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id",nullable = false)
     @JsonIgnore
     private User customer;
 

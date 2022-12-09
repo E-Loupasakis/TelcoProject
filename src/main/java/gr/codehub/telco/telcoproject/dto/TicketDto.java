@@ -44,8 +44,6 @@ public class TicketDto {
     private User customer;
 
 
-
-
     public TicketDto(Ticket ticket){
         if(ticket!=null){
             ticketId = ticket.getTicketId();
