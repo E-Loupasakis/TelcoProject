@@ -11,8 +11,6 @@ import java.util.List;
 
 public class CustomerRepositoryImpl extends RepositoryImpl<User, Long> implements CustomerRepository {
 
-    @PersistenceContext(unitName = "Persistence")
-    private EntityManager em;
 
     @Override
     public Class<User> getClassType() {
@@ -27,7 +25,9 @@ public class CustomerRepositoryImpl extends RepositoryImpl<User, Long> implement
 
     @Override
     public User getCustomerByVat(int vat) throws NoResultException, NonUniqueResultException {
-        return (User)  em.createQuery("Select u from "+getClassName()+" u where u.vatNumber="+vat).getSingleResult();
+        return em.createQuery("Select u from "+getClassName()+" u where u.vatNumber LIKE :vat", User.class)
+        .setParameter("vat", vat)
+        .getSingleResult();
     }
 
     @Override
