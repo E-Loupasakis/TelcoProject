@@ -2,6 +2,8 @@ package gr.codehub.telco.telcoproject.model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import gr.codehub.telco.telcoproject.enums.UserCategory;
 import jakarta.persistence.*;
 import lombok.*;
@@ -43,6 +45,7 @@ public class User extends AppUser{
     private List<Phone> phones;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "customer",cascade = {CascadeType.PERSIST,CascadeType.MERGE},orphanRemoval = true )
+    @JsonManagedReference
     private List<Ticket> tickets;
 
 }

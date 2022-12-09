@@ -1,7 +1,9 @@
 package gr.codehub.telco.telcoproject.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import gr.codehub.telco.telcoproject.enums.TicketStatus;
 import gr.codehub.telco.telcoproject.enums.TicketType;
 import jakarta.persistence.*;
@@ -37,8 +39,11 @@ public class Ticket{
     @NotNull(message = "Customer cannot be null")
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
-    @JsonIgnore
+    @JsonBackReference
     private User customer;
+
+
+
 
     @NotNull(message = "Ticket Status cannot be null")
     @Column(name="ticket_status")
