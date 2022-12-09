@@ -35,8 +35,8 @@ public class Ticket{
     private LocalDateTime dateTimeOfCreation;
 
     @NotNull(message = "Customer cannot be null")
-    @ManyToOne()
-    @JoinColumn(name = "customer_id")
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
     @JsonIgnore
     private User customer;
 
