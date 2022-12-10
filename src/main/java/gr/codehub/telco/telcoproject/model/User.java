@@ -9,6 +9,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -44,8 +46,10 @@ public class User extends AppUser{
     @CollectionTable(name="PHONE",joinColumns = @JoinColumn(name="OWNER_ID"))
     private List<Phone> phones;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "customer", cascade = {CascadeType.PERSIST,CascadeType.MERGE}, orphanRemoval = true )
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "customer", cascade = {CascadeType.ALL})
     @JsonManagedReference
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<Ticket> tickets;
 
 }

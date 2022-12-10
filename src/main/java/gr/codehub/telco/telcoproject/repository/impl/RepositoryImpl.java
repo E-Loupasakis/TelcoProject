@@ -41,8 +41,8 @@ public abstract class RepositoryImpl<T, K> implements Repository<T,K> {
     @Override
     @Transactional
     public T update(T t) {
-      em.merge(t);
-      return t;
+      T entity = em.merge(t);
+      return entity;
    }
 
     public EntityManager getEm() {
