@@ -1,11 +1,10 @@
 package gr.codehub.telco.telcoproject.bootstrap;
 
 
-import gr.codehub.telco.telcoproject.dto.TicketDto;
 import gr.codehub.telco.telcoproject.enums.TicketStatus;
-import gr.codehub.telco.telcoproject.model.Email;
 import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
+import gr.codehub.telco.telcoproject.repository.TicketRepository;
 import gr.codehub.telco.telcoproject.repository.impl.CustomerRepositoryImpl;
 import gr.codehub.telco.telcoproject.repository.impl.TicketRepositoryImpl;
 import gr.codehub.telco.telcoproject.service.impl.TicketServiceImpl;
@@ -13,10 +12,9 @@ import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 import jakarta.inject.Inject;
-import gr.codehub.telco.telcoproject.model.AppUser;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Singleton
@@ -34,25 +32,11 @@ public class DummyInitialization {
     @PostConstruct
     public void test() {
 
-
-
-
-        // User Creation
-
-//        List<Email> emailist1 = new ArrayList();
-//        List<Email> emailist2 = new ArrayList();
-//
-//        Email em1 = new Email("em@gmail.com");
-//        Email em2 = new Email("em@gmail2.com");
-//        emailist1.add(em1);
-//        emailist2.add(em2);
-//
-//
-//        User us1 = User.builder().lastName("nn").firstName("Kostas").emailList(emailist1).build();
-       // User us2 = User.builder().lastName("Kef").emailList(emailist2).firstName("Kostas").build();
-
-        //cstimpl.create(us1);
-       // cstimpl.create(us2);
+//         User Creation
+//        User us1 = User.builder().lastName("nn").lastName("Kef").emailAddress("nn@gmail.com").build();
+//        User us2 = User.builder().lastName("Kef").emailAddress("nn@gmail.com").firstName("Kostas").build();
+//        cstimpl.create(us1);
+//        cstimpl.create(us2);
         // End of User Creation
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -86,17 +70,10 @@ public class DummyInitialization {
 //        ticketRepositoryImpl.create(ticket25);
 //        ticketRepositoryImpl.create(ticket26);
 //        ticketRepositoryImpl.create(ticket10);
-//
-//        TicketDto ticketDto1 = new TicketDto(ticket1);
-//        TicketDto ticketDto2 = new TicketDto(ticket2);
-//        TicketDto ticketDto3 = new TicketDto(ticket3);
-//
-//        ticketServiceimpl.create(ticketDto1);
-//        ticketServiceimpl.create(ticketDto2);
-//        ticketServiceimpl.create(ticketDto3);
-//
-//        System.out.println("ssssssssssssssssssssssssssssssssssssssss");
-//        System.out.println(cstimpl.GetTicketsByCustomerId(us1.getId()));
+
+//        ticketServiceimpl.createTicket(ticket1);
+//        ticketServiceimpl.createTicket(ticket2);
+//        ticketServiceimpl.createTicket(ticket3);
 //        ticketServiceimpl.createTicket(ticket25);
 //        ticketServiceimpl.createTicket(ticket26);
 //        ticketServiceimpl.createTicket(ticket10);
