@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class RepositoryImpl<T, K> implements Repository<T,K> {
     @PersistenceContext(unitName = "Persistence")
-    private EntityManager em;
+    protected EntityManager em;
 
     public abstract Class<T> getClassType();
     public abstract String getClassName();
