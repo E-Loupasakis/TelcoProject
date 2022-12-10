@@ -59,7 +59,7 @@ public class TicketResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response findByTicketId(@PathParam("id") Long id) {
         ticketService.findByTicketId(id);
-        return Response.noContent().entity(ApiResponse.builder().build()).build();
+        return Response.ok().entity(ApiResponse.builder().data(ticketService.findByTicketId(id)).build()).build();
     }
 
     @PUT
