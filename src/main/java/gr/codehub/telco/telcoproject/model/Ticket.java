@@ -7,15 +7,10 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import gr.codehub.telco.telcoproject.enums.TicketStatus;
 import gr.codehub.telco.telcoproject.enums.TicketType;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import lombok.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import java.time.LocalDateTime;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.validation.constraints.FutureOrPresent;
 
 @Data
@@ -36,7 +31,7 @@ public class Ticket{
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateTimeOfCreation;
 
-    @NotNull(message = "Customer cannot be null")
+    //@NotNull(message = "Customer cannot be null")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     @JsonBackReference
@@ -45,12 +40,13 @@ public class Ticket{
     private User customer;
 
 
-
     @NotNull(message = "Ticket Status cannot be null")
     @Column(name="ticket_status")
     private TicketStatus ticketStatus;
 
-    @FutureOrPresent(message = "Date of ticket's action cannot be past")
+
+    @Future(message = "Date of ticket's action cannot be past")
+
     @Column(name="date_time_of_action")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateTimeOfAction;
