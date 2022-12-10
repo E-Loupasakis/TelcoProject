@@ -12,11 +12,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.FutureOrPresent;
 
 @Data
 @Builder
@@ -43,8 +43,6 @@ public class Ticket{
     private User customer;
 
 
-
-
     @NotNull(message = "Ticket Status cannot be null")
     @Column(name="ticket_status")
     private TicketStatus ticketStatus;
@@ -65,8 +63,8 @@ public class Ticket{
     private double estimatedCost;
 
     @NotNull(message = "Address cannot be null")
-    @Size(min = 10, max = 100, message
-            = "Address of issue must be between 10 and 100 characters")
+    @Size(min = 10, max = 20, message
+            = "Address of issue must be between 10 and 20 characters")
     @Column(name="address_of_issue")
     private String addressOfIssue;
 
