@@ -17,7 +17,7 @@ public class AppUser extends BaseEntity {
     private String username;
 
     @NotNull(message = "Password cannot be null")
-    @Pattern(regexp="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=_()])(?=\\S+$).{8,20}$",
+    @Pattern(regexp="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^!&-+=_()])(?=\\S+$).{8,20}$",
             message="0-9 at least once,a-z at least once,A-Z at least once," +
             "Special character at least once, no white spaces are allowed,min chars :8 , max chars:20 ")
     private String password;
