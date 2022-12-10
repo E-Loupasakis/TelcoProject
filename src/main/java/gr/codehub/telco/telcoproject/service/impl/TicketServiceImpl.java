@@ -15,8 +15,6 @@ public class TicketServiceImpl implements TicketService {
     @Inject
     private TicketRepositoryImpl ticketRepositoryImpl;
 
-    @Inject
-    private CustomerRepositoryImpl customerRepositoryImpl;
 
 
 

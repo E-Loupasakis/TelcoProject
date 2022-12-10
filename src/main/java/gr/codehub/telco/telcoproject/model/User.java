@@ -67,7 +67,7 @@ public class User extends AppUser{
     @NotNull(message="The phone list can't be null")
     private List<Phone> phones;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "customer", cascade = {CascadeType.PERSIST,CascadeType.MERGE}, orphanRemoval = true )
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", cascade = {CascadeType.PERSIST,CascadeType.MERGE}, orphanRemoval = true )
     @JsonManagedReference
     @NotNull(message="The list of tickets can't be null")
     private List<Ticket> tickets;
