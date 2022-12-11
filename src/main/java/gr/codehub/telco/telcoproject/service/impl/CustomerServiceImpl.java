@@ -1,17 +1,13 @@
 package gr.codehub.telco.telcoproject.service.impl;
 
-import gr.codehub.telco.telcoproject.dto.CustomerDto;
-import gr.codehub.telco.telcoproject.exception.EmailExistsException;
-import gr.codehub.telco.telcoproject.exception.VatExistsException;
+import gr.codehub.telco.telcoproject.exception.CustomerPropertiesExistingException;
 import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.CustomerRepository;
 import gr.codehub.telco.telcoproject.service.CustomerService;
 import jakarta.inject.Inject;
-import jakarta.persistence.NoResultException;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CustomerServiceImpl implements CustomerService {
 
@@ -20,16 +16,15 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public User create(User customer) {
-        if(customerRepository.getCustomerByVat(customer.getVatNumber())!=null){
-            throw new VatExistsException("Vat exists");
+        String exceptionMessage = checkProperties(customer);
+        if(!exceptionMessage.isEmpty()){
+            throw new CustomerPropertiesExistingException( exceptionMessage );
         }
-        customer.getEmailList().forEach( (email) -> {
-            if(!(customerRepository.getCustomerByEmail(email.getEmail()).isEmpty())){
-                    throw new EmailExistsException("Email exists");
-            }
-        });
         return customerRepository.create(customer);
     }
+
+
+
 
     @Override
     public User read(long id) {
@@ -53,7 +48,11 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public User update(User customer) {
-       return customerRepository.update(customer);
+        String exceptionMessage = checkProperties(customer);
+        if(!exceptionMessage.isEmpty()){
+            throw new CustomerPropertiesExistingException( exceptionMessage );
+        }
+        return customerRepository.update(customer);
     }
 
     @Override
@@ -65,5 +64,27 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Ticket> findTicketsByCustomerId(long customerId) {
         return  customerRepository.read(customerId).getTickets();
 
+    }
+
+    private String checkProperties(User customer) {
+        StringBuilder exceptionMessage = new StringBuilder();
+        if(customerRepository.getCustomerByVat(customer.getVatNumber())!=null){
+            exceptionMessage.append("Vat exists\n");
+            //throw new VatExistsException("Vat exists");
+        }
+        customer.getEmailList().forEach( (email) -> {
+            if(!(customerRepository.getCustomerByEmail(email.getEmail()).isEmpty())){
+                exceptionMessage.append("Email "+email.getEmail()+" is already in use.\n");
+                //throw new EmailExistsException("Email exists");
+            }
+        });
+        customer.getPhones().forEach( (phone) -> {
+            if(!(customerRepository.getCustomerByTelephone(phone.getNumber()).isEmpty())){
+                exceptionMessage.append("Phone "+phone.getNumber()+" is already in use.\n");
+                //throw new EmailExistsException("Phone exists");
+            }
+        });
+
+        return exceptionMessage.toString();
     }
 }
