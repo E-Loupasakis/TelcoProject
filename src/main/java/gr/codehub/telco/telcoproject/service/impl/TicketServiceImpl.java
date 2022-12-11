@@ -1,11 +1,15 @@
 package gr.codehub.telco.telcoproject.service.impl;
 
+import gr.codehub.telco.telcoproject.exception.DataNotFoundException;
+import gr.codehub.telco.telcoproject.exception.InvalidDeletionException;
+import gr.codehub.telco.telcoproject.exception.InvalidTicketException;
 import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.impl.CustomerRepositoryImpl;
 import gr.codehub.telco.telcoproject.repository.impl.TicketRepositoryImpl;
 import gr.codehub.telco.telcoproject.service.TicketService;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.Path;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -22,12 +26,19 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public Ticket create(Ticket ticket) {
-        System.out.println(ticket);
+        if (ticket.getEstimatedCost() < 0 || ticket.getEstimatedCost() > 100_000) {
+            throw new InvalidTicketException("Estimated cost cannot be negative.");
+        }
 
-//        long userId = ticket.getCustomer().getId();
-//        User customer = customerRepositoryImpl.read(userId);
-//        ticket.setCustomer(customer);
-        //Ticket ticket = ticketDto.asTicket();
+        List<User> customers = customerRepositoryImpl.read();
+        for (User customer : customers) {
+            if (customer.getId() == (ticket.getCustomer().getId())) {
+                break;
+            } else {
+                throw new InvalidTicketException("You must set a customer that already exists in the database.");
+            }
+        }
+       this.checkTicket(ticket);
        ticketRepositoryImpl.create(ticket);
        return ticket;
 
@@ -35,37 +46,47 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public List<Ticket> findAll() {
-        //ticketRepositoryImpl.read().stream().map(Ticket::new).collect(Collectors.toList());
-        //Hibernate.initialize(tickets);
-        return  ticketRepositoryImpl.read();
+        return ticketRepositoryImpl.read();
     }
 
     @Override
     public Ticket findByTicketId(Long id) {
-        //return new TicketDto(ticketRepositoryImpl.read(id));
-        return ticketRepositoryImpl.read(id);
+        Ticket ticket = ticketRepositoryImpl.read(id);
+        if (ticket == null) {
+            throw new DataNotFoundException("Ticket with id " + id + "does not exist.");
+        }
+        else {
+            return ticket;
+        }
     }
 
     @Override
     public Ticket update(Ticket ticket) {
-        //Ticket ticket = ticketDto.asTicket();
-//       ticket.setTicketId(ticketDto.getTicketId());
+        if (ticket.getEstimatedCost() < 0 || ticket.getEstimatedCost() > 100_000) {
+            throw new InvalidTicketException("Estimated cost cannot be negative.");
+        }
 
-//        long userId = ticketDto.getCustomer().getId();
-//        User customer = customerRepositoryImpl.read(userId);
+        List<User> customers = customerRepositoryImpl.read();
+        for (User customer : customers) {
+            if (customer.getId() == (ticket.getCustomer().getId())) {
+                break;
+            } else {
+                throw new InvalidTicketException("You must set a customer that already exists in the database.");
+            }
+        }
 
-       // ticket.setCustomer(customer);
        return ticketRepositoryImpl.update(ticket);
        // return new TicketDto(ticket);
     }
 
     @Override
     public boolean delete(Long id) {
-        if(ticketRepositoryImpl.delete(id))
-        {
+        boolean deletionSucceded = ticketRepositoryImpl.delete(id);
+        if (deletionSucceded == true) {
             return true;
-        }else{
-            return false;
+        }
+        else {
+            throw new InvalidDeletionException("The there is no item with id " + id + " in the database");
         }
 
     }
@@ -88,5 +109,20 @@ public class TicketServiceImpl implements TicketService {
     public List<Ticket> getTicketsByCustomerId(Long id) {
         List tickets=ticketRepositoryImpl.getTicketsByCustomerId(id);
         return tickets;
+    }
+
+    private void checkTicket(Ticket ticket) {
+        /*if (ticket.getEstimatedCost() < 0 && ticket.getEstimatedCost() > 100_000) {
+            throw new InvalidTicketException("Estimated cost cannot be negative.");
+        }
+
+        List<User> customers = customerRepositoryImpl.read();
+        for (User customer : customers) {
+            if (customer.getId() == (ticket.getCustomer().getId())) {
+                break;
+            } else {
+                throw new InvalidTicketException("You must set a customer that already exists in the database.");
+            }
+        }*/
     }
 }
