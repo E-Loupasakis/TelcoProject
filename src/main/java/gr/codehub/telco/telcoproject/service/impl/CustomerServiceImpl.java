@@ -1,6 +1,7 @@
 package gr.codehub.telco.telcoproject.service.impl;
 
 import gr.codehub.telco.telcoproject.dto.CustomerDto;
+import gr.codehub.telco.telcoproject.exception.EmailExistsException;
 import gr.codehub.telco.telcoproject.exception.VatExistsException;
 import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
@@ -19,33 +20,15 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public User create(User customer) {
-       // User customer = customerDto.asCustomer();
-
-
         if(customerRepository.getCustomerByVat(customer.getVatNumber())!=null){
             throw new VatExistsException("Vat exists");
         }
-        return null;
-        //Numbers.forEach((n) -> System.out.println(n));
-        //customer.getEmailList().forEach( (email) -> customerRepository.getCustomerByEmail(email.getEmail()))
-
-//        customer.getEmailList().forEach( (email) -> customerRepository.getCustomerByEmail(email.getEmail()))
-//        if(){
-//
-//        }else{
-//            return customerRepository.create(customer);
-//        }
-//
-//        if(credentialsRepository.findAll().parallelStream().noneMatch(p-> p.getUsername().equals(username)))throw new
-//        UsernameNotFoundException("UserName Not Found");
-
-
-        /*catch(NoResultException e){
-            return customerRepository.create(customer);
-        }*/ /*catch (VatExistsException e) {
-            System.out.println("The customer's Vat number is already saved in the database.");
-        }*/
-
+        customer.getEmailList().forEach( (email) -> {
+            if(!(customerRepository.getCustomerByEmail(email.getEmail()).isEmpty())){
+                    throw new EmailExistsException("Email exists");
+            }
+        });
+        return customerRepository.create(customer);
     }
 
     @Override
