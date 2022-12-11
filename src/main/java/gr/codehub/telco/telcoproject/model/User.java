@@ -13,6 +13,7 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 
 import lombok.experimental.SuperBuilder;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -29,6 +30,7 @@ public class User extends AppUser{
 
 
     @Column(name="vat_number", unique = true)
+    //@UniqueElements(message = "ASDASFGJKGJDFSIGFDJIGHJDFIGHJIFDGH")
     @NotNull(message="The vat number can't be null")
     @Min(value = 100_000_000, message = "Invalid Vat number (cannot be under 100000000)")
     @Max(value = 999_999_999, message = "Invalid Vat number (cannot be higher than 999999999")

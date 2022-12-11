@@ -28,10 +28,16 @@ public class CustomerRepositoryImpl extends RepositoryImpl<User, Long> implement
 
     @Override
     public User getCustomerByVat(int vat) throws NoResultException, NonUniqueResultException {
-        return em.createQuery("Select u from "+getClassName()+" u where u.vatNumber LIKE :vat", User.class)
-        .setParameter("vat", vat)
-        .getSingleResult();
+        try{
+            return em.createQuery("Select u from " + getClassName() + " u where u.vatNumber LIKE :vat", User.class)
+                    .setParameter("vat", vat)
+                    .getSingleResult();
+        }catch(NoResultException e){
+            return null;
+        }
     }
+
+
 
     @Override
     public List<User> getCustomerByEmail(String emailAddress) {
