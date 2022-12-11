@@ -1,5 +1,6 @@
 package gr.codehub.telco.telcoproject.repository.impl;
 
+import gr.codehub.telco.telcoproject.model.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -24,6 +25,9 @@ public abstract class RepositoryImpl<T, K> implements Repository<T,K> {
     public T read(K id) {
         return em.find(getClassType(), id);
     }
+
+
+
     @Override
     public List<T> read() {
         return em.createQuery("select c from "+ getClassName()+" c").getResultList();
@@ -41,8 +45,8 @@ public abstract class RepositoryImpl<T, K> implements Repository<T,K> {
     @Override
     @Transactional
     public T update(T t) {
-      T entity = em.merge(t);
-      return entity;
+        return em.merge(t);
+
    }
 
     public EntityManager getEm() {

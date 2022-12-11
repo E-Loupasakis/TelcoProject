@@ -7,6 +7,9 @@ import java.util.List;
 
 public interface CustomerRepository extends Repository<User, Long>{
 
+
+    User read(long id);
+
     User getCustomerByVat(int vat);
 
     List<User> getCustomerByEmail(String emailAddress);

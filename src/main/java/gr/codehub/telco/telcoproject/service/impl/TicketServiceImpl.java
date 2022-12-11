@@ -42,21 +42,12 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public Ticket findByTicketId(Long id) {
-        //return new TicketDto(ticketRepositoryImpl.read(id));
         return ticketRepositoryImpl.read(id);
     }
 
     @Override
     public Ticket update(Ticket ticket) {
-        //Ticket ticket = ticketDto.asTicket();
-//       ticket.setTicketId(ticketDto.getTicketId());
-
-//        long userId = ticketDto.getCustomer().getId();
-//        User customer = customerRepositoryImpl.read(userId);
-
-       // ticket.setCustomer(customer);
        return ticketRepositoryImpl.update(ticket);
-       // return new TicketDto(ticket);
     }
 
     @Override
@@ -72,9 +63,7 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public List<Ticket> findByDate(LocalDate date) {
-
-       List tickets = ticketRepositoryImpl.getTicketsByDate(date);
-        return tickets;
+       return ticketRepositoryImpl.getTicketsByDate(date);
     }
 
     @Override

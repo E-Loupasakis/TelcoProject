@@ -17,9 +17,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public User create(User customer) {
-       // User customer = customerDto.asCustomer();
        return customerRepository.create(customer);
-        //return new Customer(customer);
     }
 
     @Override
@@ -29,7 +27,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public User readByVat(int vat) {
-
         return customerRepository.getCustomerByVat(vat);
     }
     @Override

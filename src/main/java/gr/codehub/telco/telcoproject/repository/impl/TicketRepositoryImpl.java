@@ -1,6 +1,7 @@
 package gr.codehub.telco.telcoproject.repository.impl;
 
 import gr.codehub.telco.telcoproject.model.Ticket;
+import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.TicketRepository;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
@@ -62,6 +63,13 @@ public class TicketRepositoryImpl extends RepositoryImpl<Ticket, Long> implement
         List<Ticket> tickets = query.getResultList();
 
         return tickets;
+    }
+
+    @Override
+    @Transactional
+    public Ticket update(Ticket ticket){
+        if (read(ticket.getTicketId()) == null) return null;
+        return getEm().merge(ticket);
     }
 
 
