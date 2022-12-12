@@ -104,12 +104,27 @@ public class CustomerRepositoryImpl extends RepositoryImpl<User, Long> implement
     public List<User> checkUserEmailUnique(String email, long id) {
         try{
 
-            List<User> user = em.createQuery(
+           return em.createQuery(
                             "SELECT COUNT(c) FROM User c join c.emailList p WHERE p.email = :pemail and c.id <> :id", User.class)
                     .setParameter("pemail", email)
                     .setParameter("id", id)
                     .getResultList();
-            return user;
+
+        }catch(NoResultException e){
+            return null;
+        }
+    }
+
+    @Override
+    public List<User> checkUserPhoneUnique(String phone, long id) {
+        try{
+
+            return em.createQuery(
+                            "SELECT COUNT(c) FROM User c join c.phones p WHERE p.number = :pphone and c.id <> :id", User.class)
+                    .setParameter("pphone", phone)
+                    .setParameter("id", id)
+                    .getResultList();
+
         }catch(NoResultException e){
             return null;
         }

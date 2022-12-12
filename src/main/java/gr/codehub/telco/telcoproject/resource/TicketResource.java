@@ -67,7 +67,7 @@ public class TicketResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Ticket update(@PathParam("ticketId") long ticketId, @Valid Ticket ticket) {
-        ticket.setTicketId(ticketId);
+        ticket.setId(ticketId);
         return ticketService.update(ticket);
     }
 

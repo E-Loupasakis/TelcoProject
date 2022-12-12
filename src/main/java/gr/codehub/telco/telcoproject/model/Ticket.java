@@ -20,11 +20,9 @@ import javax.validation.constraints.FutureOrPresent;
 @Entity
 
 @Table(name="tickets")
-public class Ticket{
+public class Ticket extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long ticketId;
+
 
     @FutureOrPresent(message = "Date of ticket's creation cannot be past")
     @Column(name="date_time_of_creation")

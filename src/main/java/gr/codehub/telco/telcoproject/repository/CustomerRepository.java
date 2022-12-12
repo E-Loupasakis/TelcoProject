@@ -12,6 +12,8 @@ public interface CustomerRepository extends Repository<User, Long>{
 
     List<User> checkUserEmailUnique(String email, long id);
 
+    List<User> checkUserPhoneUnique(String phone, long id);
+
     List<User> getCustomerByEmail(String emailAddress);
     List<User> getCustomerByTelephone(String telephone);
 

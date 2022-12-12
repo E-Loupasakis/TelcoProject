@@ -63,14 +63,12 @@ public class CustomerServiceImpl implements CustomerService {
     public User update(User customer) {
 
         Integer count = Integer.valueOf(String.valueOf(customerRepository.getVatUnique(customer.getVatNumber(), customer.getId()).get(0)));
-        System.out.println(count);
         if(count>0){
             throw new CustomerPropertiesExistingException("Vat exists");
         }
 
         customer.getEmailList().forEach( (email) -> {
             Integer countNew = Integer.valueOf(String.valueOf(customerRepository.checkUserEmailUnique(email.getEmail(), customer.getId()).get(0)));
-            System.out.println(countNew);
             if(countNew>0) throw new CustomerPropertiesExistingException("Email exists");
         });
 
@@ -78,6 +76,12 @@ public class CustomerServiceImpl implements CustomerService {
         if(count>0){
             throw new UserNameExists("Username already exists");
         }
+
+        customer.getPhones().forEach( (phone) -> {
+            Integer countNew = Integer.valueOf(String.valueOf(customerRepository.checkUserPhoneUnique(phone.getNumber(), customer.getId()).get(0)));
+            System.out.println(countNew);
+            if(countNew>0) throw new CustomerPropertiesExistingException("Phone exists");
+        });
 
         return customerRepository.update(customer);
     }

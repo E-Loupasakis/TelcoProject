@@ -68,7 +68,7 @@ public class TicketRepositoryImpl extends RepositoryImpl<Ticket, Long> implement
     @Override
     @Transactional
     public Ticket update(Ticket ticket){
-        if (read(ticket.getTicketId()) == null) return null;
+        if (read(ticket.getId()) == null) return null;
         return getEm().merge(ticket);
     }
 

@@ -46,7 +46,7 @@ public class TicketDto {
 
     public TicketDto(Ticket ticket){
         if(ticket!=null){
-            ticketId = ticket.getTicketId();
+            ticketId = ticket.getId();
             addressOfIssue = ticket.getAddressOfIssue();
             dateTimeOfAction = ticket.getDateTimeOfAction();
             dateTimeOfCreation = ticket.getDateTimeOfCreation();
@@ -60,7 +60,7 @@ public class TicketDto {
 
     public Ticket asTicket() {
         Ticket ticket = new Ticket();
-        ticket.setTicketId(ticketId);
+        ticket.setId(ticketId);
         ticket.setAddressOfIssue(addressOfIssue);
         ticket.setDateTimeOfAction(dateTimeOfAction);
         ticket.setDateTimeOfCreation(dateTimeOfCreation);
