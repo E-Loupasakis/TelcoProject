@@ -25,23 +25,15 @@ public class TicketServiceImpl implements TicketService {
 
 
     @Override
-    public Ticket create(Ticket ticket) {
-        if (ticket.getEstimatedCost() < 0 || ticket.getEstimatedCost() > 100_000) {
-            throw new InvalidTicketException("Estimated cost cannot be negative.");
-        }
-
-        List<User> customers = customerRepositoryImpl.read();
-        for (User customer : customers) {
-            if (customer.getId() == (ticket.getCustomer().getId())) {
-                break;
-            } else {
-                throw new InvalidTicketException("You must set a customer that already exists in the database.");
-            }
-        }
-       this.checkTicket(ticket);
-       ticketRepositoryImpl.create(ticket);
-       return ticket;
-
+    public Ticket create(Ticket ticket)  throws InvalidTicketException {
+       String exceptionMessage = checkTicket(ticket);
+       if (exceptionMessage.isEmpty()) {
+           ticketRepositoryImpl.create(ticket);
+           return ticket;
+       }
+       else {
+           throw new InvalidTicketException(exceptionMessage);
+       }
     }
 
     @Override
@@ -62,27 +54,20 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public Ticket update(Ticket ticket) {
-        if (ticket.getEstimatedCost() < 0 || ticket.getEstimatedCost() > 100_000) {
-            throw new InvalidTicketException("Estimated cost cannot be negative.");
+        String exceptionMessage = checkTicket(ticket);
+        if (exceptionMessage.isEmpty()) {
+            ticketRepositoryImpl.update(ticket);
+            return ticket;
         }
-
-        List<User> customers = customerRepositoryImpl.read();
-        for (User customer : customers) {
-            if (customer.getId() == (ticket.getCustomer().getId())) {
-                break;
-            } else {
-                throw new InvalidTicketException("You must set a customer that already exists in the database.");
-            }
+        else {
+            throw new InvalidTicketException(exceptionMessage);
         }
-
-       return ticketRepositoryImpl.update(ticket);
-       // return new TicketDto(ticket);
     }
 
     @Override
     public boolean delete(Long id) {
         boolean deletionSucceded = ticketRepositoryImpl.delete(id);
-        if (deletionSucceded == true) {
+        if (deletionSucceded) {
             return true;
         }
         else {
@@ -111,18 +96,21 @@ public class TicketServiceImpl implements TicketService {
         return tickets;
     }
 
-    private void checkTicket(Ticket ticket) {
-        /*if (ticket.getEstimatedCost() < 0 && ticket.getEstimatedCost() > 100_000) {
-            throw new InvalidTicketException("Estimated cost cannot be negative.");
+    private String checkTicket(Ticket ticket) {
+        StringBuilder exceptionMessage = new StringBuilder();
+        if (ticket.getEstimatedCost() < 0 || ticket.getEstimatedCost() > 100_000) {
+            exceptionMessage.append("Estimated cost cannot be negative.");
         }
 
         List<User> customers = customerRepositoryImpl.read();
         for (User customer : customers) {
             if (customer.getId() == (ticket.getCustomer().getId())) {
-                break;
-            } else {
-                throw new InvalidTicketException("You must set a customer that already exists in the database.");
+                return exceptionMessage.toString();
             }
-        }*/
+        }
+
+        exceptionMessage.append("You must set a customer that already exists in the database.");
+
+        return exceptionMessage.toString();
     }
 }
