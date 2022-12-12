@@ -7,6 +7,8 @@ import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.CustomerRepository;
 import gr.codehub.telco.telcoproject.service.CustomerService;
 import jakarta.inject.Inject;
+
+import java.util.Collections;
 import java.util.List;
 
 public class CustomerServiceImpl implements CustomerService {
@@ -52,7 +54,10 @@ public class CustomerServiceImpl implements CustomerService {
             throw new CustomerPropertiesExistingException("Vat exists");
         }
 
+
         customer.getEmailList().forEach( (email) -> {
+            boolean checkDuplicate = Collections.frequency(customer.getEmailList(), email) > 1;
+            if(checkDuplicate){throw new CustomerPropertiesExistingException("Email Exists");}
             Integer countNew = Integer.valueOf(String.valueOf(customerRepository.checkUserEmailUnique(email.getEmail(), customer.getId()).get(0)));
             if(countNew>0) throw new CustomerPropertiesExistingException("Email exists");
         });
@@ -63,6 +68,8 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         customer.getPhones().forEach( (phone) -> {
+            boolean checkDuplicate = Collections.frequency(customer.getPhones(), phone) > 1;
+            if(checkDuplicate){throw new CustomerPropertiesExistingException("Email Exists");}
             Integer countNew = Integer.valueOf(String.valueOf(customerRepository.checkUserPhoneUnique(phone.getNumber(), customer.getId()).get(0)));
             System.out.println(countNew);
             if(countNew>0) throw new CustomerPropertiesExistingException("Phone exists");
@@ -87,6 +94,8 @@ public class CustomerServiceImpl implements CustomerService {
             exceptionMessage.append("Vat exists\n");
         }
         customer.getEmailList().forEach( (email) -> {
+            boolean checkDuplicate = Collections.frequency(customer.getEmailList(), email) > 1;
+            if(checkDuplicate){throw new CustomerPropertiesExistingException("Email Exists");}
             if(!(customerRepository.getCustomerByEmail(email.getEmail()).isEmpty())){
                 exceptionMessage.append("Email "+email.getEmail()+" is already in use.\n");
             }

