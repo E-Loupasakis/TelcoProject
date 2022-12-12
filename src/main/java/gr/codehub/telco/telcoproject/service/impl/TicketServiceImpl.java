@@ -98,17 +98,19 @@ public class TicketServiceImpl implements TicketService {
 
     private String checkTicket(Ticket ticket) {
         StringBuilder exceptionMessage = new StringBuilder();
-        if (ticket.getEstimatedCost() < 0 && ticket.getEstimatedCost() > 100_000) {
+        if (ticket.getEstimatedCost() < 0 || ticket.getEstimatedCost() > 100_000) {
             exceptionMessage.append("Estimated cost cannot be negative.");
         }
 
         List<User> customers = customerRepositoryImpl.read();
         for (User customer : customers) {
             if (customer.getId() == (ticket.getCustomer().getId())) {
-                exceptionMessage.append("You must set a customer that already exists in the database.");
+                return exceptionMessage.toString();
             }
         }
-        return exceptionMessage.toString();
 
+        exceptionMessage.append("You must set a customer that already exists in the database.");
+
+        return exceptionMessage.toString();
     }
 }
