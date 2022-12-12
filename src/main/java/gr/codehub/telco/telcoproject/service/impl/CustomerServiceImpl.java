@@ -49,34 +49,36 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public User update(User customer) {
-
+        String exceptionMessage = checkPropertiesForUpdate(customer);
+        if(!exceptionMessage.isEmpty()){
+            throw new CustomerPropertiesExistingException( exceptionMessage );
+        }
+        return customerRepository.update(customer);
+    }
+    private String checkPropertiesForUpdate(User customer){
+        StringBuilder exceptionMessage = new StringBuilder();
         Integer count = Integer.valueOf(String.valueOf(customerRepository.getVatUnique(customer.getVatNumber(), customer.getId()).get(0)));
         if(count>0){
-            throw new CustomerPropertiesExistingException("Vat exists");
+            exceptionMessage.append("Vat exists");
         }
-
-
         customer.getEmailList().forEach( (email) -> {
             boolean checkDuplicate = Collections.frequency(customer.getEmailList(), email) > 1;
             if(checkDuplicate){throw new CustomerPropertiesExistingException("Email Exists");}
             Integer countNew = Integer.valueOf(String.valueOf(customerRepository.checkUserEmailUnique(email.getEmail(), customer.getId()).get(0)));
-            if(countNew>0) throw new CustomerPropertiesExistingException("Email exists");
+            exceptionMessage.append("Email exists");
         });
-
         count = Integer.valueOf(String.valueOf(customerRepository.getUserNameUnique(customer.getUsername(), customer.getId()).get(0)));
         if(count>0){
-            throw new UserNameExists("Username already exists");
+            exceptionMessage.append("Username already exists");
         }
-
         customer.getPhones().forEach( (phone) -> {
             boolean checkDuplicate = Collections.frequency(customer.getPhones(), phone) > 1;
             if(checkDuplicate){throw new CustomerPropertiesExistingException("Email Exists");}
             Integer countNew = Integer.valueOf(String.valueOf(customerRepository.checkUserPhoneUnique(phone.getNumber(), customer.getId()).get(0)));
             System.out.println(countNew);
-            if(countNew>0) throw new CustomerPropertiesExistingException("Phone exists");
+            if(countNew>0) exceptionMessage.append("Phone exists");
         });
-
-        return customerRepository.update(customer);
+        return exceptionMessage.toString();
     }
 
     @Override

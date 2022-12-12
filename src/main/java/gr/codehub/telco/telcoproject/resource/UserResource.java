@@ -21,7 +21,7 @@ public class UserResource {
 
     @Path("/")
     @POST
-    @PermitAll
+    @RolesAllowed("ADMIN")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public User insert(@Valid User customer) {
@@ -40,6 +40,7 @@ public class UserResource {
 
 
     @Path("/{customerId}")
+    @RolesAllowed("ADMIN")
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -49,7 +50,7 @@ public class UserResource {
 
     @Path("/{customerId}")
     @PUT
-    @PermitAll
+    @RolesAllowed({"ADMIN","CUSTOMER"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public User update(@PathParam("customerId") long customerId, @Valid User customer){
@@ -58,7 +59,7 @@ public class UserResource {
     }
     @Path("/{customerId}")
     @GET
-    @PermitAll
+    @RolesAllowed({"ADMIN","CUSTOMER"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public User read(@PathParam("customerId") long customerId){
@@ -66,6 +67,7 @@ public class UserResource {
     }
     @Path("/")
     @GET
+    @RolesAllowed("ADMIN")
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> read(){
         return customerService.read();
@@ -81,6 +83,7 @@ public class UserResource {
     }
     @Path("/find/email/{email}")
     @GET
+    @RolesAllowed("ADMIN")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getCustomerByEmail(@PathParam("email") String email){
@@ -90,6 +93,7 @@ public class UserResource {
 
     @Path("/find/tickets/{customerId}")
     @GET
+    @RolesAllowed({"ADMIN","CUSTOMER"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public List<Ticket> getTicketsByCustomerId(@PathParam("customerId") long customerId){

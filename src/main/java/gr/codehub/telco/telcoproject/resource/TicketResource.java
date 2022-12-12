@@ -11,6 +11,7 @@ import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.service.TicketService;
 import gr.codehub.telco.telcoproject.service.impl.TicketServiceImpl;
 import gr.codehub.telco.telcoproject.transfer.ApiResponse;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
@@ -38,6 +39,7 @@ public class TicketResource {
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed("ADMIN")
     public Response insert(@Valid Ticket ticket) {
         ticket.setDateTimeOfCreation(LocalDateTime.now());
        //return ticketService.create(ticket);
@@ -47,6 +49,7 @@ public class TicketResource {
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"ADMIN","CUSTOMER"})
     public Response findAll () {
 
        // return ticketService.findAll();
@@ -57,6 +60,7 @@ public class TicketResource {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"ADMIN","CUSTOMER"})
     public Response findByTicketId(@PathParam("id") Long id) {
         ticketService.findByTicketId(id);
         return Response.ok().entity(ApiResponse.builder().data(ticketService.findByTicketId(id)).build()).build();
@@ -66,6 +70,7 @@ public class TicketResource {
     @Path("/{ticketId}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed("ADMIN")
     public Ticket update(@PathParam("ticketId") long ticketId, @Valid Ticket ticket) {
         Ticket ticketOld=ticketService.findByTicketId(ticketId);
         ticket.setDateTimeOfCreation(ticketOld.getDateTimeOfCreation());
@@ -77,6 +82,7 @@ public class TicketResource {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed("ADMIN")
     public Response delete(@PathParam("id") Long id) {
         return Response.ok().entity(ApiResponse.builder().data(ticketService.delete(id)).build()).build();
     }
@@ -84,6 +90,7 @@ public class TicketResource {
 
     @GET
     @Path("/search-by-dates/{dateFrom}&{dateTo}")
+    @RolesAllowed("ADMIN")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findByDateRange(@PathParam("dateFrom") String dateFrom,@PathParam("dateTo")  String  dateTo) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -94,6 +101,7 @@ public class TicketResource {
 
     @GET
     @Path("/search-by-date/{date}")
+    @RolesAllowed("ADMIN")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findByDate(@PathParam("date") String date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -103,13 +111,10 @@ public class TicketResource {
 
     @GET
     @Path("/search-by-customer-id/{id}")
+    @RolesAllowed({"ADMIN","CUSTOMER"})
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response findByCustomerId(@PathParam("id") Long id) {
         return  Response.ok().entity(ApiResponse.builder().data(ticketService.getTicketsByCustomerId(id)).build()).build();
     }
-
-
-
-
 }
