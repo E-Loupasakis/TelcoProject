@@ -1,14 +1,11 @@
 package gr.codehub.telco.telcoproject.service.impl;
 
-import gr.codehub.telco.telcoproject.dto.CustomerDto;
 import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.CustomerRepository;
 import gr.codehub.telco.telcoproject.service.CustomerService;
 import jakarta.inject.Inject;
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CustomerServiceImpl implements CustomerService {
 
@@ -17,9 +14,33 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public User create(User customer) {
-       // User customer = customerDto.asCustomer();
-       return customerRepository.create(customer);
-        //return new Customer(customer);
+
+        customerRepository.create(customer);
+
+//        if(customerRepository.getCustomerByVat(customer.getVatNumber())!=null){
+//            throw new VatExistsException("Vat exists");
+//        }
+//        return null;
+        //Numbers.forEach((n) -> System.out.println(n));
+        //customer.getEmailList().forEach( (email) -> customerRepository.getCustomerByEmail(email.getEmail()))
+
+//        customer.getEmailList().forEach( (email) -> customerRepository.getCustomerByEmail(email.getEmail()))
+//        if(){
+//
+//        }else{
+//            return customerRepository.create(customer);
+//        }
+//
+//        if(credentialsRepository.findAll().parallelStream().noneMatch(p-> p.getUsername().equals(username)))throw new
+//        UsernameNotFoundException("UserName Not Found");
+
+
+        /*catch(NoResultException e){
+            return customerRepository.create(customer);
+        }*/ /*catch (VatExistsException e) {
+            System.out.println("The customer's Vat number is already saved in the database.");
+        }*/
+        return customer;
     }
 
     @Override

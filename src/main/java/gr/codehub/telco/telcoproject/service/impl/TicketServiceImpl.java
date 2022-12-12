@@ -20,12 +20,6 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public Ticket create(Ticket ticket) {
-        System.out.println(ticket);
-
-//        long userId = ticket.getCustomer().getId();
-//        User customer = customerRepositoryImpl.read(userId);
-//        ticket.setCustomer(customer);
-        //Ticket ticket = ticketDto.asTicket();
        ticketRepositoryImpl.create(ticket);
        return ticket;
 
