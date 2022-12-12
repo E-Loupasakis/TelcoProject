@@ -100,7 +100,12 @@ public class CustomerRepositoryImpl extends RepositoryImpl<User, Long> implement
                 .getResultList();
     }
 
-
+    @Override
+    public List<User> getCustomerByTelephone(String telephone) {
+        return  em.createQuery("Select u from "+getClassName()+" u join u.phones p where p.number LIKE :telephone")
+                .setParameter("telephone", telephone)
+                .getResultList();
+    }
 
 
 }
