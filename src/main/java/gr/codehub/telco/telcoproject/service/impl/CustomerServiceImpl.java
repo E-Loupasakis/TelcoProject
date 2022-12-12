@@ -2,9 +2,7 @@ package gr.codehub.telco.telcoproject.service.impl;
 
 import gr.codehub.telco.telcoproject.exception.CustomerPropertiesExistingException;
 import gr.codehub.telco.telcoproject.dto.CustomerDto;
-import gr.codehub.telco.telcoproject.exception.EmailExistsException;
 import gr.codehub.telco.telcoproject.exception.UserNameExists;
-import gr.codehub.telco.telcoproject.exception.VatExistsException;
 import gr.codehub.telco.telcoproject.model.Email;
 import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
@@ -28,7 +26,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
         customer.getEmailList().forEach( (email) -> {
             if(!(customerRepository.getCustomerByEmail(email.getEmail()).isEmpty())){
-                    throw new EmailExistsException("Email exists");
+                    throw new CustomerPropertiesExistingException("Email exists");
             }
         });
 
@@ -67,13 +65,13 @@ public class CustomerServiceImpl implements CustomerService {
         Integer count = Integer.valueOf(String.valueOf(customerRepository.getVatUnique(customer.getVatNumber(), customer.getId()).get(0)));
         System.out.println(count);
         if(count>0){
-            throw new VatExistsException("Vat exists");
+            throw new CustomerPropertiesExistingException("Vat exists");
         }
 
         customer.getEmailList().forEach( (email) -> {
             Integer countNew = Integer.valueOf(String.valueOf(customerRepository.checkUserEmailUnique(email.getEmail(), customer.getId()).get(0)));
             System.out.println(countNew);
-            if(countNew>0) throw new EmailExistsException("Email exists");
+            if(countNew>0) throw new CustomerPropertiesExistingException("Email exists");
         });
 
         count = Integer.valueOf(String.valueOf(customerRepository.getUserNameUnique(customer.getUsername(), customer.getId()).get(0)));
