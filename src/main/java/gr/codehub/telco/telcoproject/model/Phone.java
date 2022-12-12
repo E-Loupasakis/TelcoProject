@@ -20,7 +20,7 @@ public class Phone {
 
 //    private String type;
 //    private String areaCode;
-    @Column(name="P_NUMBER", unique = true)
+    @Column(name="phone_number", unique = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull(message="Phone number can't be null")
     @jakarta.validation.constraints.Pattern(regexp = "^[0-9]{10}$",message = "The phone number only allows exactly 10 digits.")

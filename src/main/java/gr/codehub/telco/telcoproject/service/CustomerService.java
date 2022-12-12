@@ -1,6 +1,5 @@
 package gr.codehub.telco.telcoproject.service;
 
-import gr.codehub.telco.telcoproject.dto.CustomerDto;
 import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
 
