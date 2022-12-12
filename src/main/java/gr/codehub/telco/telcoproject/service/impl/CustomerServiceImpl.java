@@ -1,6 +1,7 @@
 package gr.codehub.telco.telcoproject.service.impl;
 
 import gr.codehub.telco.telcoproject.exception.CustomerPropertiesExistingException;
+import gr.codehub.telco.telcoproject.exception.InvalidDeletionException;
 import gr.codehub.telco.telcoproject.exception.UserNameExists;
 import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
@@ -72,8 +73,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void delete(long customerId) {
-        customerRepository.delete(customerId);
+    public boolean delete(long customerId) {
+
+        if (customerRepository.delete(customerId)) {
+            return true;
+        }
+            throw new InvalidDeletionException("The there is no item with id " + customerId + " in the database");
     }
 
     @Override

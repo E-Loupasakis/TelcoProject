@@ -76,6 +76,7 @@ public class TicketResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public boolean delete(@PathParam("id") Long id) {
+
         return ticketService.delete(id);
     }
 

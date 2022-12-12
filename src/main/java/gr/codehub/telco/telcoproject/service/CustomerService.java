@@ -15,7 +15,7 @@ public interface CustomerService {
     List<User> read();
 
     User update(User customer);
-    void delete(long customerId);
+    boolean delete(long customerId);
 
     List<Ticket> findTicketsByCustomerId(long customerId);
 }

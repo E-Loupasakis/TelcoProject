@@ -31,6 +31,8 @@ public class UserResource {
 
     @Path("/{customerId}")
     @DELETE
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public void delete(@PathParam("customerId") long customerId){
         customerService.delete(customerId);
     }
