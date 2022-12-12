@@ -4,12 +4,14 @@ import gr.codehub.telco.telcoproject.dto.CustomerDto;
 import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.service.CustomerService;
+import gr.codehub.telco.telcoproject.transfer.ApiResponse;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
@@ -24,8 +26,8 @@ public class UserResource {
     @RolesAllowed("ADMIN")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public User insert(@Valid User customer) {
-        return customerService.create(customer);
+    public Response insert(@Valid User customer) {
+        return Response.ok().entity(ApiResponse.builder().data(customerService.create(customer)).build()).build();
     }
 
     @Path("/admin/{code}")
@@ -44,8 +46,8 @@ public class UserResource {
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void delete(@PathParam("customerId") long customerId){
-        customerService.delete(customerId);
+    public Response delete(@PathParam("customerId") long customerId){
+        return Response.ok().entity(ApiResponse.builder().data(customerService.delete(customerId)).build()).build();
     }
 
     @Path("/{customerId}")
@@ -53,24 +55,26 @@ public class UserResource {
     @RolesAllowed({"ADMIN","CUSTOMER"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public User update(@PathParam("customerId") long customerId, @Valid User customer){
+    public Response update(@PathParam("customerId") long customerId, @Valid User customer){
         customer.setId(customerId);
-        return customerService.update(customer);
+        customerService.update(customer);
+        return Response.ok().entity(ApiResponse.builder().build()).build();
     }
     @Path("/{customerId}")
     @GET
     @RolesAllowed({"ADMIN","CUSTOMER"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public User read(@PathParam("customerId") long customerId){
-        return customerService.read(customerId);
+    public Response read(@PathParam("customerId") long customerId){
+        customerService.read(customerId);
+        return Response.ok().entity(ApiResponse.builder().data(customerService.read(customerId)).build()).build();
     }
     @Path("/")
     @GET
     @RolesAllowed("ADMIN")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<User> read(){
-        return customerService.read();
+    public Response read(){
+        return  Response.ok().entity(ApiResponse.builder().data(customerService.read()).build()).build();
     }
 
     @Path("/find/vat/{vatNumber}")
@@ -78,16 +82,17 @@ public class UserResource {
     @RolesAllowed("ADMIN")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public User readByVat(@PathParam("vatNumber") int vatNumber){
-        return customerService.readByVat(vatNumber);
+    public Response readByVat(@PathParam("vatNumber") int vatNumber){
+         customerService.readByVat(vatNumber);
+        return Response.ok().entity(ApiResponse.builder().data(customerService.readByVat(vatNumber)).build()).build();
     }
     @Path("/find/email/{email}")
     @GET
     @RolesAllowed("ADMIN")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public List<User> getCustomerByEmail(@PathParam("email") String email){
-        return customerService.read(email);
+    public Response getCustomerByEmail(@PathParam("email") String email){
+        return Response.ok().entity(ApiResponse.builder().data(customerService.read(email)).build()).build();
     }
 
 
@@ -96,8 +101,9 @@ public class UserResource {
     @RolesAllowed({"ADMIN","CUSTOMER"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Ticket> getTicketsByCustomerId(@PathParam("customerId") long customerId){
-        return customerService.findTicketsByCustomerId(customerId);
+    public Response getTicketsByCustomerId(@PathParam("customerId") long customerId){
+        customerService.findTicketsByCustomerId(customerId);
+        return Response.ok().entity(ApiResponse.builder().data(customerService.findTicketsByCustomerId(customerId)).build()).build();
     }
 
 
