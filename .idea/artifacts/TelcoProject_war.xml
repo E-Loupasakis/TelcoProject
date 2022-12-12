@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="TelcoProject-1.0-SNAPSHOT.war">
+    <root id="archive" name="advantage-telco-project-training-2022.war">
       <element id="artifact" artifact-name="TelcoProject:war exploded" />
     </root>
   </artifact>
