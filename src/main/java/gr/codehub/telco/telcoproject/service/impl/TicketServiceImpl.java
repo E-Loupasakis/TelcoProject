@@ -46,9 +46,9 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public Ticket update(Ticket ticket) {
-        //Ticket ticket = ticketDto.asTicket();
+//        Ticket ticket = ticketDto.asTicket();
 //       ticket.setTicketId(ticketDto.getTicketId());
-
+//
 //        long userId = ticketDto.getCustomer().getId();
 //        User customer = customerRepositoryImpl.read(userId);
 

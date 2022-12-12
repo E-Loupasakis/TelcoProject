@@ -2,7 +2,9 @@ package gr.codehub.telco.telcoproject.service.impl;
 
 import gr.codehub.telco.telcoproject.dto.CustomerDto;
 import gr.codehub.telco.telcoproject.exception.EmailExistsException;
+import gr.codehub.telco.telcoproject.exception.UserNameExists;
 import gr.codehub.telco.telcoproject.exception.VatExistsException;
+import gr.codehub.telco.telcoproject.model.Email;
 import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.CustomerRepository;
@@ -10,6 +12,7 @@ import gr.codehub.telco.telcoproject.service.CustomerService;
 import jakarta.inject.Inject;
 import jakarta.persistence.NoResultException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,6 +31,11 @@ public class CustomerServiceImpl implements CustomerService {
                     throw new EmailExistsException("Email exists");
             }
         });
+
+        if(customerRepository.getCustomerByUserName(customer.getUsername())!=null){
+            throw new UserNameExists("Username exists");
+        }
+
         return customerRepository.create(customer);
     }
 
@@ -53,7 +61,25 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public User update(User customer) {
-       return customerRepository.update(customer);
+
+        Integer count = Integer.valueOf(String.valueOf(customerRepository.getVatUnique(customer.getVatNumber(), customer.getId()).get(0)));
+        System.out.println(count);
+        if(count>0){
+            throw new VatExistsException("Vat exists");
+        }
+
+        customer.getEmailList().forEach( (email) -> {
+            Integer countNew = Integer.valueOf(String.valueOf(customerRepository.checkUserEmailUnique(email.getEmail(), customer.getId()).get(0)));
+            System.out.println(countNew);
+            if(countNew>0) throw new EmailExistsException("Email exists");
+        });
+
+        count = Integer.valueOf(String.valueOf(customerRepository.getUserNameUnique(customer.getUsername(), customer.getId()).get(0)));
+        if(count>0){
+            throw new UserNameExists("Username already exists");
+        }
+
+        return customerRepository.update(customer);
     }
 
     @Override

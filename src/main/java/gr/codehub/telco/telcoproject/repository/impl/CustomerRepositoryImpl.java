@@ -1,13 +1,9 @@
 package gr.codehub.telco.telcoproject.repository.impl;
 
-import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.CustomerRepository;
-import jakarta.inject.Inject;
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.NonUniqueResultException;
-import jakarta.persistence.PersistenceContext;
 
 import java.util.List;
 
@@ -36,6 +32,64 @@ public class CustomerRepositoryImpl extends RepositoryImpl<User, Long> implement
             return null;
         }
     }
+
+
+    @Override
+    public User getCustomerByUserName(String userName) throws NoResultException, NonUniqueResultException {
+        try{
+            return em.createQuery("Select u from " + getClassName() + " u where u.username LIKE :username", User.class)
+                    .setParameter("username", userName)
+                    .getSingleResult();
+        }catch(NoResultException e){
+            return null;
+        }
+    }
+
+    @Override
+    public List<User> getVatUnique(int vat, long id) {
+        try{
+
+            List<User> user = em.createQuery(
+                            "SELECT COUNT(c) FROM User c WHERE c.vatNumber = :vatNumber and c.id <> :id", User.class)
+                    .setParameter("vatNumber", vat)
+                    .setParameter("id", id)
+                    .getResultList();
+            return user;
+        }catch(NoResultException e){
+            return null;
+        }
+    }
+
+    @Override
+    public List<User> getUserNameUnique(String userName, long id) {
+        try{
+
+            List<User> user = em.createQuery(
+                            "SELECT COUNT(c) FROM User c WHERE c.username = :userName and c.id <> :id", User.class)
+                    .setParameter("userName", userName)
+                    .setParameter("id", id)
+                    .getResultList();
+            return user;
+        }catch(NoResultException e){
+            return null;
+        }
+    }
+
+    @Override
+    public List<User> checkUserEmailUnique(String email, long id) {
+        try{
+
+            List<User> user = em.createQuery(
+                            "SELECT COUNT(c) FROM User c join c.emailList p WHERE p.email = :pemail and c.id <> :id", User.class)
+                    .setParameter("pemail", email)
+                    .setParameter("id", id)
+                    .getResultList();
+            return user;
+        }catch(NoResultException e){
+            return null;
+        }
+    }
+
 
 
 
