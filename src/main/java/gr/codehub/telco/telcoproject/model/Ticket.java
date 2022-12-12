@@ -2,12 +2,9 @@ package gr.codehub.telco.telcoproject.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import gr.codehub.telco.telcoproject.enums.TicketStatus;
 import gr.codehub.telco.telcoproject.enums.TicketType;
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import java.time.LocalDateTime;

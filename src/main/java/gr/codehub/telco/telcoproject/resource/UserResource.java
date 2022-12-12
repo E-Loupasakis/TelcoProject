@@ -1,7 +1,6 @@
 package gr.codehub.telco.telcoproject.resource;
 
-import gr.codehub.telco.telcoproject.dto.CustomerDto;
-import gr.codehub.telco.telcoproject.model.Ticket;
+
 import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.service.CustomerService;
 import gr.codehub.telco.telcoproject.transfer.ApiResponse;
@@ -13,7 +12,6 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-import java.util.List;
 
 @Path("/customers")
 public class UserResource {

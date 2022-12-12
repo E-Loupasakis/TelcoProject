@@ -2,7 +2,6 @@ package gr.codehub.telco.telcoproject.service.impl;
 
 import gr.codehub.telco.telcoproject.exception.CustomerPropertiesExistingException;
 import gr.codehub.telco.telcoproject.exception.InvalidDeletionException;
-import gr.codehub.telco.telcoproject.exception.UserNameExists;
 import gr.codehub.telco.telcoproject.model.Ticket;
 import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.CustomerRepository;

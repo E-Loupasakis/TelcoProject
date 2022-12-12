@@ -9,7 +9,6 @@ import gr.codehub.telco.telcoproject.repository.impl.CustomerRepositoryImpl;
 import gr.codehub.telco.telcoproject.repository.impl.TicketRepositoryImpl;
 import gr.codehub.telco.telcoproject.service.TicketService;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.Path;
 
 import java.time.LocalDate;
 import java.util.List;

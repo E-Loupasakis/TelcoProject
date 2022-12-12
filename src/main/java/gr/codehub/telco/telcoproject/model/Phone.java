@@ -18,8 +18,6 @@ import org.hibernate.annotations.OnDeleteAction;
 @Embeddable
 public class Phone {
 
-//    private String type;
-//    private String areaCode;
     @Column(name="phone_number", unique = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull(message="Phone number can't be null")

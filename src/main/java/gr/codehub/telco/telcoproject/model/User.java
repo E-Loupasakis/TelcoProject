@@ -1,20 +1,11 @@
 package gr.codehub.telco.telcoproject.model;
 
 
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import gr.codehub.telco.telcoproject.enums.UserCategory;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
 import lombok.*;
-
-import lombok.experimental.SuperBuilder;
-import org.hibernate.validator.constraints.UniqueElements;
-
 import java.util.*;
 
 @Data

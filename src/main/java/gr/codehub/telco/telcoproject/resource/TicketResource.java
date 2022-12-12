@@ -1,14 +1,7 @@
 package gr.codehub.telco.telcoproject.resource;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-import gr.codehub.telco.telcoproject.dto.TicketDto;
+
 import gr.codehub.telco.telcoproject.model.Ticket;
-import gr.codehub.telco.telcoproject.service.TicketService;
 import gr.codehub.telco.telcoproject.service.impl.TicketServiceImpl;
 import gr.codehub.telco.telcoproject.transfer.ApiResponse;
 import jakarta.annotation.security.RolesAllowed;
@@ -17,20 +10,14 @@ import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 
 @Path("/tickets")
 public class TicketResource {
 
-    private static final Logger logger = LoggerFactory.getLogger(TicketResource.class);
 
     @Inject
     private TicketServiceImpl ticketService;
@@ -42,7 +29,6 @@ public class TicketResource {
     @RolesAllowed("ADMIN")
     public Response insert(@Valid Ticket ticket) {
         ticket.setDateTimeOfCreation(LocalDateTime.now());
-       //return ticketService.create(ticket);
         return Response.ok().entity(ApiResponse.builder().data(ticketService.create(ticket)).build()).build();
     }
 
@@ -51,8 +37,6 @@ public class TicketResource {
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"ADMIN","CUSTOMER"})
     public Response findAll () {
-
-       // return ticketService.findAll();
         return  Response.ok().entity(ApiResponse.builder().data(ticketService.findAll()).build()).build();
     }
 

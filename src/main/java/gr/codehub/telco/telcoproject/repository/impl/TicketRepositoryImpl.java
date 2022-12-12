@@ -1,13 +1,9 @@
 package gr.codehub.telco.telcoproject.repository.impl;
 
 import gr.codehub.telco.telcoproject.model.Ticket;
-import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.TicketRepository;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
-import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
-
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
