@@ -7,7 +7,6 @@ import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.CustomerRepository;
 import gr.codehub.telco.telcoproject.service.CustomerService;
 import jakarta.inject.Inject;
-
 import java.util.List;
 
 public class CustomerServiceImpl implements CustomerService {

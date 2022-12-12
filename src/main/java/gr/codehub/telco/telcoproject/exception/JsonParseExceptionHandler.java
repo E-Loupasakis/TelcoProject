@@ -3,7 +3,6 @@ package gr.codehub.telco.telcoproject.exception;
 import com.fasterxml.jackson.core.JsonParseException;
 import gr.codehub.telco.telcoproject.transfer.ApiError;
 import gr.codehub.telco.telcoproject.transfer.ApiResponse;
-import jakarta.resource.ResourceException;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
