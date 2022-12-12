@@ -54,11 +54,11 @@ public class TicketResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @RolesAllowed("ADMIN")
-    public Ticket update(@PathParam("ticketId") long ticketId, @Valid Ticket ticket) {
-        Ticket ticketOld=ticketService.findByTicketId(ticketId);
+    public Response update(@PathParam("ticketId") long ticketId, @Valid Ticket ticket) {
+        Ticket ticketOld = ticketService.findByTicketId(ticketId);
         ticket.setDateTimeOfCreation(ticketOld.getDateTimeOfCreation());
         ticket.setId(ticketId);
-        return ticketService.update(ticket);
+        return Response.ok().entity(ApiResponse.builder().data(ticketService.update(ticket)).build()).build();
     }
 
     @DELETE
