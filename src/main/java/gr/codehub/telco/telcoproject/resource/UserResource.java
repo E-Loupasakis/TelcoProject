@@ -55,8 +55,7 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response update(@PathParam("customerId") long customerId, @Valid User customer){
         customer.setId(customerId);
-        customerService.update(customer);
-        return Response.ok().entity(ApiResponse.builder().build()).build();
+        return Response.ok().entity(ApiResponse.builder().data(customerService.update(customer)).build()).build();
     }
     @Path("/{customerId}")
     @GET
@@ -64,7 +63,6 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response read(@PathParam("customerId") long customerId){
-        customerService.read(customerId);
         return Response.ok().entity(ApiResponse.builder().data(customerService.read(customerId)).build()).build();
     }
     @Path("/")
@@ -81,7 +79,6 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response readByVat(@PathParam("vatNumber") int vatNumber){
-         customerService.readByVat(vatNumber);
         return Response.ok().entity(ApiResponse.builder().data(customerService.readByVat(vatNumber)).build()).build();
     }
     @Path("/find/email/{email}")
@@ -100,7 +97,6 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTicketsByCustomerId(@PathParam("customerId") long customerId){
-        customerService.findTicketsByCustomerId(customerId);
         return Response.ok().entity(ApiResponse.builder().data(customerService.findTicketsByCustomerId(customerId)).build()).build();
     }
 

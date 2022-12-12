@@ -62,9 +62,10 @@ public class CustomerServiceImpl implements CustomerService {
         }
         customer.getEmailList().forEach( (email) -> {
             boolean checkDuplicate = Collections.frequency(customer.getEmailList(), email) > 1;
-            if(checkDuplicate){throw new CustomerPropertiesExistingException("Email Exists");}
+            if(checkDuplicate)throw new CustomerPropertiesExistingException("Email Exists");
             Integer countNew = Integer.valueOf(String.valueOf(customerRepository.checkUserEmailUnique(email.getEmail(), customer.getId()).get(0)));
-            exceptionMessage.append("Email exists");
+            if(countNew>0) exceptionMessage.append("Email exists");
+
         });
         count = Integer.valueOf(String.valueOf(customerRepository.getUserNameUnique(customer.getUsername(), customer.getId()).get(0)));
         if(count>0){

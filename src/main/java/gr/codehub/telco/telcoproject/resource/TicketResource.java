@@ -46,7 +46,6 @@ public class TicketResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @RolesAllowed({"ADMIN","CUSTOMER"})
     public Response findByTicketId(@PathParam("id") Long id) {
-        ticketService.findByTicketId(id);
         return Response.ok().entity(ApiResponse.builder().data(ticketService.findByTicketId(id)).build()).build();
     }
 
