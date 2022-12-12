@@ -105,6 +105,7 @@
     </dependencies>
 
     <build>
+        <finalName>advantage-telco-project-training-2022</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
