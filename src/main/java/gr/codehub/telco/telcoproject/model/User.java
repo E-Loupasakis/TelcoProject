@@ -18,7 +18,6 @@ public class User extends AppUser{
 
 
     @Column(name="vat_number", unique = true)
-    //@UniqueElements(message = "ASDASFGJKGJDFSIGFDJIGHJDFIGHJIFDGH")
     @NotNull(message="The vat number can't be null")
     @Min(value = 100_000_000, message = "Invalid Vat number (cannot be under 100000000)")
     @Max(value = 999_999_999, message = "Invalid Vat number (cannot be higher than 999999999")
@@ -29,8 +28,6 @@ public class User extends AppUser{
     @Size(min = 2, max = 20, message
             = "First name must be between 2 and 20 characters")
     @Pattern(regexp = "[A-Z][A-Za-z\\s]*$",message = "First name must starts with an uppercase, and can contain only characters and spaces.")
-   // @Pattern(regexp = "^[\\S]+$", message="No white spaces are allowed")
-    //@Pattern(regexp = "^([^0-9]*)$", message="No digits are allowed")
     private String firstName;
 
 
@@ -39,7 +36,6 @@ public class User extends AppUser{
     @Size(min = 2, max = 20, message
             = "Your last name must be between 2 and 20 characters")
     @Pattern(regexp = "[A-Z][A-Za-z\\s]*$",message = "First name must starts with an uppercase, and can contain only characters and spaces.")
-    //@Pattern(regexp = "^[\\S]+$", message="No white spaces are allowed")
     private String lastName;
 
     @Valid
