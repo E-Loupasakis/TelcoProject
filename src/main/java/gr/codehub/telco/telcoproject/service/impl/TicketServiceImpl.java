@@ -45,7 +45,7 @@ public class TicketServiceImpl implements TicketService {
     public Ticket findByTicketId(Long id) {
         Ticket ticket = ticketRepositoryImpl.read(id);
         if (ticket == null) {
-            throw new DataNotFoundException("Ticket with id " + id + "does not exist.");
+            throw new DataNotFoundException("Ticket with id " + id + " does not exist.");
         }
         else {
             return ticket;
