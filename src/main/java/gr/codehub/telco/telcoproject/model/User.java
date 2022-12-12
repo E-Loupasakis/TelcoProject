@@ -15,10 +15,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.validator.constraints.UniqueElements;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Data
 @Builder
@@ -73,10 +70,11 @@ public class User extends AppUser{
     @NotNull(message="The phone list can't be null")
     private List<Phone> phones;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "customer", cascade = {CascadeType.ALL})
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", cascade = {CascadeType.ALL})
     @JsonManagedReference
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<Ticket> tickets;
+
 
 }

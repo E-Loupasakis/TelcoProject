@@ -5,6 +5,9 @@ import java.util.List;
 
 public interface CustomerRepository extends Repository<User, Long>{
 
+
+    User read(long id);
+
     User getCustomerByVat(int vat);
 
     List<User> checkUserEmailUnique(String email, long id);

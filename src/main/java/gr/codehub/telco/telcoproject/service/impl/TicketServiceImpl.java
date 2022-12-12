@@ -15,6 +15,8 @@ public class TicketServiceImpl implements TicketService {
     @Inject
     private TicketRepositoryImpl ticketRepositoryImpl;
 
+    @Inject
+    private CustomerRepositoryImpl customerRepositoryImpl;
 
 
 
@@ -40,7 +42,6 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public Ticket findByTicketId(Long id) {
-        //return new TicketDto(ticketRepositoryImpl.read(id));
         return ticketRepositoryImpl.read(id);
     }
 
@@ -54,7 +55,6 @@ public class TicketServiceImpl implements TicketService {
 
        // ticket.setCustomer(customer);
        return ticketRepositoryImpl.update(ticket);
-       // return new TicketDto(ticket);
     }
 
     @Override

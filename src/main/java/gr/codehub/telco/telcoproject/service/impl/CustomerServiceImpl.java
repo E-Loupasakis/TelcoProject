@@ -49,7 +49,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public User readByVat(int vat) {
-
         return customerRepository.getCustomerByVat(vat);
     }
     @Override

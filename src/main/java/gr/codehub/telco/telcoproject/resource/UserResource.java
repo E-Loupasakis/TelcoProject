@@ -7,6 +7,7 @@ import gr.codehub.telco.telcoproject.service.CustomerService;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
@@ -23,7 +24,7 @@ public class UserResource {
     @PermitAll
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public User insert(gr.codehub.telco.telcoproject.model.User customer) {
+    public User insert(@Valid User customer) {
         return customerService.create(customer);
     }
 
@@ -39,13 +40,13 @@ public class UserResource {
     @PermitAll
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public User update(@PathParam("customerId") long customerId, User customer){
+    public User update(@PathParam("customerId") long customerId, @Valid User customer){
         customer.setId(customerId);
         return customerService.update(customer);
     }
     @Path("/{customerId}")
     @GET
-    @RolesAllowed("ADMIN")
+    @PermitAll
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public User read(@PathParam("customerId") long customerId){
