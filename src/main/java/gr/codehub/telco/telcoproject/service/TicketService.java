@@ -17,4 +17,16 @@ public interface TicketService {
     List<Ticket> findByDateRange(LocalDate dateFrom, LocalDate dateTo);
     List<Ticket> getTicketsByCustomerId(Long id);
 
+    List<Ticket> getTicketsByDateRangeOfAction(LocalDate dateFrom, LocalDate dateTo);
+
+    List<Ticket> getTicketsByDateOfAction(LocalDate date);
+
+    List<Ticket> getCustomerTicketsByDateRangeDateTimeOfCreationForCustomer(LocalDate dateFrom, LocalDate dateTo, long customerId);
+
+    List<Ticket> getCustomerTicketsByDateRangeDateTimeOfActionForCustomer(LocalDate dateFrom, LocalDate dateTo, long customerId);
+
+    List<Ticket> getTicketsByDateDateTimeOfCreationForCustomer(LocalDate date, long customerId);
+
+    List<Ticket> getTicketsByDateDateTimeOfActionForCustomer(LocalDate date, long customerId);
+
 }

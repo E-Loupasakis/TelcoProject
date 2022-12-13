@@ -9,7 +9,6 @@ import gr.codehub.telco.telcoproject.repository.impl.CustomerRepositoryImpl;
 import gr.codehub.telco.telcoproject.repository.impl.TicketRepositoryImpl;
 import gr.codehub.telco.telcoproject.service.TicketService;
 import jakarta.inject.Inject;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -92,6 +91,42 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public List<Ticket> getTicketsByCustomerId(Long id) {
         List tickets=ticketRepositoryImpl.getTicketsByCustomerId(id);
+        return tickets;
+    }
+
+    @Override
+    public List<Ticket> getTicketsByDateRangeOfAction(LocalDate dateFrom, LocalDate dateTo) {
+        List tickets = ticketRepositoryImpl.getTicketsByDateRangeOfAction(dateFrom, dateTo);
+        return tickets;
+    }
+
+    @Override
+    public List<Ticket> getTicketsByDateOfAction(LocalDate date) {
+        List tickets = ticketRepositoryImpl.getTicketsByDateOfAction(date);
+        return tickets;
+    }
+
+    @Override
+    public List<Ticket> getCustomerTicketsByDateRangeDateTimeOfCreationForCustomer(LocalDate dateFrom, LocalDate dateTo, long customerId) {
+        List tickets = ticketRepositoryImpl.getCustomerTicketsByDateRangeDateTimeOfCreationForCustomer(dateFrom, dateTo, customerId);
+        return tickets;
+    }
+
+    @Override
+    public List<Ticket> getCustomerTicketsByDateRangeDateTimeOfActionForCustomer(LocalDate dateFrom, LocalDate dateTo, long customerId) {
+        List tickets = ticketRepositoryImpl.getCustomerTicketsByDateRangeDateTimeOfActionForCustomer(dateFrom, dateTo, customerId);
+        return tickets;
+    }
+
+    @Override
+    public List<Ticket> getTicketsByDateDateTimeOfCreationForCustomer(LocalDate date, long customerId) {
+        List tickets = ticketRepositoryImpl.getTicketsByDateDateTimeOfCreationForCustomer(date, customerId);
+        return tickets;
+    }
+
+    @Override
+    public List<Ticket> getTicketsByDateDateTimeOfActionForCustomer(LocalDate date, long customerId) {
+        List tickets = ticketRepositoryImpl.getTicketsByDateDateTimeOfActionForCustomer(date, customerId);
         return tickets;
     }
 

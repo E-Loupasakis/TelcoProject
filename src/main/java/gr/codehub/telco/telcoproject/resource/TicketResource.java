@@ -40,6 +40,16 @@ public class TicketResource {
         return  Response.ok().entity(ApiResponse.builder().data(ticketService.findAll()).build()).build();
     }
 
+
+    @GET
+    @Path("/search-by-customer-id/{id}")
+    @RolesAllowed({"ADMIN","CUSTOMER"})
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response findByCustomerId(@PathParam("id") Long id) {
+        return  Response.ok().entity(ApiResponse.builder().data(ticketService.getTicketsByCustomerId(id)).build()).build();
+    }
+
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -70,9 +80,11 @@ public class TicketResource {
         return Response.ok().entity(ApiResponse.builder().data(ticketService.delete(id)).build()).build();
     }
 
+    //Search dates for Admin
+
 
     @GET
-    @Path("/search-by-dates/{dateFrom}&{dateTo}")
+    @Path("/search-by-dates-of-creation/{dateFrom}&{dateTo}")
     @RolesAllowed("ADMIN")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findByDateRange(@PathParam("dateFrom") String dateFrom,@PathParam("dateTo")  String  dateTo) {
@@ -83,7 +95,19 @@ public class TicketResource {
     }
 
     @GET
-    @Path("/search-by-date/{date}")
+    @Path("/search-by-dates-of-action/{dateFrom}&{dateTo}")
+    @RolesAllowed("ADMIN")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getTicketsByDateRangeOfAction(@PathParam("dateFrom") String dateFrom,@PathParam("dateTo")  String  dateTo) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDateFrom = LocalDate.parse(dateFrom, formatter);
+        LocalDate localDateTo = LocalDate.parse(dateTo, formatter);
+        return  Response.ok().entity(ApiResponse.builder().data(ticketService.getTicketsByDateRangeOfAction(localDateFrom, localDateTo)).build()).build();
+    }
+
+
+    @GET
+    @Path("/search-by-date-of-creation/{date}")
     @RolesAllowed("ADMIN")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findByDate(@PathParam("date") String date) {
@@ -92,12 +116,63 @@ public class TicketResource {
         return  Response.ok().entity(ApiResponse.builder().data(ticketService.findByDate(localDate)).build()).build();
     }
 
+
     @GET
-    @Path("/search-by-customer-id/{id}")
+    @Path("/search-by-date-of-action/{date}")
+    @RolesAllowed("ADMIN")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getTicketsByDateOfAction(@PathParam("date") String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(date, formatter);
+        return  Response.ok().entity(ApiResponse.builder().data(ticketService.getTicketsByDateOfAction(localDate)).build()).build();
+    }
+
+
+    //Search dates by Customer
+
+    @GET
+    @Path("/search-by-dates-of-creation/search-by-customer/{dateFrom}&{dateTo}&{customerId}")
     @RolesAllowed({"ADMIN","CUSTOMER"})
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response findByCustomerId(@PathParam("id") Long id) {
-        return  Response.ok().entity(ApiResponse.builder().data(ticketService.getTicketsByCustomerId(id)).build()).build();
+    public Response getCustomerTicketsByDateRangeDateTimeOfCreationForCustomer(@PathParam("dateFrom") String dateFrom,@PathParam("dateTo")  String  dateTo,@PathParam("customerId")  long  customerId) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDateFrom = LocalDate.parse(dateFrom, formatter);
+        LocalDate localDateTo = LocalDate.parse(dateTo, formatter);
+        return  Response.ok().entity(ApiResponse.builder().data(ticketService.getCustomerTicketsByDateRangeDateTimeOfCreationForCustomer(localDateFrom, localDateTo,customerId)).build()).build();
     }
+
+
+    @GET
+    @Path("/search-by-dates-of-action/search-by-customer/{dateFrom}&{dateTo}&{customerId}")
+    @RolesAllowed({"ADMIN","CUSTOMER"})
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCustomerTicketsByDateRangeDateTimeOfActionForCustomer(@PathParam("dateFrom") String dateFrom,@PathParam("dateTo")  String  dateTo,@PathParam("customerId")  long  customerId) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDateFrom = LocalDate.parse(dateFrom, formatter);
+        LocalDate localDateTo = LocalDate.parse(dateTo, formatter);
+        return  Response.ok().entity(ApiResponse.builder().data(ticketService.getCustomerTicketsByDateRangeDateTimeOfActionForCustomer(localDateFrom, localDateTo,customerId)).build()).build();
+    }
+
+    @GET
+    @Path("/search-by-date-of-creation/search-by-customer/{date}&{customerId}")
+    @RolesAllowed({"ADMIN","CUSTOMER"})
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getTicketsByDateDateTimeOfCreationForCustomer(@PathParam("date") String date,@PathParam("customerId")  long  customerId) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(date, formatter);
+        return  Response.ok().entity(ApiResponse.builder().data(ticketService.getTicketsByDateDateTimeOfCreationForCustomer(localDate,customerId)).build()).build();
+    }
+
+    @GET
+    @Path("/search-by-date-of-action/search-by-customer/{date}&{customerId}")
+    @RolesAllowed({"ADMIN","CUSTOMER"})
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getTicketsByDateDateTimeOfActionForCustomer(@PathParam("date") String date,@PathParam("customerId")  long  customerId) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(date, formatter);
+        return  Response.ok().entity(ApiResponse.builder().data(ticketService.getTicketsByDateDateTimeOfActionForCustomer(localDate,customerId)).build()).build();
+    }
+
+
+
 }

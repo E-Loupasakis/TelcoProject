@@ -29,13 +29,15 @@ public class TicketRepositoryImpl extends RepositoryImpl<Ticket, Long> implement
         return tickets;
     }
 
+    //Get tickets by Dates of Creation for Admin
+
    public List<Ticket> getTicketsByDateRange(LocalDate dateFrom, LocalDate dateTo) {
 
        LocalDateTime rangeFrom = dateFrom.atStartOfDay();
 
        LocalDateTime rangeTo = dateTo.atTime(23, 59, 59);
 
-        Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.dateTimeOfCreation BETWEEN (?1) AND (?2) ORDER BY t.dateTimeOfCreation DESC" );
+        Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.dateTimeOfCreation BETWEEN (?1) AND (?2)  ORDER BY t.dateTimeOfCreation DESC" );
 
         query.setParameter(1, rangeFrom);
         query.setParameter(2, rangeTo);
@@ -44,6 +46,31 @@ public class TicketRepositoryImpl extends RepositoryImpl<Ticket, Long> implement
 
         return tickets;
     }
+
+
+
+    //Get tickets by Dates of Action for Admin
+
+    public List<Ticket> getTicketsByDateRangeOfAction(LocalDate dateFrom, LocalDate dateTo) {
+
+        LocalDateTime rangeFrom = dateFrom.atStartOfDay();
+
+        LocalDateTime rangeTo = dateTo.atTime(23, 59, 59);
+
+        Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.dateTimeOfAction BETWEEN (?1) AND (?2)  ORDER BY t.dateTimeOfAction DESC" );
+
+        query.setParameter(1, rangeFrom);
+        query.setParameter(2, rangeTo);
+
+        List<Ticket> tickets = query.getResultList();
+
+        return tickets;
+    }
+
+
+
+
+    //Get tickets by Date of Creation for Admin
 
     public List<Ticket> getTicketsByDate(LocalDate date) {
 
@@ -60,6 +87,109 @@ public class TicketRepositoryImpl extends RepositoryImpl<Ticket, Long> implement
 
         return tickets;
     }
+
+
+   // Get tickets by Date of Action for Admin
+
+
+    public List<Ticket> getTicketsByDateOfAction(LocalDate date) {
+
+        LocalDateTime dateTimeFrom = date.atStartOfDay();
+
+        LocalDateTime dateTimeTo = date.atTime(23, 59, 59);
+
+        Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.dateTimeOfAction BETWEEN (?1) AND (?2) ORDER BY t.dateTimeOfAction DESC" );
+
+        query.setParameter(1, dateTimeFrom);
+        query.setParameter(2, dateTimeTo);
+
+        List<Ticket> tickets = query.getResultList();
+
+        return tickets;
+    }
+
+
+    //Get tickets by Dates of Creation for Customer
+    public List<Ticket> getCustomerTicketsByDateRangeDateTimeOfCreationForCustomer(LocalDate dateFrom, LocalDate dateTo, long customerId) {
+
+        LocalDateTime rangeFrom = dateFrom.atStartOfDay();
+
+        LocalDateTime rangeTo = dateTo.atTime(23, 59, 59);
+
+        Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.dateTimeOfCreation BETWEEN (?1) AND (?2) and t.customer.id=(?3) ORDER BY t.dateTimeOfCreation DESC" );
+
+        query.setParameter(1, rangeFrom);
+        query.setParameter(2, rangeTo);
+        query.setParameter(3, customerId);
+
+        List<Ticket> tickets = query.getResultList();
+
+        return tickets;
+    }
+
+
+    //Get Tickets by dates of Action for Customer
+
+    public List<Ticket> getCustomerTicketsByDateRangeDateTimeOfActionForCustomer(LocalDate dateFrom, LocalDate dateTo, long customerId) {
+
+        LocalDateTime rangeFrom = dateFrom.atStartOfDay();
+
+        LocalDateTime rangeTo = dateTo.atTime(23, 59, 59);
+
+        Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.dateTimeOfAction BETWEEN (?1) AND (?2) and t.customer.id=(?3) ORDER BY t.dateTimeOfAction DESC" );
+
+        query.setParameter(1, rangeFrom);
+        query.setParameter(2, rangeTo);
+        query.setParameter(3, customerId);
+
+        List<Ticket> tickets = query.getResultList();
+
+        return tickets;
+    }
+
+
+    //Get Tickets by date of Creation for Customer
+    public List<Ticket> getTicketsByDateDateTimeOfCreationForCustomer(LocalDate date, long customerId) {
+
+        LocalDateTime dateTimeFrom = date.atStartOfDay();
+
+        LocalDateTime dateTimeTo = date.atTime(23, 59, 59);
+
+        Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.dateTimeOfCreation BETWEEN (?1) AND (?2) and t.customer.id=(?3) ORDER BY t.dateTimeOfCreation DESC" );
+
+        query.setParameter(1, dateTimeFrom);
+        query.setParameter(2, dateTimeTo);
+        query.setParameter(3, customerId);
+
+        List<Ticket> tickets = query.getResultList();
+
+        return tickets;
+    }
+
+
+    //Get Tickets by date of Action
+
+    public List<Ticket> getTicketsByDateDateTimeOfActionForCustomer(LocalDate date, long customerId) {
+
+        LocalDateTime dateTimeFrom = date.atStartOfDay();
+
+        LocalDateTime dateTimeTo = date.atTime(23, 59, 59);
+
+        Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.dateTimeOfAction BETWEEN (?1) AND (?2) and t.customer.id=(?3) ORDER BY t.dateTimeOfAction DESC" );
+
+        query.setParameter(1, dateTimeFrom);
+        query.setParameter(2, dateTimeTo);
+        query.setParameter(3, customerId);
+
+        List<Ticket> tickets = query.getResultList();
+
+        return tickets;
+    }
+
+
+
+
+
 
     @Override
     @Transactional
