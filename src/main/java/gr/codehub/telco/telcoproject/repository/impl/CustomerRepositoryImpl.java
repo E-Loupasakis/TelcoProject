@@ -60,10 +60,11 @@ public class CustomerRepositoryImpl extends RepositoryImpl<User, Long> implement
 
 
     @Override
-    public User getCustomerByUserName(String userName) throws NoResultException, NonUniqueResultException {
+    public User getCustomerByUserName(String userName, String password) throws NoResultException, NonUniqueResultException {
         try{
-            return em.createQuery("Select u from " + getClassName() + " u left join fetch u.tickets where u.username LIKE :username", User.class)
+            return em.createQuery("Select u from " + getClassName() + " u left join fetch u.tickets where u.username LIKE :username and u.password LIKE :password", User.class)
                     .setParameter("username", userName)
+                    .setParameter("password", password)
                     .getSingleResult();
         }catch(NoResultException e){
             return null;

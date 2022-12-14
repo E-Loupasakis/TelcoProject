@@ -98,8 +98,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public User getCustomerByUserName(String username) {
-        return customerRepository.getCustomerByUserName(username);
+    public User getCustomerByUserName(String username, String password) {
+        return customerRepository.getCustomerByUserName(username, password);
     }
 
     private String checkProperties(User customer) {
@@ -119,7 +119,7 @@ public class CustomerServiceImpl implements CustomerService {
                 exceptionMessage.append("Phone "+phone.getNumber()+" is already in use.\n");
             }
         });
-        if(customerRepository.getCustomerByUserName(customer.getUsername())!=null){
+        if(customerRepository.getCustomerByUserName(customer.getUsername(), customer.getPassword())!=null){
             exceptionMessage.append("Username is already in use.\n");
         }
         return exceptionMessage.toString();

@@ -17,7 +17,7 @@ public interface CustomerRepository extends Repository<User, Long>{
     List<User> getCustomerByEmail(String emailAddress);
     List<User> getCustomerByTelephone(String telephone);
 
-    User getCustomerByUserName(String userName);
+    User getCustomerByUserName(String userName, String password);
 
     List<User> getVatUnique(int vat, long id);
 

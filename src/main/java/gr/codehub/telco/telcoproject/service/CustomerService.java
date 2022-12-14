@@ -19,5 +19,5 @@ public interface CustomerService {
 
     List<Ticket> findTicketsByCustomerId(long customerId);
 
-    User getCustomerByUserName(String username);
+    User getCustomerByUserName(String username, String password);
 }
