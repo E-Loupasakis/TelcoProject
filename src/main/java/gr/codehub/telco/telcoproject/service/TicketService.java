@@ -29,4 +29,5 @@ public interface TicketService {
 
     List<Ticket> getTicketsByDateDateTimeOfActionForCustomer(LocalDate date, long customerId);
 
+    List<Ticket> getPendingTickets(int limit);
 }

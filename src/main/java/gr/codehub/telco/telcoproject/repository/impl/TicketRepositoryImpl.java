@@ -187,6 +187,20 @@ public class TicketRepositoryImpl extends RepositoryImpl<Ticket, Long> implement
     }
 
 
+    @Override
+    public List<Ticket> getPendingTickets(int limit) {
+        if(limit>0){
+            Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.ticketStatus=0 ORDER BY t.dateTimeOfAction ASC").setMaxResults(limit);
+            List<Ticket> tickets = query.getResultList();
+            return tickets;
+        }
+        else{
+            Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.ticketStatus=0 ORDER BY t.dateTimeOfAction ASC");
+            List<Ticket> tickets = query.getResultList();
+            return tickets;
+        }
+
+    }
 
 
 

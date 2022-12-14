@@ -40,6 +40,11 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
+    public List<Ticket> getPendingTickets(int limit) {
+        return ticketRepositoryImpl.getPendingTickets(limit);
+    }
+
+    @Override
     public Ticket findByTicketId(Long id) {
         Ticket ticket = ticketRepositoryImpl.read(id);
         if (ticket == null) {
