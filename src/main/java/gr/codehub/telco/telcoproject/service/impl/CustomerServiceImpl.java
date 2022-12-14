@@ -54,6 +54,8 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return customerRepository.update(customer);
     }
+
+
     private String checkPropertiesForUpdate(User customer){
         StringBuilder exceptionMessage = new StringBuilder();
         Integer count = Integer.valueOf(String.valueOf(customerRepository.getVatUnique(customer.getVatNumber(), customer.getId()).get(0)));
@@ -93,6 +95,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Ticket> findTicketsByCustomerId(long customerId) {
         return  customerRepository.read(customerId).getTickets();
+    }
+
+    @Override
+    public User getCustomerByUserName(String username) {
+        return customerRepository.getCustomerByUserName(username);
     }
 
     private String checkProperties(User customer) {

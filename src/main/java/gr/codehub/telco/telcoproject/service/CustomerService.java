@@ -18,4 +18,6 @@ public interface CustomerService {
     boolean delete(long customerId);
 
     List<Ticket> findTicketsByCustomerId(long customerId);
+
+    User getCustomerByUserName(String username);
 }
