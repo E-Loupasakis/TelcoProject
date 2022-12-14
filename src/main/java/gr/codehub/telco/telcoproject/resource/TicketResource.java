@@ -173,6 +173,12 @@ public class TicketResource {
         return  Response.ok().entity(ApiResponse.builder().data(ticketService.getTicketsByDateDateTimeOfActionForCustomer(localDate,customerId)).build()).build();
     }
 
-
+    @GET
+    @Path("/{limit}/pendingTickets")
+    @RolesAllowed({"ADMIN"})
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPendingTickets(@PathParam("limit")  int  limit) {
+        return  Response.ok().entity(ApiResponse.builder().data(ticketService.getPendingTickets(limit)).build()).build();
+    }
 
 }
