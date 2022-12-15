@@ -12,11 +12,11 @@ import java.time.LocalDateTime;
 
 @Provider
 @Slf4j
-public class ThrowableException extends Throwable implements ExceptionMapper<Throwable> {
+public class ThrowableExceptionHandler implements ExceptionMapper<MyThrowable> {
 
 
     @Override
-    public Response toResponse(Throwable e) {
+    public Response toResponse(MyThrowable e) {
         log.info("Test placeholder {}", LocalDateTime.now());
         Response.Status response = Response.Status.BAD_REQUEST;
         return Response
