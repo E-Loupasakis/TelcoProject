@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Telco_projects</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./css/css.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+</body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Administrator</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <li class="nav-item">
+            <a class="nav-link" href="customers.html" id="link1">Customers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="tickets.html"id="link2">Tickets</a>
+          </li>
+        </ul>
+        <div class="d-flex">
+           <button type="button" class="btn btn-danger" onclick="redirect()">Log out</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+
+            
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CreateCustomerByAdmin" style="margin-top:80px;height:70px;;width:250px;font-size:18pt;margin-left:100px;">
+                    Create Ticket
+                </button>
+  
+                <!-- The Modal -->
+                <div class="modal" id="CreateCustomerByAdmin">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                        <h4 class="modal-title">Create ticket</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form action="">
+                                <div class="mb-3 mt-3">
+                                  <label for="address" class="form-label">Address:</label>
+                                  <input type="text" class="form-control" id="address" placeholder="Enter the address" name="address" required>
+                                </div>
+                                <div class="mb-3"> 
+                                  <input type="text" class="form-control" id="cust_id" placeholder="Enter password" name="cust_id" hidden required>
+                                </div>
+                                <label for="ticket-status" class="form-label">Ticket status:</label>
+                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="TicketStatus" required>
+                                    <option selected ="disabled">Choose your ticket status</option>
+                                    <option value="PENDING">PENDING</option>
+                                    <option value="IN_PROGRESS">IN_PROGRESS</option>
+                                    <option value="COMPLETE">COMPLETE</option>
+                                    <option value="DEFAULT_STANDBY_MODE">DEFAULT_STANDBY_MODE</option>
+                                  </select>
+                                  <label for="ticket-type" class="form-label">Ticket type:</label>
+                                  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="TicketType" required>
+                                    <option selected="disabled">Choose your ticket type</option>
+                                    <option value="NEW_INSTALLATION">NEW_INSTALLATION</option>
+                                    <option value="BROKEN_LINE">BROKEN_LINE</option>
+                                    <option value="COMPLETE">COMPLETE</option>
+                                  </select>
+                                  <div class="mb-3"> 
+                                    <label for="cost" class="form-label">Enter the cost:</label>
+                                    <input type="number" class="form-control" id="estimated_cost" name="estimated_cost" required min="0">
+                                  </div>
+                                  <div class="mb-3"> 
+                                    <label for="description" class="form-label">Description:</label>
+                                    <textarea class="form-control" id="description" name="description" required>
+
+                                    </textarea>
+                                    <div class="mb-3"> 
+                                        <label for="dateOfAction" class="form-label">Choose the date of action:</label>
+                                        <input type="date" class="form-control" id="date_of_action" name="date_of_action" required >
+                                      </div>
+                                  </div>
+                                <button type="submit" class="btn btn-primary">Create</button>
+                              </form>
+
+                        
+                        </div>
+                
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                
+                    </div>
+                    </div>
+                </div>
+
+        </div>
+        <div class="col-md-2">
+            <form action="" id="TicketformSearchByDate">
+                <div class="mb-3 mt-3">
+                  <label for="date" class="form-label">Search by Date:</label>
+                  <input type="date" class="form-control" id="dateFromByOneDate" placeholder="Enter date" name="dateFromByOneDate" style="width:150px;cursor:pointer">
+                </div>
+                <button type="submit" class="btn btn-primary" id="TicketBtnSearchByDate">Search</button>
+              </form>
+        </div>
+        <div class="col-md-2" id="dtSearch">
+              <form action="" id="TicketformSearchByDates">
+                <div class="mb-3 mt-3">
+                  <label for="date" class="form-label">Search by Dates:</label>
+                  <input type="date" class="form-control" id="dateFromBy2Dates" placeholder="Enter date" name="dateFrom2dates" style="width:150px;cursor:pointer">
+                  <br>
+                  <input type="date" class="form-control" id="dateToBy2Dates" placeholder="Enter date" name="dateToFrom2Dates" style="width:150px;cursor:pointer">
+                </div>
+                
+                <button type="submit" class="btn btn-primary" id="TicketBtnSearchByDates">Search</button>
+              </form>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="mt-4 p-5 bg-primary text-white rounded" id="jumbo1" style="cursor:pointer">
+                <h1>Tickets</h1>
+            </div>
+            
+        </div>
+
+        <div class="col-md-4">
+           
+        </div>
+
+    </div>
+
+    <div class="row" style="margin-top:100px;">
+
+        <div class="col-md-3">
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div id="table" style="text-align: center;">
+                <h1>Tickets</h1>
+            </div>
+            
+        </div>
+
+        <div class="col-md-3">
+            
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<script src="./js/telcojs.js"></script>
+
+<script>
+
+getTicketsForAdmin();
+
+getTodayForDateOfAction();
+
+
+
+</script>
+
+    
+</body>
+</html>
