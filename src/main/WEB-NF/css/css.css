@@ -1,0 +1,60 @@
+#rowMain{
+
+   
+    margin-top: 10px;;
+
+}
+
+
+
+#buttonLogin{
+   text-align: center;
+}
+
+#navmenu{
+   height:100px;
+   padding: 15px;
+}
+
+#link1{
+    font-size: 22pt;
+}
+
+#link2{
+    font-size: 22pt;
+}
+
+#link3{
+    font-size: 22pt;
+}
+
+
+#adminLink{
+    font-size: 23pt;
+}
+
+#jumbo1{
+    height:120px;
+    text-align: center;
+
+}
+
+#jumboLout{
+    height:160px;
+    text-align: center;
+}
+
+#jumboLogin{
+    height:200px;
+}
+
+#TicketformSearchByDate{
+    display: inline-block;
+
+}
+
+#TicketformSearchByDates{
+    display: inline-block;
+}
+
+
