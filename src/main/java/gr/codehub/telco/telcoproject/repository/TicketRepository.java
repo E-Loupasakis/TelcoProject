@@ -22,5 +22,5 @@ public interface TicketRepository extends Repository<Ticket, Long> {
     List<Ticket> getTicketsByDateDateTimeOfCreationForCustomer(LocalDate date, long customerId);
 
     List<Ticket> getTicketsByDateDateTimeOfActionForCustomer(LocalDate date, long customerId);
-
+    List<Ticket> getPendingTickets(int limit);
 }

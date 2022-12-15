@@ -54,6 +54,8 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return customerRepository.update(customer);
     }
+
+
     private String checkPropertiesForUpdate(User customer){
         StringBuilder exceptionMessage = new StringBuilder();
         Integer count = Integer.valueOf(String.valueOf(customerRepository.getVatUnique(customer.getVatNumber(), customer.getId()).get(0)));
@@ -95,6 +97,11 @@ public class CustomerServiceImpl implements CustomerService {
         return  customerRepository.read(customerId).getTickets();
     }
 
+    @Override
+    public User getCustomerByUserName(String username, String password) {
+        return customerRepository.getCustomerByUserName(username, password);
+    }
+
     private String checkProperties(User customer) {
         StringBuilder exceptionMessage = new StringBuilder();
         if(customerRepository.getCustomerByVat(customer.getVatNumber())!=null){
@@ -112,7 +119,7 @@ public class CustomerServiceImpl implements CustomerService {
                 exceptionMessage.append("Phone "+phone.getNumber()+" is already in use.\n");
             }
         });
-        if(customerRepository.getCustomerByUserName(customer.getUsername())!=null){
+        if(customerRepository.getCustomerByUserName(customer.getUsername(), customer.getPassword())!=null){
             exceptionMessage.append("Username is already in use.\n");
         }
         return exceptionMessage.toString();

@@ -65,6 +65,9 @@ public class UserResource {
     public Response read(@PathParam("customerId") long customerId){
         return Response.ok().entity(ApiResponse.builder().data(customerService.read(customerId)).build()).build();
     }
+
+
+
     @Path("/")
     @GET
     @RolesAllowed("ADMIN")
