@@ -36,21 +36,19 @@ function getTicketsForAdmin(){
 
             const data = tickets.data;
 
-            console.log(data[0]);
 
 
 
             var html="<table class='table table-hover'>";
 
-            html+="<tr><th>ID</th>><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
+            html+="<tr><th>ID</th><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
                 "<th>Description</th><th>Date of Creation</th>" +
                 "<th>Date of Action</th><th>Edit</th><th>Delete</th>";
 
 
-
             for(let ticket of data){
 
-                html+="<tr><td id='table_ticket_id'>"+ticket.ticketId+"</td>><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
+                html+="<tr><td id='table_ticket_id'>"+ticket['ticketId']+"</td><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
                     "</td><td>"+ticket.addressOfIssue+"</td><td>"+ticket['description']+"" +
                     "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.ticketId+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
                     "  Edit Ticket\n" +
@@ -155,11 +153,12 @@ function updateTicket(){
     my_description = document.getElementById('description_update').value;
     dateTimeOfAction = document.getElementById('date_of_action_update').value;
 
+    dateTimeOfAction = formatDate(dateTimeOfAction);
     console.log(ticketId);
 
     payload = {
         "ticketStatus": ticketStatus,
-        "dateTimeOfAction": "2023-01-13 23:00:00",
+        "dateTimeOfAction": dateTimeOfAction,
         "ticketType": ticketType,
         "estimatedCost": estimatedCost,
         "addressOfIssue": addressOfIssue,
@@ -233,20 +232,24 @@ function createTicket(){
 
     const password="psa_7178Aasd";
 
-    ticketId = document.getElementById('ticket_id_update').value;
+    //ticketId = document.getElementById('ticket_id_update').value;
     customerId = document.getElementById('cust_id').value;
     addressOfIssue = document.getElementById('address').value;
     ticketStatus = document.getElementById('TicketStatus').value;
     ticketType = document.getElementById('TicketType').value;
     estimatedCost = document.getElementById('estimated_cost').value;
     my_description = document.getElementById('description').value;
-    dateTimeOfAction = document.getElementById('date_of_action_update').value;
+    dateTimeOfAction = document.getElementById('date_of_action').value;
 
-    console.log(ticketId);
 
+
+
+    console.log(dateTimeOfAction);
+    dateTimeOfAction = formatDate(dateTimeOfAction);
+debugger;
     payload = {
         "ticketStatus": ticketStatus,
-        "dateTimeOfAction": "2023-01-13 23:00:00",
+        "dateTimeOfAction": "2022-12-20 12:00:00",
         "ticketType": ticketType,
         "estimatedCost": estimatedCost,
         "addressOfIssue": addressOfIssue,
@@ -255,8 +258,7 @@ function createTicket(){
     }
 
 
-
-    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/'+ticketId;
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/';
 
     fetch(url,{
 
@@ -277,4 +279,88 @@ function createTicket(){
         .then(response => response.json())
 
         .then(response => console.log(JSON.stringify(response)))
+}
+
+document.getElementById("TicketformSearchByDate").addEventListener('submit',(event)=>{
+
+    const date = document.getElementById('dateFromByOneDate').value
+    event.preventDefault();
+
+    alert("aksjdnaksjdhalskdn");
+
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/search-by-date-of-creation/'+date;
+
+    const username="pa_418assd";
+
+    const password="pd_1718Aasd";
+
+
+    fetch(url, {method:"GET", headers: {'Authorization': 'Basic ' + btoa('pa_418assd:psa_7178Aasd')}})
+    //     {
+    //
+    //     method:"GET",
+    //
+    //     headers: {
+    //
+    //         'Accept': 'application/json',
+    //
+    //         'Content-Type': 'application/json;charset=UTF-8',
+    //
+    //         'Authorization': 'Basic ' + btoa('pa_418assd:psa_7178Aasd')}}
+    //
+    // )
+
+
+        .then(response =>{
+            return response.json()})
+
+        .then(tickets => {
+
+            const data = tickets.data;
+            console.log(data);
+            debugger;
+
+            document.getElementById('table').innerHTML= "";
+            var html="<table class='table table-hover'>";
+
+            html+="<tr><th>ID</th><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
+                "<th>Description</th><th>Date of Creation</th>" +
+                "<th>Date of Action</th><th>Edit</th><th>Delete</th>";
+
+
+
+            for(let ticket of data){
+
+                html+="<tr><td id='table_ticket_id'>"+ticket.id+"</td><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
+                    "</td><td>"+ticket.addressOfIssue+"</td><td>"+ticket['description']+"" +
+                    "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.ticketId+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
+                    "  Edit Ticket\n" +
+                    "</button></td><td><button onclick='passDatatoModal("+ticket.ticketId+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_ticket_by_admin\">\n" +
+                    "  Delete Ticket\n" +
+                    "</button></td></tr>";
+
+            }
+
+
+
+            html+="</table>";
+            console.log(html);
+            document.getElementById('table').innerHTML = html;
+
+
+        }).catch(error => console.error('Network Error...'+ error));
+});
+
+
+
+function formatDate(date){
+
+    String.prototype.replaceAt = function(index, replacement) {
+        return this.substring(0, index) + replacement + this.substring(index + replacement.length);
+    }
+
+    date = date.replaceAt(10," ");
+    date+=":00";
+    return date;
+
 }
