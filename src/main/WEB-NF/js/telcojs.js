@@ -36,7 +36,6 @@ function getTicketsForAdmin(){
 
             const data = tickets.data;
 
-            console.log(data[0]);
 
 
 
@@ -240,13 +239,16 @@ function createTicket(){
     ticketType = document.getElementById('TicketType').value;
     estimatedCost = document.getElementById('estimated_cost').value;
     my_description = document.getElementById('description').value;
-    dateTimeOfAction = document.getElementById('date_of_action_update').value;
+    dateTimeOfAction = document.getElementById('date_of_action').value;
 
-    console.log(ticketId);
+
+    dateTimeOfAction = dateTimeOfAction.format("YYYY-MM-DD hh:mm:ss");
+
+    console.log(dateTimeOfAction);
 
     payload = {
         "ticketStatus": ticketStatus,
-        "dateTimeOfAction": "2023-01-13 23:00:00",
+        "dateTimeOfAction": dateTimeOfAction,
         "ticketType": ticketType,
         "estimatedCost": estimatedCost,
         "addressOfIssue": addressOfIssue,
@@ -254,7 +256,7 @@ function createTicket(){
         "customer":{"id":customerId}
     }
 
-
+    debugger;
 
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/'+ticketId;
 
@@ -279,43 +281,49 @@ function createTicket(){
         .then(response => console.log(JSON.stringify(response)))
 }
 
-function searchByDate(){
+document.getElementById("TicketformSearchByDate").addEventListener('submit',(event)=>{
+
+    const date = document.getElementById('dateFromByOneDate').value
+    event.preventDefault();
+
     alert("aksjdnaksjdhalskdn");
 
-    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/search-by-date-of-creation/2022-12-17';
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/search-by-date-of-creation/'+date;
 
     const username="pa_418assd";
 
     const password="pd_1718Aasd";
 
 
-    fetch(url,{
+    fetch(url, {headers: {'Authorization': 'Basic ' + btoa('pa_418assd:psa_7178Aasd')}})
+    //     {
+    //
+    //     method:"GET",
+    //
+    //     headers: {
+    //
+    //         'Accept': 'application/json',
+    //
+    //         'Content-Type': 'application/json;charset=UTF-8',
+    //
+    //         'Authorization': 'Basic ' + btoa('pa_418assd:psa_7178Aasd')}}
+    //
+    // )
 
-        method:"GET",
 
-        headers: {
-
-            'Accept': 'application/json',
-
-            'Content-Type': 'application/json',
-
-            'Authorization': 'Basic ' + btoa('pa_418assd:psa_7178Aasd')}}
-
-    )
-
-
-        .then(response =>{response.json()})
+        .then(response =>{
+            return response.json()})
 
         .then(tickets => {
 
-
+            alert("Hello");
             const data = tickets.data;
 
+            console.log(tickets);
             document.getElementById('table').innerHTML= "";
-            document.getElementById('search_by_date').innerHTML = "";
             var html="<table class='table table-hover'>";
 
-            html+="<tr><th>ID</th>><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
+            html+="<tr><th>ID</th><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
                 "<th>Description</th><th>Date of Creation</th>" +
                 "<th>Date of Action</th><th>Edit</th><th>Delete</th>";
 
@@ -337,8 +345,8 @@ function searchByDate(){
 
             html+="</table>";
             console.log(html);
-            document.getElementById('search_by_date').innerHTML = html;
+            document.getElementById('table').innerHTML = html;
 
 
-        }).catch(error => console.error('Network Error...'));
-}
+        }).catch(error => console.error('Network Error...'+ error));
+});

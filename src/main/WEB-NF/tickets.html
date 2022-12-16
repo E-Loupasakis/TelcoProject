@@ -96,7 +96,7 @@
                                     </textarea>
                                     <div class="mb-3"> 
                                         <label for="dateOfAction" class="form-label">Choose the date of action:</label>
-                                        <input type="date" class="form-control" id="date_of_action" name="date_of_action" required >
+                                        <input type="datetime-local" class="form-control" id="date_of_action" name="date_of_action" required >
                                       </div>
                                   </div>
                                 <button type="submit" onclick="createTicket()" class="btn btn-primary">Create</button>
@@ -116,18 +116,18 @@
 
         </div>
         <div class="col-md-2">
-            <form action="" id="TicketformSearchByDate">
+            <form id="TicketformSearchByDate">
                 <div class="mb-3 mt-3">
-                  <label for="date" class="form-label">Search by Date:</label>
+                  <label class="form-label">Search by Date:</label>
                   <input type="date" class="form-control" id="dateFromByOneDate" placeholder="Enter date" name="dateFromByOneDate" style="width:150px;cursor:pointer">
                 </div>
-                <button type="submit" onclick="searchByDate()" class="btn btn-primary" id="TicketBtnSearchByDate">Search</button>
+                <button  class="btn btn-primary" id="TicketBtnSearchByDate">Search</button>
               </form>
         </div>
         <div class="col-md-2" id="dtSearch">
               <form action="" id="TicketformSearchByDates">
                 <div class="mb-3 mt-3">
-                  <label for="date" class="form-label">Search by Dates:</label>
+                  <label class="form-label">Search by Dates:</label>
                   <input type="date" class="form-control" id="dateFromBy2Dates" placeholder="Enter date" name="dateFrom2dates" style="width:150px;cursor:pointer">
                   <br>
                   <input type="date" class="form-control" id="dateToBy2Dates" placeholder="Enter date" name="dateToFrom2Dates" style="width:150px;cursor:pointer">
