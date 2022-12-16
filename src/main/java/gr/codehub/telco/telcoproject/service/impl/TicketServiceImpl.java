@@ -1,5 +1,6 @@
 package gr.codehub.telco.telcoproject.service.impl;
 
+import gr.codehub.telco.telcoproject.dto.TicketDto;
 import gr.codehub.telco.telcoproject.exception.DataNotFoundException;
 import gr.codehub.telco.telcoproject.exception.InvalidDeletionException;
 import gr.codehub.telco.telcoproject.exception.InvalidTicketException;
@@ -11,6 +12,7 @@ import gr.codehub.telco.telcoproject.service.TicketService;
 import jakarta.inject.Inject;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TicketServiceImpl implements TicketService {
 
@@ -32,6 +34,16 @@ public class TicketServiceImpl implements TicketService {
        else {
            throw new InvalidTicketException(exceptionMessage);
        }
+    }
+
+
+    public TicketDto read(long id) {
+
+        return new TicketDto(ticketRepositoryImpl.read(id));
+    }
+
+    public List<TicketDto> read() {
+        return ticketRepositoryImpl.read().stream().map(TicketDto::new).collect(Collectors.toList());
     }
 
     @Override

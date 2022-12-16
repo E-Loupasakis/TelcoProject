@@ -59,8 +59,6 @@ public class User extends AppUser{
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer", cascade = {CascadeType.ALL})
     @JsonManagedReference
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private List<Ticket> tickets;
 
 

@@ -42,7 +42,7 @@ function getTicketsForAdmin(){
 
             var html="<table class='table table-hover'>";
 
-            html+="<tr><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
+            html+="<tr><th>ID</th>><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
                 "<th>Description</th><th>Date of Creation</th>" +
                 "<th>Date of Action</th><th>Edit</th><th>Delete</th>";
 
@@ -50,11 +50,11 @@ function getTicketsForAdmin(){
 
             for(let ticket of data){
 
-                html+="<tr><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
+                html+="<tr><td id='table_ticket_id'>"+ticket.ticketId+"</td>><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
                     "</td><td>"+ticket.addressOfIssue+"</td><td>"+ticket['description']+"" +
-                    "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.id+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
+                    "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.ticketId+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
                     "  Edit Ticket\n" +
-                    "</button></td><td><button id = "+ticket.id+" type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_ticket_by_admin\">\n" +
+                    "</button></td><td><button onclick='passDatatoModal("+ticket.ticketId+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_ticket_by_admin\">\n" +
                     "  Delete Ticket\n" +
                     "</button></td></tr>";
 
@@ -114,7 +114,7 @@ function getTicketById(id){
 
             'Content-Type': 'application/json',
 
-            'Authorization': 'Basic ' + btoa('pw_418assd:pd_1718Aasd')}}
+            'Authorization': 'Basic ' + btoa('pa_418assd:psa_7178Aasd')}}
 
     )
 
@@ -124,9 +124,9 @@ function getTicketById(id){
 
 
             const data = tickets.data;
-            document.getElementById('ticket_id_update').value = data.id;
-            // document.getElementById('customer_id_update').value = 1;
-            console.log(data);
+            document.getElementById('ticket_id_update').value = data.ticketId;
+            document.getElementById('customer_id_update').value = data['customerId'];
+            //console.log(data);
             document.getElementById('address_update').value = data.addressOfIssue;
             document.getElementById('ticket_status_update').value = data.ticketStatus;
             document.getElementById('ticket_type_update').value = data.ticketType;
@@ -142,19 +142,32 @@ function getTicketById(id){
 function updateTicket(){
 
 
-    const username="pw_418asd";
+    const username="pa_418assd";
 
-    const password="pd_1718Aasd";
+    const password="psa_7178Aasd";
 
     ticketId = document.getElementById('ticket_id_update').value;
-    customerId = 1;
+    customerId = document.getElementById('customer_id_update').value;
     addressOfIssue = document.getElementById('address_update').value;
     ticketStatus = document.getElementById('ticket_status_update').value;
     ticketType = document.getElementById('ticket_type_update').value;
     estimatedCost = document.getElementById('estimated_cost_update').value;
-    description = document.getElementById('description_update').value;
+    my_description = document.getElementById('description_update').value;
     dateTimeOfAction = document.getElementById('date_of_action_update').value;
-    console.log(ticketId,customerId);
+
+    console.log(ticketId);
+
+    payload = {
+        "ticketStatus": ticketStatus,
+        "dateTimeOfAction": "2023-01-13 23:00:00",
+        "ticketType": ticketType,
+        "estimatedCost": estimatedCost,
+        "addressOfIssue": addressOfIssue,
+        "description": my_description,
+        "customer":{"id":customerId}
+    }
+
+
 
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/'+ticketId;
 
@@ -169,8 +182,94 @@ function updateTicket(){
             'Content-Type': 'application/json',
 
             'Authorization': 'Basic ' + btoa('pa_418assd:psa_7178Aasd')},
-        body: JSON.stringify({"ticketStatus":ticketStatus,
-            "estimatedCost":estimatedCost, "addressOfIssue":addressOfIssue, "customer":customerId, "dateTimeOfAction":dateTimeOfAction, "description":description, "ticketType":ticketType })
+        body: JSON.stringify(payload)
+        }
+
+    )
+
+        .then(response => response.json())
+
+        .then(response => console.log(JSON.stringify(response)))
+}
+
+
+
+function passDatatoModal(id){
+
+    document.getElementById('my_id_value').value = id;
+}
+
+
+function deleteTicket(ticketId){
+    console.log(ticketId);
+    debugger;
+    var url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/'+ticketId;
+console.log(url);
+debugger;
+
+    fetch(url,{
+
+        method:"DELETE",
+
+        headers: {
+
+            'Accept': 'application/json',
+
+            'Content-Type': 'application/json',
+
+            'Authorization': 'Basic ' + btoa('pa_418assd:psa_7178Aasd')}}
+
+    )
+
+        .then(response => response.json())
+        .then(response => console.log(JSON.stringify(response)))
+
+        .catch(error => console.error('Network Error...'));
+
+}
+
+function createTicket(){
+    const username="pa_418assd";
+
+    const password="psa_7178Aasd";
+
+    ticketId = document.getElementById('ticket_id_update').value;
+    customerId = document.getElementById('cust_id').value;
+    addressOfIssue = document.getElementById('address').value;
+    ticketStatus = document.getElementById('TicketStatus').value;
+    ticketType = document.getElementById('TicketType').value;
+    estimatedCost = document.getElementById('estimated_cost').value;
+    my_description = document.getElementById('description').value;
+    dateTimeOfAction = document.getElementById('date_of_action_update').value;
+
+    console.log(ticketId);
+
+    payload = {
+        "ticketStatus": ticketStatus,
+        "dateTimeOfAction": "2023-01-13 23:00:00",
+        "ticketType": ticketType,
+        "estimatedCost": estimatedCost,
+        "addressOfIssue": addressOfIssue,
+        "description": my_description,
+        "customer":{"id":customerId}
+    }
+
+
+
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/'+ticketId;
+
+    fetch(url,{
+
+            method:"POST",
+
+            headers: {
+
+                'Accept': 'application/json',
+
+                'Content-Type': 'application/json',
+
+                'Authorization': 'Basic ' + btoa('pa_418assd:psa_7178Aasd')},
+            body: JSON.stringify(payload)
         }
 
     )

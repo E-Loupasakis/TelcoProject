@@ -1,6 +1,7 @@
 package gr.codehub.telco.telcoproject.repository.impl;
 
 import gr.codehub.telco.telcoproject.model.Ticket;
+import gr.codehub.telco.telcoproject.model.User;
 import gr.codehub.telco.telcoproject.repository.TicketRepository;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
@@ -18,6 +19,11 @@ public class TicketRepositoryImpl extends RepositoryImpl<Ticket, Long> implement
     public String getClassName() {
         return Ticket.class.getSimpleName();
     }
+
+//    @Override
+//    public List<Ticket> read(){
+//        return  em.createQuery("select u from " + getClassName() + " u left join fetch u.customer.id").getResultList();
+//    }
 
     public List<Ticket> getTicketsByCustomerId(Long customerId) {
         Query query = super.getEm().createQuery("select t from "+ getClassName()+ " t WHERE t.customer IN (SELECT DISTINCT u.id FROM User u WHERE u.id IN (?1)) ORDER BY t.dateTimeOfCreation DESC " );

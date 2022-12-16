@@ -1,6 +1,7 @@
 package gr.codehub.telco.telcoproject.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import gr.codehub.telco.telcoproject.enums.TicketStatus;
 import gr.codehub.telco.telcoproject.enums.TicketType;
 import gr.codehub.telco.telcoproject.model.Ticket;
@@ -40,8 +41,11 @@ public class TicketDto {
 
     private TicketType ticketType;
 
-
+    @JsonIgnore
     private User customer;
+
+    private long customerId;
+
 
 
     public TicketDto(Ticket ticket){
@@ -54,7 +58,7 @@ public class TicketDto {
             estimatedCost = ticket.getEstimatedCost();
             ticketStatus = ticket.getTicketStatus();
             ticketType = ticket.getTicketType();
-            customer = ticket.getCustomer();
+            customerId = ticket.getCustomer().getId();
         }
     }
 

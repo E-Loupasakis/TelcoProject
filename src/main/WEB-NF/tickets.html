@@ -68,7 +68,7 @@
                                   <input type="text" class="form-control" id="address" placeholder="Enter the address" name="address" required>
                                 </div>
                                 <div class="mb-3"> 
-                                  <input type="text" class="form-control" id="cust_id" placeholder="Enter password" name="cust_id" hidden required>
+                                  <input type="text" class="form-control" id="cust_id" placeholder="Enter customer ID" name="cust_id" required>
                                 </div>
                                 <label for="ticket-status" class="form-label">Ticket status:</label>
                                 <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="TicketStatus" required>
@@ -99,7 +99,7 @@
                                         <input type="date" class="form-control" id="date_of_action" name="date_of_action" required >
                                       </div>
                                   </div>
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button type="submit" onclick="createTicket()" class="btn btn-primary">Create</button>
                               </form>
 
                         
@@ -242,7 +242,7 @@
                             <input type="datetime-local" class="form-control" id="date_of_action_update" name="date_of_action" required >
                         </div>
                     </div>
-                    <button type="submit" onclick="updateTicket()" class="btn btn-primary">Update</button>
+                    <button type="submit" onclick="updateTicket(document.getElementById('table_ticket_id').value)" class="btn btn-primary">Update</button>
                 </form>
             </div>
 
@@ -255,30 +255,32 @@
     </div>
 </div>
 
-<!--&lt;!&ndash; The Modal &ndash;&gt;-->
-<!--<div class="modal" id='delete_ticket_by_admin'>-->
-<!--    <div class="modal-dialog">-->
-<!--        <div class="modal-content">-->
+<!-- The Modal -->
+<div class="modal" id='delete_ticket_by_admin'>
+    <form action="">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Modal Heading</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
 
-<!--            &lt;!&ndash; Modal Header &ndash;&gt;-->
-<!--            <div class="modal-header">-->
-<!--                <h4 class="modal-title">Modal Heading</h4>-->
-<!--                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>-->
-<!--            </div>-->
+            <!-- Modal body -->
+            <div class="modal-body">
+                Are u sure?
+            </div>
+            <div id = 'my_id_value' hidden></div>
 
-<!--            &lt;!&ndash; Modal body &ndash;&gt;-->
-<!--            <div class="modal-body">-->
-<!--                Modal body..-->
-<!--            </div>-->
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" onclick="deleteTicket(document.getElementById('my_id_value').value)" class="btn btn-success" data-bs-dismiss="modal">Yes</button>
+            </div>
 
-<!--            &lt;!&ndash; Modal footer &ndash;&gt;-->
-<!--            <div class="modal-footer">-->
-<!--                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>-->
-<!--            </div>-->
-
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+        </div>
+    </div>
+    </form>
+</div>
 
 <script src="./js/telcojs.js"></script>
 
