@@ -171,9 +171,9 @@ function getTicketById(id){
 function updateTicket(){
 
 
-    const username="pa_418assd";
+    const username= localStorage.getItem('username');
 
-    const password="psa_7178Aasd";
+    const password= localStorage.getItem('password');
 
     ticketId = document.getElementById('ticket_id_update').value;
     customerId = document.getElementById('customer_id_update').value;
@@ -256,9 +256,10 @@ function deleteTicket(ticketId){
 }
 
 function createTicket(){
-    const username="pa_418assd";
+    const username= localStorage.getItem('username');
 
-    const password="psa_7178Aasd";
+    const password= localStorage.getItem('password');
+
     //ticketId = document.getElementById('ticket_id_update').value;
     customerId = document.getElementById('cust_id').value;
     addressOfIssue = document.getElementById('address').value;
@@ -307,16 +308,16 @@ function createTicket(){
         .then(response => console.log(JSON.stringify(response)))
 }
 
-document.getElementById("TicketformSearchByDate").addEventListener('submit',(event)=>{
+function searchByDate(){
 
     const date = document.getElementById('dateFromByOneDate').value
-    event.preventDefault();
 
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/search-by-date-of-creation/'+date;
 
-    const username="pa_418assd";
+    const username= localStorage.getItem('username');
 
     const password= localStorage.getItem('password');
+
 
 
     fetch(url, {method:"GET", headers: {'Authorization': 'Basic ' + btoa(username+":"+ password)}})
@@ -359,19 +360,19 @@ document.getElementById("TicketformSearchByDate").addEventListener('submit',(eve
 
 
         }).catch(error => console.error('Network Error...'+ error));
-});
+}
 
 
 
-document.getElementById("TicketformSearchByDates").addEventListener('submit',(event)=>{
+function searchByDates(){
 
     const dateFrom = document.getElementById('dateFromBy2Dates').value;
     const dateTo = document.getElementById('dateToBy2Dates').value;
-    event.preventDefault();
+    
 
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/search-by-dates-of-creation/'+dateFrom+'&'+dateTo;
 
-    const username="pa_418assd";
+    const username= localStorage.getItem('username');
 
     const password= localStorage.getItem('password');
 
@@ -416,9 +417,10 @@ document.getElementById("TicketformSearchByDates").addEventListener('submit',(ev
 
 
         }).catch(error => console.error('Network Error...'+ error));
-});
+}
 
-document.getElementById("TicketformSearchByCustomer").addEventListener('submit',(event)=>{
+function searchByCustomer(){
+
 
     const customerId = document.getElementById('search_customer_id').value;
     event.preventDefault();
@@ -426,7 +428,7 @@ document.getElementById("TicketformSearchByCustomer").addEventListener('submit',
 
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/find/tickets/'+customerId
 
-    const username="pa_418assd";
+    const username= localStorage.getItem('username');
 
     const password= localStorage.getItem('password');
 
@@ -471,7 +473,7 @@ document.getElementById("TicketformSearchByCustomer").addEventListener('submit',
 
 
         }).catch(error => console.error('Network Error...'+ error));
-});
+}
 
 function formatDate(date){
 
