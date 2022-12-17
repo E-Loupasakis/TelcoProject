@@ -239,7 +239,7 @@ function deleteTicket(ticketId){
     const username= localStorage.getItem('username');
 
     const password= localStorage.getItem('password');
-    
+
     console.log(ticketId);
     var url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/'+ticketId;
 
@@ -377,7 +377,7 @@ function searchByDates(){
 
     const dateFrom = document.getElementById('dateFromBy2Dates').value;
     const dateTo = document.getElementById('dateToBy2Dates').value;
-    
+
 
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/search-by-dates-of-creation/'+dateFrom+'&'+dateTo;
 
@@ -590,7 +590,7 @@ function addEmail(){
     var counter = document.getElementById("emailCount").value;
     var newCount = Number(counter);
     newCount++;
-    var html = "<div class=\"mb-3 mt-3\">";
+    var html = "<div id=\"outerEmaildiv"+newCount+"\" class=\"mb-3 mt-3\">";
     html+="<label for=\"email\" class=\"form-label\">Email:</label>";
     html+="<input type=\"text\" class=\"form-control\" id=\"email"+ newCount + "\" placeholder=\"Enter the email\" name=\"email\" required>";
     html+="</div>"
@@ -602,13 +602,35 @@ function addEmail(){
     document.getElementById("emailDivs").prepend(div);
 }
 
+function removeEmail(){
+    var counter = document.getElementById("emailCount").value;
+    var newCount = Number(counter);
+    if(newCount>1){
+        const element = document.getElementById('outerEmaildiv'+counter);
+        element.remove();
+        newCount--;
+        document.getElementById("emailCount").value = String(newCount);
+    }
+}
+
+function removePhone(){
+    var counter = document.getElementById("phoneCount").value;
+    var newCount = Number(counter);
+    if(newCount>1){
+        const element = document.getElementById('outerPhonediv'+counter);
+        element.remove();
+        newCount--;
+        document.getElementById("phoneCount").value = String(newCount);
+    }
+}
+
 function addPhone(){
     var counter = document.getElementById("phoneCount").value;
     var newCount = Number(counter);
     newCount++;
-    var html = "<div class=\"mb-3 mt-3\">";
+    var html = "<div id=\"outerPhonediv"+newCount+"\" class=\"mb-3 mt-3\">";
     html+="<label for=\"phone\" class=\"form-label\">Phone:</label>";
-    html+="<input type=\"text\" class=\"form-control\" id=\"phone"+ newCount + "\" placeholder=\"Enter the phone\" name=\"phone\" required>";
+    html+="<input type=\"text\" class=\"form-control\" id=\"phone_number"+ newCount + "\" placeholder=\"Enter the phone\" name=\"phone\" required>";
     html+="</div>"
     var div = document.createElement('div');
     div.innerHTML = html;
@@ -619,9 +641,11 @@ function addPhone(){
 
 function createCustomer(){
 
-    const admin_username= localStorage.getItem('username');
+    // const admin_username= localStorage.getItem('username');
 
-    const admin_password= localStorage.getItem('password');
+    // const admin_password= localStorage.getItem('password');
+    var admin_username="myusdsaer";
+    var admin_password="!1Qwerty";
 
     var emailCount = document.getElementById("emailCount").value;
     var phoneCount = document.getElementById("phoneCount").value;
@@ -632,7 +656,7 @@ function createCustomer(){
     let vatNumber = document.getElementById("vatNumber").value;
     let password = document.getElementById("password").value;
     let address = document.getElementById("address").value;
-
+    debugger;
     let phoneArray = new Array();
     for(i = 1; i<=phoneCount;i++){
         str = "phone_number" + i;
@@ -659,8 +683,9 @@ function createCustomer(){
     alert(JSON.stringify(payload));
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/';
 
+
     fetch(url,{
-        
+
             method:"POST",
 
             headers: {
@@ -669,14 +694,14 @@ function createCustomer(){
 
                 'Content-Type': 'application/json',
 
-                'Authorization': 'Basic ' + btoa(admin_username+":"+ admin_password)},
+                'Authorization': 'Basic ' + btoa(admin_username+":"+ admin_password)
+            },
             body: JSON.stringify(payload)
-            
         }
-        
-
     )
+    // console.log(JSON.stringify(payload))
+    // console.log(JSON.stringify(response))
         .then(response => response.json())
 
-        .then(response => console.log(JSON.stringify(response)))
+        .then(response => alert(JSON.stringify(response)))
 }
