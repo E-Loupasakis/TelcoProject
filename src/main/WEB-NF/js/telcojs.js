@@ -590,7 +590,7 @@ function addEmail(){
     var counter = document.getElementById("emailCount").value;
     var newCount = Number(counter);
     newCount++;
-    var html = "<div class=\"mb-3 mt-3\">";
+    var html = "<div id=\"outerEmaildiv"+newCount+"\" class=\"mb-3 mt-3\">";
     html+="<label for=\"email\" class=\"form-label\">Email:</label>";
     html+="<input type=\"text\" class=\"form-control\" id=\"email"+ newCount + "\" placeholder=\"Enter the email\" name=\"email\" required>";
     html+="</div>"
@@ -602,11 +602,33 @@ function addEmail(){
     document.getElementById("emailDivs").prepend(div);
 }
 
+function removeEmail(){
+    var counter = document.getElementById("emailCount").value;
+    var newCount = Number(counter);
+    if(newCount>1){
+        const element = document.getElementById('outerEmaildiv'+counter);
+        element.remove();
+        newCount--;
+        document.getElementById("emailCount").value = String(newCount);
+    }
+}
+
+function removePhone(){
+    var counter = document.getElementById("phoneCount").value;
+    var newCount = Number(counter);
+    if(newCount>1){
+        const element = document.getElementById('outerPhonediv'+counter);
+        element.remove();
+        newCount--;
+        document.getElementById("phoneCount").value = String(newCount);
+    }
+}
+
 function addPhone(){
     var counter = document.getElementById("phoneCount").value;
     var newCount = Number(counter);
     newCount++;
-    var html = "<div class=\"mb-3 mt-3\">";
+    var html = "<div id=\"outerPhonediv"+newCount+"\" class=\"mb-3 mt-3\">";
     html+="<label for=\"phone\" class=\"form-label\">Phone:</label>";
     html+="<input type=\"text\" class=\"form-control\" id=\"phone_number"+ newCount + "\" placeholder=\"Enter the phone\" name=\"phone\" required>";
     html+="</div>"
@@ -619,11 +641,11 @@ function addPhone(){
 
 function createCustomer(){
 
-    const admin_username= localStorage.getItem('username');
+    // const admin_username= localStorage.getItem('username');
 
-    const admin_password= localStorage.getItem('password');
-    // var admin_username="myusdsaer";
-    // var admin_password="!1Qwerty";
+    // const admin_password= localStorage.getItem('password');
+    var admin_username="myusdsaer";
+    var admin_password="!1Qwerty";
 
     var emailCount = document.getElementById("emailCount").value;
     var phoneCount = document.getElementById("phoneCount").value;
