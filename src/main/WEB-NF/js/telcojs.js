@@ -619,11 +619,11 @@ function addPhone(){
 
 function createCustomer(){
 
-    // const admin_username= localStorage.getItem('username');
+    const admin_username= localStorage.getItem('username');
 
-    // const admin_password= localStorage.getItem('password');
-    var admin_username="myusdsaer";
-    var admin_password="!1Qwerty";
+    const admin_password= localStorage.getItem('password');
+    // var admin_username="myusdsaer";
+    // var admin_password="!1Qwerty";
 
     var emailCount = document.getElementById("emailCount").value;
     var phoneCount = document.getElementById("phoneCount").value;
