@@ -96,7 +96,7 @@
                                     </textarea>
                                     <div class="mb-3"> 
                                         <label for="dateOfAction" class="form-label">Choose the date of action:</label>
-                                        <input type="date" class="form-control" id="date_of_action" name="date_of_action" required >
+                                        <input type="datetime-local" class="form-control" id="date_of_action" name="date_of_action" required >
                                       </div>
                                   </div>
                                 <button type="submit" onclick="createTicket()" class="btn btn-primary">Create</button>
@@ -135,7 +135,16 @@
                 
                 <button type="submit" class="btn btn-primary" id="TicketBtnSearchByDates">Search</button>
               </form>
-
+              <div class="col-md-2">
+                <form action="" id="TicketformSearchByCustomer">
+                    <div class="mb-3 mt-3">
+                      <label for="date" class="form-label">Search by Customer ID:</label>
+                      <select id="search_customer_id"></select>
+                      <!-- <input type="text" class="form-control" id="search_customer_id" placeholder="Enter Customer ID" name="SearchByCustomer" style="width:150px;cursor:pointer"> -->
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="TicketBtnSearchByCustomer">Search</button>
+                  </form>
+            </div>
         </div>
 
     </div>
@@ -289,8 +298,8 @@
     getTicketsForAdmin();
 
     getTodayForDateOfAction();
-
-
+    
+    createCustomerDropdown('search_customer_id');
 
 </script>
 </body>
