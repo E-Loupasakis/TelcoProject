@@ -118,13 +118,14 @@
                 </div>
 
         </div>
+        
         <div class="col-md-2">
             <form id="TicketformSearchByDate">
                 <div class="mb-3 mt-3">
                   <label class="form-label">Search by Date:</label>
                   <input type="date" class="form-control" id="dateFromByOneDate" placeholder="Enter date" name="dateFromByOneDate" style="width:150px;cursor:pointer">
                 </div>
-                <button  class="btn btn-primary" id="TicketBtnSearchByDate">Search</button>
+                <button  class="btn btn-primary" onclick="searchByDate()" id="TicketBtnSearchByDate">Search</button>
               </form>
         </div>
         <div class="col-md-2" id="dtSearch">
@@ -136,7 +137,7 @@
                   <input type="date" class="form-control" id="dateToBy2Dates" placeholder="Enter date" name="dateToFrom2Dates" style="width:150px;cursor:pointer">
                 </div>
                 
-                <button type="submit" class="btn btn-primary" id="TicketBtnSearchByDates">Search</button>
+                <button type="submit" onclick="searchByDates()" class="btn btn-primary" id="TicketBtnSearchByDates">Search</button>
               </form>
               <div class="col-md-2">
                 <form action="" id="TicketformSearchByCustomer">
@@ -145,7 +146,7 @@
                       <select id="search_customer_id"></select>
                       <!-- <input type="text" class="form-control" id="search_customer_id" placeholder="Enter Customer ID" name="SearchByCustomer" style="width:150px;cursor:pointer"> -->
                     </div>
-                    <button type="submit" class="btn btn-primary" id="TicketBtnSearchByCustomer">Search</button>
+                    <button type="submit" onclick="searchByCustomer()" class="btn btn-primary" id="TicketBtnSearchByCustomer">Search</button>
                   </form>
             </div>
         </div>
