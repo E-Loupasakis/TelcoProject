@@ -1,5 +1,5 @@
 function redirect(){
-    
+    localStorage.clear();
     var url='logout.html'
     window.location.href=url;
     
@@ -8,9 +8,9 @@ function redirect(){
 function createCustomerDropdown(element){
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/';
 
-    const username="pw_418asd";
+    const username= localStorage.getItem('username');
 
-    const password="pd_1718Aasd";
+    const password= localStorage.getItem('password');
 
     fetch(url,{
 
@@ -22,7 +22,7 @@ function createCustomerDropdown(element){
 
             'Content-Type': 'application/json',
 
-            'Authorization': 'Basic ' + btoa('root1234:Ro_ot1234')}}
+            'Authorization': 'Basic ' + btoa(username+":"+ password)}}
 
     )
 
@@ -42,9 +42,9 @@ function getTicketsForAdmin(){
 
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets';
 
-    const username="pw_418asd";
+    const username= localStorage.getItem('username');
 
-    const password="pd_1718Aasd";
+    const password= localStorage.getItem('password');
 
     fetch(url,{
 
@@ -56,7 +56,7 @@ function getTicketsForAdmin(){
 
             'Content-Type': 'application/json',
 
-            'Authorization': 'Basic ' + btoa('root1234:Ro_ot1234')}}
+            'Authorization': 'Basic ' + btoa(username+":"+ password)}}
 
     )
 
@@ -130,9 +130,9 @@ document.getElementById("date_of_action").setAttribute("min", today);
 function getTicketById(id){
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/'+id;
 
-    const username="pw_418asd";
+    const username= localStorage.getItem('username');
 
-    const password="pd_1718Aasd";
+    const password= localStorage.getItem('password');
 
     fetch(url,{
 
@@ -144,7 +144,7 @@ function getTicketById(id){
 
             'Content-Type': 'application/json',
 
-            'Authorization': 'Basic ' + btoa('root1234:Ro_ot1234')}}
+            'Authorization': 'Basic ' + btoa(username+":"+ password)}}
 
     )
 
@@ -211,7 +211,7 @@ function updateTicket(){
 
             'Content-Type': 'application/json',
 
-            'Authorization': 'Basic ' + btoa('root1234:Ro_ot1234')},
+            'Authorization': 'Basic ' + btoa(username+":"+ password)},
         body: JSON.stringify(payload)
         }
 
@@ -244,7 +244,7 @@ function deleteTicket(ticketId){
 
             'Content-Type': 'application/json',
 
-            'Authorization': 'Basic ' + btoa('root1234:Ro_ot1234')}}
+            'Authorization': 'Basic ' + btoa(username+":"+ password)}}
 
     )
 
@@ -296,7 +296,7 @@ function createTicket(){
 
                 'Content-Type': 'application/json',
 
-                'Authorization': 'Basic ' + btoa('root1234:Ro_ot1234')},
+                'Authorization': 'Basic ' + btoa(username+":"+ password)},
             body: JSON.stringify(payload)
         }
 
@@ -316,10 +316,10 @@ document.getElementById("TicketformSearchByDate").addEventListener('submit',(eve
 
     const username="pa_418assd";
 
-    const password="pd_1718Aasd";
+    const password= localStorage.getItem('password');
 
 
-    fetch(url, {method:"GET", headers: {'Authorization': 'Basic ' + btoa('root1234:Ro_ot1234')}})
+    fetch(url, {method:"GET", headers: {'Authorization': 'Basic ' + btoa(username+":"+ password)}})
     
 
         .then(response =>{
@@ -373,10 +373,10 @@ document.getElementById("TicketformSearchByDates").addEventListener('submit',(ev
 
     const username="pa_418assd";
 
-    const password="pd_1718Aasd";
+    const password= localStorage.getItem('password');
 
 
-    fetch(url, {method:"GET", headers: {'Authorization': 'Basic ' + btoa('root1234:Ro_ot1234')}})
+    fetch(url, {method:"GET", headers: {'Authorization': 'Basic ' + btoa(username+":"+ password)}})
 
 
         .then(response =>{
@@ -428,10 +428,10 @@ document.getElementById("TicketformSearchByCustomer").addEventListener('submit',
 
     const username="pa_418assd";
 
-    const password="pd_1718Aasd";
+    const password= localStorage.getItem('password');
 
 
-    fetch(url, {method:"GET", headers: {'Authorization': 'Basic ' + btoa('root1234:Ro_ot1234')}})
+    fetch(url, {method:"GET", headers: {'Authorization': 'Basic ' + btoa(username+":"+ password)}})
 
 
         .then(response =>{
