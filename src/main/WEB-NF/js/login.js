@@ -4,13 +4,12 @@ function login(){
     password = document.getElementById('pwd').value;
 
 
-
     payload = {
         "username": username,
         "password": password,
         "userCategory": "ADMIN"
     }
-debugger;
+
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/login/';
 
     fetch(url,{
@@ -23,7 +22,7 @@ debugger;
 
                 'Content-Type': 'application/json',
 
-                'Authorization': 'Basic ' + btoa('root1234:Ro_ot1234')},
+                'Authorization': 'Basic ' + btoa('Pw_418assd:pd_1718Aasd')},
             body: JSON.stringify(payload)
         }
 
@@ -31,16 +30,21 @@ debugger;
 
         .then(response => response.json())
 
-        .then(response => {
-            window.localStorage.setItem('userCategory',response.data.userCategory);
-            window.localStorage.setItem('username',response.data.username);
-            window.localStorage.setItem('password',response.data.password);
-            window.localStorage.setItem('userid',response.data.id);
-            if(response.data.userCategory=="ADMIN") {
-                window.location.href="./main_admin.html";}
-            if(response.data.userCategory=="CUSTOMER") {
-                window.location.href="./customer.html";}
-            console.log(JSON.stringify(response))})
+        
+        .then(response => {   
+            const data = response.data;
+            localStorage.setItem('userCategory',data.userCategory);
+            localStorage.setItem('username',data.username);
+            localStorage.setItem('password',data.password);
+            localStorage.setItem('userid',data.id);
+            
+            if(data.userCategory=="ADMIN") {
+                window.location.href="./main_admin.html";
+            }
+            if(data.userCategory=="CUSTOMER") {
+                window.location.href="./customer.html";
+            }
+            });
 }
 
 function isloggedin(){
