@@ -286,7 +286,7 @@ function createTicket(){
         "description": my_description,
         "customer":{"id":customerId}
     }
-
+    
 
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/';
 
@@ -579,7 +579,7 @@ function getTicketsForAdminPending(){
 }
 
 
-function addEmail( ){
+function addEmail(){
     var counter = document.getElementById("emailCount").value;
     var newCount = Number(counter);
     newCount++;
@@ -587,15 +587,91 @@ function addEmail( ){
     html+="<label for=\"email\" class=\"form-label\">Email:</label>";
     html+="<input type=\"text\" class=\"form-control\" id=\"email"+ newCount + "\" placeholder=\"Enter the email\" name=\"email\" required>";
     html+="</div>"
-
     var div = document.createElement('div');
 
     div.innerHTML = html;
     document.getElementById("emailCount").value = String(newCount);
+    div.setAttribute('class', 'mb-3 mt-3');
+    document.getElementById("emailDivs").prepend(div);
+}
 
-// set style
+function addPhone(){
+    var counter = document.getElementById("phoneCount").value;
+    var newCount = Number(counter);
+    newCount++;
+    var html = "<div class=\"mb-3 mt-3\">";
+    html+="<label for=\"phone\" class=\"form-label\">Phone:</label>";
+    html+="<input type=\"text\" class=\"form-control\" id=\"phone"+ newCount + "\" placeholder=\"Enter the phone\" name=\"phone\" required>";
+    html+="</div>"
+    var div = document.createElement('div');
+    div.innerHTML = html;
+    document.getElementById("phoneCount").value = String(newCount);
+    div.setAttribute('class', 'mb-3 mt-3');
+    document.getElementById("phoneDivs").prepend(div);
+}
 
-// better to use CSS though - just set class
-div.setAttribute('class', 'mb-3 mt-3'); // and make sure myclass has some styles in css
-document.getElementById("emailDivs").prepend(div);
+function createCustomer(){
+
+    const admin_username="myusdsaer";
+
+    const admin_password="!1Qwerty";
+
+    var emailCount = document.getElementById("emailCount").value;
+    var phoneCount = document.getElementById("phoneCount").value;
+
+    let firstName = document.getElementById("fname").value;
+    let lastName = document.getElementById("lname").value;
+    let username = document.getElementById("username").value;
+    let vatNumber = document.getElementById("vatNumber").value;
+    let password = document.getElementById("password").value;
+    let address = document.getElementById("address").value;
+
+    let phoneArray = new Array();
+    for(i = 1; i<=phoneCount;i++){
+        str = "phone_number" + i;
+        phoneArray.push(document.getElementById(str).value);
+    }
+    let emailArray = new Array();
+    for(i = 1; i<=emailCount;i++){
+        str = "email" + i;
+        emailArray.push(document.getElementById(str).value);
+    }
+    
+    payload={
+        "vatNumber" : vatNumber,
+        "userCategory": "CUSTOMER",
+        "firstName": firstName,
+        "lastName": lastName,
+        "username": username,
+        "password": password,
+        "address": address,
+        "emailList": emailArray,
+        "phones": phoneArray
+    }
+
+    alert(JSON.stringify(payload));
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/';
+
+    fetch(url,{
+        
+            method:"POST",
+
+            headers: {
+
+                'Accept': 'application/json',
+
+                'Content-Type': 'application/json',
+
+                'Authorization': 'Basic ' + btoa(admin_username+":"+ admin_password)},
+            body: JSON.stringify(payload)
+            
+        }
+        
+
+    )
+    // console.log(JSON.stringify(payload))
+    // console.log(JSON.stringify(response))
+        .then(response => response.json())
+
+        .then(response => console.log(JSON.stringify(response)))
 }

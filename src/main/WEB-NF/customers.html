@@ -59,7 +59,7 @@
         
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form action="">
+                    <form action="" id="formCreateCustomer">
                         <div class="mb-3 mt-3">
                           <label for="fname" class="form-label">First Name:</label>
                           <input type="text" class="form-control" id="fname" placeholder="Enter the first name" name="fname" required>
@@ -73,7 +73,7 @@
                           <input type="text" class="form-control" id="username" placeholder="Enter the username" name="username" required>
                         </div>
                         <div class="mb-3 mt-3">
-                          <label for="vatNumber" class="form-label">Username:</label>
+                          <label for="vatNumber" class="form-label">Vat:</label>
                           <input type="text" class="form-control" id="vatNumber" placeholder="Enter the VAT" name="vatNumber" required>
                         </div>
                         <div class="mb-3 mt-3">
@@ -91,10 +91,16 @@
                           
                         </div>
                         <input id="emailCount" hidden value="1">
-                        <div class="mb-3 mt-3">
-                          <label for="phone_number" class="form-label">Phone number:</label>
-                          <input type="text" class="form-control" id="phone_number" placeholder="Enter the phone number" name="phone_number" required>
-                        </div>                
+
+                        <div class="mb-3 mt-3" id="phoneDivs">
+                          <label for="phone_number" class="form-label">Phone:</label>
+                          <input type="text" class="form-control" id="phone_number1" placeholder="Enter the phone number" name="phone_number" required>
+                          <button type="button" class="btn btn-primary" onclick="addPhone()">Add phone</button>
+                        
+                        </div>
+
+                        <input id="phoneCount" hidden value="1">
+                        <button type="submit" onclick="createCustomer()" class="btn btn-primary">Create</button>              
                 </div>
         
                 <!-- Modal footer -->
