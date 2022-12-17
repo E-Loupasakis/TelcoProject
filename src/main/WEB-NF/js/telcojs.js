@@ -510,9 +510,9 @@ function getTicketsForAdminPending(){
 
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets';
 
-    const username="pw_418asd";
+    const username= localStorage.getItem('username');
 
-    const password="pd_1718Aasd";
+    const password= localStorage.getItem('password');
 
     fetch(url,{
 
@@ -524,7 +524,7 @@ function getTicketsForAdminPending(){
 
             'Content-Type': 'application/json',
 
-            'Authorization': 'Basic ' + btoa('root1234:Ro_ot1234')}}
+            'Authorization': 'Basic ' + btoa(username+":"+ password)}}
 
     )
 
