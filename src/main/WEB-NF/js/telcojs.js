@@ -608,7 +608,7 @@ function addPhone(){
     newCount++;
     var html = "<div class=\"mb-3 mt-3\">";
     html+="<label for=\"phone\" class=\"form-label\">Phone:</label>";
-    html+="<input type=\"text\" class=\"form-control\" id=\"phone"+ newCount + "\" placeholder=\"Enter the phone\" name=\"phone\" required>";
+    html+="<input type=\"text\" class=\"form-control\" id=\"phone_number"+ newCount + "\" placeholder=\"Enter the phone\" name=\"phone\" required>";
     html+="</div>"
     var div = document.createElement('div');
     div.innerHTML = html;
@@ -619,9 +619,11 @@ function addPhone(){
 
 function createCustomer(){
 
-    const admin_username="myusdsaer";
+    // const admin_username= localStorage.getItem('username');
 
-    const admin_password="!1Qwerty";
+    // const admin_password= localStorage.getItem('password');
+    var admin_username="myusdsaer";
+    var admin_password="!1Qwerty";
 
     var emailCount = document.getElementById("emailCount").value;
     var phoneCount = document.getElementById("phoneCount").value;
@@ -632,7 +634,7 @@ function createCustomer(){
     let vatNumber = document.getElementById("vatNumber").value;
     let password = document.getElementById("password").value;
     let address = document.getElementById("address").value;
-
+    debugger;
     let phoneArray = new Array();
     for(i = 1; i<=phoneCount;i++){
         str = "phone_number" + i;
@@ -643,7 +645,7 @@ function createCustomer(){
         str = "email" + i;
         emailArray.push(document.getElementById(str).value);
     }
-
+    
     payload={
         "vatNumber" : vatNumber,
         "userCategory": "CUSTOMER",
@@ -659,6 +661,7 @@ function createCustomer(){
     alert(JSON.stringify(payload));
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/';
 
+
     fetch(url,{
 
             method:"POST",
@@ -669,16 +672,14 @@ function createCustomer(){
 
                 'Content-Type': 'application/json',
 
-                'Authorization': 'Basic ' + btoa(admin_username+":"+ admin_password)},
+                'Authorization': 'Basic ' + btoa(admin_username+":"+ admin_password)
+            },
             body: JSON.stringify(payload)
-
         }
-
-
     )
     // console.log(JSON.stringify(payload))
     // console.log(JSON.stringify(response))
         .then(response => response.json())
 
-        .then(response => console.log(JSON.stringify(response)))
+        .then(response => alert(JSON.stringify(response)))
 }

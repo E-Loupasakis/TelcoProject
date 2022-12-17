@@ -59,7 +59,7 @@
         
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form action="" id="formCreateCustomer">
+                    <form id="formCreateCustomer">
                         <div class="mb-3 mt-3">
                           <label for="fname" class="form-label">First Name:</label>
                           <input type="text" class="form-control" id="fname" placeholder="Enter the first name" name="fname" required>
@@ -100,7 +100,7 @@
                         </div>
 
                         <input id="phoneCount" hidden value="1">
-                        <button type="submit" onclick="createCustomer()" class="btn btn-primary">Create</button>              
+                        <button type="button" id="createCustButton" onclick="createCustomer()" class="btn btn-primary">Create</button>              
                 </div>
         
                 <!-- Modal footer -->
