@@ -235,6 +235,11 @@ function passDatatoModal(id){
 
 
 function deleteTicket(ticketId){
+
+    const username= localStorage.getItem('username');
+
+    const password= localStorage.getItem('password');
+    
     console.log(ticketId);
     var url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/'+ticketId;
 
