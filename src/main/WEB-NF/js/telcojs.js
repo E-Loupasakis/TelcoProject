@@ -5,6 +5,10 @@ function redirect(){
     
 }
 
+//TICKETS FOR ADMIN///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 function createCustomerDropdown(element){
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/';
 
@@ -494,4 +498,80 @@ function fillDropdownList(data, element){
         option.value = elt.id;
         select.appendChild(option);
     }
+}
+
+//END TICKETS BY ADMIN
+
+//TICKETS PENDING FOR ADMIN
+
+function getTicketsForAdminPending(){
+
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets';
+
+    const username="pw_418asd";
+
+    const password="pd_1718Aasd";
+
+    fetch(url,{
+
+        method:"GET",
+
+        headers: {
+
+            'Accept': 'application/json',
+
+            'Content-Type': 'application/json',
+
+            'Authorization': 'Basic ' + btoa('root1234:Ro_ot1234')}}
+
+    )
+
+        .then(response => response.json())
+
+        .then(tickets => {
+
+
+
+            const data = tickets.data;
+
+
+
+
+            var html="<table class='table table-hover'>";
+
+            html+="<tr><th>ID</th><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
+                "<th>Description</th><th>Date of Creation</th>" +
+                "<th>Date of Action</th><th>Edit</th><th>Delete</th>";
+
+
+            for(let ticket of data){
+
+                if(ticket.ticketStatus=="PENDING"){
+
+                html+="<tr><td id='table_ticket_id_pending'>"+ticket['ticketId']+"</td><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
+                    "</td><td>"+ticket.addressOfIssue+"</td><td>"+ticket['description']+"" +
+                    "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.ticketId+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin_pending\">\n" +
+                    "  Edit Ticket\n" +
+                    "</button></td><td><button onclick='passDatatoModal("+ticket.ticketId+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_ticket_by_admin_pending\">\n" +
+                    "  Delete Ticket\n" +
+                    "</button></td></tr>";
+                }
+
+            }
+
+
+
+            html+="</table>";
+
+            document.getElementById('table_for_pending').innerHTML = html;
+
+
+
+
+
+
+        })
+
+        .catch(error => console.error('Network Error...'));
+
 }
