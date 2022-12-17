@@ -543,11 +543,11 @@ function getTicketsForAdminPending(){
                 "<th>Description</th><th>Date of Creation</th>" +
                 "<th>Date of Action</th><th>Edit</th><th>Delete</th>";
 
-
+            ;let counter =0;
             for(let ticket of data){
-
-                if(ticket.ticketStatus=="PENDING"){
-
+            
+                if(ticket.ticketStatus=="PENDING" && counter<10){
+                    
                 html+="<tr><td id='table_ticket_id_pending'>"+ticket['ticketId']+"</td><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
                     "</td><td>"+ticket.addressOfIssue+"</td><td>"+ticket['description']+"" +
                     "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.ticketId+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin_pending\">\n" +
@@ -555,6 +555,8 @@ function getTicketsForAdminPending(){
                     "</button></td><td><button onclick='passDatatoModal("+ticket.ticketId+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_ticket_by_admin_pending\">\n" +
                     "  Delete Ticket\n" +
                     "</button></td></tr>";
+                    counter ++;
+                    
                 }
 
             }
