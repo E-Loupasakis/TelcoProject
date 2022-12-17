@@ -311,116 +311,116 @@ function createTicket(){
         .then(response => console.log(JSON.stringify(response)))
 }
 
-document.getElementById("TicketformSearchByDate").addEventListener('submit',(event)=>{
+// document.getElementById("TicketformSearchByDate").addEventListener('submit',(event)=>{
 
-    const date = document.getElementById('dateFromByOneDate').value
-    event.preventDefault();
+//     const date = document.getElementById('dateFromByOneDate').value
+//     event.preventDefault();
 
-    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/search-by-date-of-creation/'+date;
+//     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/search-by-date-of-creation/'+date;
 
-    const username="pa_418assd";
+//     const username="pa_418assd";
 
-    const password= localStorage.getItem('password');
+//     const password= localStorage.getItem('password');
 
 
-    fetch(url, {method:"GET", headers: {'Authorization': 'Basic ' + btoa(username+":"+ password)}})
+//     fetch(url, {method:"GET", headers: {'Authorization': 'Basic ' + btoa(username+":"+ password)}})
     
 
-        .then(response =>{
-            return response.json()})
+//         .then(response =>{
+//             return response.json()})
 
-        .then(tickets => {
+//         .then(tickets => {
 
-            const data = tickets.data;
-            console.log(data);
+//             const data = tickets.data;
+//             console.log(data);
 
-            document.getElementById('table').innerHTML= "";
-            var html="<table class='table table-hover'>";
+//             document.getElementById('table').innerHTML= "";
+//             var html="<table class='table table-hover'>";
 
-            html+="<tr><th>ID</th><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
-                "<th>Description</th><th>Date of Creation</th>" +
-                "<th>Date of Action</th><th>Edit</th><th>Delete</th>";
-
-
-
-            for(let ticket of data){
-
-                html+="<tr><td id='table_ticket_id'>"+ticket.id+"</td><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
-                    "</td><td>"+ticket.addressOfIssue+"</td><td>"+ticket['description']+"" +
-                    "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.ticketId+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
-                    "  Edit Ticket\n" +
-                    "</button></td><td><button onclick='passDatatoModal("+ticket.ticketId+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_ticket_by_admin\">\n" +
-                    "  Delete Ticket\n" +
-                    "</button></td></tr>";
-
-            }
+//             html+="<tr><th>ID</th><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
+//                 "<th>Description</th><th>Date of Creation</th>" +
+//                 "<th>Date of Action</th><th>Edit</th><th>Delete</th>";
 
 
 
-            html+="</table>";
-            console.log(html);
-            document.getElementById('table').innerHTML = html;
+//             for(let ticket of data){
 
+//                 html+="<tr><td id='table_ticket_id'>"+ticket.id+"</td><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
+//                     "</td><td>"+ticket.addressOfIssue+"</td><td>"+ticket['description']+"" +
+//                     "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.ticketId+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
+//                     "  Edit Ticket\n" +
+//                     "</button></td><td><button onclick='passDatatoModal("+ticket.ticketId+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_ticket_by_admin\">\n" +
+//                     "  Delete Ticket\n" +
+//                     "</button></td></tr>";
 
-        }).catch(error => console.error('Network Error...'+ error));
-});
-
-
-
-document.getElementById("TicketformSearchByDates").addEventListener('submit',(event)=>{
-
-    const dateFrom = document.getElementById('dateFromBy2Dates').value;
-    const dateTo = document.getElementById('dateToBy2Dates').value;
-    event.preventDefault();
-
-    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/search-by-dates-of-creation/'+dateFrom+'&'+dateTo;
-
-    const username="pa_418assd";
-
-    const password= localStorage.getItem('password');
-
-
-    fetch(url, {method:"GET", headers: {'Authorization': 'Basic ' + btoa(username+":"+ password)}})
-
-
-        .then(response =>{
-            return response.json()})
-
-        .then(tickets => {
-
-            const data = tickets.data;
-            console.log(data);
-
-            document.getElementById('table').innerHTML= "";
-            var html="<table class='table table-hover'>";
-
-            html+="<tr><th>ID</th><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
-                "<th>Description</th><th>Date of Creation</th>" +
-                "<th>Date of Action</th><th>Edit</th><th>Delete</th>";
+//             }
 
 
 
-            for(let ticket of data){
+//             html+="</table>";
+//             console.log(html);
+//             document.getElementById('table').innerHTML = html;
 
-                html+="<tr><td id='table_ticket_id'>"+ticket.id+"</td><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
-                    "</td><td>"+ticket.addressOfIssue+"</td><td>"+ticket['description']+"" +
-                    "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.ticketId+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
-                    "  Edit Ticket\n" +
-                    "</button></td><td><button onclick='passDatatoModal("+ticket.ticketId+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_ticket_by_admin\">\n" +
-                    "  Delete Ticket\n" +
-                    "</button></td></tr>";
 
-            }
+//         }).catch(error => console.error('Network Error...'+ error));
+// });
 
 
 
-            html+="</table>";
-            console.log(html);
-            document.getElementById('table').innerHTML = html;
+// document.getElementById("TicketformSearchByDates").addEventListener('submit',(event)=>{
+
+//     const dateFrom = document.getElementById('dateFromBy2Dates').value;
+//     const dateTo = document.getElementById('dateToBy2Dates').value;
+//     event.preventDefault();
+
+//     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/search-by-dates-of-creation/'+dateFrom+'&'+dateTo;
+
+//     const username="pa_418assd";
+
+//     const password= localStorage.getItem('password');
 
 
-        }).catch(error => console.error('Network Error...'+ error));
-});
+//     fetch(url, {method:"GET", headers: {'Authorization': 'Basic ' + btoa(username+":"+ password)}})
+
+
+//         .then(response =>{
+//             return response.json()})
+
+//         .then(tickets => {
+
+//             const data = tickets.data;
+//             console.log(data);
+
+//             document.getElementById('table').innerHTML= "";
+//             var html="<table class='table table-hover'>";
+
+//             html+="<tr><th>ID</th><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
+//                 "<th>Description</th><th>Date of Creation</th>" +
+//                 "<th>Date of Action</th><th>Edit</th><th>Delete</th>";
+
+
+
+//             for(let ticket of data){
+
+//                 html+="<tr><td id='table_ticket_id'>"+ticket.id+"</td><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
+//                     "</td><td>"+ticket.addressOfIssue+"</td><td>"+ticket['description']+"" +
+//                     "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.ticketId+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
+//                     "  Edit Ticket\n" +
+//                     "</button></td><td><button onclick='passDatatoModal("+ticket.ticketId+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_ticket_by_admin\">\n" +
+//                     "  Delete Ticket\n" +
+//                     "</button></td></tr>";
+
+//             }
+
+
+
+//             html+="</table>";
+//             console.log(html);
+//             document.getElementById('table').innerHTML = html;
+
+
+//         }).catch(error => console.error('Network Error...'+ error));
+// });
 
 document.getElementById("TicketformSearchByCustomer").addEventListener('submit',(event)=>{
 
@@ -576,4 +576,26 @@ function getTicketsForAdminPending(){
 
         .catch(error => console.error('Network Error...'));
 
+}
+
+
+function addEmail( ){
+    var counter = document.getElementById("emailCount").value;
+    var newCount = Number(counter);
+    newCount++;
+    var html = "<div class=\"mb-3 mt-3\">";
+    html+="<label for=\"email\" class=\"form-label\">Email:</label>";
+    html+="<input type=\"text\" class=\"form-control\" id=\"email"+ newCount + "\" placeholder=\"Enter the email\" name=\"email\" required>";
+    html+="</div>"
+
+    var div = document.createElement('div');
+
+    div.innerHTML = html;
+    document.getElementById("emailCount").value = String(newCount);
+
+// set style
+
+// better to use CSS though - just set class
+div.setAttribute('class', 'mb-3 mt-3'); // and make sure myclass has some styles in css
+document.getElementById("emailDivs").prepend(div);
 }
