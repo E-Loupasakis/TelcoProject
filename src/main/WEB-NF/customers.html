@@ -227,6 +227,9 @@
           <div class="modal-body">
             <form id="formUpdateCustomer">
                 <div class="mb-3 mt-3">
+                  <input type="text" class="form-control" id="customer_id_update"  required hidden>
+               </div>
+                <div class="mb-3 mt-3">
                   <label for="fname" class="form-label">First Name:</label>
                   <input type="text" class="form-control" id="fname_update" placeholder="Enter the first name" name="fname_update" required>
                 </div>
@@ -266,7 +269,7 @@
                 </div>
 
                 <input id="phoneCount_update" hidden value="0">
-                <button type="button" id="updateCustomerButton" onclick="" class="btn btn-primary">Update</button>              
+                <button type="button" id="updateCustomerButton" onclick="updateCustomer()" class="btn btn-primary">Update</button>              
         </div>
 
           <!-- Modal footer -->

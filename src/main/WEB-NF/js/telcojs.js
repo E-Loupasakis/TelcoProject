@@ -612,6 +612,7 @@ function getCustomerById(id){
 
 
             const data = customers.data;
+            document.getElementById('customer_id_update').value = id;
             document.getElementById('fname_update').value = data.firstName;
             document.getElementById('lname_update').value = data.lastName;
             document.getElementById('username_update').value = data.username;
@@ -634,6 +635,72 @@ function getCustomerById(id){
 
 }).catch(error => console.error('Network Error...'));
 
+}
+
+function updateCustomer(){
+
+    const admin_username= localStorage.getItem('username');
+
+    const admin_password= localStorage.getItem('password');
+    
+    var emailCount = document.getElementById("emailCount_update").value;
+    var phoneCount = document.getElementById("phoneCount_update").value;
+
+    let customerId = document.getElementById('customer_id_update').value;
+    let firstName = document.getElementById("fname_update").value;
+    let lastName = document.getElementById("lname_update").value;
+    let username = document.getElementById("username_update").value;
+    let vatNumber = document.getElementById("vatNumber_update").value;
+    let password = document.getElementById("password_update").value;
+    let address = document.getElementById("address_update").value;
+    debugger;
+    let phoneArray = new Array();
+    for(i = 1; i<=phoneCount;i++){
+        str = "phone_number_input" + i;
+        phoneArray.push(document.getElementById(str).value);
+    }
+    let emailArray = new Array();
+    for(i = 1; i<=emailCount;i++){
+        str = "email_input" + i;
+        emailArray.push(document.getElementById(str).value);
+    }
+    
+    payload={
+        "vatNumber" : vatNumber,
+        "userCategory": "CUSTOMER",
+        "firstName": firstName,
+        "lastName": lastName,
+        "username": username,
+        "password": password,
+        "address": address,
+        "emailList": emailArray,
+        "phones": phoneArray
+    }
+
+    alert(JSON.stringify(payload));
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/' + customerId;
+
+
+    fetch(url,{
+
+            method:"PUT",
+
+            headers: {
+
+                'Accept': 'application/json',
+
+                'Content-Type': 'application/json',
+
+                'Authorization': 'Basic ' + btoa(admin_username+":"+ admin_password)
+            },
+            body: JSON.stringify(payload)
+        }
+    )
+    // console.log(JSON.stringify(payload))
+    // console.log(JSON.stringify(response))
+        .then(response => response.json())
+
+        .then(response => alert(JSON.stringify(response)))
 }
 
 function removePhone(){
@@ -900,6 +967,12 @@ function passDatatoModalForCustomerByAdmin(id){
 
     document.getElementById('my_value').value = id;
 }
+
+function passDatatoModalForUpdate(id){
+
+    document.getElementById('customer_id_update').value = id;
+}
+
 
 function deleteCustomer(CustomerId){
 
