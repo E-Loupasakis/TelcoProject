@@ -585,6 +585,51 @@ function getTicketsForAdminPending(){
 
 }
 
+function getCustomerById(id){
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/'+id;
+
+    const username= localStorage.getItem('username');
+
+    const password= localStorage.getItem('password');
+
+    fetch(url,{
+
+        method:"GET",
+
+        headers: {
+
+            'Accept': 'application/json',
+
+            'Content-Type': 'application/json',
+
+            'Authorization': 'Basic ' + btoa(username+":"+ password)}}
+
+    )
+
+        .then(response => response.json())
+
+        .then(customers => {
+
+            const data = customers.data;
+            document.getElementById('fname_update').value = data.firstName;
+            document.getElementById('lname_update').value = data.lastName;
+            document.getElementById('username_update').value = data.username;
+            document.getElementById('vatNumber_update').value = data.vatNumber;
+            document.getElementById('password_update').value = data.password;
+            document.getElementById('address_update').value = data.address;
+
+            document.getElementById('email_input1').value = data.emailList[0].email;
+            for (let i = 1; i < data.emailList.length; i++) {
+                alert(data.emailList.length);
+                document.getElementById('email_input' + i).value = data.emailList[i].email;
+                addEmailForUpdate();
+            }
+            document.getElementById('phone_number_input1').value = data.phones[0].number;
+
+
+}).catch(error => console.error('Network Error...'));
+}
+
 
 function addEmail(){
     var counter = document.getElementById("emailCount").value;
@@ -600,6 +645,33 @@ function addEmail(){
     document.getElementById("emailCount").value = String(newCount);
     div.setAttribute('class', 'mb-3 mt-3');
     document.getElementById("emailDivs").prepend(div);
+}
+
+function addEmailForUpdate(){
+    var counter = document.getElementById("emailCount_update").value;
+    var newCount = Number(counter);
+    newCount++;
+    var html = "<div id=\"outerEmaildiv_update"+newCount+"\" class=\"mb-3 mt-3\">";
+    html+="<label for=\"email\" class=\"form-label\">Email:</label>";
+    html+="<input type=\"text\" class=\"form-control\" id=\"email_input"+ newCount + "\" placeholder=\"Enter the email\" name=\"email_input\" required>";
+    html+="</div>"
+    var div = document.createElement('div');
+
+    div.innerHTML = html;
+    document.getElementById("emailCount_update").value = String(newCount);
+    div.setAttribute('class', 'mb-3 mt-3');
+    document.getElementById("emailDiv1_update").prepend(div);
+}
+
+function removeEmailForUpdate(){
+    var counter = document.getElementById("emailCount_update").value;
+    var newCount = Number(counter);
+    if(newCount>1){
+        const element = document.getElementById("outerEmaildiv_update"+counter);
+        element.remove();
+        newCount--;
+        document.getElementById("emailCount_update").value = String(newCount);
+    }
 }
 
 function removeEmail(){
