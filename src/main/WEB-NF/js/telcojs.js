@@ -610,6 +610,7 @@ function getCustomerById(id){
 
         .then(customers => {
 
+            
             const data = customers.data;
             document.getElementById('fname_update').value = data.firstName;
             document.getElementById('lname_update').value = data.lastName;
@@ -620,16 +621,72 @@ function getCustomerById(id){
 
             document.getElementById('email_input').value = data.emailList[0].email;
             for (let i = 1; i < data.emailList.length; i++) {
-                alert(data.emailList.length);
-                addEmailForUpdate(i);
+                addEmailForUpdate();
                 document.getElementById('email_input' + i).value = data.emailList[i].email;
             }
-            document.getElementById('phone_number_input1').value = data.phones[0].number;
+
+            document.getElementById('phone_number_input').value = data.phones[0].number;
+            for (let i = 1; i < data.phones.length; i++) {
+                addPhoneForUpdate();
+                document.getElementById('phone_number_input' + i).value = data.phones[i].number;
+            }
 
 
 }).catch(error => console.error('Network Error...'));
+
 }
 
+function removePhone(){
+    var counter = document.getElementById("phoneCount").value;
+    var newCount = Number(counter);
+    if(newCount>1){
+        const element = document.getElementById('outerPhonediv'+counter);
+        element.remove();
+        newCount--;
+        document.getElementById("phoneCount").value = String(newCount);
+    }
+}
+
+function removePhoneForUpdate(){
+    var counter = document.getElementById("phoneCount_update").value;
+    var newCount = Number(counter);
+    if(newCount>0){
+        const element = document.getElementById('outerPhonediv1'+counter);
+        element.remove();
+        newCount--;
+        document.getElementById("phoneCount_update").value = String(newCount);
+    }
+}
+
+function addPhone(){
+    var counter = document.getElementById("phoneCount").value;
+    var newCount = Number(counter);
+    newCount++;
+    var html = "<div id=\"outerPhonediv"+newCount+"\" class=\"mb-3 mt-3\">";
+    html+="<label for=\"phone\" class=\"form-label\">Phone:</label>";
+    html+="<input type=\"text\" class=\"form-control\" id=\"phone_number"+ newCount + "\" placeholder=\"Enter the phone\" name=\"phone\" required>";
+    html+="</div>"
+    var div = document.createElement('div');
+    div.innerHTML = html;
+    document.getElementById("phoneCount").value = String(newCount);
+    div.setAttribute('class', 'mb-3 mt-3');
+    document.getElementById("phoneDivs").prepend(div);
+}
+
+function addPhoneForUpdate(){
+    var counter = document.getElementById("phoneCount_update").value;
+    var newCount = Number(counter);
+    newCount++;
+    var html = "<div id=\"outerPhonediv1"+newCount+"\" class=\"mb-3 mt-3\">";
+    html+="<label for=\"phone\" class=\"form-label\">Phone:</label>";
+    html+="<input type=\"text\" class=\"form-control\" id=\"phone_number_input"+ newCount + "\" placeholder=\"Enter the phone\" name=\"phone_number_input\" required>";
+    html+="</div>"
+    var div = document.createElement('div');
+    div.innerHTML = html;
+    document.getElementById("phoneCount_update").value = String(newCount);
+    div.setAttribute('class', 'mb-3 mt-3');
+    document.getElementById("phoneDiv1_update").prepend(div);
+}
 
 function addEmail(){
     var counter = document.getElementById("emailCount").value;
@@ -647,11 +704,10 @@ function addEmail(){
     document.getElementById("emailDivs").prepend(div);
 }
 
-function addEmailForUpdate(i){
-    // var counter = document.getElementById("emailCount_update").value;
-    // var newCount = Number(counter);
-    // newCount++;
-    var newCount = i;
+function addEmailForUpdate(){
+    var counter = document.getElementById("emailCount_update").value;
+    var newCount = Number(counter);
+    newCount++;
     var html = "<div id=\"outerEmaildiv_update"+newCount+"\" class=\"mb-3 mt-3\">";
     html+="<label for=\"email\" class=\"form-label\">Email:</label>";
     html+="<input type=\"text\" class=\"form-control\" id=\"email_input"+ newCount + "\" placeholder=\"Enter the email\" name=\"email_input\" required>";
@@ -667,7 +723,7 @@ function addEmailForUpdate(i){
 function removeEmailForUpdate(){
     var counter = document.getElementById("emailCount_update").value;
     var newCount = Number(counter);
-    if(newCount>1){
+    if(newCount>0){
         const element = document.getElementById("outerEmaildiv_update"+counter);
         element.remove();
         newCount--;
@@ -686,31 +742,7 @@ function removeEmail(){
     }
 }
 
-function removePhone(){
-    var counter = document.getElementById("phoneCount").value;
-    var newCount = Number(counter);
-    if(newCount>1){
-        const element = document.getElementById('outerPhonediv'+counter);
-        element.remove();
-        newCount--;
-        document.getElementById("phoneCount").value = String(newCount);
-    }
-}
 
-function addPhone(){
-    var counter = document.getElementById("phoneCount").value;
-    var newCount = Number(counter);
-    newCount++;
-    var html = "<div id=\"outerPhonediv"+newCount+"\" class=\"mb-3 mt-3\">";
-    html+="<label for=\"phone\" class=\"form-label\">Phone:</label>";
-    html+="<input type=\"text\" class=\"form-control\" id=\"phone_number"+ newCount + "\" placeholder=\"Enter the phone\" name=\"phone\" required>";
-    html+="</div>"
-    var div = document.createElement('div');
-    div.innerHTML = html;
-    document.getElementById("phoneCount").value = String(newCount);
-    div.setAttribute('class', 'mb-3 mt-3');
-    document.getElementById("phoneDivs").prepend(div);
-}
 
 function createCustomer(){
 
@@ -993,4 +1025,9 @@ function searchCustomerByemail(){
     })
 
     .catch(error => console.error('Network Error...'+error));
+
+}
+
+function reload() {
+    window.location.reload(true);
 }
