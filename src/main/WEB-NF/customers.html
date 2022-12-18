@@ -43,7 +43,7 @@
             
         <!-- Button to Open the Modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CreateCustomerByAdmin" style="margin-top:80px;height:70px;;width:250px;font-size:18pt;margin-left:100px;">
-            Create Ticket
+            Create Customer
         </button>
 
         <!-- The Modal -->
@@ -113,6 +113,7 @@
         </div>
 
 </div>
+    
         <div class="col-md-4">
             
         </div>
@@ -120,20 +121,20 @@
             <form id="SearchCustomerByVatNumber">
                 <div class="mb-3 mt-3">
                   <label class="form-label">Search by Vat Number:</label>
-                  <input type="text" class="form-control" id="VatNumber" placeholder="Enter vat number" name="VatNumber" style="width:150px;cursor:pointer">
+                  <input type="text" class="form-control" id="VatNumberSearch" placeholder="Enter vat number" name="VatNumberSearch" style="width:150px;cursor:pointer">
                 </div>
-                <button  class="btn btn-primary" id="CustomerSearchByvAT">Search</button>
+                <button class="btn btn-primary" onclick="searchCustomerByVatNumber()" id="CustomerSearchByvAT">Search</button>
              </form>
             
         </div>
         <div class="col-md-2">
 
-            <form id="SearchCustomerByEmail">
+            <form action="" id="SearchCustomerByEmail">
                 <div class="mb-3 mt-3">
                   <label class="form-label">Search by email:</label>
                   <input type="email" class="form-control" id="customerEmail" placeholder="Enter email" name="customerEmail" style="width:150px;cursor:pointer">
                 </div>
-                <button  class="btn btn-primary" id="CustomerSearchByEmail">Search</button>
+                <button type="submit" class="btn btn-primary" onclick="searchCustomerByemail()" id="CustomerSearchByEmail">Search</button>
              </form>
             
         </div>
@@ -163,10 +164,65 @@
 
     </div>
 
+    <div class="row" style="margin-top:40px;">
+
+        <div class="col-md-1">
+
+        </div>
+
+        <div class="col-md-10">
+
+            <div id="tableForCustomers" style="text-align: center;">
+            </div>
+            
+        </div>
+
+        <div class="col-md-1">
+            
+        </div>
+
+
+    </div>
+
+
+
+
+ <!-- The Modal for deleting the customer-->
+<div class="modal" id='delete_Customer_by_admin'>
+    <form action="">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Customer Delete</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Are you sure? Do you want to delete this customer?
+            </div>
+            <div id = 'my_value' hidden></div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" onclick="deleteCustomer(document.getElementById('my_value').value)" class="btn btn-success" data-bs-dismiss="modal">Yes</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>   
+
 
 
 </div>
 
 </body>
 <script src="./js/telcojs.js"></script>
+<script>
+
+getCustomersForAdmin();
+
+</script>
 </html>

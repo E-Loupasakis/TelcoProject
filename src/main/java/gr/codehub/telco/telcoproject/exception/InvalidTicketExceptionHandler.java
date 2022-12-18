@@ -6,8 +6,6 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.tool.schema.spi.ExceptionHandler;
-
 import java.time.LocalDateTime;
 
 @Slf4j
