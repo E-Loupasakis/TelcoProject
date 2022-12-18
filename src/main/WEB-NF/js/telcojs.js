@@ -1094,29 +1094,20 @@ function getTicketsForSimpleCustomer(){
 
             html+="<tr><th>ID Ticket</th><th>ID Customer</th><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
                 "<th>Description</th><th>Date of Creation</th>" +
-                "<th>Date of Action</th><th>Edit</th>";
+                "<th>Date of Action</th>";
 
 
             for(let ticket of data){
 
                 html+="<tr><td id='tickId'>"+ticket.id+"</td><td id='table_cust_id'>"+id+"</td><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
                     "</td><td>"+ticket.addressOfIssue+"</td><td>"+ticket['description']+"" +
-                    "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getCustomerById("+id+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
-                    "  Edit \n" +
-                    "</button></td></tr>";
+                    "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td></tr>";
 
             }
-
-
 
             html+="</table>";
 
             document.getElementById('cust_table').innerHTML = html;
-
-
-
-
-
 
         })
 
