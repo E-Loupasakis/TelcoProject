@@ -705,3 +705,222 @@ function createCustomer(){
 
         .then(response => alert(JSON.stringify(response)))
 }
+
+function getCustomersForAdmin(){
+
+
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers';
+
+    const username= localStorage.getItem('username');
+
+    const password= localStorage.getItem('password');
+
+    fetch(url,{
+
+        method:"GET",
+
+        headers: {
+
+            'Accept': 'application/json',
+
+            'Content-Type': 'application/json',
+
+            'Authorization': 'Basic ' + btoa(username+":"+ password)}}
+
+    )
+
+        .then(response => response.json())
+
+        .then(customers => {
+
+            const data = customers.data;
+            console.log(data);
+            var html="<table class='table table-hover'>";
+
+            html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th><th>Password</th>" +
+                "<th>User Category</th><th>Vat number</th><th>Address</th>" +
+                "<th>Email List</th><th>Phone List</th><th>Edit</th><th>Delete</th>";
+
+                    
+                        for (let customer of data) {
+                            
+                           // Object.keys(stringArray).map(str => console.log(stringArray[str]))     
+                            
+                            if(customer.userCategory=="CUSTOMER") {
+                            html += "<tr><td id='customer_id'>" + customer['id'] + "</td><td>" + customer.firstName + "</td><td>" + customer.lastName + "<td>" + customer.username + "" +
+                                "</td><td>" + customer.password + "</td><td>" + customer.userCategory + "" +
+                                "</td><td>" + customer.vatNumber + "</td><td>" + customer.address + "</td><td>" + customer.emailList.email +"</td><td>" + customer.phones.number + "</td><td><button  onclick='getCustomerById(" + customer['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
+                                "  Edit Customer\n" +
+                                "</button></td><td><button onclick='passDatatoModalForCustomerByAdmin(" + customer['id'] + ")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_Customer_by_admin\">\n" +
+                                "  Delete Customer\n" +
+                                "</button></td></tr>";
+
+                        }
+                    }
+
+
+            html+="</table>";
+
+            document.getElementById('tableForCustomers').innerHTML = html;
+
+        })
+
+        .catch(error => console.error('Network Error...'+error));
+
+}
+
+
+function passDatatoModalForCustomerByAdmin(id){
+
+    document.getElementById('my_value').value = id;
+}
+
+function deleteCustomer(CustomerId){
+
+    const username= localStorage.getItem('username');
+
+    const password= localStorage.getItem('password');
+
+    var url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/'+CustomerId;
+
+    fetch(url,{
+
+        method:"DELETE",
+
+        headers: {
+
+            'Accept': 'application/json',
+
+            'Content-Type': 'application/json',
+
+            'Authorization': 'Basic ' + btoa(username+":"+ password)}}
+
+    )
+
+        .then(response => response.json())
+        .then(response => console.log(JSON.stringify(response)))
+
+        .catch(error => console.error('Network Error...'+error));
+
+}
+
+
+function searchCustomerByVatNumber(){
+
+    
+
+    const vat = document.getElementById('VatNumberSearch').value;
+    event.preventDefault();
+
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/find/vat/'+vat;
+
+    const username= localStorage.getItem('username');
+
+    const password= localStorage.getItem('password');
+
+
+    fetch(url, {method:"GET", headers: {'Authorization': 'Basic ' + btoa(username+":"+ password)}})
+
+
+    .then(response => response.json())
+
+    .then(customers => {
+
+        const data = customers.data;
+        console.log(data);
+        if(data!=null){
+        var html="<table class='table table-hover'>";
+
+        html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th><th>Password</th>" +
+            "<th>User Category</th><th>Vat number</th><th>Address</th>" +
+            "<th>Email List</th><th>Phone List</th><th>Edit</th><th>Delete</th>";
+                        
+                       // Object.keys(stringArray).map(str => console.log(stringArray[str]))     
+                        
+                       
+                        html += "<tr><td id='customer_id'>" + data['id'] + "</td><td>" + data.firstName + "</td><td>" + data.lastName + "<td>" + data.username + "" +
+                            "</td><td>" + data.password + "</td><td>" + data.userCategory + "" +
+                            "</td><td>" + data.vatNumber + "</td><td>" + data.address + "</td><td>" + data.emailList.email +"</td><td>" + data.phones.number + "</td><td><button  onclick='getCustomerById(" + data['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
+                            "  Edit Customer\n" +
+                            "</button></td><td><button onclick='passDatatoModalForCustomerByAdmin(" + data['id'] + ")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_Customer_by_admin\">\n" +
+                            "  Delete Customer\n" +
+                            "</button></td></tr>";
+
+
+        html+="</table>";
+        }else{
+            var html="<table class='table table-hover'>";
+
+            html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th><th>Password</th>" +
+            "<th>User Category</th><th>Vat number</th><th>Address</th>" +
+            "<th>Email List</th><th>Phone List</th><th>Edit</th><th>Delete</th>";
+
+            html+="</table>";
+        }
+        document.getElementById('tableForCustomers').innerHTML = html;
+
+    })
+
+    .catch(error => console.error('Network Error...'+error));
+}
+
+
+function searchCustomerByemail(){
+
+    
+
+    const emailSearch = document.getElementById('customerEmail').value;
+    event.preventDefault();
+
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/find/email/'+emailSearch;
+
+    const username= localStorage.getItem('username');
+
+    const password= localStorage.getItem('password');
+
+
+    fetch(url, {method:"GET", headers: {'Authorization': 'Basic ' + btoa(username+":"+ password)}})
+
+
+    .then(response => response.json())
+
+    .then(customers => {
+
+        const data = customers.data;
+        data = data[0]
+        console.log(data);
+        if(data!=null){
+        var html="<table class='table table-hover'>";
+        
+        html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th><th>Password</th>" +
+            "<th>User Category</th><th>Vat number</th><th>Address</th>" +
+            "<th>Email List</th><th>Phone List</th><th>Edit</th><th>Delete</th>";
+                        
+                       // Object.keys(stringArray).map(str => console.log(stringArray[str]))     
+                        
+                       
+                        html += "<tr><td id='customer_id'>" + data['id'] + "</td><td>" + data.firstName + "</td><td>" + data.lastName + "<td>" + data.username + "" +
+                            "</td><td>" + data.password + "</td><td>" + data.userCategory + "" +
+                            "</td><td>" + data.vatNumber + "</td><td>" + data.address + "</td><td>" + data.emailList['0'].email +"</td><td>" + data.phones[0].phonelList.number + "</td><td><button  onclick='getCustomerById(" + data['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
+                            "  Edit Customer\n" +
+                            "</button></td><td><button onclick='passDatatoModalForCustomerByAdmin(" + data['id'] + ")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_Customer_by_admin\">\n" +
+                            "  Delete Customer\n" +
+                            "</button></td></tr>";
+
+
+        html+="</table>";
+        }else{
+            var html="<table class='table table-hover'>";
+
+            html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th><th>Password</th>" +
+            "<th>User Category</th><th>Vat number</th><th>Address</th>" +
+            "<th>Email List</th><th>Phone List</th><th>Edit</th><th>Delete</th>";
+
+            html+="</table>";
+        }
+        document.getElementById('tableForCustomers').innerHTML = html;
+
+    })
+
+    .catch(error => console.error('Network Error...'+error));
+}
