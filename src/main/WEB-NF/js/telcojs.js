@@ -585,6 +585,108 @@ function getTicketsForAdminPending(){
 
 }
 
+function getCustomerById(id){
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/'+id;
+
+    const username= localStorage.getItem('username');
+
+    const password= localStorage.getItem('password');
+
+    fetch(url,{
+
+        method:"GET",
+
+        headers: {
+
+            'Accept': 'application/json',
+
+            'Content-Type': 'application/json',
+
+            'Authorization': 'Basic ' + btoa(username+":"+ password)}}
+
+    )
+
+        .then(response => response.json())
+
+        .then(customers => {
+
+
+            const data = customers.data;
+            document.getElementById('fname_update').value = data.firstName;
+            document.getElementById('lname_update').value = data.lastName;
+            document.getElementById('username_update').value = data.username;
+            document.getElementById('vatNumber_update').value = data.vatNumber;
+            document.getElementById('password_update').value = data.password;
+            document.getElementById('address_update').value = data.address;
+
+            document.getElementById('email_input').value = data.emailList[0].email;
+            for (let i = 1; i < data.emailList.length; i++) {
+                addEmailForUpdate();
+                document.getElementById('email_input' + i).value = data.emailList[i].email;
+            }
+
+            document.getElementById('phone_number_input').value = data.phones[0].number;
+            for (let i = 1; i < data.phones.length; i++) {
+                addPhoneForUpdate();
+                document.getElementById('phone_number_input' + i).value = data.phones[i].number;
+            }
+
+
+}).catch(error => console.error('Network Error...'));
+
+}
+
+function removePhone(){
+    var counter = document.getElementById("phoneCount").value;
+    var newCount = Number(counter);
+    if(newCount>1){
+        const element = document.getElementById('outerPhonediv'+counter);
+        element.remove();
+        newCount--;
+        document.getElementById("phoneCount").value = String(newCount);
+    }
+}
+
+function removePhoneForUpdate(){
+    var counter = document.getElementById("phoneCount_update").value;
+    var newCount = Number(counter);
+    if(newCount>0){
+        const element = document.getElementById('outerPhonediv1'+counter);
+        element.remove();
+        newCount--;
+        document.getElementById("phoneCount_update").value = String(newCount);
+    }
+}
+
+function addPhone(){
+    var counter = document.getElementById("phoneCount").value;
+    var newCount = Number(counter);
+    newCount++;
+    var html = "<div id=\"outerPhonediv"+newCount+"\" class=\"mb-3 mt-3\">";
+    html+="<label for=\"phone\" class=\"form-label\">Phone:</label>";
+    html+="<input type=\"text\" class=\"form-control\" id=\"phone_number"+ newCount + "\" placeholder=\"Enter the phone\" name=\"phone\" required>";
+    html+="</div>"
+    var div = document.createElement('div');
+    div.innerHTML = html;
+    document.getElementById("phoneCount").value = String(newCount);
+    div.setAttribute('class', 'mb-3 mt-3');
+    document.getElementById("phoneDivs").prepend(div);
+}
+
+function addPhoneForUpdate(){
+    var counter = document.getElementById("phoneCount_update").value;
+    var newCount = Number(counter);
+    newCount++;
+    var html = "<div id=\"outerPhonediv1"+newCount+"\" class=\"mb-3 mt-3\">";
+    html+="<label for=\"phone\" class=\"form-label\">Phone:</label>";
+    html+="<input type=\"text\" class=\"form-control\" id=\"phone_number_input"+ newCount + "\" placeholder=\"Enter the phone\" name=\"phone_number_input\" required>";
+    html+="</div>"
+    var div = document.createElement('div');
+    div.innerHTML = html;
+    document.getElementById("phoneCount_update").value = String(newCount);
+    div.setAttribute('class', 'mb-3 mt-3');
+    document.getElementById("phoneDiv1_update").prepend(div);
+}
 
 function addEmail(){
     var counter = document.getElementById("emailCount").value;
@@ -600,6 +702,33 @@ function addEmail(){
     document.getElementById("emailCount").value = String(newCount);
     div.setAttribute('class', 'mb-3 mt-3');
     document.getElementById("emailDivs").prepend(div);
+}
+
+function addEmailForUpdate(){
+    var counter = document.getElementById("emailCount_update").value;
+    var newCount = Number(counter);
+    newCount++;
+    var html = "<div id=\"outerEmaildiv_update"+newCount+"\" class=\"mb-3 mt-3\">";
+    html+="<label for=\"email\" class=\"form-label\">Email:</label>";
+    html+="<input type=\"text\" class=\"form-control\" id=\"email_input"+ newCount + "\" placeholder=\"Enter the email\" name=\"email_input\" required>";
+    html+="</div>"
+    var div = document.createElement('div');
+
+    div.innerHTML = html;
+    document.getElementById("emailCount_update").value = String(newCount);
+    div.setAttribute('class', 'mb-3 mt-3');
+    document.getElementById("emailDiv1_update").prepend(div);
+}
+
+function removeEmailForUpdate(){
+    var counter = document.getElementById("emailCount_update").value;
+    var newCount = Number(counter);
+    if(newCount>0){
+        const element = document.getElementById("outerEmaildiv_update"+counter);
+        element.remove();
+        newCount--;
+        document.getElementById("emailCount_update").value = String(newCount);
+    }
 }
 
 function removeEmail(){
@@ -741,7 +870,7 @@ function getCustomersForAdmin(){
 
                     
                         for (let customer of data) {
-                            
+
                             if(customer.userCategory=="CUSTOMER") {
 
                             html += "<tr><td id='customer_id'>" + customer['id'] + "</td><td>" + customer.firstName + "</td><td>" + customer.lastName + "<td>" + customer.username + "" +
@@ -826,9 +955,6 @@ function searchCustomerByVatNumber(){
         const data = customers.data;
         console.log(data);
         if(data!=null){
-
-        
-
         var html="<table class='table table-hover'>";
 
         html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th><th>Password</th>" +
@@ -922,13 +1048,18 @@ function searchCustomerByemail(){
     })
 
     .catch(error => console.error('Network Error...'+error));
+
+}
+
+function reload() {
+    window.location.reload(true);
 }
 
 
 //Get tickets for simple customer
 
 function getTicketsForSimpleCustomer(){
-    
+
     const username= localStorage.getItem('username');
 
     const password= localStorage.getItem('password');
@@ -937,7 +1068,7 @@ function getTicketsForSimpleCustomer(){
 
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/find/tickets/'+id;
 
-   
+
 
     fetch(url,{
 
