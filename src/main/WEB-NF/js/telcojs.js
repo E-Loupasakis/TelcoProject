@@ -1014,7 +1014,7 @@ function searchCustomerByemail(){
 
         const data = customers.data;
         console.log(data);
-        if(data!=null){
+        if(data.length!=0){
         var html="<table class='table table-hover'>";
         
         html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th><th>Password</th>" +
