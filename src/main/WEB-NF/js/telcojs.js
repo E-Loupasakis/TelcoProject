@@ -655,11 +655,14 @@ function updateCustomer(){
     let address = document.getElementById("address_update").value;
     debugger;
     let phoneArray = new Array();
+    phoneArray.push(document.getElementById("phone_number_input").value);
     for(i = 1; i<=phoneCount;i++){
         str = "phone_number_input" + i;
         phoneArray.push(document.getElementById(str).value);
     }
+
     let emailArray = new Array();
+    emailArray.push(document.getElementById("email_input").value);
     for(i = 1; i<=emailCount;i++){
         str = "email_input" + i;
         emailArray.push(document.getElementById(str).value);
@@ -926,7 +929,7 @@ function getCustomersForAdmin(){
         .then(response => response.json())
 
         .then(customers => {
-
+debugger;
             const data = customers.data;
             console.log(data);
             var html="<table class='table table-hover'>";
