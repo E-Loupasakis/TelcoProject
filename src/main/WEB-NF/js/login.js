@@ -37,6 +37,8 @@ function login(){
             localStorage.setItem('username',data.username);
             localStorage.setItem('password',data.password);
             localStorage.setItem('userid',data.id);
+            localStorage.setItem('fname',data.firstName);
+            localStorage.setItem('lname',data.lastName);
             
             if(data.userCategory=="ADMIN") {
                 window.location.href="./main_admin.html";

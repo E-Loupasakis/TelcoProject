@@ -44,7 +44,7 @@
 
           <div class="mt-4 p-5 bg-primary text-white rounded" id="jumbo4" style="cursor:pointer">
               <h1>Welcome to Telco Project</h1>
-              <p>Here you can see your tickets</p>
+              <p>Hello <span id="cstNames"></span>,<br>Here you can see your tickets</p>
           </div>
           
       </div>
@@ -57,14 +57,14 @@
 
 
 
-  <div class="row">
+  <div class="row" style="margin-top:40px;text-align:center;">
 
-    <div class="col-md-4">
+    <div class="col-md-1">
 
 
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-10">
       
       <div id="cust_table">
 
@@ -73,7 +73,7 @@
 
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-1">
       
     </div>
 
@@ -87,7 +87,8 @@
   <script src="./js/telcojs.js"></script>
 
   <script>
-//getTicketsForSimpleCustomer();
+getTicketsForSimpleCustomer();
+printCustomerNames();
 
   </script>
 

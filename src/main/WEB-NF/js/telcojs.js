@@ -742,9 +742,8 @@ function getCustomersForAdmin(){
                     
                         for (let customer of data) {
                             
-                           // Object.keys(stringArray).map(str => console.log(stringArray[str]))     
-                            
                             if(customer.userCategory=="CUSTOMER") {
+
                             html += "<tr><td id='customer_id'>" + customer['id'] + "</td><td>" + customer.firstName + "</td><td>" + customer.lastName + "<td>" + customer.username + "" +
                                 "</td><td>" + customer.password + "</td><td>" + customer.userCategory + "" +
                                 "</td><td>" + customer.vatNumber + "</td><td>" + customer.address + "</td><td>" + customer.emailList[0].email +"</td><td>" + customer.phones[0].number + "</td><td><button  onclick='getCustomerById(" + customer['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
@@ -827,6 +826,9 @@ function searchCustomerByVatNumber(){
         const data = customers.data;
         console.log(data);
         if(data!=null){
+
+        
+
         var html="<table class='table table-hover'>";
 
         html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th><th>Password</th>" +
@@ -921,3 +923,78 @@ function searchCustomerByemail(){
 
     .catch(error => console.error('Network Error...'+error));
 }
+
+
+//Get tickets for simple customer
+
+function getTicketsForSimpleCustomer(){
+    
+    const username= localStorage.getItem('username');
+
+    const password= localStorage.getItem('password');
+
+    const id=localStorage.getItem('userid');
+
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/find/tickets/'+id;
+
+   
+
+    fetch(url,{
+
+        method:"GET",
+
+        headers: {
+
+            'Accept': 'application/json',
+
+            'Content-Type': 'application/json',
+
+            'Authorization': 'Basic ' + btoa(username+":"+ password)}}
+
+    )
+
+        .then(response => response.json())
+
+        .then(tickets => {
+
+            const data = tickets.data;
+            console.log(data);
+            var html="<table class='table table-hover'>";
+
+            html+="<tr><th>ID Ticket</th><th>ID Customer</th><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
+                "<th>Description</th><th>Date of Creation</th>" +
+                "<th>Date of Action</th><th>Edit</th>";
+
+
+            for(let ticket of data){
+
+                html+="<tr><td id='tickId'>"+ticket.id+"</td><td id='table_cust_id'>"+id+"</td><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
+                    "</td><td>"+ticket.addressOfIssue+"</td><td>"+ticket['description']+"" +
+                    "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getCustomerById("+id+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
+                    "  Edit \n" +
+                    "</button></td></tr>";
+
+            }
+
+
+
+            html+="</table>";
+
+            document.getElementById('cust_table').innerHTML = html;
+
+
+
+
+
+
+        })
+
+        .catch(error => console.error('Network Error...'));
+
+}
+
+function printCustomerNames(){
+    html=`${localStorage.getItem('fname')} ${localStorage.getItem('lname')}`
+    document.getElementById('cstNames').innerHTML=html;
+}
+
