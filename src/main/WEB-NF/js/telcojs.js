@@ -618,11 +618,11 @@ function getCustomerById(id){
             document.getElementById('password_update').value = data.password;
             document.getElementById('address_update').value = data.address;
 
-            document.getElementById('email_input1').value = data.emailList[0].email;
+            document.getElementById('email_input').value = data.emailList[0].email;
             for (let i = 1; i < data.emailList.length; i++) {
                 alert(data.emailList.length);
+                addEmailForUpdate(i);
                 document.getElementById('email_input' + i).value = data.emailList[i].email;
-                addEmailForUpdate();
             }
             document.getElementById('phone_number_input1').value = data.phones[0].number;
 
@@ -647,10 +647,11 @@ function addEmail(){
     document.getElementById("emailDivs").prepend(div);
 }
 
-function addEmailForUpdate(){
-    var counter = document.getElementById("emailCount_update").value;
-    var newCount = Number(counter);
-    newCount++;
+function addEmailForUpdate(i){
+    // var counter = document.getElementById("emailCount_update").value;
+    // var newCount = Number(counter);
+    // newCount++;
+    var newCount = i;
     var html = "<div id=\"outerEmaildiv_update"+newCount+"\" class=\"mb-3 mt-3\">";
     html+="<label for=\"email\" class=\"form-label\">Email:</label>";
     html+="<input type=\"text\" class=\"form-control\" id=\"email_input"+ newCount + "\" placeholder=\"Enter the email\" name=\"email_input\" required>";
