@@ -1035,7 +1035,7 @@ function createCustomer(){
     // console.log(JSON.stringify(response))
         .then(response => response.json())
 
-        .then(response => alert(JSON.stringify(response)))
+        .then(response => {alert(JSON.stringify(response))})
 }
 
 function getCustomersForAdmin(){
