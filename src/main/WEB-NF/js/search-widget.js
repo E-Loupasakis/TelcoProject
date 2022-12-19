@@ -33,6 +33,17 @@ function field_check(){
 
 }
 
+function customer_field_check(){
+    const search_type = document.getElementById('searchType').value;
+    if(search_type=="byVat"){
+        document.getElementById('vatSearch').style.display = 'inline-block';
+        document.getElementById('emailSearch').style.display = 'none';
+    }
+    if(search_type=="byEmail"){
+        document.getElementById('vatSearch').style.display = 'none';
+        document.getElementById('emailSearch').style.display = 'inline-block';
+    }
+}
 
 function s_date_search(){
 
@@ -94,7 +105,6 @@ function s_date_search(){
 
 
 function s_date_search_admin(){
-
 
     const username= localStorage.getItem('username');
     const password= localStorage.getItem('password');
@@ -160,4 +170,61 @@ function s_date_search_admin(){
         }).catch(error => console.error('Network Error...'+ error));
 }
 
+function s_customers_search_admin(){
+    // const customerId = localStorage.getItem('userid');
+    const username= localStorage.getItem('username');
+    const password= localStorage.getItem('password');
+    const search_type = document.getElementById('searchType').value;
+    const vat = document.getElementById('vatSearch').value;
+    const email = document.getElementById('emailSearch').value;
 
+    var url="";
+
+
+    if(search_type=="byVat"){
+        if(vat=="") return "You have to enter VAT number";
+        url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/find/vat/'+vat;}
+    if(search_type=="byEmail"){
+        if(email=="") return "You have to enter VAT number";
+        url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/find/email/'+email;}
+    
+    
+        fetch(url, {method:"GET", headers: {'Authorization': 'Basic ' + btoa(username+":"+ password)}})
+
+
+        .then(response => response.json())
+    
+        .then(customers => {
+    
+            const data = customers.data;
+    
+            if(data.length!=0){
+            var html="<table class='table table-hover'>";
+    
+            html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th>" +
+                "<th>User Category</th><th>Vat number</th><th>Address</th>" +
+                "<th>Email List</th><th>Phone List</th><th>Edit</th><th>Delete</th>";
+    
+                            html += "<tr><td id='customer_id'>" + data['id'] + "</td><td>" + data.firstName + "</td><td>" + data.lastName + "<td>" + data.username + "" +
+                                "</td><td>" + data.userCategory + "" +
+                                "</td><td>" + data.vatNumber + "</td><td>" + data.address + "</td><td>" + data.emailList[0].email +"</td><td>" + data.phones[0].number + "</td><td><button  onclick='getCustomerById(" + data['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
+                                "  Edit Customer\n" +
+                                "</button></td><td><button onclick='passDatatoModalForCustomerByAdmin("+data['id']+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_Customer_by_admin\">\n" +
+                                "  Delete Customer\n" +
+                                "</button></td></tr>";
+    
+    
+            html+="</table>";
+            }else{
+                var html="<table class='table table-hover'>";
+    
+                html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th>" +
+                "<th>User Category</th><th>Vat number</th><th>Address</th>" +
+                "<th>Email List</th><th>Phone List</th><th>Edit</th><th>Delete</th>";
+    
+                html+="</table>";
+            }
+            document.getElementById('tableForCustomers').innerHTML = html;
+    
+        }).catch(error => console.error('Network Error...'+ error));
+}

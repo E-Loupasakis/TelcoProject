@@ -62,10 +62,7 @@
 
       <div class="col-md-2">
 
-         <!-- Button to Open the Modal -->
-         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CreateTicketByAdmin" style="margin-top:80px;height:70px;;width:250px;font-size:18pt;margin-left:100px;">
-          Create Ticket
-      </button>
+         
 
       <!-- The Modal -->
       <div class="modal" id="CreateTicketByAdmin">
@@ -195,6 +192,13 @@
         <div class="col-md-10" style="width:100%">
         <div class="col-md-10" style="width:100%">
             <div id="mySearchRow">
+              <div id="create_ticket_button">
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CreateTicketByAdmin">
+                 Create Ticket
+             </button>
+            </div>
+              <div id="search_ticket_criteria">
               <label>Search by</label>
               <select id="searchType" onchange="field_check()">
                 <option value="byCreation">Ticket Creation</option>
@@ -208,6 +212,7 @@
               <input type="date"  id="dateTo" placeholder="Enter date" style="width:150px;cursor:pointer">
               <select id="search_customer_id"></select>
               <button type="button" onclick="s_date_search_admin()" class="btn btn-primary" id="TicketBtnSearchByDates">Search</button>
+            </div>
             </div>
             <div id="table">
             </div>
@@ -342,7 +347,7 @@
 </div>
 
 <script src="./js/telcojs.js"></script>
-<script src="./js/customer-search.js"></script>
+<script src="js/search-widget.js"></script>
 <script>
 
     getTicketsForAdmin();
