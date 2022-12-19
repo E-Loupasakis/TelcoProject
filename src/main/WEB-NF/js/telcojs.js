@@ -445,7 +445,7 @@ function searchByCustomer(){
     event.preventDefault();
 
 
-    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/find/tickets/'+customerId
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/find/tickets/'+customerId;
 
     const username= localStorage.getItem('username');
 

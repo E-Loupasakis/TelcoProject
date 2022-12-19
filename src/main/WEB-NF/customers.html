@@ -41,10 +41,7 @@
       <div class="col-md-4">
 
             
-        <!-- Button to Open the Modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CreateCustomerByAdmin" style="margin-top:80px;height:70px;;width:250px;font-size:18pt;margin-left:100px;">
-            Create Customer
-        </button>
+        
 
         <!-- The Modal -->
         <div class="modal" id="CreateCustomerByAdmin">
@@ -117,7 +114,7 @@
         <div class="col-md-4">
             
         </div>
-        <div class="col-md-2">
+        <!-- <div class="col-md-2">
             <form id="SearchCustomerByVatNumber">
                 <div class="mb-3 mt-3">
                   <label class="form-label">Search by Vat Number:</label>
@@ -137,7 +134,7 @@
                 <button type="button" class="btn btn-primary" onclick="searchCustomerByemail()" id="CustomerSearchByEmail">Search</button>
              </form>
             
-        </div>
+        </div> -->
 
 
     </div>
@@ -169,9 +166,23 @@
         <div class="col-md-1">
 
         </div>
-
-        <div class="col-md-10" style="width:100%">
-
+        <div id="mySearchRow">
+       <!-- Button to Open the Modal -->
+       <div id="create_button">
+        <button type="button" class="btn btn-primary" id="#create_csmer_btn" data-bs-toggle="modal" data-bs-target="#CreateCustomerByAdmin">
+          Create Customer
+      </button></div>
+      <div id="search_criteria">
+          <label>Search by</label>
+          <select id="searchType" onchange="customer_field_check()">
+            <option value="byVat">VAT</option>
+            <option value="byEmail">Email</option>
+          </select>
+          <input type="text"  id="vatSearch" placeholder="Enter VAT" style="width:150px;cursor:pointer">
+          <input type="text"  id="emailSearch" placeholder="Enter Email" style="width:150px;cursor:pointer">
+          <button type="button" onclick="s_customers_search_admin()" class="btn btn-primary" id="customerBtnSearchByDates">Search</button>
+        </div>
+      </div>
             <div id="tableForCustomers">
             </div>
             
@@ -287,9 +298,10 @@
 
 </body>
 <script src="./js/telcojs.js"></script>
+<script src="./js/search-widget.js"></script>
 <script>
 
 getCustomersForAdmin();
-
+customer_field_check();
 </script>
 </html>
