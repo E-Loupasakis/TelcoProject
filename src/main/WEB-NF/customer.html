@@ -31,8 +31,30 @@
   </nav>
 
 
-<div class="container-fluid">
-
+<!-- <div class="container-fluid">
+<div class="row">
+  <div class="col-xs-4">
+    <form id="TicketformSearchByDate">
+        <div class="mb-3 mt-3" id="divInline">
+          <label class="form-label">Search by Date:</label>
+          <input type="date" class="form-control" id="dateFromByOneDate" placeholder="Enter date" name="dateFromByOneDate" style="width:150px;cursor:pointer">
+        </div>
+        <button type="button" class="btn btn-primary" onclick="searchByDate()" id="TicketBtnSearchByDate">Search</button>
+      </form>
+</div>
+<div class="col-xs-4" id="dtSearch">
+      <form id="TicketformSearchByDates">
+        <div class="mb-3 mt-3">
+          <label class="form-label">Search by Dates:</label>
+          <input type="date" class="form-control" id="dateFromBy2Dates" placeholder="Enter date" name="dateFrom2dates" style="width:150px;cursor:pointer">
+          <br>
+          <input type="date" class="form-control" id="dateToBy2Dates" placeholder="Enter date" name="dateToFrom2Dates" style="width:150px;cursor:pointer">
+        </div>
+        
+        <button type="button" onclick="searchByDates()" class="btn btn-primary" id="TicketBtnSearchByDates">Search</button>
+      </form>
+    </div>
+</div> -->
   <div class="row">
 
       <div class="col-md-4">
@@ -49,6 +71,7 @@
           
       </div>
 
+
       <div class="col-md-4" style="text-align:center;">
 
         <button type="button" id="buttonUpdateCustomer" style="margin-top:80px;width:250px;height:70px;" onclick='getSimpleCustomerById()' class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#EditModalcustomer">
@@ -62,17 +85,23 @@
 
 
   <div class="row" style="margin-top:40px;text-align:center;">
-
     <div class="col-md-1">
-
-
     </div>
-
     <div class="col-md-10">
-      
+      <div id="mySearchRow">
+          <label>Search by</label>
+          <select id="searchType" onchange="field_check()">
+            <option value="byCreation">Ticket Creation</option>
+            <option value="byCreationRange">Ticket Creation(Date Range)</option>
+            <option value="byAction">Ticket Action</option>
+            <option value="byActionRange">Ticket Action(Date Range)</option>
+          </select>
+          <input type="date"  id="dateSearch" placeholder="Enter date" style="width:150px;cursor:pointer">
+          <input type="date"  id="dateFrom" placeholder="Enter date" style="width:150px;cursor:pointer">
+          <input type="date"  id="dateTo" placeholder="Enter date" style="width:150px;cursor:pointer">
+          <button type="button" onclick="s_date_search()" class="btn btn-primary" id="TicketBtnSearchByDates">Search</button>
+      </div>
       <div id="cust_table">
-
-
       </div>
 
     </div>
@@ -153,11 +182,12 @@
   </body>
 
   <script src="./js/telcojs.js"></script>
+  <script src="./js/customer-search.js"></script>
 
   <script>
 getTicketsForSimpleCustomer();
 printCustomerNames();
-
+field_check();
   </script>
 
 

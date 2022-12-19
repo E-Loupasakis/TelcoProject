@@ -223,7 +223,11 @@ function updateTicket(){
 
         .then(response => response.json())
 
-        .then(response => console.log(JSON.stringify(response)))
+        .then(response => {
+            reload();
+        })
+
+
 }
 
 
@@ -258,13 +262,17 @@ function deleteTicket(ticketId){
     )
 
         .then(response => response.json())
-        .then(response => console.log(JSON.stringify(response)))
+        .then(response => {
+
+            reload();
+        })
 
         .catch(error => console.error('Network Error...'));
 
 }
 
 function createTicket(){
+
     const username= localStorage.getItem('username');
 
     const password= localStorage.getItem('password');
@@ -314,7 +322,9 @@ function createTicket(){
 
         .then(response => response.json())
 
-        .then(response => console.log(JSON.stringify(response)))
+        .then(response => {
+            reload();
+        })
 }
 
 function searchByDate(){
@@ -353,9 +363,9 @@ function searchByDate(){
 
                 html+="<tr><td id='table_ticket_id'>"+ticket.id+"</td><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
                     "</td><td>"+ticket.addressOfIssue+"</td><td>"+ticket['description']+"" +
-                    "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.ticketId+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
+                    "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.id+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
                     "  Edit Ticket\n" +
-                    "</button></td><td><button onclick='passDatatoModal("+ticket.ticketId+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_ticket_by_admin\">\n" +
+                    "</button></td><td><button onclick='passDatatoModal("+ticket.id+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_ticket_by_admin\">\n" +
                     "  Delete Ticket\n" +
                     "</button></td></tr>";
 
@@ -410,9 +420,9 @@ function searchByDates(){
 
                 html+="<tr><td id='table_ticket_id'>"+ticket.id+"</td><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
                     "</td><td>"+ticket.addressOfIssue+"</td><td>"+ticket['description']+"" +
-                    "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.ticketId+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
+                    "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.id+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
                     "  Edit Ticket\n" +
-                    "</button></td><td><button onclick='passDatatoModal("+ticket.ticketId+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_ticket_by_admin\">\n" +
+                    "</button></td><td><button onclick='passDatatoModal("+ticket.id+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_ticket_by_admin\">\n" +
                     "  Delete Ticket\n" +
                     "</button></td></tr>";
 
@@ -466,9 +476,9 @@ function searchByCustomer(){
 
                 html+="<tr><td id='table_ticket_id'>"+ticket.id+"</td><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
                     "</td><td>"+ticket.addressOfIssue+"</td><td>"+ticket['description']+"" +
-                    "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.ticketId+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
+                    "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.id+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
                     "  Edit Ticket\n" +
-                    "</button></td><td><button onclick='passDatatoModal("+ticket.ticketId+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_ticket_by_admin\">\n" +
+                    "</button></td><td><button onclick='passDatatoModal("+ticket.id+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_ticket_by_admin\">\n" +
                     "  Delete Ticket\n" +
                     "</button></td></tr>";
 
@@ -621,7 +631,7 @@ function getCustomerById(id){
             document.getElementById('address_update').value = data.address;
 
             document.getElementById('email_input').value = data.emailList[0].email;
-            for (let i = 1; i < data.emailList.length; i++) {
+            for (let i = 1; i <data.emailList.length; i++) {
                 addEmailForUpdate();
                 document.getElementById('email_input' + i).value = data.emailList[i].email;
             }
@@ -760,7 +770,9 @@ function updateCustomer(){
     // console.log(JSON.stringify(response))
         .then(response => response.json())
 
-        .then(response => alert(JSON.stringify(response)))
+        .then(response =>{
+            reload();
+        })
 }
 
 
@@ -1058,11 +1070,13 @@ function createCustomer(){
             body: JSON.stringify(payload)
         }
     )
-    // console.log(JSON.stringify(payload))
-    // console.log(JSON.stringify(response))
+
         .then(response => response.json())
 
-        .then(response => alert(JSON.stringify(response)))
+        .then(response => {
+
+            reload();
+        })
 }
 
 function getCustomersForAdmin(){
@@ -1091,12 +1105,12 @@ function getCustomersForAdmin(){
         .then(response => response.json())
 
         .then(customers => {
-            
+
             const data = customers.data;
             console.log(data);
             var html="<table class='table table-hover'>";
 
-            html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th><th>Password</th>" +
+            html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th>" +
                 "<th>User Category</th><th>Vat number</th><th>Address</th>" +
                 "<th>Email List</th><th>Phone List</th><th>Edit</th><th>Delete</th>";
 
@@ -1106,7 +1120,7 @@ function getCustomersForAdmin(){
                             if(customer.userCategory=="CUSTOMER") {
 
                             html += "<tr><td id='customer_id'>" + customer['id'] + "</td><td>" + customer.firstName + "</td><td>" + customer.lastName + "<td>" + customer.username + "" +
-                                "</td><td>" + customer.password + "</td><td>" + customer.userCategory + "" +
+                                "</td><td>" + customer.userCategory + "" +
                                 "</td><td>" + customer.vatNumber + "</td><td>" + customer.address + "</td><td>" + customer.emailList[0].email +"</td><td>" + customer.phones[0].number + "</td><td><button  onclick='getCustomerById(" + customer['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
                                 "  Edit Customer\n" +
                                 "</button></td><td><button onclick='passDatatoModalForCustomerByAdmin(" + customer['id'] + ")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_Customer_by_admin\">\n" +
@@ -1162,7 +1176,9 @@ function deleteCustomer(CustomerId){
     )
 
         .then(response => response.json())
-        .then(response => console.log(JSON.stringify(response)))
+        .then(response => {
+            reload();
+        })
 
         .catch(error => console.error('Network Error...'+error));
 
@@ -1191,22 +1207,19 @@ function searchCustomerByVatNumber(){
     .then(customers => {
 
         const data = customers.data;
-        console.log(data);
-        if(data!=null){
+
+        if(data.length!=0){
         var html="<table class='table table-hover'>";
 
-        html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th><th>Password</th>" +
+        html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th>" +
             "<th>User Category</th><th>Vat number</th><th>Address</th>" +
             "<th>Email List</th><th>Phone List</th><th>Edit</th><th>Delete</th>";
-                        
-                       // Object.keys(stringArray).map(str => console.log(stringArray[str]))     
-                        
-                       
+
                         html += "<tr><td id='customer_id'>" + data['id'] + "</td><td>" + data.firstName + "</td><td>" + data.lastName + "<td>" + data.username + "" +
-                            "</td><td>" + data.password + "</td><td>" + data.userCategory + "" +
+                            "</td><td>" + data.userCategory + "" +
                             "</td><td>" + data.vatNumber + "</td><td>" + data.address + "</td><td>" + data.emailList[0].email +"</td><td>" + data.phones[0].number + "</td><td><button  onclick='getCustomerById(" + data['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
                             "  Edit Customer\n" +
-                            "</button></td><td><button onclick='passDatatoModalForCustomerByAdmin(" + data['id'] + ")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_Customer_by_admin\">\n" +
+                            "</button></td><td><button onclick='passDatatoModalForCustomerByAdmin("+data['id']+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_Customer_by_admin\">\n" +
                             "  Delete Customer\n" +
                             "</button></td></tr>";
 
@@ -1215,7 +1228,7 @@ function searchCustomerByVatNumber(){
         }else{
             var html="<table class='table table-hover'>";
 
-            html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th><th>Password</th>" +
+            html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th>" +
             "<th>User Category</th><th>Vat number</th><th>Address</th>" +
             "<th>Email List</th><th>Phone List</th><th>Edit</th><th>Delete</th>";
 
@@ -1255,7 +1268,7 @@ function searchCustomerByemail(){
         if(data.length!=0){
         var html="<table class='table table-hover'>";
         
-        html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th><th>Password</th>" +
+        html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th>" +
             "<th>User Category</th><th>Vat number</th><th>Address</th>" +
             "<th>Email List</th><th>Phone List</th><th>Edit</th><th>Delete</th>";
                    
@@ -1263,7 +1276,7 @@ function searchCustomerByemail(){
                         
                        
                         html += "<tr><td id='customer_id'>" + data[0]['id'] + "</td><td>" + data[0].firstName + "</td><td>" + data[0].lastName + "<td>" + data[0].username + "" +
-                            "</td><td>" + data[0].password + "</td><td>" + data[0].userCategory + "" +
+                            "</td><td>" + data[0].userCategory + "" +
                             "</td><td>" + data[0].vatNumber + "</td><td>" + data[0].address + "</td><td>" + data[0].emailList[0].email +"</td><td>" + data[0].phones[0].number + "</td><td><button  onclick='getCustomerById(" + data['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
                             "  Edit Customer\n" +
                             "</button></td><td><button onclick='passDatatoModalForCustomerByAdmin(" + data['id'] + ")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_Customer_by_admin\">\n" +
@@ -1275,7 +1288,7 @@ function searchCustomerByemail(){
         }else{
             var html="<table class='table table-hover'>";
 
-            html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th><th>Password</th>" +
+            html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th>" +
             "<th>User Category</th><th>Vat number</th><th>Address</th>" +
             "<th>Email List</th><th>Phone List</th><th>Edit</th><th>Delete</th>";
 
