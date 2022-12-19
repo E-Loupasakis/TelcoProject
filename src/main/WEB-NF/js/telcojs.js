@@ -610,6 +610,65 @@ function getCustomerById(id){
 
         .then(customers => {
 
+
+            const data = customers.data;
+            document.getElementById('customer_id_update').value = id;
+            document.getElementById('fname_update').value = data.firstName;
+            document.getElementById('lname_update').value = data.lastName;
+            document.getElementById('username_update').value = data.username;
+            document.getElementById('vatNumber_update').value = data.vatNumber;
+            document.getElementById('password_update').value = data.password;
+            document.getElementById('address_update').value = data.address;
+
+            document.getElementById('email_input').value = data.emailList[0].email;
+            for (let i = 1; i < data.emailList.length; i++) {
+                addEmailForUpdate();
+                document.getElementById('email_input' + i).value = data.emailList[i].email;
+            }
+
+            document.getElementById('phone_number_input').value = data.phones[0].number;
+            for (let i = 1; i < data.phones.length; i++) {
+                addPhoneForUpdate();
+                document.getElementById('phone_number_input' + i).value = data.phones[i].number;
+            }
+
+
+}).catch(error => console.error('Network Error...'));
+
+}
+
+
+function getSimpleCustomerById(){
+
+    const username= localStorage.getItem('username');
+
+    const password= localStorage.getItem('password');
+
+    const id=localStorage.getItem('userid');
+
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/'+id;
+
+    
+
+    fetch(url,{
+
+        method:"GET",
+
+        headers: {
+
+            'Accept': 'application/json',
+
+            'Content-Type': 'application/json',
+
+            'Authorization': 'Basic ' + btoa(username+":"+ password)}}
+
+    )
+
+        .then(response => response.json())
+
+        .then(customers => {
+
+
             const data = customers.data;
             document.getElementById('fname_update').value = data.firstName;
             document.getElementById('lname_update').value = data.lastName;
@@ -618,18 +677,221 @@ function getCustomerById(id){
             document.getElementById('password_update').value = data.password;
             document.getElementById('address_update').value = data.address;
 
-            document.getElementById('email_input1').value = data.emailList[0].email;
+            document.getElementById('email_input').value = data.emailList[0].email;
             for (let i = 1; i < data.emailList.length; i++) {
-                alert(data.emailList.length);
-                document.getElementById('email_input' + i).value = data.emailList[i].email;
                 addEmailForUpdate();
+                document.getElementById('email_input' + i).value = data.emailList[i].email;
             }
-            document.getElementById('phone_number_input1').value = data.phones[0].number;
+
+            document.getElementById('phone_number_input').value = data.phones[0].number;
+            for (let i = 1; i < data.phones.length; i++) {
+                addPhoneForUpdate();
+                document.getElementById('phone_number_input' + i).value = data.phones[i].number;
+            }
 
 
 }).catch(error => console.error('Network Error...'));
+
 }
 
+function updateCustomer(){
+
+    const admin_username= localStorage.getItem('username');
+
+    const admin_password= localStorage.getItem('password');
+    
+    var emailCount = document.getElementById("emailCount_update").value;
+    var phoneCount = document.getElementById("phoneCount_update").value;
+
+    let customerId = document.getElementById('customer_id_update').value;
+    let firstName = document.getElementById("fname_update").value;
+    let lastName = document.getElementById("lname_update").value;
+    let username = document.getElementById("username_update").value;
+    let vatNumber = document.getElementById("vatNumber_update").value;
+    let password = document.getElementById("password_update").value;
+    let address = document.getElementById("address_update").value;
+    debugger;
+    let phoneArray = new Array();
+    phoneArray.push(document.getElementById("phone_number_input").value);
+    for(i = 1; i<=phoneCount;i++){
+        str = "phone_number_input" + i;
+        phoneArray.push(document.getElementById(str).value);
+    }
+
+    let emailArray = new Array();
+    emailArray.push(document.getElementById("email_input").value);
+    for(i = 1; i<=emailCount;i++){
+        str = "email_input" + i;
+        emailArray.push(document.getElementById(str).value);
+    }
+    
+    payload={
+        "vatNumber" : vatNumber,
+        "userCategory": "CUSTOMER",
+        "firstName": firstName,
+        "lastName": lastName,
+        "username": username,
+        "password": password,
+        "address": address,
+        "emailList": emailArray,
+        "phones": phoneArray
+    }
+
+    alert(JSON.stringify(payload));
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/' + customerId;
+
+
+    fetch(url,{
+
+            method:"PUT",
+
+            headers: {
+
+                'Accept': 'application/json',
+
+                'Content-Type': 'application/json',
+
+                'Authorization': 'Basic ' + btoa(admin_username+":"+ admin_password)
+            },
+            body: JSON.stringify(payload)
+        }
+    )
+    // console.log(JSON.stringify(payload))
+    // console.log(JSON.stringify(response))
+        .then(response => response.json())
+
+        .then(response => alert(JSON.stringify(response)))
+}
+
+
+function updateSimpleCustomer(){
+
+    const admin_username= localStorage.getItem('username');
+
+    const admin_password= localStorage.getItem('password');
+
+    const id=localStorage.getItem('userid');
+    
+    var emailCount = document.getElementById("emailCount_update").value;
+    var phoneCount = document.getElementById("phoneCount_update").value;
+    let firstName = document.getElementById("fname_update").value;
+    let lastName = document.getElementById("lname_update").value;
+    let username = document.getElementById("username_update").value;
+    let vatNumber = document.getElementById("vatNumber_update").value;
+    let password = document.getElementById("password_update").value;
+    let address = document.getElementById("address_update").value;
+    debugger;
+    let phoneArray = new Array();
+    phoneArray.push(document.getElementById("phone_number_input").value);
+    for(i = 1; i<=phoneCount;i++){
+        str = "phone_number_input" + i;
+        phoneArray.push(document.getElementById(str).value);
+    }
+
+    let emailArray = new Array();
+    emailArray.push(document.getElementById("email_input").value);
+    for(i = 1; i<=emailCount;i++){
+        str = "email_input" + i;
+        emailArray.push(document.getElementById(str).value);
+    }
+    
+    payload={
+        "vatNumber" : vatNumber,
+        "userCategory": "CUSTOMER",
+        "firstName": firstName,
+        "lastName": lastName,
+        "username": username,
+        "password": password,
+        "address": address,
+        "emailList": emailArray,
+        "phones": phoneArray
+    }
+
+    alert(JSON.stringify(payload));
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/' + id;
+
+
+    fetch(url,{
+
+            method:"PUT",
+
+            headers: {
+
+                'Accept': 'application/json',
+
+                'Content-Type': 'application/json',
+
+                'Authorization': 'Basic ' + btoa(admin_username+":"+ admin_password)
+            },
+            body: JSON.stringify(payload)
+        }
+    )
+    // console.log(JSON.stringify(payload))
+    // console.log(JSON.stringify(response))
+        .then(response => response.json())
+
+        .then(response => alert(JSON.stringify(response)))
+
+        reload();
+}
+
+
+
+
+
+
+
+function removePhone(){
+    var counter = document.getElementById("phoneCount").value;
+    var newCount = Number(counter);
+    if(newCount>1){
+        const element = document.getElementById('outerPhonediv'+counter);
+        element.remove();
+        newCount--;
+        document.getElementById("phoneCount").value = String(newCount);
+    }
+}
+
+function removePhoneForUpdate(){
+    var counter = document.getElementById("phoneCount_update").value;
+    var newCount = Number(counter);
+    if(newCount>0){
+        const element = document.getElementById('outerPhonediv1'+counter);
+        element.remove();
+        newCount--;
+        document.getElementById("phoneCount_update").value = String(newCount);
+    }
+}
+
+function addPhone(){
+    var counter = document.getElementById("phoneCount").value;
+    var newCount = Number(counter);
+    newCount++;
+    var html = "<div id=\"outerPhonediv"+newCount+"\" class=\"mb-3 mt-3\">";
+    html+="<label for=\"phone\" class=\"form-label\">Phone:</label>";
+    html+="<input type=\"text\" class=\"form-control\" id=\"phone_number"+ newCount + "\" placeholder=\"Enter the phone\" name=\"phone\" required>";
+    html+="</div>"
+    var div = document.createElement('div');
+    div.innerHTML = html;
+    document.getElementById("phoneCount").value = String(newCount);
+    div.setAttribute('class', 'mb-3 mt-3');
+    document.getElementById("phoneDivs").prepend(div);
+}
+
+function addPhoneForUpdate(){
+    var counter = document.getElementById("phoneCount_update").value;
+    var newCount = Number(counter);
+    newCount++;
+    var html = "<div id=\"outerPhonediv1"+newCount+"\" class=\"mb-3 mt-3\">";
+    html+="<label for=\"phone\" class=\"form-label\">Phone:</label>";
+    html+="<input type=\"text\" class=\"form-control\" id=\"phone_number_input"+ newCount + "\" placeholder=\"Enter the phone\" name=\"phone_number_input\" required>";
+    html+="</div>"
+    var div = document.createElement('div');
+    div.innerHTML = html;
+    document.getElementById("phoneCount_update").value = String(newCount);
+    div.setAttribute('class', 'mb-3 mt-3');
+    document.getElementById("phoneDiv1_update").prepend(div);
+}
 
 function addEmail(){
     var counter = document.getElementById("emailCount").value;
@@ -666,7 +928,7 @@ function addEmailForUpdate(){
 function removeEmailForUpdate(){
     var counter = document.getElementById("emailCount_update").value;
     var newCount = Number(counter);
-    if(newCount>1){
+    if(newCount>0){
         const element = document.getElementById("outerEmaildiv_update"+counter);
         element.remove();
         newCount--;
@@ -829,7 +1091,7 @@ function getCustomersForAdmin(){
         .then(response => response.json())
 
         .then(customers => {
-
+            
             const data = customers.data;
             console.log(data);
             var html="<table class='table table-hover'>";
@@ -840,10 +1102,9 @@ function getCustomersForAdmin(){
 
                     
                         for (let customer of data) {
-                            
-                           // Object.keys(stringArray).map(str => console.log(stringArray[str]))     
-                            
+
                             if(customer.userCategory=="CUSTOMER") {
+
                             html += "<tr><td id='customer_id'>" + customer['id'] + "</td><td>" + customer.firstName + "</td><td>" + customer.lastName + "<td>" + customer.username + "" +
                                 "</td><td>" + customer.password + "</td><td>" + customer.userCategory + "" +
                                 "</td><td>" + customer.vatNumber + "</td><td>" + customer.address + "</td><td>" + customer.emailList[0].email +"</td><td>" + customer.phones[0].number + "</td><td><button  onclick='getCustomerById(" + customer['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
@@ -871,6 +1132,12 @@ function passDatatoModalForCustomerByAdmin(id){
 
     document.getElementById('my_value').value = id;
 }
+
+function passDatatoModalForUpdate(id){
+
+    document.getElementById('customer_id_update').value = id;
+}
+
 
 function deleteCustomer(CustomerId){
 
@@ -985,7 +1252,7 @@ function searchCustomerByemail(){
 
         const data = customers.data;
         console.log(data);
-        if(data!=null){
+        if(data.length!=0){
         var html="<table class='table table-hover'>";
         
         html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th><th>Password</th>" +
@@ -1019,4 +1286,79 @@ function searchCustomerByemail(){
     })
 
     .catch(error => console.error('Network Error...'+error));
+
 }
+
+function reload() {
+    window.location.reload(true);
+}
+
+function clickBody(){
+    window.location.reload(true);
+}
+
+
+//Get tickets for simple customer
+
+function getTicketsForSimpleCustomer(){
+
+    const username= localStorage.getItem('username');
+
+    const password= localStorage.getItem('password');
+
+    const id=localStorage.getItem('userid');
+
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/find/tickets/'+id;
+
+
+
+    fetch(url,{
+
+        method:"GET",
+
+        headers: {
+
+            'Accept': 'application/json',
+
+            'Content-Type': 'application/json',
+
+            'Authorization': 'Basic ' + btoa(username+":"+ password)}}
+
+    )
+
+        .then(response => response.json())
+
+        .then(tickets => {
+
+            const data = tickets.data;
+            console.log(data);
+            var html="<table class='table table-hover'>";
+
+            html+="<tr><th>ID Ticket</th><th>ID Customer</th><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
+                "<th>Description</th><th>Date of Creation</th>" +
+                "<th>Date of Action</th>";
+
+
+            for(let ticket of data){
+
+                html+="<tr><td id='tickId'>"+ticket.id+"</td><td id='table_cust_id'>"+id+"</td><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
+                    "</td><td>"+ticket.addressOfIssue+"</td><td>"+ticket['description']+"" +
+                    "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td></tr>";
+
+            }
+
+            html+="</table>";
+
+            document.getElementById('cust_table').innerHTML = html;
+
+        })
+
+        .catch(error => console.error('Network Error...'));
+
+}
+
+function printCustomerNames(){
+    html=`${localStorage.getItem('fname')} ${localStorage.getItem('lname')}`
+    document.getElementById('cstNames').innerHTML=html;
+}
+
