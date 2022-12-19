@@ -621,7 +621,7 @@ function getCustomerById(id){
             document.getElementById('address_update').value = data.address;
 
             document.getElementById('email_input').value = data.emailList[0].email;
-            for (let i = 1; i < data.emailList.length; i++) {
+            for (let i = 1; i <data.emailList.length; i++) {
                 addEmailForUpdate();
                 document.getElementById('email_input' + i).value = data.emailList[i].email;
             }

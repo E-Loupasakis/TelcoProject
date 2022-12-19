@@ -5,7 +5,9 @@
 
 }
 
-
+#mySearchRow{
+    float: left;
+}
 
 #buttonLogin{
    text-align: center;
