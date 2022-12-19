@@ -62,10 +62,7 @@
 
       <div class="col-md-2">
 
-         <!-- Button to Open the Modal -->
-         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CreateTicketByAdmin" style="margin-top:80px;height:70px;;width:250px;font-size:18pt;margin-left:100px;">
-          Create Ticket
-      </button>
+         
 
       <!-- The Modal -->
       <div class="modal" id="CreateTicketByAdmin">
@@ -135,7 +132,7 @@
       <div class="col-md-2">
       </div>
 
-      <div class="col-md-2" style="margin-top:5px;">
+      <!-- <div class="col-md-2" style="margin-top:5px;">
         <form id="TicketformSearchByDate">
           <div class="mb-3 mt-3">
             <label class="form-label">Search by Date:</label>
@@ -144,10 +141,10 @@
           <button type="button" class="btn btn-primary" onclick="searchByDate()" id="TicketBtnSearchByDate">Search</button>
         </form>
 
-      </div>
+      </div> -->
 
 
-      <div class="col-md-2" style="padding:5px;">
+      <!-- <div class="col-md-2" style="padding:5px;">
 
         <form id="TicketformSearchByDates">
           <div class="mb-3 mt-3">
@@ -160,23 +157,23 @@
           <button type="button" onclick="searchByDates()" class="btn btn-primary" id="TicketBtnSearchByDates">Search</button>
         </form>
           
-      </div>
+      </div> -->
 
       <div class="col-md-4">
 
-        <div class="col-md-2" id="dtSearch">
+        <!-- <div class="col-md-2" id="dtSearch">
               
             <div class="col-md-2">
               <form id="TicketformSearchByCustomer">
                   <div class="mb-3 mt-3">
                     <label for="date" class="form-label">Search by Customer ID:</label>
                     <select id="search_customer_id"></select>
-                    <!-- <input type="text" class="form-control" id="search_customer_id" placeholder="Enter Customer ID" name="SearchByCustomer" style="width:150px;cursor:pointer"> -->
+                    <input type="text" class="form-control" id="search_customer_id" placeholder="Enter Customer ID" name="SearchByCustomer" style="width:150px;cursor:pointer">
                   </div>
                   <button type="button" onclick="searchByCustomer()" class="btn btn-primary" id="TicketBtnSearchByCustomer">Search</button>
                 </form>
             </div>
-        </div>
+        </div> -->
          
       </div>
 
@@ -189,11 +186,34 @@
     <div class="row" style="margin-top:100px;text-align:center;width:100%">
 
         <div class="col-md-1">
-
+  
         </div>
 
         <div class="col-md-10" style="width:100%">
-
+        <div class="col-md-10" style="width:100%">
+            <div id="mySearchRow">
+              <div id="create_ticket_button">
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CreateTicketByAdmin">
+                 Create Ticket
+             </button>
+            </div>
+              <div id="search_ticket_criteria">
+              <label>Search by</label>
+              <select id="searchType" onchange="field_check()">
+                <option value="byCreation">Ticket Creation</option>
+                <option value="byCreationRange">Ticket Creation(Date Range)</option>
+                <option value="byAction">Ticket Action</option>
+                <option value="byActionRange">Ticket Action(Date Range)</option>
+                <option value="byCustomerId">Customer Id</option>
+              </select>
+              <input type="date"  id="dateSearch" placeholder="Enter date" style="width:150px;cursor:pointer">
+              <input type="date"  id="dateFrom" placeholder="Enter date" style="width:150px;cursor:pointer">
+              <input type="date"  id="dateTo" placeholder="Enter date" style="width:150px;cursor:pointer">
+              <select id="search_customer_id"></select>
+              <button type="button" onclick="s_date_search_admin()" class="btn btn-primary" id="TicketBtnSearchByDates">Search</button>
+            </div>
+            </div>
             <div id="table">
             </div>
             
@@ -327,7 +347,7 @@
 </div>
 
 <script src="./js/telcojs.js"></script>
-
+<script src="js/search-widget.js"></script>
 <script>
 
     getTicketsForAdmin();
@@ -335,7 +355,7 @@
     getTodayForDateOfAction();
     
     createCustomerDropdown('search_customer_id');
-
+    field_check();
 </script>
 </body>
 </html>

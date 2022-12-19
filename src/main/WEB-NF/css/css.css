@@ -5,8 +5,38 @@
 
 }
 
-#mySearchRow{
+#create_ticket_button{
     float: left;
+    margin-left: 20px;
+}
+
+#search_ticket_criteria{
+    float: center;
+    margin-right: 100px;
+}
+
+
+#tableForCustomers{
+    margin-top: 10px;
+}
+
+#create_button{
+    float: left;
+    margin-left: 20px;
+}
+
+#search_criteria{
+    float: center;
+    margin-right: 100px;
+}
+
+
+#table{
+    margin-top:10px;
+}
+
+#mySearchRow{
+   
 }
 
 #buttonLogin{
