@@ -223,7 +223,9 @@ function updateTicket(){
 
         .then(response => response.json())
 
-        .then(response => console.log(JSON.stringify(response)))
+        .then(response => {
+            reload();
+        })
 
         
 }
@@ -260,13 +262,17 @@ function deleteTicket(ticketId){
     )
 
         .then(response => response.json())
-        .then(response => console.log(JSON.stringify(response)))
+        .then(response => {
+
+            reload();
+        })
 
         .catch(error => console.error('Network Error...'));
 
 }
 
 function createTicket(){
+
     const username= localStorage.getItem('username');
 
     const password= localStorage.getItem('password');
@@ -316,7 +322,9 @@ function createTicket(){
 
         .then(response => response.json())
 
-        .then(response => console.log(JSON.stringify(response)))
+        .then(response => {
+            reload();
+        })
 }
 
 function searchByDate(){
@@ -762,7 +770,9 @@ function updateCustomer(){
     // console.log(JSON.stringify(response))
         .then(response => response.json())
 
-        .then(response => alert(JSON.stringify(response)))
+        .then(response =>{
+            reload();
+        })
 }
 
 
@@ -976,7 +986,7 @@ function addPhone(){
 }
 
 function createCustomer(){
-    event.preventDefault;
+    
     const admin_username= localStorage.getItem('username');
 
     const admin_password= localStorage.getItem('password');
@@ -1036,7 +1046,10 @@ function createCustomer(){
 
         .then(response => response.json())
 
-        .then(response => alert(JSON.stringify(response)))
+        .then(response => {
+
+            reload();
+        })
 }
 
 function getCustomersForAdmin(){
@@ -1136,11 +1149,12 @@ function deleteCustomer(CustomerId){
     )
 
         .then(response => response.json())
-        .then(response => console.log(JSON.stringify(response)))
+        .then(response => {
+            reload();
+        })
 
         .catch(error => console.error('Network Error...'+error));
         
-        reload();
 }
 
 

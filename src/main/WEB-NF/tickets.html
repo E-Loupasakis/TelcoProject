@@ -65,7 +65,7 @@
                 
                         <!-- Modal body -->
                         <div class="modal-body">
-                            <form action="">
+                            <form >
                                 <div class="mb-3 mt-3">
                                   <label for="address" class="form-label">Address:</label>
                                   <input type="text" class="form-control" id="address" placeholder="Enter the address" name="address" required>
@@ -102,7 +102,7 @@
                                         <input type="datetime-local" class="form-control" id="date_of_action" name="date_of_action" required >
                                       </div>
                                   </div>
-                                <button type="submit" onclick="createTicket()" class="btn btn-primary">Create</button>
+                                <button type="button" onclick="createTicket()" class="btn btn-primary">Create</button>
                               </form>
 
                         
@@ -140,7 +140,7 @@
                 <button type="button" onclick="searchByDates()" class="btn btn-primary" id="TicketBtnSearchByDates">Search</button>
               </form>
               <div class="col-md-2">
-                <form action="" id="TicketformSearchByCustomer">
+                <form id="TicketformSearchByCustomer">
                     <div class="mb-3 mt-3">
                       <label for="date" class="form-label">Search by Customer ID:</label>
                       <select id="search_customer_id"></select>
@@ -232,7 +232,7 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form action="">
+                <form>
                     <div class="mb-3 mt-3">
                         <input type="text" class="form-control" id="ticket_id_update"  required hidden>
                     </div>
@@ -274,7 +274,7 @@
                             <input type="datetime-local" class="form-control" id="date_of_action_update" name="date_of_action" required >
                         </div>
                     </div>
-                    <button type="submit" onclick="updateTicket(document.getElementById('table_ticket_id').value)" class="btn btn-primary">Update</button>
+                    <button type="button" onclick="updateTicket(document.getElementById('table_ticket_id').value)" class="btn btn-primary">Update</button>
                 </form>
             </div>
 
@@ -289,7 +289,7 @@
 
 <!-- The Modal -->
 <div class="modal" id='delete_ticket_by_admin'>
-    <form action="">
+    <form>
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -306,7 +306,7 @@
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="submit" onclick="deleteTicket(document.getElementById('my_id_value').value)" class="btn btn-success" data-bs-dismiss="modal">Yes</button>
+                <button type="button" onclick="deleteTicket(document.getElementById('my_id_value').value)" class="btn btn-success" data-bs-dismiss="modal">Yes</button>
             </div>
 
         </div>
