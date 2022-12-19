@@ -184,7 +184,7 @@ function updateTicket(){
     addressOfIssue = document.getElementById('address_update').value;
     ticketStatus = document.getElementById('ticket_status_update').value;
     ticketType = document.getElementById('ticket_type_update').value;
-    estimatedCost = document.getElementById('estimated_cost_update').value;
+    estimatedCost = Number(document.getElementById('estimated_cost_update').value);
     my_description = document.getElementById('description_update').value;
     dateTimeOfAction = document.getElementById('date_of_action_update').value;
 
