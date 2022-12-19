@@ -272,7 +272,6 @@ function deleteTicket(ticketId){
 }
 
 function createTicket(){
-
     const username= localStorage.getItem('username');
 
     const password= localStorage.getItem('password');
