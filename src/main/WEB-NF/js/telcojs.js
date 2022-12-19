@@ -184,7 +184,7 @@ function updateTicket(){
     addressOfIssue = document.getElementById('address_update').value;
     ticketStatus = document.getElementById('ticket_status_update').value;
     ticketType = document.getElementById('ticket_type_update').value;
-    estimatedCost = document.getElementById('estimated_cost_update').value;
+    estimatedCost = Number(document.getElementById('estimated_cost_update').value);
     my_description = document.getElementById('description_update').value;
     dateTimeOfAction = document.getElementById('date_of_action_update').value;
 
@@ -910,7 +910,7 @@ function addEmail(){
     newCount++;
     var html = "<div id=\"outerEmaildiv"+newCount+"\" class=\"mb-3 mt-3\">";
     html+="<label for=\"email\" class=\"form-label\">Email:</label>";
-    html+="<input type=\"text\" class=\"form-control\" id=\"email"+ newCount + "\" placeholder=\"Enter the email\" name=\"email\" required>";
+    html+="<input type=\"text\" class=\"form-control myEmailinputClass\" id=\"email"+ newCount + "\" placeholder=\"Enter the email\" name=\"email\" required>";
     html+="</div>"
     var div = document.createElement('div');
 
@@ -984,43 +984,70 @@ function addPhone(){
     document.getElementById("phoneDivs").prepend(div);
 }
 
+
+class Customer{
+    constructor(){
+        this.emailCount = document.getElementById("emailCount").value;
+        this.phoneCount = document.getElementById("phoneCount").value;
+        this.userCategory = "CUSTOMER";
+        this.firstName = document.getElementById("fname").value;
+        this.lastName = document.getElementById("lname").value;
+        this.username = document.getElementById("username").value;
+        this.vatNumber = document.getElementById("vatNumber").value;
+        this.password = document.getElementById("password").value;
+        this.address = document.getElementById("address").value;
+        this.phoneArray = new Array();
+        for(i = 1; i<=this.phoneCount;i++){
+            str = "phone_number" + i;
+            this.phoneArray.push(document.getElementById(str).value);
+        }
+        let emailArray = new Array();
+        for(i = 1; i<=this.emailCount;i++){
+            str = "email" + i;
+            this.emailArray.push(document.getElementById(str).value);
+        }
+    }
+}
+
 function createCustomer(){
 
     const admin_username= localStorage.getItem('username');
 
     const admin_password= localStorage.getItem('password');
-    
-    var emailCount = document.getElementById("emailCount").value;
-    var phoneCount = document.getElementById("phoneCount").value;
 
-    let firstName = document.getElementById("fname").value;
-    let lastName = document.getElementById("lname").value;
-    let username = document.getElementById("username").value;
-    let vatNumber = document.getElementById("vatNumber").value;
-    let password = document.getElementById("password").value;
-    let address = document.getElementById("address").value;
-    debugger;
-    let phoneArray = new Array();
-    for(i = 1; i<=phoneCount;i++){
-        str = "phone_number" + i;
-        phoneArray.push(document.getElementById(str).value);
-    }
-    let emailArray = new Array();
-    for(i = 1; i<=emailCount;i++){
-        str = "email" + i;
-        emailArray.push(document.getElementById(str).value);
-    }
+    const customer = new Customer();
+    
+    // var emailCount = document.getElementById("emailCount").value;
+    // var phoneCount = document.getElementById("phoneCount").value;
+
+    // let firstName = document.getElementById("fname").value;
+    // let lastName = document.getElementById("lname").value;
+    // let username = document.getElementById("username").value;
+    // let vatNumber = document.getElementById("vatNumber").value;
+    // let password = document.getElementById("password").value;
+    // let address = document.getElementById("address").value;
+    // debugger;
+    // let phoneArray = new Array();
+    // for(i = 1; i<=phoneCount;i++){
+    //     str = "phone_number" + i;
+    //     phoneArray.push(document.getElementById(str).value);
+    // }
+    // let emailArray = new Array();
+    // for(i = 1; i<=emailCount;i++){
+    //     str = "email" + i;
+    //     emailArray.push(document.getElementById(str).value);
+    // }
     
     payload={
-        "vatNumber" : vatNumber,
-        "userCategory": "CUSTOMER",
-        "firstName": firstName,
-        "lastName": lastName,
-        "username": username,
-        "password": password,
-        "address": address,
-        "emailList": emailArray,
-        "phones": phoneArray
+        "vatNumber" : customer.vatNumber,
+        "userCategory": customer.userCategory,
+        "firstName": customer.firstName,
+        "lastName": customer.lastName,
+        "username": customer.username,
+        "password": customer.password,
+        "address": customer.address,
+        "emailList": customer.emailArray,
+        "phones": customer.phoneArray
     }
 
     alert(JSON.stringify(payload));
