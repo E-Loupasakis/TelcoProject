@@ -200,14 +200,13 @@ function s_customers_search_admin(){
     
             if(data.length!=0){
             var html="<table class='table table-hover'>";
-    
             html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th>" +
                 "<th>User Category</th><th>Vat number</th><th>Address</th>" +
                 "<th>Email List</th><th>Phone List</th><th>Edit</th><th>Delete</th>";
     
-                            html += "<tr><td id='customer_id'>" + data['id'] + "</td><td>" + data.firstName + "</td><td>" + data.lastName + "<td>" + data.username + "" +
-                                "</td><td>" + data.userCategory + "" +
-                                "</td><td>" + data.vatNumber + "</td><td>" + data.address + "</td><td>" + data.emailList[0].email +"</td><td>" + data.phones[0].number + "</td><td><button  onclick='getCustomerById(" + data['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
+                            html += "<tr><td id='customer_id'>" + data[0]['id'] + "</td><td>" + data[0].firstName + "</td><td>" + data[0].lastName + "<td>" + data[0].username + "" +
+                                "</td><td>" + data[0].userCategory + "" +
+                                "</td><td>" + data[0].vatNumber + "</td><td>" + data[0].address + "</td><td>" + data[0].emailList[0].email +"</td><td>" + data[0].phones[0].number + "</td><td><button  onclick='getCustomerById(" + data['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
                                 "  Edit Customer\n" +
                                 "</button></td><td><button onclick='passDatatoModalForCustomerByAdmin("+data['id']+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_Customer_by_admin\">\n" +
                                 "  Delete Customer\n" +
