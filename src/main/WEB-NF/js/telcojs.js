@@ -355,7 +355,7 @@ function searchByDate(){
                     "</td><td>"+ticket.addressOfIssue+"</td><td>"+ticket['description']+"" +
                     "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.ticketId+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
                     "  Edit Ticket\n" +
-                    "</button></td><td><button onclick='passDatatoModal("+ticket.ticketId+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_ticket_by_admin\">\n" +
+                    "</button></td><td><button onclick='passDatatoModal("+ticket.id+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_ticket_by_admin\">\n" +
                     "  Delete Ticket\n" +
                     "</button></td></tr>";
 
