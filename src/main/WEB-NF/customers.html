@@ -59,7 +59,7 @@
         
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form action='' id="formCreateCustomer">
+                    <form id="formCreateCustomer">
                         <div class="mb-3 mt-3">
                           <label for="fname" class="form-label">First Name:</label>
                           <input type="text" class="form-control" id="fname" placeholder="Enter the first name" name="fname" required>
@@ -100,7 +100,7 @@
                         </div>
 
                         <input id="phoneCount" hidden value="1">
-                        <button type="submit" id="createCustButton" onclick="createCustomer()" class="btn btn-primary">Create</button>
+                        <button type="button" id="createCustButton" onclick="createCustomer()" class="btn btn-primary">Create</button>              
                 </div>
         
                 <!-- Modal footer -->
@@ -152,7 +152,7 @@
 
         <div class="col-md-4">
 
-            <div class="mt-4 p-5 bg-primary text-white rounded" id="jumbo3" style="cursor:pointer" onclick="reload()">
+            <div class="mt-4 p-5 bg-primary text-white rounded" id="jumbo3" style="cursor:pointer">
                 <h1>Customers</h1>
             </div>
             
@@ -164,15 +164,15 @@
 
     </div>
 
-    <div class="row" style="margin-top:40px;">
+    <div class="row" style="margin-top:40px;width:100%;text-align:center;">
 
         <div class="col-md-1">
 
         </div>
 
-        <div class="col-md-10">
+        <div class="col-md-10" style="width:100%">
 
-            <div id="tableForCustomers" style="text-align: center;">
+            <div id="tableForCustomers">
             </div>
             
         </div>
@@ -189,7 +189,7 @@
 
  <!-- The Modal for deleting the customer-->
 <div class="modal" id='delete_Customer_by_admin'>
-    <form action="">
+    <form>
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -206,7 +206,7 @@
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="submit" onclick="deleteCustomer(document.getElementById('my_value').value)" class="btn btn-success" data-bs-dismiss="modal">Yes</button>
+                <button type="button" onclick="deleteCustomer(document.getElementById('my_value').value)" class="btn btn-success" data-bs-dismiss="modal">Yes</button>
             </div>
 
         </div>
@@ -225,41 +225,41 @@
 
           <!-- Modal body -->
           <div class="modal-body">
-            <form action='' id="formUpdateCustomer">
-                <div class="mb-3 mt-3">
-                  <input type="text" class="form-control" id="customer_id_update"  required hidden>
-               </div>
-                <div class="mb-3 mt-3">
-                  <label for="fname" class="form-label">First Name:</label>
-                  <input type="text" class="form-control" id="fname_update" placeholder="Enter the first name" name="fname_update" required>
+            <form id="formUpdateCustomer">
+                  <div class="mb-3 mt-3">
+                    <input type="text" class="form-control" id="customer_id_update"  required hidden>
                 </div>
-                <div class="mb-3 mt-3">
-                  <label for="lname" class="form-label">Last Name:</label>
-                  <input type="text" class="form-control" id="lname_update" placeholder="Enter the last name" name="lname_update" required>
-                </div>
-                <div class="mb-3 mt-3">
-                  <label for="username" class="form-label">Username:</label>
-                  <input type="text" class="form-control" id="username_update" placeholder="Enter the username" name="username_update" required>
-                </div>
-                <div class="mb-3 mt-3">
-                  <label for="vatNumber" class="form-label">Vat:</label>
-                  <input type="text" class="form-control" id="vatNumber_update" placeholder="Enter the VAT" name="vatNumber_update" required>
-                </div>
-                <div class="mb-3 mt-3">
-                  <label for="password" class="form-label">Password:</label>
-                  <input type="password" class="form-control" id="password_update" placeholder="Enter the password" name="password_update" required>
-                </div>
-                <div class="mb-3 mt-3">
-                  <label for="address" class="form-label">Address:</label>
-                  <input type="text" class="form-control" id="address_update" placeholder="Enter the address" name="address_update" required>
-                </div>
-                <div class="mb-3 mt-3 outerEmaildiv1" id="emailDiv1_update">
-                  <label for="email" class="form-label">Email:</label>
-                  <input type="text" class="form-control" id="email_input" placeholder="Enter the email" name="email_input" required>
-                  <button type="button" class="btn btn-primary emailButton" onclick="addEmailForUpdate()">Add email</button>
-                  <button type="button" class="btn btn-primary emailButton" onclick="removeEmailForUpdate()">Remove email</button>
-                </div>
-                <input id="emailCount_update" hidden value="0">
+                  <div class="mb-3 mt-3">
+                    <label for="fname" class="form-label">First Name:</label>
+                    <input type="text" class="form-control" id="fname_update" placeholder="Enter the first name" name="fname_update" required>
+                  </div>
+                  <div class="mb-3 mt-3">
+                    <label for="lname" class="form-label">Last Name:</label>
+                    <input type="text" class="form-control" id="lname_update" placeholder="Enter the last name" name="lname_update" required>
+                  </div>
+                  <div class="mb-3 mt-3">
+                    <label for="username" class="form-label">Username:</label>
+                    <input type="text" class="form-control" id="username_update" placeholder="Enter the username" name="username_update" required>
+                  </div>
+                  <div class="mb-3 mt-3">
+                    <label for="vatNumber" class="form-label">Vat:</label>
+                    <input type="text" class="form-control" id="vatNumber_update" placeholder="Enter the VAT" name="vatNumber_update" required>
+                  </div>
+                  <div class="mb-3 mt-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" class="form-control" id="password_update" placeholder="Enter the password" name="password_update" required>
+                  </div>
+                  <div class="mb-3 mt-3">
+                    <label for="address" class="form-label">Address:</label>
+                    <input type="text" class="form-control" id="address_update" placeholder="Enter the address" name="address_update" required>
+                  </div>
+                  <div class="mb-3 mt-3 outerEmaildiv1" id="emailDiv1_update">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="text" class="form-control" id="email_input" placeholder="Enter the email" name="email_input" required>
+                    <button type="button" class="btn btn-primary emailButton" onclick="addEmailForUpdate()">Add email</button>
+                    <button type="button" class="btn btn-primary emailButton" onclick="removeEmailForUpdate()">Remove email</button>
+                  </div>
+                  <input id="emailCount_update" hidden value="0">
 
                   <div class="mb-3 mt-3 outerPhonediv1" id="phoneDiv1_update">
                     <label for="phone_number" class="form-label">Phone:</label>
@@ -268,8 +268,9 @@
                     <button type="button" class="btn btn-primary" onclick="removePhoneForUpdate()">Remove phone</button>
                   </div>
 
-                <input id="phoneCount_update" hidden value="0">
-                <button type="button" id="updateCustomerButton" onclick="updateCustomer()" class="btn btn-primary">Update</button>              
+                  <input id="phoneCount_update" hidden value="0">
+                  <button type="button" id="updateCustomerButton" onclick="updateCustomer()" class="btn btn-primary">Update</button> 
+                </form>             
         </div>
 
           <!-- Modal footer -->
