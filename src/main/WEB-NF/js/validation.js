@@ -16,21 +16,19 @@ const helpMessageVat = document.querySelector('#helpMessageVat');
 const addr = document.querySelector('#address');
 const helpMessageaddr = document.querySelector('#helpMessageaddr');
 
-const em=document.querySelector('#email1');
-const helpMessageEm = document.querySelector('#helpMessageEm');
-
-
+const emails=document.querySelectorAll('.myEmailinputClass');
 
 const emailCount=Number(document.getElementById('emailCount').value);
 let emailArray = new Array();
 
-for(var i=1;i<emailCount;i++){
-let str= "email_input"+i;
-emailArray.push(document.getElementById(str).value);
-}
+// for(var i=1;i<emailCount;i++){
+// let str= "email_input"+i;
+// emailArray.push(document.getElementById(str).value);
+// }
 
 
 fname.addEventListener('focusout', () => {
+    debugger;
 
     regEx = /[A-Z][A-Za-z\\s]*$/;
     message = 'Must contain at least one uppercase, one lowercase letter, one number and one special character'
@@ -47,26 +45,26 @@ fname.addEventListener('focusout', () => {
 });
 
 
-
-em.addEventListener('focusout', () => {
-
-   
-regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+for(let email of emails ){
+email.addEventListener('focusout', () => {
+    debugger;
+     regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   message = 'Must be a valid email address';
 
-  if (regEx.test(em.value)) {
-    helpMessageEm.innerHTML = 'Success';
-    helpMessageEm.className = 'text-success';
+  if (regEx.test(email.value)) {
+    email.nextElementSibling.innerHTML = 'Success';
+    console.log(email);
+    email.nextElementSibling.className = 'text-success';
+    
   } else {
-    helpMessageEm.innerHTML = message;
-    helpMessageEm.className = 'text-danger';
+    email.nextElementSibling.innerHTML = message;
+    console.log(email);
+    email.nextElementSibling.className = 'text-danger';
     
   }
 
 });
-
-
-
+}
 
 
  // regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
