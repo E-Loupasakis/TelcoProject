@@ -54,12 +54,12 @@
                 <!-- Modal Header -->
                 <div class="modal-header">
                 <h4 class="modal-title">Create customer</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="reload()"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
         
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form action="" id="formCreateCustomer">
+                    <form id="formCreateCustomer">
                         <div class="mb-3 mt-3">
                           <label for="fname" class="form-label">First Name:</label>
                           <input type="text" class="form-control" id="fname" placeholder="Enter the first name" name="fname" required>
@@ -100,12 +100,12 @@
                         </div>
 
                         <input id="phoneCount" hidden value="1">
-                        <button type="submit" id="createCustButton" onclick="createCustomer()" class="btn btn-primary">Create</button>              
+                        <button type="button" id="createCustButton" onclick="createCustomer()" class="btn btn-primary">Create</button>              
                 </div>
         
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="reload()">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                 </div>
         
             </div>
@@ -225,7 +225,7 @@
 
           <!-- Modal body -->
           <div class="modal-body">
-            <form action="" id="formUpdateCustomer">
+            <form id="formUpdateCustomer">
                   <div class="mb-3 mt-3">
                     <input type="text" class="form-control" id="customer_id_update"  required hidden>
                 </div>
@@ -269,7 +269,7 @@
                   </div>
 
                   <input id="phoneCount_update" hidden value="0">
-                  <button type="submit" id="updateCustomerButton" onclick="updateCustomer()" class="btn btn-primary">Update</button> 
+                  <button type="button" id="updateCustomerButton" onclick="updateCustomer()" class="btn btn-primary">Update</button> 
                 </form>             
         </div>
 
