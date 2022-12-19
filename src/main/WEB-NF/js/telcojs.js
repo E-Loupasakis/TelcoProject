@@ -227,7 +227,7 @@ function updateTicket(){
             reload();
         })
 
-        
+
 }
 
 
@@ -272,7 +272,6 @@ function deleteTicket(ticketId){
 }
 
 function createTicket(){
-
     const username= localStorage.getItem('username');
 
     const password= localStorage.getItem('password');
@@ -365,7 +364,7 @@ function searchByDate(){
                     "</td><td>"+ticket.addressOfIssue+"</td><td>"+ticket['description']+"" +
                     "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.ticketId+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
                     "  Edit Ticket\n" +
-                    "</button></td><td><button onclick='passDatatoModal("+ticket.ticketId+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_ticket_by_admin\">\n" +
+                    "</button></td><td><button onclick='passDatatoModal("+ticket.id+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_ticket_by_admin\">\n" +
                     "  Delete Ticket\n" +
                     "</button></td></tr>";
 
@@ -986,7 +985,7 @@ function addPhone(){
 }
 
 function createCustomer(){
-    
+
     const admin_username= localStorage.getItem('username');
 
     const admin_password= localStorage.getItem('password');
@@ -1154,7 +1153,7 @@ function deleteCustomer(CustomerId){
         })
 
         .catch(error => console.error('Network Error...'+error));
-        
+
 }
 
 
@@ -1180,14 +1179,14 @@ function searchCustomerByVatNumber(){
     .then(customers => {
 
         const data = customers.data;
-        
+
         if(data.length!=0){
         var html="<table class='table table-hover'>";
 
         html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th>" +
             "<th>User Category</th><th>Vat number</th><th>Address</th>" +
             "<th>Email List</th><th>Phone List</th><th>Edit</th><th>Delete</th>";
-                         
+
                         html += "<tr><td id='customer_id'>" + data['id'] + "</td><td>" + data.firstName + "</td><td>" + data.lastName + "<td>" + data.username + "" +
                             "</td><td>" + data.userCategory + "" +
                             "</td><td>" + data.vatNumber + "</td><td>" + data.address + "</td><td>" + data.emailList[0].email +"</td><td>" + data.phones[0].number + "</td><td><button  onclick='getCustomerById(" + data['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
