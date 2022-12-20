@@ -1119,7 +1119,7 @@ function getCustomersForAdmin(){
 
                             html += "<tr><td id='customer_id'>" + customer['id'] + "</td><td>" + customer.firstName + "</td><td>" + customer.lastName + "<td>" + customer.username + "" +
                                 "</td><td>" + customer.userCategory + "" +
-                                "</td><td>" + customer.vatNumber + "</td><td>" + customer.address + "</td><td>" + customer.emailList[0].email +"</td><td>" + customer.phones[0].number + "</td><td><button  onclick='getCustomerById(" + customer['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
+                                "</td><td>" + customer.vatNumber + "</td><td>" + customer.address + "</td><td><a style = 'cursor:pointer;color:blue;' data-bs-toggle=\"modal\" data-bs-target=\"#viewCustomerEmails\" onclick= 'getEmailList("+customer['id']+")'>" + customer.emailList[0].email +"</a></td><td>" + customer.phones[0].number + "</td><td><button  onclick='getCustomerById(" + customer['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
                                 "  Edit Customer\n" +
                                 "</button></td><td><button onclick='passDatatoModalForCustomerByAdmin(" + customer['id'] + ")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_Customer_by_admin\">\n" +
                                 "  Delete Customer\n" +
@@ -1373,3 +1373,46 @@ function printCustomerNames(){
     document.getElementById('cstNames').innerHTML=html;
 }
 
+function getEmailList(id){
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/'+id;
+
+    const first_div_element = document.getElementById("emailLista");
+
+    const username= localStorage.getItem('username');
+
+    const password= localStorage.getItem('password');
+
+    fetch(url,{
+
+        method:"GET",
+
+        headers: {
+
+            'Accept': 'application/json',
+
+            'Content-Type': 'application/json',
+
+            'Authorization': 'Basic ' + btoa(username+":"+ password)}}
+
+    )
+
+        .then(response => response.json())
+
+        .then(customers => {
+
+debugger;
+            const data = customers.data;
+            html="";
+            html+="<table class='table table-hover' style='text-align:center'>";
+            html+="<tr><th>Customer Email List</th></tr>"
+            for (let i = 0;i<data.emailList.length;i++){
+                html += "<tr><td>"+data.emailList[i].email+"</td></tr>"
+            }
+            div = document.createElement('div');
+            div.innerHTML = html;
+            first_div_element.appendChild(div);
+            console.log(first_div_element);
+            
+
+}).catch(error => console.error('Network Error...'));
+}
