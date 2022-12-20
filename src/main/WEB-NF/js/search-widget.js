@@ -199,14 +199,16 @@ function s_customers_search_admin(){
             const data = customers.data;
     
             if(data.length!=0){
+            if(search_type=="byEmail"){var data2=data[0];}
+            else{var data2 = data;}
             var html="<table class='table table-hover'>";
             html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th>" +
                 "<th>User Category</th><th>Vat number</th><th>Address</th>" +
                 "<th>Email List</th><th>Phone List</th><th>Edit</th><th>Delete</th>";
     
-                            html += "<tr><td id='customer_id'>" + data[0]['id'] + "</td><td>" + data[0].firstName + "</td><td>" + data[0].lastName + "<td>" + data[0].username + "" +
-                                "</td><td>" + data[0].userCategory + "" +
-                                "</td><td>" + data[0].vatNumber + "</td><td>" + data[0].address + "</td><td>" + data[0].emailList[0].email +"</td><td>" + data[0].phones[0].number + "</td><td><button  onclick='getCustomerById(" + data['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
+                            html += "<tr><td id='customer_id'>" + data2['id'] + "</td><td>" + data2.firstName + "</td><td>" + data2.lastName + "<td>" + data2.username + "" +
+                                "</td><td>" + data2.userCategory + "" +
+                                "</td><td>" + data2.vatNumber + "</td><td>" + data2.address + "</td><td>" + data2.emailList[0].email +"</td><td>" + data2.phones[0].number + "</td><td><button  onclick='getCustomerById(" + data2['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
                                 "  Edit Customer\n" +
                                 "</button></td><td><button onclick='passDatatoModalForCustomerByAdmin("+data['id']+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_Customer_by_admin\">\n" +
                                 "  Delete Customer\n" +
