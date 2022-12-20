@@ -174,7 +174,22 @@ function getTicketById(id){
 
 function updateTicket(){
 
+debugger;
+alert("11111")
+    if(document.querySelector('.text-danger')!=null){
+        return false;
+        alert("222222")
+    }
 
+    var b = document.querySelectorAll('#formupdateTicket input');
+
+    for(i=0;i<b.length;i++)
+    {
+        if(b[i].value=="")
+        return false;
+    }
+
+debugger;
     const username= localStorage.getItem('username');
 
     const password= localStorage.getItem('password');
@@ -201,7 +216,7 @@ function updateTicket(){
         "customer":{"id":customerId}
     }
 
-
+debugger;
 
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/'+ticketId;
 
@@ -272,7 +287,7 @@ function deleteTicket(ticketId){
 }
 
 function createTicket(){
-    alert("111")
+   
     if(document.querySelector('.text-danger')!=null){
         return false;
     }
@@ -284,7 +299,7 @@ function createTicket(){
         if(b[i].value=="")
         return false;
     }
-    alert("after")
+    
 
     const username= localStorage.getItem('username');
 
@@ -720,6 +735,20 @@ function getSimpleCustomerById(){
 
 function updateCustomer(){
 
+
+    if(document.querySelector('.text-danger')!=null){
+        return false;
+    }
+
+    var b = document.querySelectorAll('#formUpdateCustomer input');
+
+    for(i=0;i<b.length;i++)
+    {
+        if(b[i].value=="")
+        return false;
+    }
+
+
     const admin_username= localStorage.getItem('username');
 
     const admin_password= localStorage.getItem('password');
@@ -1114,7 +1143,7 @@ function createCustomer(){
 
     var b = document.querySelectorAll('#formCreateCustomer input');
 
-    for(i=0;i<b.length-1;i++){if(b[i].value=="") return false;}
+    for(i=0;i<b.length;i++){if(b[i].value=="") return false;}
 
 
     const admin_username= localStorage.getItem('username');
@@ -1184,6 +1213,7 @@ function createCustomer(){
 
             reload();
         })
+        .catch(error => alert(error('Network Error...'+error)));
 }
 
 function getCustomersForAdmin(){

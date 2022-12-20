@@ -68,3 +68,78 @@ descriptionTicket.addEventListener('focusout', () => {
     
   }
   });
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  //Validation for tickets update
+
+
+
+const addrTicketUpdate = document.querySelector('#address_update');
+const addrTicketMessageUpdate = document.querySelector('#messageUpdateTicket');
+
+const costTicketUpdate = document.querySelector('#estimated_cost_update');
+const CostTicketMessageUpdate = document.querySelector('#messageUpdateTicketCost');
+
+const descriptionTicketUpdate = document.querySelector('#description_update');
+const descriptionTicketMessageUpdate = document.querySelector('#messageUpdateTicketDescr');
+
+
+
+addrTicketUpdate.addEventListener('focusout', () => {
+  
+
+    regEx = /^[A-Za-z]([A-Za-z0-9_\s]){10,100}$/;
+    message = "The address of the ticket must be between 10 and 100 characters and can't be null";
+    
+
+  if (regEx.test(addrTicketUpdate.value)) {
+    addrTicketMessageUpdate.innerHTML = 'Success';
+    addrTicketMessageUpdate.className = 'text-success';
+  } else {
+    addrTicketMessageUpdate.innerHTML = message;
+    addrTicketMessageUpdate.className = 'text-danger';
+    
+  }
+
+});
+
+
+costTicketUpdate.addEventListener('focusout', () => {
+
+    message = "The cost of the ticket can't be higher than 100000 euro or less than zero";
+
+  if (costTicketUpdate.value >0 && costTicketUpdate.value<=100000) {
+    CostTicketMessageUpdate.innerHTML = 'Success';
+    CostTicketMessageUpdate.className = 'text-success';
+  } else {
+    CostTicketMessageUpdate.innerHTML = message;
+    CostTicketMessageUpdate.className = 'text-danger';
+    
+  }
+
+});
+
+
+
+descriptionTicketUpdate.addEventListener('focusout', () => {
+   
+
+   
+    regEx = /^[A-Za-z]([A-Za-z0-9_\s]){5,200}$/;
+    message = "The description of the ticket must start with a letter and must be between 5 and 200 characters and can't be null";
+    
+
+  if (regEx.test(descriptionTicketUpdate.value)) {
+    descriptionTicketMessageUpdate.innerHTML = 'Success';
+    descriptionTicketMessageUpdate.className = 'text-success';
+  } else {
+    descriptionTicketMessageUpdate.innerHTML = message;
+    descriptionTicketMessageUpdate.className = 'text-danger';
+    
+  }
+  });
