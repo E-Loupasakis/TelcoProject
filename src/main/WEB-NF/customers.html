@@ -51,7 +51,7 @@
                 <!-- Modal Header -->
                 <div class="modal-header">
                 <h4 class="modal-title">Create customer</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="reload()"></button>
                 </div>
         
                 <!-- Modal body -->
@@ -99,9 +99,11 @@
 
                         <div class="mb-3 mt-3 outerPhonediv1" id="phoneDivs">
                           <label for="phone_number" class="form-label">Phone:</label>
-                          <input type="text" class="form-control" id="phone_number1" placeholder="Enter the phone number" name="phone_number" required>
+                          <input type="text" class="form-control myphoneinputClass" id="phone_number1" placeholder="Enter the phone number" name="phone_number" required>
+                          <div><span></span></div><br>
                           <button type="button" class="btn btn-primary" onclick="addPhone()">Add phone</button>
                           <button type="button" class="btn btn-primary" onclick="removePhone()">Remove phone</button>
+                          <span></span>
                         </div>
 
                         <input id="phoneCount" hidden value="1">
@@ -110,7 +112,7 @@
         
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="reload()">Close</button>
                 </div>
         
             </div>
@@ -278,40 +280,51 @@
                   <div class="mb-3 mt-3">
                     <label for="fname" class="form-label">First Name:</label>
                     <input type="text" class="form-control" id="fname_update" placeholder="Enter the first name" name="fname_update" required>
+                    <span id="messageUpdateFirstName"></span>
                   </div>
                   <div class="mb-3 mt-3">
                     <label for="lname" class="form-label">Last Name:</label>
                     <input type="text" class="form-control" id="lname_update" placeholder="Enter the last name" name="lname_update" required>
+                    <span id="messageUpdateLastName"></span>
                   </div>
                   <div class="mb-3 mt-3">
                     <label for="username" class="form-label">Username:</label>
                     <input type="text" class="form-control" id="username_update" placeholder="Enter the username" name="username_update" required>
+                    <span id="messageUpdateUsr"></span>
                   </div>
                   <div class="mb-3 mt-3">
                     <label for="vatNumber" class="form-label">Vat:</label>
                     <input type="text" class="form-control" id="vatNumber_update" placeholder="Enter the VAT" name="vatNumber_update" required>
+                    <span id="messageUpdateVatNum"></span>
                   </div>
                   <div class="mb-3 mt-3">
                     <label for="password" class="form-label">Password:</label>
                     <input type="password" class="form-control" id="password_update" placeholder="Enter the password" name="password_update" required>
+                    <span id="messageUpdatePass"></span>
                   </div>
                   <div class="mb-3 mt-3">
                     <label for="address" class="form-label">Address:</label>
                     <input type="text" class="form-control" id="address_update" placeholder="Enter the address" name="address_update" required>
+                    <span id="messageUpdateAddress"></span>
                   </div>
                   <div class="mb-3 mt-3 outerEmaildiv1" id="emailDiv1_update">
                     <label for="email" class="form-label">Email:</label>
-                    <input type="text" class="form-control" id="email_input" placeholder="Enter the email" name="email_input" required>
+                    <input type="text" class="form-control myEmailinputClassUpdate " id="email_input" placeholder="Enter the email" name="email_input" required>
+                    <div><span></span></div><br>
                     <button type="button" class="btn btn-primary emailButton" onclick="addEmailForUpdate()">Add email</button>
                     <button type="button" class="btn btn-primary emailButton" onclick="removeEmailForUpdate()">Remove email</button>
+                    <span></span>
+
                   </div>
                   <input id="emailCount_update" hidden value="0">
 
                   <div class="mb-3 mt-3 outerPhonediv1" id="phoneDiv1_update">
                     <label for="phone_number" class="form-label">Phone:</label>
-                    <input type="text" class="form-control" id="phone_number_input" placeholder="Enter the phone number" name="phone_number_input" required>
+                    <input type="text" class="form-control myphoneinputClassUpdate" id="phone_number_input" placeholder="Enter the phone number" name="phone_number_input" required>
+                    <div><span></span></div><br>
                     <button type="button" class="btn btn-primary" onclick="addPhoneForUpdate()">Add phone</button>
                     <button type="button" class="btn btn-primary" onclick="removePhoneForUpdate()">Remove phone</button>
+                    <span></span>
                   </div>
 
                   <input id="phoneCount_update" hidden value="0">
