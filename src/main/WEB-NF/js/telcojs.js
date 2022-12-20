@@ -77,14 +77,14 @@ function getTicketsForAdmin(){
 
             var html="<table class='table table-hover'>";
 
-            html+="<tr><th>ID</th><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
+            html+="<tr><th>ID</th><th>Customer ID</th><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
                 "<th>Description</th><th>Date of Creation</th>" +
                 "<th>Date of Action</th><th>Edit</th><th>Delete</th>";
 
 
             for(let ticket of data){
 
-                html+="<tr><td id='table_ticket_id'>"+ticket['ticketId']+"</td><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
+                html+="<tr><td id='table_ticket_id'>"+ticket['ticketId']+"</td><td>"+ticket.customerId+"</td><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
                     "</td><td>"+ticket.addressOfIssue+"</td><td>"+ticket['description']+"" +
                     "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.ticketId+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
                     "  Edit Ticket\n" +
@@ -1010,6 +1010,13 @@ function addPhone(){
 
 function createCustomer(){
 
+    if(document.querySelector('.text-danger')!=null){return false;}
+
+    var b = document.querySelectorAll('#formCreateCustomer input');
+
+    for(i=0;i<b.length-1;i++){if(b[i].value=="") return false;}
+
+
     const admin_username= localStorage.getItem('username');
 
     const admin_password= localStorage.getItem('password');
@@ -1036,6 +1043,8 @@ function createCustomer(){
         str = "email" + i;
         emailArray.push(document.getElementById(str).value);
     }
+
+
     
     payload={
         "vatNumber" :vatNumber,
