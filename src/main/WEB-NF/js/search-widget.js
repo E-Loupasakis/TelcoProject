@@ -208,7 +208,7 @@ function s_customers_search_admin(){
     
                             html += "<tr><td id='customer_id'>" + data2['id'] + "</td><td>" + data2.firstName + "</td><td>" + data2.lastName + "<td>" + data2.username + "" +
                                 "</td><td>" + data2.userCategory + "" +
-                                "</td><td>" + data2.vatNumber + "</td><td>" + data2.address + "</td><td>" + data2.emailList[0].email +"</td><td>" + data2.phones[0].number + "</td><td><button  onclick='getCustomerById(" + data2['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
+                                "</td><td>" + data2.vatNumber + "</td><td>" + data2.address + "</td><td><a style = 'cursor:pointer;color:blue;' data-bs-toggle=\"modal\" data-bs-target=\"#viewCustomerEmails\" onclick= 'getEmailList("+data2['id']+")'>" + data2.emailList[0].email +"</td><td>" + data2.phones[0].number + "</td><td><button  onclick='getCustomerById(" + data2['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
                                 "  Edit Customer\n" +
                                 "</button></td><td><button onclick='passDatatoModalForCustomerByAdmin("+data['id']+")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_Customer_by_admin\">\n" +
                                 "  Delete Customer\n" +

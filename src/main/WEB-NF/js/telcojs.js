@@ -77,14 +77,14 @@ function getTicketsForAdmin(){
 
             var html="<table class='table table-hover'>";
 
-            html+="<tr><th>ID</th><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
+            html+="<tr><th>ID</th><th>Customer ID</th><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
                 "<th>Description</th><th>Date of Creation</th>" +
                 "<th>Date of Action</th><th>Edit</th><th>Delete</th>";
 
 
             for(let ticket of data){
 
-                html+="<tr><td id='table_ticket_id'>"+ticket['ticketId']+"</td><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
+                html+="<tr><td id='table_ticket_id'>"+ticket['ticketId']+"</td><td>"+ticket.customerId+"</td><td>"+ticket.ticketType+"</td><td>"+ticket.ticketStatus+"<td>"+ticket.estimatedCost+"" +
                     "</td><td>"+ticket.addressOfIssue+"</td><td>"+ticket['description']+"" +
                     "</td><td>"+ticket.dateTimeOfCreation+"</td><td>"+ticket.dateTimeOfAction+"</td><td><button  onclick='getTicketById("+ticket.ticketId+")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_ticket_by_admin\">\n" +
                     "  Edit Ticket\n" +
@@ -973,7 +973,7 @@ function addEmail(){
 }
 
 function addEmailForUpdate(){
-    
+
     var counter = document.getElementById("emailCount_update").value;
     var newCount = Number(counter);
     newCount++;
@@ -983,32 +983,32 @@ function addEmailForUpdate(){
     html+="<span id=\"span"+ newCount +"\"</span>";
     html+="</div>";
     var div = document.createElement('div');
-    
+
     div.innerHTML = html;
     document.getElementById("emailCount_update").value = String(newCount);
     div.setAttribute('class', 'mb-3 mt-3');
     document.getElementById("emailDiv1_update").prepend(div);
 
-    emailInput = document.getElementById("email_input"+newCount);
-    helpMessage_new = document.getElementById("span"+newCount);
+    var emailInput = document.getElementById("email_input"+newCount);
+    var helpMessage_new = document.getElementById("span"+newCount);
 
     emailInput.addEventListener('focusout', () => {
         debugger;
     regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       message = 'Must be a valid email address';
-    
+
       if (regEx.test(emailInput.value)) {
         helpMessage_new.innerHTML = 'Success';
         console.log(helpMessage_new);
         helpMessage_new.className = 'text-success';
-        
+
       } else {
         helpMessage_new.innerHTML = message;
         console.log(helpMessage_new);
         helpMessage_new.className = 'text-danger';
-        
+
       }
-    
+
     });
 
 
@@ -1071,19 +1071,19 @@ function addPhone(){
     phoneInput.addEventListener('focusout', () => {
     regEx = /^\d{10}$/;
     message = 'Must be a ten digit phone';
-    
+
       if (regEx.test(phoneInput.value)) {
         helpMessage_new.innerHTML = 'Success';
         console.log(helpMessage_new);
         helpMessage_new.className = 'text-success';
-        
+
       } else {
         helpMessage_new.innerHTML = message;
         console.log(helpMessage_new);
         helpMessage_new.className = 'text-danger';
-        
+
       }
-    
+
     });
 
 }
@@ -1091,7 +1091,7 @@ function addPhone(){
 
 
 function addPhoneForUpdate(){
-    
+
     debugger;
     var counter = document.getElementById("phoneCount_update").value;
     var newCount = Number(counter);
@@ -1107,29 +1107,29 @@ function addPhoneForUpdate(){
     div.setAttribute('class', 'mb-3 mt-3');
     document.getElementById("phoneDiv1_update").prepend(div);
 
-    phoneInput = document.getElementById("phone_number_input"+newCount);
-    helpMessage_new = document.getElementById("span"+newCount);
+    var phoneInput = document.getElementById("phone_number_input"+newCount);
+    var helpMessage_new = document.getElementById("span"+newCount);
 
     phoneInput.addEventListener('focusout', () => {
         debugger;
     regEx = /^\d{10}$/;
     message = 'Must be a ten digit phone';
     debugger;
-    
+
       if (regEx.test(phoneInput.value)) {
         debugger;
         helpMessage_new.innerHTML = 'Success';
         console.log(helpMessage_new);
         helpMessage_new.className = 'text-success';
-        
+
       } else {
         debugger;
         helpMessage_new.innerHTML = message;
         console.log(helpMessage_new);
         helpMessage_new.className = 'text-danger';
-        
+
       }
-    
+
     });
 
 }
@@ -1258,7 +1258,7 @@ function getCustomersForAdmin(){
 
                             html += "<tr><td id='customer_id'>" + customer['id'] + "</td><td>" + customer.firstName + "</td><td>" + customer.lastName + "<td>" + customer.username + "" +
                                 "</td><td>" + customer.userCategory + "" +
-                                "</td><td>" + customer.vatNumber + "</td><td>" + customer.address + "</td><td>" + customer.emailList[0].email +"</td><td>" + customer.phones[0].number + "</td><td><button  onclick='getCustomerById(" + customer['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
+                                "</td><td>" + customer.vatNumber + "</td><td>" + customer.address + "</td><td><a style = 'cursor:pointer;color:blue;' data-bs-toggle=\"modal\" data-bs-target=\"#viewCustomerEmails\" onclick= 'getEmailList("+customer['id']+")'>" + customer.emailList[0].email +"</a></td><td>" + customer.phones[0].number + "</td><td><button  onclick='getCustomerById(" + customer['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
                                 "  Edit Customer\n" +
                                 "</button></td><td><button onclick='passDatatoModalForCustomerByAdmin(" + customer['id'] + ")' type=\"button\" class=\"btn btn-danger\" data-bs-toggle=\"modal\" data-bs-target=\"#delete_Customer_by_admin\">\n" +
                                 "  Delete Customer\n" +
@@ -1510,4 +1510,48 @@ function getTicketsForSimpleCustomer(){
 function printCustomerNames(){
     html=`${localStorage.getItem('fname')} ${localStorage.getItem('lname')}`
     document.getElementById('cstNames').innerHTML=html;
+}
+
+function getEmailList(id){
+    const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/'+id;
+
+    const first_div_element = document.getElementById("emailLista");
+
+    const username= localStorage.getItem('username');
+
+    const password= localStorage.getItem('password');
+
+    fetch(url,{
+
+        method:"GET",
+
+        headers: {
+
+            'Accept': 'application/json',
+
+            'Content-Type': 'application/json',
+
+            'Authorization': 'Basic ' + btoa(username+":"+ password)}}
+
+    )
+
+        .then(response => response.json())
+
+        .then(customers => {
+
+debugger;
+            const data = customers.data;
+            html="";
+            html+="<table class='table table-hover' style='text-align:center'>";
+            html+="<tr><th>Customer Email List</th></tr>"
+            for (let i = 0;i<data.emailList.length;i++){
+                html += "<tr><td>"+data.emailList[i].email+"</td></tr>"
+            }
+            div = document.createElement('div');
+            div.innerHTML = html;
+            first_div_element.appendChild(div);
+            console.log(first_div_element);
+
+
+}).catch(error => console.error('Network Error...'));
 }
