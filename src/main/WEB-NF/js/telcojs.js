@@ -989,8 +989,8 @@ function addEmailForUpdate(){
     div.setAttribute('class', 'mb-3 mt-3');
     document.getElementById("emailDiv1_update").prepend(div);
 
-    emailInput = document.getElementById("email_input"+newCount);
-    helpMessage_new = document.getElementById("span"+newCount);
+    var emailInput = document.getElementById("email_input"+newCount);
+    var helpMessage_new = document.getElementById("span"+newCount);
 
     emailInput.addEventListener('focusout', () => {
         debugger;
@@ -1107,8 +1107,8 @@ function addPhoneForUpdate(){
     div.setAttribute('class', 'mb-3 mt-3');
     document.getElementById("phoneDiv1_update").prepend(div);
 
-    phoneInput = document.getElementById("phone_number_input"+newCount);
-    helpMessage_new = document.getElementById("span"+newCount);
+    var phoneInput = document.getElementById("phone_number_input"+newCount);
+    var helpMessage_new = document.getElementById("span"+newCount);
 
     phoneInput.addEventListener('focusout', () => {
         debugger;
