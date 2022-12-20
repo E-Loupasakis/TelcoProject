@@ -1374,4 +1374,3 @@ function printCustomerNames(){
     html=`${localStorage.getItem('fname')} ${localStorage.getItem('lname')}`
     document.getElementById('cstNames').innerHTML=html;
 }
-
