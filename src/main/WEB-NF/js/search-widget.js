@@ -197,8 +197,16 @@ function s_customers_search_admin(){
         .then(customers => {
     
             const data = customers.data;
+            if(data==null){
+                var html="<table class='table table-hover'>";
     
-            if(data.length!=0){
+                html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th>" +
+                "<th>User Category</th><th>Vat number</th><th>Address</th>" +
+                "<th>Email List</th><th>Phone List</th><th>Edit</th><th>Delete</th>";
+    
+                html+="</table>";
+            }
+            else if(data.length!=0){
             if(search_type=="byEmail"){var data2=data[0];}
             else{var data2 = data;}
             var html="<table class='table table-hover'>";
