@@ -145,14 +145,9 @@ addrUpdate.addEventListener('focusout', () => {
 });
 
 
-
-// const emailsUpdate=document.querySelectorAll('.myEmailinputClassUpdate');
-// const phonesUpdate=document.querySelectorAll('.myphoneinputClassUpdate');
-
-
 for(let emailUpdt of emailsUpdate ){
     emailUpdt.addEventListener('focusout', () => {
-        debugger;
+        
          regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       message = 'Must be a valid email address';
     
@@ -174,8 +169,8 @@ for(let emailUpdt of emailsUpdate ){
 
 for(let phoneUpdt of phonesUpdate ){
     phoneUpdt.addEventListener('focusout', () => {
-        debugger;
-        regEx = /^\d{10}$/;
+       
+      regEx = /^\d{10}$/;
       message = 'Must be a 10 digit phone';
     
       if (regEx.test(phoneUpdt.value)) {

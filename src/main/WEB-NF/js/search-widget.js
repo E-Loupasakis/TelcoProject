@@ -79,7 +79,7 @@ function s_date_search(){
         .then(tickets => {
 
             const data = tickets.data;
-            console.log(data);
+            
 
             document.getElementById('cust_table').innerHTML= "";
             var html="<table class='table table-hover'>";
@@ -142,7 +142,7 @@ function s_date_search_admin(){
         .then(tickets => {
 
             const data = tickets.data;
-            console.log(data);
+          
 
             document.getElementById('table').innerHTML= "";
             var html="<table class='table table-hover'>";
@@ -163,7 +163,7 @@ function s_date_search_admin(){
             }
 
             html+="</table>";
-            console.log(html);
+            
             document.getElementById('table').innerHTML = html;
 
 

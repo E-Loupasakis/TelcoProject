@@ -159,13 +159,11 @@ function getTicketById(id){
             const data = tickets.data;
             document.getElementById('ticket_id_update').value = data.ticketId;
             document.getElementById('customer_id_update').value = data['customerId'];
-            //console.log(data);
             document.getElementById('address_update').value = data.addressOfIssue;
             document.getElementById('ticket_status_update').value = data.ticketStatus;
             document.getElementById('ticket_type_update').value = data.ticketType;
             document.getElementById('estimated_cost_update').value = data.estimatedCost;
             document.getElementById('description_update').value = data['description'];
-            // console.log(data.dateTimeOfAction.reverse());
             document.getElementById('date_of_action_update').value = data.dateTimeOfAction;
 
 
@@ -174,11 +172,11 @@ function getTicketById(id){
 
 function updateTicket(){
 
-debugger;
-alert("11111")
+
+
     if(document.querySelector('.text-danger')!=null){
         return false;
-        alert("222222")
+       
     }
 
     var b = document.querySelectorAll('#formupdateTicket input');
@@ -189,7 +187,7 @@ alert("11111")
         return false;
     }
 
-debugger;
+
     const username= localStorage.getItem('username');
 
     const password= localStorage.getItem('password');
@@ -204,7 +202,7 @@ debugger;
     dateTimeOfAction = document.getElementById('date_of_action_update').value;
 
     dateTimeOfAction = formatDate(dateTimeOfAction);
-    console.log(ticketId);
+    
 
     payload = {
         "ticketStatus": ticketStatus,
@@ -216,7 +214,7 @@ debugger;
         "customer":{"id":customerId}
     }
 
-debugger;
+
 
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/'+ticketId;
 
@@ -259,7 +257,6 @@ function deleteTicket(ticketId){
 
     const password= localStorage.getItem('password');
 
-    console.log(ticketId);
     var url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/'+ticketId;
 
     fetch(url,{
@@ -315,10 +312,6 @@ function createTicket(){
     my_description = document.getElementById('description').value;
     dateTimeOfAction = document.getElementById('date_of_action').value;
 
-
-
-
-    console.log(dateTimeOfAction);
     dateTimeOfAction = formatDate(dateTimeOfAction);
     payload = {
         "ticketStatus": ticketStatus,
@@ -377,7 +370,7 @@ function searchByDate(){
         .then(tickets => {
 
             const data = tickets.data;
-            console.log(data);
+            
 
             document.getElementById('table').innerHTML= "";
             var html="<table class='table table-hover'>";
@@ -403,7 +396,7 @@ function searchByDate(){
 
 
             html+="</table>";
-            console.log(html);
+           
             document.getElementById('table').innerHTML = html;
 
 
@@ -434,7 +427,7 @@ function searchByDates(){
         .then(tickets => {
 
             const data = tickets.data;
-            console.log(data);
+            
 
             document.getElementById('table').innerHTML= "";
             var html="<table class='table table-hover'>";
@@ -460,7 +453,7 @@ function searchByDates(){
 
 
             html+="</table>";
-            console.log(html);
+            
             document.getElementById('table').innerHTML = html;
 
 
@@ -490,7 +483,6 @@ function searchByCustomer(){
         .then(tickets => {
 
             const data = tickets.data;
-            console.log(data);
 
             document.getElementById('table').innerHTML= "";
             var html="<table class='table table-hover'>";
@@ -516,7 +508,6 @@ function searchByCustomer(){
 
 
             html+="</table>";
-            console.log(html);
             document.getElementById('table').innerHTML = html;
 
 
@@ -763,7 +754,7 @@ function updateCustomer(){
     let vatNumber = document.getElementById("vatNumber_update").value;
     let password = document.getElementById("password_update").value;
     let address = document.getElementById("address_update").value;
-    debugger;
+  
     let phoneArray = new Array();
     phoneArray.push(document.getElementById("phone_number_input").value);
     for(i = 1; i<=phoneCount;i++){
@@ -790,7 +781,6 @@ function updateCustomer(){
         "phones": phoneArray
     }
 
-    alert(JSON.stringify(payload));
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/' + customerId;
 
 
@@ -809,8 +799,7 @@ function updateCustomer(){
             body: JSON.stringify(payload)
         }
     )
-    // console.log(JSON.stringify(payload))
-    // console.log(JSON.stringify(response))
+  
         .then(response => response.json())
 
         .then(response =>{
@@ -835,7 +824,7 @@ function updateSimpleCustomer(){
     let vatNumber = document.getElementById("vatNumber_update").value;
     let password = document.getElementById("password_update").value;
     let address = document.getElementById("address_update").value;
-    debugger;
+   
     let phoneArray = new Array();
     phoneArray.push(document.getElementById("phone_number_input").value);
     for(i = 1; i<=phoneCount;i++){
@@ -862,7 +851,7 @@ function updateSimpleCustomer(){
         "phones": phoneArray
     }
 
-    alert(JSON.stringify(payload));
+   
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/' + id;
 
 
@@ -881,11 +870,10 @@ function updateSimpleCustomer(){
             body: JSON.stringify(payload)
         }
     )
-    // console.log(JSON.stringify(payload))
-    // console.log(JSON.stringify(response))
+   
         .then(response => response.json())
 
-        .then(response => alert(JSON.stringify(response)))
+        .then(response => JSON.stringify(response))
 
         reload();
 }
@@ -959,12 +947,10 @@ function addEmail(){
     
       if (regEx.test(emailInput.value)) {
         helpMessage_new.innerHTML = 'Success';
-        console.log(helpMessage_new);
         helpMessage_new.className = 'text-success';
         
       } else {
         helpMessage_new.innerHTML = message;
-        console.log(helpMessage_new);
         helpMessage_new.className = 'text-danger';
         
       }
@@ -993,18 +979,18 @@ function addEmailForUpdate(){
     var helpMessage_new = document.getElementById("span"+newCount);
 
     emailInput.addEventListener('focusout', () => {
-        debugger;
+     
     regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       message = 'Must be a valid email address';
 
       if (regEx.test(emailInput.value)) {
         helpMessage_new.innerHTML = 'Success';
-        console.log(helpMessage_new);
+        
         helpMessage_new.className = 'text-success';
 
       } else {
         helpMessage_new.innerHTML = message;
-        console.log(helpMessage_new);
+       
         helpMessage_new.className = 'text-danger';
 
       }
@@ -1074,12 +1060,12 @@ function addPhone(){
 
       if (regEx.test(phoneInput.value)) {
         helpMessage_new.innerHTML = 'Success';
-        console.log(helpMessage_new);
+       
         helpMessage_new.className = 'text-success';
 
       } else {
         helpMessage_new.innerHTML = message;
-        console.log(helpMessage_new);
+       
         helpMessage_new.className = 'text-danger';
 
       }
@@ -1092,7 +1078,7 @@ function addPhone(){
 
 function addPhoneForUpdate(){
 
-    debugger;
+   
     var counter = document.getElementById("phoneCount_update").value;
     var newCount = Number(counter);
     newCount++;
@@ -1111,21 +1097,21 @@ function addPhoneForUpdate(){
     var helpMessage_new = document.getElementById("span"+newCount);
 
     phoneInput.addEventListener('focusout', () => {
-        debugger;
+       
     regEx = /^\d{10}$/;
     message = 'Must be a ten digit phone';
-    debugger;
+   
 
       if (regEx.test(phoneInput.value)) {
-        debugger;
+      
         helpMessage_new.innerHTML = 'Success';
-        console.log(helpMessage_new);
+       
         helpMessage_new.className = 'text-success';
 
       } else {
-        debugger;
+        
         helpMessage_new.innerHTML = message;
-        console.log(helpMessage_new);
+       
         helpMessage_new.className = 'text-danger';
 
       }
@@ -1161,7 +1147,7 @@ function createCustomer(){
     let vatNumber = document.getElementById("vatNumber").value;
     let password = document.getElementById("password").value;
     let address = document.getElementById("address").value;
-    debugger;
+    
     let phoneArray = new Array();
     for(i = 1; i<=phoneCount;i++){
         str = "phone_number" + i;
@@ -1187,7 +1173,7 @@ function createCustomer(){
         "phones": phoneArray
     }
 
-    alert(JSON.stringify(payload));
+   
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/customers/';
 
 
@@ -1213,7 +1199,7 @@ function createCustomer(){
 
             reload();
         })
-        .catch(error => alert(error('Network Error...'+error)));
+        .catch(error => error('Network Error...'+error));
 }
 
 function getCustomersForAdmin(){
@@ -1244,7 +1230,7 @@ function getCustomersForAdmin(){
         .then(customers => {
 
             const data = customers.data;
-            console.log(data);
+            
             var html="<table class='table table-hover'>";
 
             html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th>" +
@@ -1401,17 +1387,14 @@ function searchCustomerByemail(){
     .then(customers => {
 
         const data = customers.data;
-        console.log(data);
+        
         if(data.length!=0){
         var html="<table class='table table-hover'>";
         
         html+="<tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Username</th>" +
             "<th>User Category</th><th>Vat number</th><th>Address</th>" +
             "<th>Email List</th><th>Phone List</th><th>Edit</th><th>Delete</th>";
-                   
-                       // Object.keys(stringArray).map(str => console.log(stringArray[str]))     
-                        
-                       
+                                  
                         html += "<tr><td id='customer_id'>" + data[0]['id'] + "</td><td>" + data[0].firstName + "</td><td>" + data[0].lastName + "<td>" + data[0].username + "" +
                             "</td><td>" + data[0].userCategory + "" +
                             "</td><td>" + data[0].vatNumber + "</td><td>" + data[0].address + "</td><td>" + data[0].emailList[0].email +"</td><td>" + data[0].phones[0].number + "</td><td><button  onclick='getCustomerById(" + data['id'] + ")' type=\"button\" class=\"btn btn-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#edit_Customer_by_admin\">\n" +
@@ -1539,7 +1522,7 @@ function getEmailList(id){
 
         .then(customers => {
 
-debugger;
+
             const data = customers.data;
             html="";
             html+="<table class='table table-hover' style='text-align:center'>";
@@ -1550,7 +1533,7 @@ debugger;
             div = document.createElement('div');
             div.innerHTML = html;
             first_div_element.appendChild(div);
-            console.log(first_div_element);
+           
 
 
 }).catch(error => console.error('Network Error...'));

@@ -146,18 +146,16 @@ addr.addEventListener('focusout', () => {
 
 for(let email of emails ){
     email.addEventListener('focusout', () => {
-        debugger;
+     
          regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       message = 'Must be a valid email address';
     
       if (regEx.test(email.value)) {
         email.nextElementSibling.innerHTML = 'Success';
-        console.log(email);
         email.nextElementSibling.className = 'text-success';
         
       } else {
         email.nextElementSibling.innerHTML = message;
-        console.log(email);
         email.nextElementSibling.className = 'text-danger';
         
       }
@@ -169,18 +167,16 @@ for(let email of emails ){
 
 for(let phone of phones ){
     phone.addEventListener('focusout', () => {
-        debugger;
+      
         regEx = /^\d{10}$/;
       message = 'Must be a 10 digit phone';
     
       if (regEx.test(phone.value)) {
         phone.nextElementSibling.innerHTML = 'Success';
-        console.log(phone);
         phone.nextElementSibling.className = 'text-success';
         
       } else {
         phone.nextElementSibling.innerHTML = message;
-        console.log(phone);
         phone.nextElementSibling.className = 'text-danger';
         
       }
@@ -355,18 +351,16 @@ addrUpdate.addEventListener('focusout', () => {
 
 for(let emailUpdt of emailsUpdate ){
     emailUpdt.addEventListener('focusout', () => {
-        debugger;
+        
          regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       message = 'Must be a valid email address';
     
       if (regEx.test(emailUpdt.value)) {
         emailUpdt.nextElementSibling.innerHTML = 'Success';
-       ;
         emailUpdt.nextElementSibling.className = 'text-success';
         
       } else {
         emailUpdt.nextElementSibling.innerHTML = message;
-        
         emailUpdt.nextElementSibling.className = 'text-danger';
         
       }
@@ -377,18 +371,16 @@ for(let emailUpdt of emailsUpdate ){
 
 for(let phoneUpdt of phonesUpdate ){
     phoneUpdt.addEventListener('focusout', () => {
-        debugger;
+      
         regEx = /^\d{10}$/;
       message = 'Must be a 10 digit phone';
     
       if (regEx.test(phoneUpdt.value)) {
         phoneUpdt.nextElementSibling.innerHTML = 'Success';
-       
         phoneUpdt.nextElementSibling.className = 'text-success';
         
       } else {
         phoneUpdt.nextElementSibling.innerHTML = message;
-        
         phoneUpdt.nextElementSibling.className = 'text-danger';
         
       }
