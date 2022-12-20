@@ -929,7 +929,7 @@ function addEmail(){
     var html = "<div id=\"outerEmaildiv"+newCount+"\" class=\"mb-3 mt-3\">";
     html+="<label for=\"email\" class=\"form-label\">Email:</label>";
     html+="<input type=\"text\" class=\"form-control myEmailinputClass\" id=\"email"+ newCount + "\" placeholder=\"Enter the email\" name=\"email\" required>";
-    html+="<span id=\"span"+ newCount +"\"</span>";
+    html+="<span id=\"em_span"+ newCount +"\"</span>";
     html+="</div>";
     var div = document.createElement('div');
     
@@ -939,7 +939,7 @@ function addEmail(){
     document.getElementById("emailDivs").prepend(div);
 
     emailInput = document.getElementById("email"+newCount);
-    helpMessage_new = document.getElementById("span"+newCount);
+    var helpMessage_new = document.getElementById("em_span"+newCount);
 
     emailInput.addEventListener('focusout', () => {
          regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -947,10 +947,12 @@ function addEmail(){
     
       if (regEx.test(emailInput.value)) {
         helpMessage_new.innerHTML = 'Success';
+        console.log(helpMessage_new);
         helpMessage_new.className = 'text-success';
         
       } else {
         helpMessage_new.innerHTML = message;
+        console.log(helpMessage_new);
         helpMessage_new.className = 'text-danger';
         
       }
@@ -959,42 +961,42 @@ function addEmail(){
 }
 
 function addEmailForUpdate(){
-
+    
     var counter = document.getElementById("emailCount_update").value;
     var newCount = Number(counter);
     newCount++;
     var html = "<div id=\"outerEmaildiv_update"+newCount+"\" class=\"mb-3 mt-3\">";
     html+="<label for=\"email\" class=\"form-label\">Email:</label>";
     html+="<input type=\"text\" class=\"form-control myEmailinputClassUpdate\" id=\"email_input"+ newCount + "\" placeholder=\"Enter the email\" name=\"email\" required>";
-    html+="<span id=\"span"+ newCount +"\"</span>";
+    html+="<span id=\"em_span_update"+ newCount +"\"</span>";
     html+="</div>";
     var div = document.createElement('div');
-
+    
     div.innerHTML = html;
     document.getElementById("emailCount_update").value = String(newCount);
     div.setAttribute('class', 'mb-3 mt-3');
     document.getElementById("emailDiv1_update").prepend(div);
 
-    var emailInput = document.getElementById("email_input"+newCount);
-    var helpMessage_new = document.getElementById("span"+newCount);
+    emailInput = document.getElementById("email_input"+newCount);
+    var helpMessage_new = document.getElementById("em_span_update"+newCount);
 
     emailInput.addEventListener('focusout', () => {
-     
+        debugger;
     regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       message = 'Must be a valid email address';
-
+    
       if (regEx.test(emailInput.value)) {
         helpMessage_new.innerHTML = 'Success';
-        
+        console.log(helpMessage_new);
         helpMessage_new.className = 'text-success';
-
+        
       } else {
         helpMessage_new.innerHTML = message;
-       
+        console.log(helpMessage_new);
         helpMessage_new.className = 'text-danger';
-
+        
       }
-
+    
     });
 
 
@@ -1042,7 +1044,7 @@ function addPhone(){
     var html = "<div id=\"outerPhonediv"+newCount+"\" class=\"mb-3 mt-3\">";
     html+="<label for=\"phone\" class=\"form-label\">Phone:</label>";
     html+="<input type=\"text\" class=\"form-control myphoneinputClass\" id=\"phone_number"+ newCount + "\" placeholder=\"Enter the phone\" name=\"phone\" required>";
-    html+="<span id=\"span"+ newCount +"\"</span>";
+    html+="<span id=\"ph_span"+ newCount +"\"</span>";
     html+="</div>"
     var div = document.createElement('div');
     div.innerHTML = html;
@@ -1052,40 +1054,41 @@ function addPhone(){
 
 
     phoneInput = document.getElementById("phone_number"+newCount);
-    helpMessage_new = document.getElementById("span"+newCount);
+    var helpMessage_new = document.getElementById("ph_span"+newCount);
 
     phoneInput.addEventListener('focusout', () => {
     regEx = /^\d{10}$/;
     message = 'Must be a ten digit phone';
-
+    
       if (regEx.test(phoneInput.value)) {
         helpMessage_new.innerHTML = 'Success';
-       
+        console.log(helpMessage_new);
         helpMessage_new.className = 'text-success';
-
+        
       } else {
         helpMessage_new.innerHTML = message;
-       
+        console.log(helpMessage_new);
         helpMessage_new.className = 'text-danger';
-
+        
       }
-
+    
     });
 
 }
 
 
 
-function addPhoneForUpdate(){
 
-   
+function addPhoneForUpdate(){
+    
+    debugger;
     var counter = document.getElementById("phoneCount_update").value;
     var newCount = Number(counter);
     newCount++;
     var html = "<div id=\"outerPhonediv1"+newCount+"\" class=\"mb-3 mt-3\">";
     html+="<label for=\"phone\" class=\"form-label\">Phone:</label>";
     html+="<input type=\"text\" class=\"form-control myphoneinputClassUpdate\" id=\"phone_number_input"+ newCount + "\" placeholder=\"Enter the phone\" name=\"phone_number_input\" required>";
-    html+="<span id=\"span"+ newCount +"\"</span>";
+    html+="<span id=\"ph_span_update"+ newCount +"\"</span>";
     html+="</div>"
     var div = document.createElement('div');
     div.innerHTML = html;
@@ -1093,29 +1096,29 @@ function addPhoneForUpdate(){
     div.setAttribute('class', 'mb-3 mt-3');
     document.getElementById("phoneDiv1_update").prepend(div);
 
-    var phoneInput = document.getElementById("phone_number_input"+newCount);
-    var helpMessage_new = document.getElementById("span"+newCount);
+    phoneInput = document.getElementById("phone_number_input"+newCount);
+    var helpMessage_new = document.getElementById("ph_span_update"+newCount);
 
     phoneInput.addEventListener('focusout', () => {
-       
+        debugger;
     regEx = /^\d{10}$/;
     message = 'Must be a ten digit phone';
-   
-
+    debugger;
+    
       if (regEx.test(phoneInput.value)) {
-      
+        debugger;
         helpMessage_new.innerHTML = 'Success';
-       
+        console.log(helpMessage_new);
         helpMessage_new.className = 'text-success';
-
-      } else {
         
+      } else {
+        debugger;
         helpMessage_new.innerHTML = message;
-       
+        console.log(helpMessage_new);
         helpMessage_new.className = 'text-danger';
-
+        
       }
-
+    
     });
 
 }
