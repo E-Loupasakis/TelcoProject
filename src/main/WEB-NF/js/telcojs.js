@@ -897,7 +897,7 @@ function addEmail(){
     var html = "<div id=\"outerEmaildiv"+newCount+"\" class=\"mb-3 mt-3\">";
     html+="<label for=\"email\" class=\"form-label\">Email:</label>";
     html+="<input type=\"text\" class=\"form-control myEmailinputClass\" id=\"email"+ newCount + "\" placeholder=\"Enter the email\" name=\"email\" required>";
-    html+="<span id=\"span"+ newCount +"\"</span>";
+    html+="<span id=\"em_span"+ newCount +"\"</span>";
     html+="</div>";
     var div = document.createElement('div');
     
@@ -907,7 +907,7 @@ function addEmail(){
     document.getElementById("emailDivs").prepend(div);
 
     emailInput = document.getElementById("email"+newCount);
-    helpMessage_new = document.getElementById("span"+newCount);
+    var helpMessage_new = document.getElementById("em_span"+newCount);
 
     emailInput.addEventListener('focusout', () => {
          regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -936,7 +936,7 @@ function addEmailForUpdate(){
     var html = "<div id=\"outerEmaildiv_update"+newCount+"\" class=\"mb-3 mt-3\">";
     html+="<label for=\"email\" class=\"form-label\">Email:</label>";
     html+="<input type=\"text\" class=\"form-control myEmailinputClassUpdate\" id=\"email_input"+ newCount + "\" placeholder=\"Enter the email\" name=\"email\" required>";
-    html+="<span id=\"span"+ newCount +"\"</span>";
+    html+="<span id=\"em_span_update"+ newCount +"\"</span>";
     html+="</div>";
     var div = document.createElement('div');
     
@@ -946,7 +946,7 @@ function addEmailForUpdate(){
     document.getElementById("emailDiv1_update").prepend(div);
 
     emailInput = document.getElementById("email_input"+newCount);
-    helpMessage_new = document.getElementById("span"+newCount);
+    var helpMessage_new = document.getElementById("em_span_update"+newCount);
 
     emailInput.addEventListener('focusout', () => {
         debugger;
@@ -1012,7 +1012,7 @@ function addPhone(){
     var html = "<div id=\"outerPhonediv"+newCount+"\" class=\"mb-3 mt-3\">";
     html+="<label for=\"phone\" class=\"form-label\">Phone:</label>";
     html+="<input type=\"text\" class=\"form-control myphoneinputClass\" id=\"phone_number"+ newCount + "\" placeholder=\"Enter the phone\" name=\"phone\" required>";
-    html+="<span id=\"span"+ newCount +"\"</span>";
+    html+="<span id=\"ph_span"+ newCount +"\"</span>";
     html+="</div>"
     var div = document.createElement('div');
     div.innerHTML = html;
@@ -1022,7 +1022,7 @@ function addPhone(){
 
 
     phoneInput = document.getElementById("phone_number"+newCount);
-    helpMessage_new = document.getElementById("span"+newCount);
+    var helpMessage_new = document.getElementById("ph_span"+newCount);
 
     phoneInput.addEventListener('focusout', () => {
     regEx = /^\d{10}$/;
@@ -1055,7 +1055,7 @@ function addPhoneForUpdate(){
     var html = "<div id=\"outerPhonediv1"+newCount+"\" class=\"mb-3 mt-3\">";
     html+="<label for=\"phone\" class=\"form-label\">Phone:</label>";
     html+="<input type=\"text\" class=\"form-control myphoneinputClassUpdate\" id=\"phone_number_input"+ newCount + "\" placeholder=\"Enter the phone\" name=\"phone_number_input\" required>";
-    html+="<span id=\"span"+ newCount +"\"</span>";
+    html+="<span id=\"ph_span_update"+ newCount +"\"</span>";
     html+="</div>"
     var div = document.createElement('div');
     div.innerHTML = html;
@@ -1064,7 +1064,7 @@ function addPhoneForUpdate(){
     document.getElementById("phoneDiv1_update").prepend(div);
 
     phoneInput = document.getElementById("phone_number_input"+newCount);
-    helpMessage_new = document.getElementById("span"+newCount);
+    var helpMessage_new = document.getElementById("ph_span_update"+newCount);
 
     phoneInput.addEventListener('focusout', () => {
         debugger;

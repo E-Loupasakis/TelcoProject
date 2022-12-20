@@ -90,20 +90,20 @@
                         <div class="mb-3 mt-3 outerEmaildiv1" id="emailDivs">
                           <label for="email" class="form-label">Email:</label>
                           <input type="text" class="form-control myEmailinputClass" id="email1" placeholder="Enter the email" name="email" required>
-                          <div><span></span></div><br>
+                          <div><span id="em_span"></span></div><br>
                           <button type="button" class="btn btn-primary emailButton" onclick="addEmail()">Add email</button>
                           <button type="button" class="btn btn-primary emailButton" onclick="removeEmail()">Remove email</button>
-                          <span></span>
+                          <span id="email_span"></span>
                         </div>
                         <input id="emailCount" hidden value="1">
 
                         <div class="mb-3 mt-3 outerPhonediv1" id="phoneDivs">
                           <label for="phone_number" class="form-label">Phone:</label>
                           <input type="text" class="form-control myphoneinputClass" id="phone_number1" placeholder="Enter the phone number" name="phone_number" required>
-                          <div><span></span></div><br>
+                          <div><span id="ph_span"></span></div><br>
                           <button type="button" class="btn btn-primary" onclick="addPhone()">Add phone</button>
                           <button type="button" class="btn btn-primary" onclick="removePhone()">Remove phone</button>
-                          <span></span>
+                          <span id="phone_span"></span>
                         </div>
 
                         <input id="phoneCount" hidden value="1">
@@ -283,7 +283,7 @@
                   <div class="mb-3 mt-3 outerEmaildiv1" id="emailDiv1_update">
                     <label for="email" class="form-label">Email:</label>
                     <input type="text" class="form-control myEmailinputClassUpdate " id="email_input" placeholder="Enter the email" name="email_input" required>
-                    <div><span></span></div><br>
+                    <div><span id="em_span_update"></span></div><br>
                     <button type="button" class="btn btn-primary emailButton" onclick="addEmailForUpdate()">Add email</button>
                     <button type="button" class="btn btn-primary emailButton" onclick="removeEmailForUpdate()">Remove email</button>
                     <span></span>
@@ -294,7 +294,7 @@
                   <div class="mb-3 mt-3 outerPhonediv1" id="phoneDiv1_update">
                     <label for="phone_number" class="form-label">Phone:</label>
                     <input type="text" class="form-control myphoneinputClassUpdate" id="phone_number_input" placeholder="Enter the phone number" name="phone_number_input" required>
-                    <div><span></span></div><br>
+                    <div><span id="ph_span_update"></span></div><br>
                     <button type="button" class="btn btn-primary" onclick="addPhoneForUpdate()">Add phone</button>
                     <button type="button" class="btn btn-primary" onclick="removePhoneForUpdate()">Remove phone</button>
                     <span></span>
