@@ -113,9 +113,9 @@ function getTicketsForAdmin(){
 
 function getTodayForDateOfAction(){
 
-    var today = new Date();
+var today = new Date();
 var dd = today.getDate();
-var mm = today.getMonth() + 1; //January is 0!
+var mm = today.getMonth() + 1; 
 var yyyy = today.getFullYear();
 
 if (dd < 10) {
@@ -174,7 +174,22 @@ function getTicketById(id){
 
 function updateTicket(){
 
+debugger;
+alert("11111")
+    if(document.querySelector('.text-danger')!=null){
+        return false;
+        alert("222222")
+    }
 
+    var b = document.querySelectorAll('#formupdateTicket input');
+
+    for(i=0;i<b.length;i++)
+    {
+        if(b[i].value=="")
+        return false;
+    }
+
+debugger;
     const username= localStorage.getItem('username');
 
     const password= localStorage.getItem('password');
@@ -201,7 +216,7 @@ function updateTicket(){
         "customer":{"id":customerId}
     }
 
-
+debugger;
 
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/'+ticketId;
 
@@ -272,11 +287,26 @@ function deleteTicket(ticketId){
 }
 
 function createTicket(){
+   
+    if(document.querySelector('.text-danger')!=null){
+        return false;
+    }
+
+    var b = document.querySelectorAll('#CreateTicketByAdmin input');
+
+    for(i=0;i<b.length-1;i++)
+    {
+        if(b[i].value=="")
+        return false;
+    }
+    
+
     const username= localStorage.getItem('username');
 
     const password= localStorage.getItem('password');
 
-    //ticketId = document.getElementById('ticket_id_update').value;
+
+
     customerId = document.getElementById('cust_id').value;
     addressOfIssue = document.getElementById('address').value;
     ticketStatus = document.getElementById('TicketStatus').value;
@@ -705,11 +735,19 @@ function getSimpleCustomerById(){
 
 function updateCustomer(){
 
-    if(document.querySelector('.text-danger')!=null){return false;}
+
+    if(document.querySelector('.text-danger')!=null){
+        return false;
+    }
 
     var b = document.querySelectorAll('#formUpdateCustomer input');
 
-    for(i=0;i<b.length-1;i++){if(b[i].value=="") return false;}
+    for(i=0;i<b.length;i++)
+    {
+        if(b[i].value=="")
+        return false;
+    }
+
 
     const admin_username= localStorage.getItem('username');
 
@@ -903,7 +941,7 @@ function addEmail(){
     var html = "<div id=\"outerEmaildiv"+newCount+"\" class=\"mb-3 mt-3\">";
     html+="<label for=\"email\" class=\"form-label\">Email:</label>";
     html+="<input type=\"text\" class=\"form-control myEmailinputClass\" id=\"email"+ newCount + "\" placeholder=\"Enter the email\" name=\"email\" required>";
-    html+="<span id=\"em_span"+ newCount +"\"</span>";
+    html+="<span id=\"span"+ newCount +"\"</span>";
     html+="</div>";
     var div = document.createElement('div');
     
@@ -913,7 +951,7 @@ function addEmail(){
     document.getElementById("emailDivs").prepend(div);
 
     emailInput = document.getElementById("email"+newCount);
-    var helpMessage_new = document.getElementById("em_span"+newCount);
+    helpMessage_new = document.getElementById("span"+newCount);
 
     emailInput.addEventListener('focusout', () => {
          regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -942,7 +980,7 @@ function addEmailForUpdate(){
     var html = "<div id=\"outerEmaildiv_update"+newCount+"\" class=\"mb-3 mt-3\">";
     html+="<label for=\"email\" class=\"form-label\">Email:</label>";
     html+="<input type=\"text\" class=\"form-control myEmailinputClassUpdate\" id=\"email_input"+ newCount + "\" placeholder=\"Enter the email\" name=\"email\" required>";
-    html+="<span id=\"em_span_update"+ newCount +"\"</span>";
+    html+="<span id=\"span"+ newCount +"\"</span>";
     html+="</div>";
     var div = document.createElement('div');
     
@@ -952,7 +990,7 @@ function addEmailForUpdate(){
     document.getElementById("emailDiv1_update").prepend(div);
 
     emailInput = document.getElementById("email_input"+newCount);
-    var helpMessage_new = document.getElementById("em_span_update"+newCount);
+    helpMessage_new = document.getElementById("span"+newCount);
 
     emailInput.addEventListener('focusout', () => {
         debugger;
@@ -1018,7 +1056,7 @@ function addPhone(){
     var html = "<div id=\"outerPhonediv"+newCount+"\" class=\"mb-3 mt-3\">";
     html+="<label for=\"phone\" class=\"form-label\">Phone:</label>";
     html+="<input type=\"text\" class=\"form-control myphoneinputClass\" id=\"phone_number"+ newCount + "\" placeholder=\"Enter the phone\" name=\"phone\" required>";
-    html+="<span id=\"ph_span"+ newCount +"\"</span>";
+    html+="<span id=\"span"+ newCount +"\"</span>";
     html+="</div>"
     var div = document.createElement('div');
     div.innerHTML = html;
@@ -1028,7 +1066,7 @@ function addPhone(){
 
 
     phoneInput = document.getElementById("phone_number"+newCount);
-    var helpMessage_new = document.getElementById("ph_span"+newCount);
+    helpMessage_new = document.getElementById("span"+newCount);
 
     phoneInput.addEventListener('focusout', () => {
     regEx = /^\d{10}$/;
@@ -1061,7 +1099,7 @@ function addPhoneForUpdate(){
     var html = "<div id=\"outerPhonediv1"+newCount+"\" class=\"mb-3 mt-3\">";
     html+="<label for=\"phone\" class=\"form-label\">Phone:</label>";
     html+="<input type=\"text\" class=\"form-control myphoneinputClassUpdate\" id=\"phone_number_input"+ newCount + "\" placeholder=\"Enter the phone\" name=\"phone_number_input\" required>";
-    html+="<span id=\"ph_span_update"+ newCount +"\"</span>";
+    html+="<span id=\"span"+ newCount +"\"</span>";
     html+="</div>"
     var div = document.createElement('div');
     div.innerHTML = html;
@@ -1070,7 +1108,7 @@ function addPhoneForUpdate(){
     document.getElementById("phoneDiv1_update").prepend(div);
 
     phoneInput = document.getElementById("phone_number_input"+newCount);
-    var helpMessage_new = document.getElementById("ph_span_update"+newCount);
+    helpMessage_new = document.getElementById("span"+newCount);
 
     phoneInput.addEventListener('focusout', () => {
         debugger;
@@ -1105,7 +1143,7 @@ function createCustomer(){
 
     var b = document.querySelectorAll('#formCreateCustomer input');
 
-    for(i=0;i<b.length-1;i++){if(b[i].value=="") return false;}
+    for(i=0;i<b.length;i++){if(b[i].value=="") return false;}
 
 
     const admin_username= localStorage.getItem('username');
@@ -1175,6 +1213,7 @@ function createCustomer(){
 
             reload();
         })
+        .catch(error => alert(error('Network Error...'+error)));
 }
 
 function getCustomersForAdmin(){

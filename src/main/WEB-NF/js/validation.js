@@ -203,6 +203,8 @@ for(let phone of phones ){
 
 //Validation For update Customers
 
+
+
 const fnameUpdate = document.querySelector('#fname_update');
 const messageUpdateFirstName = document.querySelector('#messageUpdateFirstName');
 
@@ -393,3 +395,4 @@ for(let phoneUpdt of phonesUpdate ){
     
     });
 }
+
