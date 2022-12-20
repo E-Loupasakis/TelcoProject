@@ -81,8 +81,11 @@
                       <div class="mb-3 mt-3">
                         <label for="address" class="form-label">Address:</label>
                         <input type="text" class="form-control" id="address" placeholder="Enter the address" name="address" required>
+                        <span id="message-addr-create"></span>
                       </div>
+                      
                       <div class="mb-3"> 
+                        <label for="cust_id" class="form-label">Customer id:</label>
                         <input type="text" class="form-control" id="cust_id" placeholder="Enter customer ID" name="cust_id" required>
                       </div>
                       <label for="ticket-status" class="form-label">Ticket status:</label>
@@ -93,27 +96,32 @@
                           <option value="COMPLETE">COMPLETE</option>
                           <option value="DEFAULT_STANDBY_MODE">DEFAULT_STANDBY_MODE</option>
                         </select>
+                        
                         <label for="ticket-type" class="form-label">Ticket type:</label>
                         <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="TicketType" required>
                           <option selected="disabled">Choose your ticket type</option>
                           <option value="NEW_INSTALLATION">NEW_INSTALLATION</option>
                           <option value="BROKEN_LINE">BROKEN_LINE</option>
-                          <option value="COMPLETE">COMPLETE</option>
+                          <option value="LIMITED_CONNECTIVITY">LIMITED_CONNECTIVITY</option>
                         </select>
+                        
                         <div class="mb-3"> 
                           <label for="cost" class="form-label">Enter the cost:</label>
-                          <input type="number" class="form-control" id="estimated_cost" name="estimated_cost" required min="0">
+                          <input type="number" class="form-control" id="estimated_cost" name="estimated_cost" required min="0" max="100000">
+                          <span id="message-costTicket-create"></span>
                         </div>
                         <div class="mb-3"> 
                           <label for="description" class="form-label">Description:</label>
                           <textarea class="form-control" id="description" name="description" required>
 
                           </textarea>
+                          <span id="message-description-create"></span>
+                        </div>
                           <div class="mb-3"> 
                               <label for="dateOfAction" class="form-label">Choose the date of action:</label>
                               <input type="datetime-local" class="form-control" id="date_of_action" name="date_of_action" required >
-                            </div>
-                        </div>
+                          </div>
+                       
                       <button type="button" onclick="createTicket()" class="btn btn-primary">Create</button>
                     </form>
 
@@ -132,48 +140,10 @@
       <div class="col-md-2">
       </div>
 
-      <!-- <div class="col-md-2" style="margin-top:5px;">
-        <form id="TicketformSearchByDate">
-          <div class="mb-3 mt-3">
-            <label class="form-label">Search by Date:</label>
-            <input type="date" class="form-control" id="dateFromByOneDate" placeholder="Enter date" name="dateFromByOneDate" style="width:150px;cursor:pointer;display: inline-block;">
-          </div>
-          <button type="button" class="btn btn-primary" onclick="searchByDate()" id="TicketBtnSearchByDate">Search</button>
-        </form>
-
-      </div> -->
-
-
-      <!-- <div class="col-md-2" style="padding:5px;">
-
-        <form id="TicketformSearchByDates">
-          <div class="mb-3 mt-3">
-            <label class="form-label">Search by Dates:</label>
-            <input type="date" class="form-control" id="dateFromBy2Dates" placeholder="Enter date" name="dateFrom2dates" style="width:150px;cursor:pointer;display:inline-block;">
-            <br>
-            <input type="date" class="form-control" id="dateToBy2Dates" placeholder="Enter date" name="dateToFrom2Dates" style="width:150px;cursor:pointer;display:inline-block;">
-          </div>
-          
-          <button type="button" onclick="searchByDates()" class="btn btn-primary" id="TicketBtnSearchByDates">Search</button>
-        </form>
-          
-      </div> -->
-
+     
       <div class="col-md-4">
 
-        <!-- <div class="col-md-2" id="dtSearch">
-              
-            <div class="col-md-2">
-              <form id="TicketformSearchByCustomer">
-                  <div class="mb-3 mt-3">
-                    <label for="date" class="form-label">Search by Customer ID:</label>
-                    <select id="search_customer_id"></select>
-                    <input type="text" class="form-control" id="search_customer_id" placeholder="Enter Customer ID" name="SearchByCustomer" style="width:150px;cursor:pointer">
-                  </div>
-                  <button type="button" onclick="searchByCustomer()" class="btn btn-primary" id="TicketBtnSearchByCustomer">Search</button>
-                </form>
-            </div>
-        </div> -->
+       
          
       </div>
 
@@ -264,7 +234,7 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form>
+                <form id="formupdateTicket">
                     <div class="mb-3 mt-3">
                         <input type="text" class="form-control" id="ticket_id_update"  required hidden>
                     </div>
@@ -274,7 +244,8 @@
                     </div>
                     <div class="mb-3 mt-3">
                         <label for="address" class="form-label">Address:</label>
-                        <input type="text" class="form-control" id="address_update" placeholder="Enter the address" name="address" required>
+                        <input type="text" class="form-control" id="address_update" placeholder="Enter the address" name="address_update" required>
+                        <span id="messageUpdateTicket"></span>
                     </div>
 
                     <label class="form-label">Ticket status:</label>
@@ -290,22 +261,25 @@
                         <option selected="disabled">Choose your ticket type</option>
                         <option value="NEW_INSTALLATION">NEW_INSTALLATION</option>
                         <option value="BROKEN_LINE">BROKEN_LINE</option>
-                        <option value="COMPLETE">COMPLETE</option>
+                        <option value="LIMITED_CONNECTIVITY">LIMITED_CONNECTIVITY</option>
                     </select>
                     <div class="mb-3">
                         <label class="form-label">Enter the cost:</label>
-                        <input type="number" class="form-control" id="estimated_cost_update" name="estimated_cost" required min="0">
+                        <input type="number" class="form-control" id="estimated_cost_update" name="estimated_cost_update" required min="0">
+                        <span id="messageUpdateTicketCost"></span>
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description:</label>
                         <textarea class="form-control" id="description_update" name="description" required>
-
-                                    </textarea>
+                          
+                        </textarea>
+                        <span id="messageUpdateTicketDescr"></span>
+                    </div>
                         <div class="mb-3">
                             <label class="form-label">Choose the date of action:</label>
-                            <input type="datetime-local" class="form-control" id="date_of_action_update" name="date_of_action" required >
+                            <input type="datetime-local" class="form-control" id="date_of_action_update" name="date_of_action_update" required >
                         </div>
-                    </div>
+                    
                     <button type="button" onclick="updateTicket(document.getElementById('table_ticket_id').value)" class="btn btn-primary">Update</button>
                 </form>
             </div>
@@ -348,6 +322,7 @@
 
 <script src="./js/telcojs.js"></script>
 <script src="js/search-widget.js"></script>
+<script src="js/validation_tickets.js"></script>
 <script>
 
     getTicketsForAdmin();

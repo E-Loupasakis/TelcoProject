@@ -113,9 +113,9 @@ function getTicketsForAdmin(){
 
 function getTodayForDateOfAction(){
 
-    var today = new Date();
+var today = new Date();
 var dd = today.getDate();
-var mm = today.getMonth() + 1; //January is 0!
+var mm = today.getMonth() + 1; 
 var yyyy = today.getFullYear();
 
 if (dd < 10) {
@@ -174,7 +174,22 @@ function getTicketById(id){
 
 function updateTicket(){
 
+debugger;
+alert("11111")
+    if(document.querySelector('.text-danger')!=null){
+        return false;
+        alert("222222")
+    }
 
+    var b = document.querySelectorAll('#formupdateTicket input');
+
+    for(i=0;i<b.length;i++)
+    {
+        if(b[i].value=="")
+        return false;
+    }
+
+debugger;
     const username= localStorage.getItem('username');
 
     const password= localStorage.getItem('password');
@@ -201,7 +216,7 @@ function updateTicket(){
         "customer":{"id":customerId}
     }
 
-
+debugger;
 
     const url = 'http://localhost:8080/advantage-telco-project-training-2022/api/tickets/'+ticketId;
 
@@ -272,11 +287,26 @@ function deleteTicket(ticketId){
 }
 
 function createTicket(){
+   
+    if(document.querySelector('.text-danger')!=null){
+        return false;
+    }
+
+    var b = document.querySelectorAll('#CreateTicketByAdmin input');
+
+    for(i=0;i<b.length-1;i++)
+    {
+        if(b[i].value=="")
+        return false;
+    }
+    
+
     const username= localStorage.getItem('username');
 
     const password= localStorage.getItem('password');
 
-    //ticketId = document.getElementById('ticket_id_update').value;
+
+
     customerId = document.getElementById('cust_id').value;
     addressOfIssue = document.getElementById('address').value;
     ticketStatus = document.getElementById('TicketStatus').value;
@@ -705,6 +735,20 @@ function getSimpleCustomerById(){
 
 function updateCustomer(){
 
+
+    if(document.querySelector('.text-danger')!=null){
+        return false;
+    }
+
+    var b = document.querySelectorAll('#formUpdateCustomer input');
+
+    for(i=0;i<b.length;i++)
+    {
+        if(b[i].value=="")
+        return false;
+    }
+
+
     const admin_username= localStorage.getItem('username');
 
     const admin_password= localStorage.getItem('password');
@@ -945,8 +989,8 @@ function addEmailForUpdate(){
     div.setAttribute('class', 'mb-3 mt-3');
     document.getElementById("emailDiv1_update").prepend(div);
 
-    emailInput = document.getElementById("email_input"+newCount);
-    helpMessage_new = document.getElementById("span"+newCount);
+    var emailInput = document.getElementById("email_input"+newCount);
+    var helpMessage_new = document.getElementById("span"+newCount);
 
     emailInput.addEventListener('focusout', () => {
         debugger;
@@ -1063,8 +1107,8 @@ function addPhoneForUpdate(){
     div.setAttribute('class', 'mb-3 mt-3');
     document.getElementById("phoneDiv1_update").prepend(div);
 
-    phoneInput = document.getElementById("phone_number_input"+newCount);
-    helpMessage_new = document.getElementById("span"+newCount);
+    var phoneInput = document.getElementById("phone_number_input"+newCount);
+    var helpMessage_new = document.getElementById("span"+newCount);
 
     phoneInput.addEventListener('focusout', () => {
         debugger;
@@ -1099,7 +1143,7 @@ function createCustomer(){
 
     var b = document.querySelectorAll('#formCreateCustomer input');
 
-    for(i=0;i<b.length-1;i++){if(b[i].value=="") return false;}
+    for(i=0;i<b.length;i++){if(b[i].value=="") return false;}
 
 
     const admin_username= localStorage.getItem('username');
@@ -1169,6 +1213,7 @@ function createCustomer(){
 
             reload();
         })
+        .catch(error => alert(error('Network Error...'+error)));
 }
 
 function getCustomersForAdmin(){
