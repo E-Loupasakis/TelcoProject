@@ -705,6 +705,12 @@ function getSimpleCustomerById(){
 
 function updateCustomer(){
 
+    if(document.querySelector('.text-danger')!=null){return false;}
+
+    var b = document.querySelectorAll('#formUpdateCustomer input');
+
+    for(i=0;i<b.length-1;i++){if(b[i].value=="") return false;}
+
     const admin_username= localStorage.getItem('username');
 
     const admin_password= localStorage.getItem('password');
