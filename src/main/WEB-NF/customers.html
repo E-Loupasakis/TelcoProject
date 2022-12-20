@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Telco_projects</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./css/css.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="./main_admin.html">Administrator</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <li class="nav-item">
+            <a class="nav-link" href="customers.html" id="link1">Customers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="tickets.html"id="link2">Tickets</a>
+          </li>
+        </ul>
+        <div class="d-flex">
+           <button type="button" class="btn btn-danger" onclick="redirect()">Log out</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+<div class="container-fluid">
+
+
+    <div class="row">
+      <div class="col-md-4">
+
+            
+        
+
+        <!-- The Modal -->
+        <div class="modal" id="CreateCustomerByAdmin">
+          <div class="modal-dialog">
+          <div class="modal-content">
+      
+              <!-- Modal Header -->
+              <div class="modal-header">
+              <h4 class="modal-title">Create customer</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="reload()"></button>
+              </div>
+      
+              <!-- Modal body -->
+              <div class="modal-body">
+                  <form id="formCreateCustomer">
+                      <div class="mb-3 mt-3">
+                        <label for="fname" class="form-label">First Name:</label>
+                        <input type="text" class="form-control" id="fname" placeholder="Enter the first name" name="fname" required>
+                        <span id="help-message"></span>
+                      </div>
+                      <div class="mb-3 mt-3">
+                        <label for="lname" class="form-label">Last Name:</label>
+                        <input type="text" class="form-control" id="lname" placeholder="Enter the last name" name="lname" required>
+                        <span id="helpMessagelname"></span>
+                      </div>
+                      <div class="mb-3 mt-3">
+                        <label for="username" class="form-label">Username:</label>
+                        <input type="text" class="form-control" id="username" placeholder="Enter the username" name="username" required>
+                        <span id="helpMessageusname"></span>
+                      </div>
+                      <div class="mb-3 mt-3">
+                        <label for="vatNumber" class="form-label">Vat:</label>
+                        <input type="text" class="form-control" id="vatNumber" placeholder="Enter the VAT" name="vatNumber" required>
+                        <span id="helpMessageVat"></span>
+                      </div>
+                      <div class="mb-3 mt-3">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter the password" name="password" required>
+                        <span id="helpMessagepass"></span>
+                      </div>
+                      <div class="mb-3 mt-3">
+                        <label for="address" class="form-label">Address:</label>
+                        <input type="text" class="form-control" id="address" placeholder="Enter the address" name="address" required>
+                        <span id="helpMessageaddr"></span>
+                      </div>
+                      <div class="mb-3 mt-3 outerEmaildiv1" id="emailDivs">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="text" class="form-control myEmailinputClass" id="email1" placeholder="Enter the email" name="email" required>
+                        <div><span id="em_span"></span></div><br>
+                        <button type="button" class="btn btn-primary emailButton" onclick="addEmail()">Add email</button>
+                        <button type="button" class="btn btn-primary emailButton" onclick="removeEmail()">Remove email</button>
+                        <span id="email_span"></span>
+                      </div>
+                      <input id="emailCount" hidden value="1">
+
+                      <div class="mb-3 mt-3 outerPhonediv1" id="phoneDivs">
+                        <label for="phone_number" class="form-label">Phone:</label>
+                        <input type="text" class="form-control myphoneinputClass" id="phone_number1" placeholder="Enter the phone number" name="phone_number" required>
+                        <div><span id="ph_span"></span></div><br>
+                        <button type="button" class="btn btn-primary" onclick="addPhone()">Add phone</button>
+                        <button type="button" class="btn btn-primary" onclick="removePhone()">Remove phone</button>
+                        <span id="phone_span"></span>
+                      </div>
+
+                      <input id="phoneCount" hidden value="1">
+                      <button type="button" id="createCustButton" onclick="createCustomer()" class="btn btn-primary">Create</button>              
+              </div>
+      
+              <!-- Modal footer -->
+              <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="reload()">Close</button>
+              </div>
+      
+          </div>
+          </div>
+      </div>
+
+
+</div>
+    
+        <div class="col-md-4">
+            
+        </div>
+
+    </div>
+
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="mt-4 p-5 bg-primary text-white rounded" id="jumbo3" style="cursor:pointer">
+                <h1>Customers</h1>
+            </div>
+            
+        </div>
+
+        <div class="col-md-4">
+           
+        </div>
+
+    </div>
+
+    <div class="row" style="margin-top:40px;width:100%;text-align:center;">
+
+        <div class="col-md-1">
+
+        </div>
+        <div id="mySearchRow">
+       <!-- Button to Open the Modal -->
+       <div id="create_button">
+        <button type="button" class="btn btn-primary" id="#create_csmer_btn" data-bs-toggle="modal" data-bs-target="#CreateCustomerByAdmin">
+          Create Customer
+      </button></div>
+      <div id="search_criteria">
+          <label>Search by</label>
+          <select id="searchType" onchange="customer_field_check()">
+            <option value="byVat">VAT</option>
+            <option value="byEmail">Email</option>
+          </select>
+          <input type="text"  id="vatSearch" placeholder="Enter VAT" style="width:150px;cursor:pointer">
+          <input type="text"  id="emailSearch" placeholder="Enter Email" style="width:150px;cursor:pointer">
+          <button type="button" onclick="s_customers_search_admin()" class="btn btn-primary" id="customerBtnSearchByDates">Search</button>
+        </div>
+      </div>
+            <div id="tableForCustomers">
+            </div>
+            
+        </div>
+
+        <div class="col-md-1">
+            
+        </div>
+
+
+    </div>
+
+
+
+
+ <!-- The Modal for deleting the customer-->
+<div class="modal" id='delete_Customer_by_admin'>
+    <form>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Customer Delete</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Are you sure? Do you want to delete this customer?
+            </div>
+            <div id = 'my_value' hidden></div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" onclick="deleteCustomer(document.getElementById('my_value').value)" class="btn btn-success" data-bs-dismiss="modal">Yes</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="modal" id="viewCustomerEmails">
+  <div class="modal-dialog">
+      <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+              <h4 class="modal-title">Email List</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="reload()"></button>
+          </div>
+
+          <!-- Modal body -->
+          <div id="emailLista">
+
+                
+
+        </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="reload()">Close</button>
+          </div>
+
+      </div>
+  </div>
+</div>
+
+
+<div class="modal" id="edit_Customer_by_admin">
+  <div class="modal-dialog">
+      <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+              <h4 class="modal-title">Edit Customer</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form id="formUpdateCustomer">
+                  <div class="mb-3 mt-3">
+                    <input type="text" class="form-control" id="customer_id_update"  required hidden>
+                </div>
+                  <div class="mb-3 mt-3">
+                    <label for="fname" class="form-label">First Name:</label>
+                    <input type="text" class="form-control" id="fname_update" placeholder="Enter the first name" name="fname_update" required>
+                    <span id="messageUpdateFirstName"></span>
+                  </div>
+                  <div class="mb-3 mt-3">
+                    <label for="lname" class="form-label">Last Name:</label>
+                    <input type="text" class="form-control" id="lname_update" placeholder="Enter the last name" name="lname_update" required>
+                    <span id="messageUpdateLastName"></span>
+                  </div>
+                  <div class="mb-3 mt-3">
+                    <label for="username" class="form-label">Username:</label>
+                    <input type="text" class="form-control" id="username_update" placeholder="Enter the username" name="username_update" required>
+                    <span id="messageUpdateUsr"></span>
+                  </div>
+                  <div class="mb-3 mt-3">
+                    <label for="vatNumber" class="form-label">Vat:</label>
+                    <input type="text" class="form-control" id="vatNumber_update" placeholder="Enter the VAT" name="vatNumber_update" required>
+                    <span id="messageUpdateVatNum"></span>
+                  </div>
+                  <div class="mb-3 mt-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" class="form-control" id="password_update" placeholder="Enter the password" name="password_update" required>
+                    <span id="messageUpdatePass"></span>
+                  </div>
+                  <div class="mb-3 mt-3">
+                    <label for="address" class="form-label">Address:</label>
+                    <input type="text" class="form-control" id="address_update" placeholder="Enter the address" name="address_update" required>
+                    <span id="messageUpdateAddress"></span>
+                  </div>
+                  <div class="mb-3 mt-3 outerEmaildiv1" id="emailDiv1_update">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="text" class="form-control myEmailinputClassUpdate " id="email_input" placeholder="Enter the email" name="email_input" required>
+                    <div><span id="em_span_update"></span></div><br>
+                    <button type="button" class="btn btn-primary emailButton" onclick="addEmailForUpdate()">Add email</button>
+                    <button type="button" class="btn btn-primary emailButton" onclick="removeEmailForUpdate()">Remove email</button>
+                    <span></span>
+
+                  </div>
+                  <input id="emailCount_update" hidden value="0">
+
+                  <div class="mb-3 mt-3 outerPhonediv1" id="phoneDiv1_update">
+                    <label for="phone_number" class="form-label">Phone:</label>
+                    <input type="text" class="form-control myphoneinputClassUpdate" id="phone_number_input" placeholder="Enter the phone number" name="phone_number_input" required>
+                    <div><span id="ph_span_update"></span></div><br>
+                    <button type="button" class="btn btn-primary" onclick="addPhoneForUpdate()">Add phone</button>
+                    <button type="button" class="btn btn-primary" onclick="removePhoneForUpdate()">Remove phone</button>
+                    <span></span>
+                  </div>
+
+                  <input id="phoneCount_update" hidden value="0">
+                  <button type="button" id="updateCustomerButton" onclick="updateCustomer()" class="btn btn-primary">Update</button> 
+                </form>             
+        </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="reload()">Close</button>
+          </div>
+
+      </div>
+  </div>
+</div>
+
+
+</div>
+
+</body>
+
+<script src="./js/telcojs.js"></script>
+<script src="./js/search-widget.js"></script>
+<script src="./js/validation.js"></script>
+<script>
+
+  getCustomersForAdmin();
+  customer_field_check();
+
+</script>
+</html>

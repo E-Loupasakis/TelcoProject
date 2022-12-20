@@ -9,10 +9,13 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-
+  <script src="./js/login.js"></script>
+  <script>
+    isloggedin();
+  </script>  
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">Administrator</a>
+              <a class="navbar-brand" href="main_admin.html">Administrator</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -45,7 +48,7 @@
             <div class="col-md-4">
 
                 <div class="mt-4 p-5 bg-primary text-white rounded" id="jumbo1">
-                    <h1>Pending Tickets</h1>
+                    <h1>PENDING TICKETS</h1>
                 </div>
                 
             </div>
@@ -57,10 +60,137 @@
         </div>
 
 
+
+
+        <div class="row" style="margin-top:50px;width:100%">
+
+          <div class="col-md-2">
+
+          </div>
+
+          <div class="col-md-8" style="width:100%">
+
+              <div id="table_for_pending" >
+                  
+              </div>
+              
+          </div>
+
+          <div class="col-md-2">
+              
+          </div>
+
+      </div>
+
+
 </div>
 
 
-<script src="./js/telcojs.js"></script>  
+
+
+<!-- The Modal -->
+<div class="modal" id="edit_ticket_by_admin_pending">
+  <div class="modal-dialog">
+      <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+              <h4 class="modal-title">Modal Heading</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="reload()"></button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+              <form>
+                  <div class="mb-3 mt-3">
+                      <input type="text" class="form-control" id="ticket_id_update"  required hidden>
+                  </div>
+
+                  <div class="mb-3 mt-3">
+                      <input type="text" class="form-control" id="customer_id_update"  required hidden>
+                  </div>
+                  <div class="mb-3 mt-3">
+                      <label for="address" class="form-label">Address:</label>
+                      <input type="text" class="form-control" id="address_update" placeholder="Enter the address" name="address" required>
+                  </div>
+
+                  <label class="form-label">Ticket status:</label>
+                  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="ticket_status_update" required>
+                      <option selected ="disabled">Choose your ticket status</option>
+                      <option value="PENDING">PENDING</option>
+                      <option value="IN_PROGRESS">IN_PROGRESS</option>
+                      <option value="COMPLETE">COMPLETE</option>
+                      <option value="DEFAULT_STANDBY_MODE">DEFAULT_STANDBY_MODE</option>
+                  </select>
+                  <label  class="form-label">Ticket type:</label>
+                  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="ticket_type_update" required>
+                      <option selected="disabled">Choose your ticket type</option>
+                      <option value="NEW_INSTALLATION">NEW_INSTALLATION</option>
+                      <option value="BROKEN_LINE">BROKEN_LINE</option>
+                      <option value="COMPLETE">COMPLETE</option>
+                  </select>
+                  <div class="mb-3">
+                      <label class="form-label">Enter the cost:</label>
+                      <input type="number" class="form-control" id="estimated_cost_update" name="estimated_cost" required min="0">
+                  </div>
+                  <div class="mb-3">
+                      <label for="description" class="form-label">Description:</label>
+                      <textarea class="form-control" id="description_update" name="description" required>
+
+                                  </textarea>
+                      <div class="mb-3">
+                          <label class="form-label">Choose the date of action:</label>
+                          <input type="datetime-local" class="form-control" id="date_of_action_update" name="date_of_action" required >
+                      </div>
+                  </div>
+                  <button type="button" onclick="updateTicket(document.getElementById('table_ticket_id_pending').value)" class="btn btn-primary">Update</button>
+              </form>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="reload()">Close</button>
+          </div>
+
+      </div>
+  </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id='delete_ticket_by_admin_pending'>
+  <form>
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+              <h4 class="modal-title">Ticket delete</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="reload()"></button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+              Do you want to delete this ticket?
+          </div>
+          <div id = 'my_id_value' hidden></div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+              <button type="button" onclick="deleteTicket(document.getElementById('my_id_value').value)" class="btn btn-success" data-bs-dismiss="modal">Yes</button>
+          </div>
+
+      </div>
+  </div>
+
+</div>
+
+
+<script src="./js/telcojs.js"></script>
+
+<script>
+
+    getTicketsForAdminPending();
+
+</script> 
 
 
 </body>

@@ -10,10 +10,13 @@
 </head>
 <body>
 </body>
-
+<script src="./js/login.js"></script>
+  <script>
+    isloggedin();
+  </script>  
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Administrator</a>
+      <a class="navbar-brand" href="main_admin.html">Administrator</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -39,112 +42,6 @@
     <div class="row">
 
         <div class="col-md-4">
-
-        </div>
-        <div class="col-md-4">
-
-            
-                <!-- Button to Open the Modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CreateCustomerByAdmin" style="margin-top:80px;height:70px;;width:250px;font-size:18pt;margin-left:100px;">
-                    Create Ticket
-                </button>
-  
-                <!-- The Modal -->
-                <div class="modal" id="CreateCustomerByAdmin">
-                    <div class="modal-dialog">
-                    <div class="modal-content">
-                
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                        <h4 class="modal-title">Create ticket</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <form action="">
-                                <div class="mb-3 mt-3">
-                                  <label for="address" class="form-label">Address:</label>
-                                  <input type="text" class="form-control" id="address" placeholder="Enter the address" name="address" required>
-                                </div>
-                                <div class="mb-3"> 
-                                  <input type="text" class="form-control" id="cust_id" placeholder="Enter password" name="cust_id" hidden required>
-                                </div>
-                                <label for="ticket-status" class="form-label">Ticket status:</label>
-                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="TicketStatus" required>
-                                    <option selected ="disabled">Choose your ticket status</option>
-                                    <option value="PENDING">PENDING</option>
-                                    <option value="IN_PROGRESS">IN_PROGRESS</option>
-                                    <option value="COMPLETE">COMPLETE</option>
-                                    <option value="DEFAULT_STANDBY_MODE">DEFAULT_STANDBY_MODE</option>
-                                  </select>
-                                  <label for="ticket-type" class="form-label">Ticket type:</label>
-                                  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="TicketType" required>
-                                    <option selected="disabled">Choose your ticket type</option>
-                                    <option value="NEW_INSTALLATION">NEW_INSTALLATION</option>
-                                    <option value="BROKEN_LINE">BROKEN_LINE</option>
-                                    <option value="COMPLETE">COMPLETE</option>
-                                  </select>
-                                  <div class="mb-3"> 
-                                    <label for="cost" class="form-label">Enter the cost:</label>
-                                    <input type="number" class="form-control" id="estimated_cost" name="estimated_cost" required min="0">
-                                  </div>
-                                  <div class="mb-3"> 
-                                    <label for="description" class="form-label">Description:</label>
-                                    <textarea class="form-control" id="description" name="description" required>
-
-                                    </textarea>
-                                    <div class="mb-3"> 
-                                        <label for="dateOfAction" class="form-label">Choose the date of action:</label>
-                                        <input type="date" class="form-control" id="date_of_action" name="date_of_action" required >
-                                      </div>
-                                  </div>
-                                <button type="submit" class="btn btn-primary">Create</button>
-                              </form>
-
-                        
-                        </div>
-                
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        </div>
-                
-                    </div>
-                    </div>
-                </div>
-
-        </div>
-        <div class="col-md-2">
-            <form action="" id="TicketformSearchByDate">
-                <div class="mb-3 mt-3">
-                  <label for="date" class="form-label">Search by Date:</label>
-                  <input type="date" class="form-control" id="dateFromByOneDate" placeholder="Enter date" name="dateFromByOneDate" style="width:150px;cursor:pointer">
-                </div>
-                <button type="submit" class="btn btn-primary" id="TicketBtnSearchByDate">Search</button>
-              </form>
-        </div>
-        <div class="col-md-2" id="dtSearch">
-              <form action="" id="TicketformSearchByDates">
-                <div class="mb-3 mt-3">
-                  <label for="date" class="form-label">Search by Dates:</label>
-                  <input type="date" class="form-control" id="dateFromBy2Dates" placeholder="Enter date" name="dateFrom2dates" style="width:150px;cursor:pointer">
-                  <br>
-                  <input type="date" class="form-control" id="dateToBy2Dates" placeholder="Enter date" name="dateToFrom2Dates" style="width:150px;cursor:pointer">
-                </div>
-                
-                <button type="submit" class="btn btn-primary" id="TicketBtnSearchByDates">Search</button>
-              </form>
-
-        </div>
-
-    </div>
-
-    <div class="row">
-
-        <div class="col-md-4">
-
-
         </div>
 
         <div class="col-md-4">
@@ -155,49 +52,286 @@
             
         </div>
 
-        <div class="col-md-4">
-           
+        <div class="col-md-4">  
         </div>
 
     </div>
 
-    <div class="row" style="margin-top:100px;">
+    <div class="row">
 
-        <div class="col-md-3">
 
+      <div class="col-md-2">
+
+         
+
+      <!-- The Modal -->
+      <div class="modal" id="CreateTicketByAdmin">
+          <div class="modal-dialog">
+          <div class="modal-content">
+      
+              <!-- Modal Header -->
+              <div class="modal-header">
+              <h4 class="modal-title">Create ticket</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+      
+              <!-- Modal body -->
+              <div class="modal-body">
+                  <form >
+                    
+                      <div class="mb-3 mt-3">
+                        <label for="address" class="form-label">Address:</label>
+                        <input type="text" class="form-control" id="address" placeholder="Enter the address" name="address" required>
+                        <span id="message-addr-create"></span>
+                      </div>
+                      <div class="mb-3"> 
+                        <label for="cust_id" class="form-label">Customer id:</label>
+                        <select id="ticket_search_customer_id"></select>
+                        <!-- <input type="text" class="form-control" id="cust_id" placeholder="Enter customer ID" name="cust_id" required> -->
+                      </div>
+                      <label for="ticket-status" class="form-label">Ticket status:</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="TicketStatus" required>
+                          <option selected ="disabled">Choose your ticket status</option>
+                          <option value="PENDING">PENDING</option>
+                          <option value="IN_PROGRESS">IN_PROGRESS</option>
+                          <option value="COMPLETE">COMPLETE</option>
+                          <option value="DEFAULT_STANDBY_MODE">DEFAULT_STANDBY_MODE</option>
+                        </select>
+                        
+                        <label for="ticket-type" class="form-label">Ticket type:</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="TicketType" required>
+                          <option selected="disabled">Choose your ticket type</option>
+                          <option value="NEW_INSTALLATION">NEW_INSTALLATION</option>
+                          <option value="BROKEN_LINE">BROKEN_LINE</option>
+                          <option value="LIMITED_CONNECTIVITY">LIMITED_CONNECTIVITY</option>
+                        </select>
+                        
+                        <div class="mb-3"> 
+                          <label for="cost" class="form-label">Enter the cost:</label>
+                          <input type="number" class="form-control" id="estimated_cost" name="estimated_cost" required min="0" max="100000">
+                          <span id="message-costTicket-create"></span>
+                        </div>
+                        <div class="mb-3"> 
+                          <label for="description" class="form-label">Description:</label>
+                          <textarea class="form-control" id="description" name="description" required>
+
+                          </textarea>
+                          <span id="message-description-create"></span>
+                        </div>
+                          <div class="mb-3"> 
+                              <label for="dateOfAction" class="form-label">Choose the date of action:</label>
+                              <input type="datetime-local" class="form-control" id="date_of_action" name="date_of_action" required >
+                          </div>
+                       
+                      <button type="button" onclick="createTicket()" class="btn btn-primary">Create</button>
+                    </form>
+
+              
+              </div>
+      
+              <!-- Modal footer -->
+              <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              </div>
+      
+          </div>
+          </div>
+      </div>
+      </div>
+      <div class="col-md-2">
+      </div>
+
+     
+      <div class="col-md-4">
+
+       
+         
+      </div>
+
+  </div>
+
+
+
+    </div>
+
+    <div class="row" style="margin-top:100px;text-align:center;width:100%">
+
+        <div class="col-md-1">
+  
         </div>
 
-        <div class="col-md-6">
-
-            <div id="table" style="text-align: center;">
-                <h1>Tickets</h1>
+        <div class="col-md-10" style="width:100%">
+        <div class="col-md-10" style="width:100%">
+            <div id="mySearchRow">
+              <div id="create_ticket_button">
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CreateTicketByAdmin">
+                 Create Ticket
+             </button>
+            </div>
+              <div id="search_ticket_criteria">
+              <label>Search by</label>
+              <select id="searchType" onchange="field_check()">
+                <option value="byCreation">Ticket Creation</option>
+                <option value="byCreationRange">Ticket Creation(Date Range)</option>
+                <option value="byAction">Ticket Action</option>
+                <option value="byActionRange">Ticket Action(Date Range)</option>
+                <option value="byCustomerId">Customer Id</option>
+              </select>
+              <input type="date"  id="dateSearch" placeholder="Enter date" style="width:150px;cursor:pointer">
+              <input type="date"  id="dateFrom" placeholder="Enter date" style="width:150px;cursor:pointer">
+              <input type="date"  id="dateTo" placeholder="Enter date" style="width:150px;cursor:pointer">
+              <select id="search_customer_id"></select>
+              <button type="button" onclick="s_date_search_admin()" class="btn btn-primary" id="TicketBtnSearchByDates">Search</button>
+            </div>
+            </div>
+            <div id="table">
             </div>
             
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-1">
             
         </div>
 
 
     </div>
 
+      <div class="row" style="margin-top:100px;">
+
+          <div class="col-md-2">
+
+          </div>
+
+          <div class="col-md-8">
+
+              <div id="search_by_date" style="text-align: center;">
+              </div>
+
+          </div>
+
+          <div class="col-md-2">
+
+          </div>
+
+
+      </div>
 
 </div>
 
 
+
+
+<!-- The Modal -->
+<div class="modal" id="edit_ticket_by_admin">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit ticket</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="formupdateTicket">
+                    <div class="mb-3 mt-3">
+                        <input type="text" class="form-control" id="ticket_id_update"  required hidden>
+                    </div>
+
+                    <div class="mb-3 mt-3">
+                        <input type="text" class="form-control" id="customer_id_update"  required hidden>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="address" class="form-label">Address:</label>
+                        <input type="text" class="form-control" id="address_update" placeholder="Enter the address" name="address_update" required>
+                        <span id="messageUpdateTicket"></span>
+                    </div>
+
+                    <label class="form-label">Ticket status:</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="ticket_status_update" required>
+                        <option selected ="disabled">Choose your ticket status</option>
+                        <option value="PENDING">PENDING</option>
+                        <option value="IN_PROGRESS">IN_PROGRESS</option>
+                        <option value="COMPLETE">COMPLETE</option>
+                        <option value="DEFAULT_STANDBY_MODE">DEFAULT_STANDBY_MODE</option>
+                    </select>
+                    <label  class="form-label">Ticket type:</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="ticket_type_update" required>
+                        <option selected="disabled">Choose your ticket type</option>
+                        <option value="NEW_INSTALLATION">NEW_INSTALLATION</option>
+                        <option value="BROKEN_LINE">BROKEN_LINE</option>
+                        <option value="LIMITED_CONNECTIVITY">LIMITED_CONNECTIVITY</option>
+                    </select>
+                    <div class="mb-3">
+                        <label class="form-label">Enter the cost:</label>
+                        <input type="number" class="form-control" id="estimated_cost_update" name="estimated_cost_update" required min="0">
+                        <span id="messageUpdateTicketCost"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description:</label>
+                        <textarea class="form-control" id="description_update" name="description" required>
+                          
+                        </textarea>
+                        <span id="messageUpdateTicketDescr"></span>
+                    </div>
+                        <div class="mb-3">
+                            <label class="form-label">Choose the date of action:</label>
+                            <input type="datetime-local" class="form-control" id="date_of_action_update" name="date_of_action_update" required >
+                        </div>
+                    
+                    <button type="button" onclick="updateTicket(document.getElementById('table_ticket_id').value)" class="btn btn-primary">Update</button>
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id='delete_ticket_by_admin'>
+    <form>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Delete ticket</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Are u sure?
+            </div>
+            <div id = 'my_id_value' hidden></div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" onclick="deleteTicket(document.getElementById('my_id_value').value)" class="btn btn-success" data-bs-dismiss="modal">Yes</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
 <script src="./js/telcojs.js"></script>
+<script src="js/search-widget.js"></script>
+<script src="js/validation_tickets.js"></script>
 
 <script>
 
-getTicketsForAdmin();
-
-getTodayForDateOfAction();
-
-
-
+    getTicketsForAdmin();
+    getTodayForDateOfAction();
+    createCustomerDropdown('search_customer_id');
+    field_check();
+    createCustomerDropdown("ticket_search_customer_id");
 </script>
-
-    
 </body>
 </html>

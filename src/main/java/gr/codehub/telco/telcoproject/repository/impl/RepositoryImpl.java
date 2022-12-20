@@ -1,6 +1,5 @@
 package gr.codehub.telco.telcoproject.repository.impl;
 
-import gr.codehub.telco.telcoproject.model.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;

@@ -37,7 +37,7 @@ public class TicketResource {
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"ADMIN","CUSTOMER"})
     public Response findAll () {
-        return  Response.ok().entity(ApiResponse.builder().data(ticketService.findAll()).build()).build();
+        return  Response.ok().entity(ApiResponse.builder().data(ticketService.read()).build()).build();
     }
 
 
@@ -56,7 +56,7 @@ public class TicketResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @RolesAllowed({"ADMIN","CUSTOMER"})
     public Response findByTicketId(@PathParam("id") Long id) {
-        return Response.ok().entity(ApiResponse.builder().data(ticketService.findByTicketId(id)).build()).build();
+        return Response.ok().entity(ApiResponse.builder().data(ticketService.read(id)).build()).build();
     }
 
     @PUT

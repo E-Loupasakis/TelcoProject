@@ -13,16 +13,16 @@
 
     <div class="container-fluid">
 
-        <div class="row">
+        <div class="row" style="margin-top:30px;">
             <div class="col-md-4">
 
             </div>
-
+            
             <div class="col-md-4">
 
                 <div class="mt-4 p-5 bg-primary text-white rounded" id="jumboLout">
                     <h1>You have been logged out</h1>
-                    <p style="margin-top:20px;"><a href="login.html">Click here to login again</a></p>
+                    <p style="margin-top:60px;"><a href="login.html" >Click here to login again</a></p>
                 </div>
                 
             </div>
@@ -35,9 +35,12 @@
     </div>
 
 <script>
-    function logout() {
+
+function logout(){
+
                 localStorage.removeItem("username");
                 localStorage.removeItem("password");
+                
             }
 </script> 
 

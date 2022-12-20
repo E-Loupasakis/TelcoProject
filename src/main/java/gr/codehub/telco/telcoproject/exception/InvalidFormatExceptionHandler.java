@@ -1,14 +1,12 @@
 package gr.codehub.telco.telcoproject.exception;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
-import gr.codehub.telco.telcoproject.enums.TicketStatus;
 import gr.codehub.telco.telcoproject.transfer.ApiError;
 import gr.codehub.telco.telcoproject.transfer.ApiResponse;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 import lombok.extern.slf4j.Slf4j;
-
 import java.time.LocalDateTime;
 
 @Slf4j

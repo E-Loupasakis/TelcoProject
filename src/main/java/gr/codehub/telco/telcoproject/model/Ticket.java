@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import javax.validation.constraints.FutureOrPresent;
 
 @Data
@@ -29,8 +30,6 @@ public class Ticket extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     @JsonBackReference
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private User customer;
 
 

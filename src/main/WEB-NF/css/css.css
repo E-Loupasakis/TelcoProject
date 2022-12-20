@@ -5,7 +5,54 @@
 
 }
 
+#create_ticket_button{
+    float: left;
+    margin-left: 20px;
+}
 
+#search_ticket_criteria{
+    float: center;
+    margin-right: 100px;
+}
+
+
+#tableForCustomers{
+    margin-top: 10px;
+}
+
+#create_button{
+    float: left;
+    margin-left: 20px;
+}
+
+#search_criteria{
+    float: center;
+    margin-right: 100px;
+}
+
+#jumboLout p a{
+    cursor:pointer;
+    font-size: 15pt;
+    text-decoration: none;
+    transition-duration:1s;
+
+}
+
+#jumboLout p a:hover{
+   transition-duration:1s;
+   font-size: 18pt;
+   color:#0d6efd;
+
+}
+
+
+#table{
+    margin-top:10px;
+}
+
+#mySearchRow{
+   
+}
 
 #buttonLogin{
    text-align: center;
@@ -38,6 +85,28 @@
     text-align: center;
 
 }
+
+
+#jumbo2{
+    height:120px;
+    text-align: center;
+
+}
+
+
+#jumbo3{
+    height:120px;
+    text-align: center;
+
+}
+
+
+#jumbo4{
+    height:220px;
+    text-align: center;
+
+}
+
 
 #jumboLout{
     height:160px;
