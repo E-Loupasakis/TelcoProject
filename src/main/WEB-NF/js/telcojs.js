@@ -303,8 +303,9 @@ function createTicket(){
     const password= localStorage.getItem('password');
 
 
+    
 
-    customerId = document.getElementById('cust_id').value;
+    customerId = document.getElementById('ticket_search_customer_id').value;
     addressOfIssue = document.getElementById('address').value;
     ticketStatus = document.getElementById('TicketStatus').value;
     ticketType = document.getElementById('TicketType').value;
