@@ -919,6 +919,7 @@ function addEmail(){
     document.getElementById("emailCount").value = String(newCount);
     div.setAttribute('class', 'mb-3 mt-3');
     document.getElementById("emailDivs").prepend(div);
+
     emailInput = document.getElementById("email"+newCount);
     helpMessage_new = document.getElementById("span"+newCount);
 
@@ -1003,6 +1004,31 @@ function addPhone(){
     document.getElementById("phoneCount").value = String(newCount);
     div.setAttribute('class', 'mb-3 mt-3');
     document.getElementById("phoneDivs").prepend(div);
+
+
+    phoneInput = document.getElementById("phone_number"+newCount);
+    helpMessage_new = document.getElementById("span"+newCount);
+
+    phoneInput.addEventListener('focusout', () => {
+    regEx = /^\d{10}$/;
+    message = 'Must be a valid email address';
+    
+      if (regEx.test(emailInput.value)) {
+        helpMessage_new.innerHTML = 'Success';
+        console.log(helpMessage_new);
+        helpMessage_new.className = 'text-success';
+        
+      } else {
+        helpMessage_new.innerHTML = message;
+        console.log(helpMessage_new);
+        helpMessage_new.className = 'text-danger';
+        
+      }
+    
+    });
+
+
+
 }
 
 

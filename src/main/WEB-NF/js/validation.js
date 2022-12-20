@@ -54,7 +54,7 @@ lname.addEventListener('focusout', () => {
     regEx = /[A-Z][A-Za-z\\s]*$/;
     message = 'Last name must contain at least one uppercase, one lowercase letter, one number and one special character'
 
-  if (regEx.test(fname.value)) {
+  if (regEx.test(lname.value)) {
     helpMessagelname.innerHTML = 'Success';
     helpMessagelname.className = 'text-success';
   } else {
@@ -73,7 +73,7 @@ usname.addEventListener('focusout', () => {
     regEx = /^[A-Za-z]([A-Za-z0-9_]){7,19}$/;
     message = 'Username must start with character, and cannot contain spaces and special characters(except underscore)'
 
-  if (regEx.test(fname.value)) {
+  if (regEx.test(usname.value)) {
     helpMessageusname.innerHTML = 'Success';
     helpMessageusname.className = 'text-success';
   } else {
@@ -90,11 +90,11 @@ usname.addEventListener('focusout', () => {
 pass.addEventListener('focusout', () => {
   
 
-    regEx = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^!&-+=_()])(?=\\S+$).{8,20}$/;
+    regEx = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^!&-+=_()])(?=\S+$).{8,20}$/;
     message = "Password must contain :0-9 at least once,a-z at least once,A-Z at least once,Special character at least once, no white spaces are allowed,min chars :8 , max chars:20";
     
 
-  if (regEx.test(fname.value)) {
+  if (regEx.test(pass.value)) {
     helpMessagepass.innerHTML = 'Success';
     helpMessagepass.className = 'text-success';
   } else {
@@ -110,11 +110,11 @@ pass.addEventListener('focusout', () => {
 vatNum.addEventListener('focusout', () => {
   
 
-    regEx = /^(?!\s*$).+/;
-    message = "The vatNumber can't be null";
+    regEx = /^\d{9}$/;
+    message = "The vatNumber can't be null and must contain only 9 digits";
     
 
-  if (regEx.test(fname.value)) {
+  if (regEx.test(vatNum.value)) {
     helpMessageVat.innerHTML = 'Success';
     helpMessageVat.className = 'text-success';
   } else {
@@ -130,11 +130,11 @@ vatNum.addEventListener('focusout', () => {
 addr.addEventListener('focusout', () => {
   
 
-   //regEx = /^(?!\s*$).{5,30}$/;
-    message = "The vatNumber can't be null";
+    regEx = /^[A-Za-z]([A-Za-z0-9_\s]){5,30}$/;
+    message = "The address must be between 5 and 30 characters and can't be null";
     
 
-  if (regEx.test(fname.value)) {
+  if (regEx.test(addr.value)) {
     helpMessageaddr.innerHTML = 'Success';
     helpMessageaddr.className = 'text-success';
   } else {
@@ -144,43 +144,3 @@ addr.addEventListener('focusout', () => {
   }
 
 });
-
-
-
-// for(let email of emails ){
-// email.addEventListener('focusout', () => {
-//     debugger;
-//      regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-//   message = 'Must be a valid email address';
-
-//   if (regEx.test(email.value)) {
-//     email.nextElementSibling.innerHTML = 'Success';
-//     console.log(email);
-//     email.nextElementSibling.className = 'text-success';
-    
-//   } else {
-//     email.nextElementSibling.innerHTML = message;
-//     console.log(email);
-//     email.nextElementSibling.className = 'text-danger';
-    
-//   }
-
-// });
-// }
-
-
- // regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  // message = 'Must be a valid email address';
-
-
-
-// message = 'Must contain at least one uppercase, one lowercase letter and one number'
-
-
-// let regEx = /(?=.*[a-zA-Z])/ ;
-  // message = 'Must contain at least one letter';
-
-  // let regEx = /(?=.*\d)(?=.*[a-zA-Z])/ ;
-  // message = 'Must contain at least one letter and one number';
-
-  // let regEx = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/
