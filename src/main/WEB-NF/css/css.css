@@ -30,6 +30,21 @@
     margin-right: 100px;
 }
 
+#jumboLout p a{
+    cursor:pointer;
+    font-size: 15pt;
+    text-decoration: none;
+    transition-duration:1s;
+
+}
+
+#jumboLout p a:hover{
+   transition-duration:1s;
+   font-size: 18pt;
+   color:#0d6efd;
+
+}
+
 
 #table{
     margin-top:10px;

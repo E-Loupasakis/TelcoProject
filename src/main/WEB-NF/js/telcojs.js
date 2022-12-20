@@ -1481,7 +1481,7 @@ function getTicketsForSimpleCustomer(){
         .then(tickets => {
 
             const data = tickets.data;
-            console.log(data);
+           
             var html="<table class='table table-hover'>";
 
             html+="<tr><th>ID Ticket</th><th>ID Customer</th><th>Ticket Type</th><th>Ticket Status</th><th>Cost</th><th>Address</th>" +
