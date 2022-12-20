@@ -113,9 +113,9 @@ function getTicketsForAdmin(){
 
 function getTodayForDateOfAction(){
 
-    var today = new Date();
+var today = new Date();
 var dd = today.getDate();
-var mm = today.getMonth() + 1; //January is 0!
+var mm = today.getMonth() + 1; 
 var yyyy = today.getFullYear();
 
 if (dd < 10) {
@@ -272,11 +272,26 @@ function deleteTicket(ticketId){
 }
 
 function createTicket(){
+    alert("111")
+    if(document.querySelector('.text-danger')!=null){
+        return false;
+    }
+
+    var b = document.querySelectorAll('#CreateTicketByAdmin input');
+
+    for(i=0;i<b.length-1;i++)
+    {
+        if(b[i].value=="")
+        return false;
+    }
+    alert("after")
+
     const username= localStorage.getItem('username');
 
     const password= localStorage.getItem('password');
 
-    //ticketId = document.getElementById('ticket_id_update').value;
+
+
     customerId = document.getElementById('cust_id').value;
     addressOfIssue = document.getElementById('address').value;
     ticketStatus = document.getElementById('TicketStatus').value;
